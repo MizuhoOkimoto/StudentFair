@@ -7,7 +7,7 @@ import Button from "../components/Button";
 
 const MainImgContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: 300px;
   margin: 0;
   padding: 0;
   background-size: cover;

@@ -1,0 +1,61 @@
+header {
+  padding: 15px;
+}
+
+.nav-link p {
+  font-size: 20px;
+  padding: 0 15px 0 15px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-sub {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link,
+.navbar-brand {
+  text-decoration: none;
+}
+
+.nav-link:visited,
+.navbar-brand:visited {
+  color: black;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+  color: darksalmon;
+}
+
+.search-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-form {
+  display: flex;
+  padding: 15px 40px 15px 40px;
+  background-color: tomato;
+  border-radius: 25px;
+}
+
+.input-container,
+label {
+  margin: 0 10px 0 10px;
+  align-items: center;
+  display: flex;
+}
+
+input,
+select,
+.submit-button {
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+}
