@@ -2,6 +2,11 @@ header {
   padding: 15px;
 }
 
+#logo {
+  background-size: cover;
+  width: 200px;
+}
+
 .nav-link p {
   font-size: 20px;
   padding: 0 15px 0 15px;
@@ -15,20 +20,24 @@ header {
 .navbar-sub {
   display: flex;
   align-items: center;
-}
-
-.nav-link,
-.navbar-brand {
-  text-decoration: none;
-}
-
-.nav-link:visited,
-.navbar-brand:visited {
   color: black;
 }
 
-.nav-link:hover,
-.navbar-brand:hover {
+.nav-link {
+  text-decoration: none;
+}
+
+.navbar-logo {
+  width: 100px;
+  height: auto;
+}
+
+.nav-link:visited,
+.nav-link:active {
+  color: black;
+}
+
+.nav-link:hover {
   color: darksalmon;
 }
 
@@ -42,7 +51,7 @@ header {
   display: flex;
   padding: 15px 40px 15px 40px;
   background-color: tomato;
-  border-radius: 25px;
+  border-radius: 50px;
 }
 
 .input-container,
@@ -52,10 +61,30 @@ label {
   display: flex;
 }
 
+label {
+  color: white;
+}
+
 input,
 select,
 .submit-button {
-  border-radius: 5px;
+  border-radius: 25px;
   border: none;
   height: 30px;
+}
+
+select {
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: white;
+  font-weight: 500;
+  color: tomato;
+}
+
+.submit-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+  color: black;
 }

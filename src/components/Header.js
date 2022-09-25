@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 
+import { AiOutlineLogin } from "react-icons/ai";
+
+import logo from "../img/studentFair_Logo.png";
+
 import styled from "styled-components";
 
 import "./css/Header.css";
@@ -9,7 +13,7 @@ const Header = () => {
     <header>
       <nav className="navbar">
         <Link className="navbar-brand" to="/">
-          <h1>Student Fair</h1>
+          <img className="navbar-logo" src={logo} alt="Logo Img" />
         </Link>
         <div className="navbar-sub">
           <Link className="nav-link" to="/">
@@ -24,11 +28,17 @@ const Header = () => {
           <Link className="nav-link" to="/sellList">
             <p>SellList</p>
           </Link>
+          <Link className="nav-link" to="/logIn">
+            <p>Log In</p>
+          </Link>
+          <Link className="nav-link" to="/sign-Up">
+            <p>Sign In</p>
+          </Link>
         </div>
       </nav>
       <div className="search-form-container">
-        <form action="/" id="search" className="search-form" method="post">
-          <div className="input-container">
+        <form action="/" id="search" className="search-form" method="get">
+          <div className="input-search">
             <label htmlFor="searchValue"></label>
             <input
               type="text"
@@ -58,7 +68,7 @@ const Header = () => {
             </div>
           </div>
           <button type="submit" className="submit-button">
-            Submit
+            Search
           </button>
         </form>
       </div>
