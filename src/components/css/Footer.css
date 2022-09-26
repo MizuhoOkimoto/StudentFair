@@ -12,7 +12,7 @@
 .footer-info-left,
 .footer-info-center,
 .footer-info-right {
-  font-size: x-small;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
   margin: 10px;
@@ -29,7 +29,6 @@
 .footer-info__contents {
   font-weight: normal;
   margin-top: 5px;
-  font-size: 14px;
   cursor: pointer;
 }
 
@@ -49,7 +48,38 @@ a:visited:hover {
   color: darksalmon;
 }
 
+.social-media {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.social {
+    margin: 0 1rem;
+    transition: transform 250ms;
+    display: inline-block;
+  }
+
+.social:hover {
+    transform: translateY(-2px);
+  }
+
+  .youtube {
+    color: #eb3223;
+  }
+  
+  .facebook {
+    color: #4968ad;
+  }
+  
+  .twitter {
+    color: #49a1eb;
+  }
+  
+  .instagram {
+    color: #E1306C;
+  }
 .copy-right {
   font-size: 14px;
-  margin: 5px 0px;
+  margin: 20px 0px 9px 0px;
 }

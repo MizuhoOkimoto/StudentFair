@@ -2,6 +2,13 @@ import React from 'react';
 import styled from "styled-components";
 import './css/Footer.css';
 //import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faYoutube,
+  faFacebook,
+  faTwitter,
+  faInstagram
+} from "@fortawesome/free-brands-svg-icons";
 
 const FooterBox = styled.footer`
   bottom: 0;
@@ -22,7 +29,7 @@ const Footer = () => {
               StudentFair
           </section>
           <section to="/" className="footer-info__contents">
-              About us
+              About Us
           </section>
           <section className="footer-info__contents">
             <a href="https://github.com/MizuhoOkimoto/StudentFair" target="blank">
@@ -39,7 +46,7 @@ const Footer = () => {
             Home
           </section>
           <section className="footer-info__contents">
-            Product list
+            Product List
           </section>
         </section>
         <section className="footer-info-right">
@@ -47,12 +54,27 @@ const Footer = () => {
             SUPPORT
           </section>
           <section className="footer-info__contents">
-            Contact us
+            Contact Us
           </section>
           <section className="footer-info__contents">
-            Report post
+            Report Post
           </section>
         </section>
+      </section>
+
+      <section className="social-media">
+      <section className="youtube social">
+      <FontAwesomeIcon icon={faYoutube} size="2x" />
+      </section>
+      <section className="facebook social">
+      <FontAwesomeIcon icon={faFacebook} size="2x" />
+      </section>
+      <section className="twitter social">
+      <FontAwesomeIcon icon={faTwitter} size="2x" />
+      </section>
+      <section className="instagram social">
+      <FontAwesomeIcon icon={faInstagram} size="2x" />
+      </section>
       </section>
 
       <section className="copy-right">

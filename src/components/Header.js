@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { AiOutlineLogin } from "react-icons/ai";
+//import { AiOutlineLogin } from "react-icons/ai";
 
 import logo from "../img/studentFair_Logo.png";
 
