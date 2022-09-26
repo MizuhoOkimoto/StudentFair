@@ -49,36 +49,36 @@ a:visited:hover {
 }
 
 .social-media {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .social {
-    margin: 0 1rem;
-    transition: transform 250ms;
-    display: inline-block;
-  }
+  margin: 0 1rem;
+  transition: transform 250ms;
+  display: inline-block;
+}
 
 .social:hover {
-    transform: translateY(-2px);
-  }
+  transform: translateY(-2px);
+}
 
-  .youtube {
-    color: #eb3223;
-  }
-  
-  .facebook {
-    color: #4968ad;
-  }
-  
-  .twitter {
-    color: #49a1eb;
-  }
-  
-  .instagram {
-    color: #E1306C;
-  }
+.youtube {
+  color: #eb3223;
+}
+
+.facebook {
+  color: #4968ad;
+}
+
+.twitter {
+  color: #49a1eb;
+}
+
+.instagram {
+  color: #e1306c;
+}
 .copy-right {
   font-size: 14px;
   margin: 20px 0px 9px 0px;

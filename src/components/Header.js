@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 //import { AiOutlineLogin } from "react-icons/ai";
 
-import logo from "../img/studentFair_Logo.png";
+import logo from '../img/studentFair_Logo.png';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import "./css/Header.css";
+import './css/Header.css';
 
 const Header = () => {
   return (

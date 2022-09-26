@@ -1,18 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Card from "../components/ItemBox";
+import Card from '../components/ItemBox';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // import Button from "../components/Button";
-import Button from "../components/Button";
+import Button from '../components/Button';
 
 const Items = styled.div`
   width: ${(props) => {
     if (props.width) {
       return props.width;
     } else {
-      return "40vw";
+      return '40vw';
     }
   }};
   height: 20vw;
@@ -20,7 +20,7 @@ const Items = styled.div`
   padding-top: 0;
   background-size: cover;
   background-position: center;
-  background-image: url("${(props) => props.url}");
+  background-image: url('${(props) => props.url}');
 `;
 
 const MainImgContainer = styled.div`
@@ -30,7 +30,7 @@ const MainImgContainer = styled.div`
   padding: 0;
   background-size: cover;
   background-position: center;
-  background-image: url("https://images.unsplash.com/photo-1571867424488-4565932edb41?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80");
+  background-image: url('https://images.unsplash.com/photo-1571867424488-4565932edb41?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80');
 `;
 
 const MainParagraph = styled.div`
@@ -49,7 +49,7 @@ const SubParagraph = styled.div`
     if (props.color) {
       return props.color;
     } else {
-      return "antiquewhite";
+      return 'antiquewhite';
     }
   }};
 `;
