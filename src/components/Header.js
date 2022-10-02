@@ -31,8 +31,8 @@ const Header = () => {
           <Link className="nav-link" to="/logIn">
             <p>Log In</p>
           </Link>
-          <Link className="nav-link" to="/sign-Up">
-            <p>Sign In</p>
+          <Link className="nav-link" to="/signUp">
+            <p>Sign Up</p>
           </Link>
         </div>
       </nav>

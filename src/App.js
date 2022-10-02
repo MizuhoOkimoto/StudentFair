@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import AllList from './pages/AllList';
 import BuyList from './pages/BuyList';
 import SellList from './pages/SellList';
+import LogIn from './pages/LogIn';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route exact path="/allList" element={<AllList />} />
         <Route exact path="/buyList" element={<BuyList />} />
         <Route exact path="/sellList" element={<SellList />} />
+        <Route exact path="/logIn" element={<LogIn />} />
+        <Route exact path="/signUp" element={<SignUp />} />
       </Routes>
       <Footer />
     </div>
