@@ -54,15 +54,9 @@ p.agreement a {
   cursor: pointer;
 }
 
-.log-in {
-  width: 50vw;
-  background-color: var(--main-color);
-  padding: 2rem;
-  display: block;
-}
-
+.log-in,
 .sign-up {
-  width: 50vw;
+  width: 582.42px;
   background-color: var(--main-color);
   padding: 2rem;
   display: block;
@@ -129,5 +123,9 @@ p.agreement a {
   form.log-in,
   form.sign-up {
     padding: 1rem;
+  }
+  .log-in,
+  .sign-up {
+    width: 50vw;
   }
 }
