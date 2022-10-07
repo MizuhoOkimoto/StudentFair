@@ -1,0 +1,88 @@
+header {
+  padding: 15px;
+}
+
+#logo {
+  background-size: cover;
+  width: 200px;
+}
+
+.nav-link p {
+  font-size: 20px;
+  padding: 0 15px 0 15px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-sub {
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.navbar-logo {
+  width: 100px;
+  height: auto;
+}
+
+.nav-link,
+.nav-link:visited,
+.nav-link:active {
+  color: black;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: darksalmon;
+}
+
+.search-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-form {
+  display: flex;
+  padding: 15px 40px 15px 40px;
+  background-color: tomato;
+  border-radius: 50px;
+}
+
+.input-container,
+label {
+  margin: 0 10px 0 10px;
+  align-items: center;
+  display: flex;
+}
+
+label {
+  color: white;
+}
+
+input,
+select,
+.submit-button {
+  border-radius: 25px;
+  border: none;
+  height: 30px;
+}
+
+select {
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: white;
+  font-weight: 500;
+  color: tomato;
+}
+
+.submit-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+  color: black;
+}
