@@ -10,6 +10,7 @@ import BuyList from './pages/BuyList';
 import SellList from './pages/SellList';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
+import MyProfile from './pages/MyProfile';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/sellList" element={<SellList />} />
         <Route exact path="/logIn" element={<LogIn />} />
         <Route exact path="/signUp" element={<SignUp />} />
+        <Route exact path="/myProfile" element={<MyProfile />} />
       </Routes>
       <Footer />
     </div>

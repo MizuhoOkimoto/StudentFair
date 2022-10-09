@@ -86,3 +86,29 @@ select {
   cursor: pointer;
   color: black;
 }
+
+@media only screen and (max-width: 768px) {
+  .search-form {
+    display: block;
+    padding: 25px;
+  }
+  input,
+  select,
+  .submit-button {
+    /* margin: 5px 0 5px 0; */
+    margin: 5px;
+    border-radius: 10px;
+    width: 95%;
+  }
+  .input-container,
+  label {
+    margin: 0;
+  }
+  label {
+    margin-left: 5px;
+  }
+  .navbar,
+  .navbar-sub {
+    display: block;
+  }
+}

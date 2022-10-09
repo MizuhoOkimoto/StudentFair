@@ -9,7 +9,7 @@ const Button = styled.button`
     if (props.color === 'secondary') {
       return '#002DB2';
     }
-    return '#666';
+    return props.color;
   }};
   border: 0;
   padding: 4px 8px;
