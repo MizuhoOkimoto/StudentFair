@@ -1,0 +1,95 @@
+.item-detail-container {
+  padding: 50px 20px 50px 20px;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-detail-box {
+  width: 700px;
+}
+
+.detail-title {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.detail-price {
+  font-size: 20px;
+  color: green;
+}
+
+.detail-address {
+  display: flex;
+}
+
+.address-value {
+  padding-left: 15px;
+}
+
+.detail-header {
+  padding: 30px 0 30px 0;
+}
+
+.detail-images {
+  display: flex;
+}
+
+.main-image {
+  width: 534px;
+  height: 534px;
+  object-fit: cover;
+  margin: 5px 0 5px 0;
+}
+
+.main-image,
+.sub-image {
+  border: 1px solid black;
+  /* margin: 5px; */
+  cursor: pointer;
+}
+
+.main-image:hover,
+.sub-image:hover {
+  opacity: 70%;
+}
+
+.detail-sub-images {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-image {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  display: block;
+  margin: 5px 0 5px 20px;
+}
+
+.see-more-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+}
+
+.desc-title {
+  font-size: 20px;
+  padding: 20px 0 10px 0;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  opacity: 70%;
+}
+
+.detail-footer {
+  display: flex;
+  justify-content: end;
+  padding: 40px 0 20px 0;
+}

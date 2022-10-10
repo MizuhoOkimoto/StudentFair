@@ -67,19 +67,19 @@ const Home = () => {
       <MainParagraph>
         <Link className="nav-link" to="/">
           <Card className="category-card">
-            <h3>Life</h3>
+            <h3>Buy</h3>
             <Items url="https://images.unsplash.com/photo-1586250300376-bee39fc56013?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"></Items>
           </Card>
         </Link>
         <Link className="nav-link" to="/">
           <Card className="category-card">
-            <h3>Study</h3>
+            <h3>Sell</h3>
             <Items url="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"></Items>
           </Card>
         </Link>
       </MainParagraph>
       <SubParagraph color="antiquewhite">
-        <h1>New Arrivals</h1>
+        <h1>New Post</h1>
         <SubItemBoxes>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">

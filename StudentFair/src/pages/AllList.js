@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 // import Button from "../components/Button";
 import Button from '../components/Button';
 import Loading from '../components/Loading';
+import List from '../components/ItemList';
 
 const AllList = () => {
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,14 @@ const AllList = () => {
   return (
     <div>
       {loading && <Loading />}
-      {!loading && <p>All List</p>}
+      {!loading && (
+        <div>
+          <div>All List</div>
+          <div>
+            <List></List>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
