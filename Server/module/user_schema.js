@@ -1,65 +1,130 @@
-const bcrypt = require('bcryptjs')
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
-const user_schema = new Schema({
-    email:{
-        type:String,
-        require: true,    
-        unique: true
-    },
-    fname:{
-        type:String,
-        require: true
-    },
-    lname:{
-        type:String,
-        require: true
-    },
-    birthday:{
-        type:Date,
-        require: true
-    },
-    password:{
-        type:String,
-        require: true
-    },
-    pimage:{
-        type:String,
-        require: false
-    },
-    create_date:{
-        type:Date,
-        default: Date.now()
-    },
-    introduce:{
-        type:String,
-        require: false
-    },
-    user_rate:{
-        type:Number,
-        default: 0
-    }
-})
+const Schema = mongoose.Schema;
 
-user_schema.pre('save', function(next){
-    var user = this;
+const userSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      minlength: 3,
+    },
+    fname: {
+      type: String,
+      require: true,
+      trim: true,
+      minlength: 3,
+    },
+    lname: {
+      type: String,
+      require: true,
+      trim: true,
+      minlength: 3,
+    },
+    birthday: {
+      type: String, //fix later
+      require: true,
+    },
+    password: {
+      type: String,
+      require: true,
+    },
+    // pimage: {
+    //   type: String,
+    //   require: false,
+    // },
+    // create_date: {
+    //   type: Date,
+    //   default: Date.now(),
+    // },
+    // introduce: {
+    //   type: String,
+    //   require: false,
+    // },
+    // user_rate: {
+    //   type: Number,
+    //   default: 0,
+    // },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-    bcrypt.genSalt(10)
-    .then((salt) => {
-        bcrypt.hash(user.password, salt)
-        .then((encrypted_password) =>{
-            user.password = encrypted_password
-            next()
-        })
-        .catch((err)=>{
-            console.log(`Error Occured When Hashing. ${err}`)
-        })
-    }).catch((err)=>{
-        console.log(`Error Occured When Salting. ${err}`)
-    })
+// const user_schema = new Schema(
+//   {
+//     email: {
+//       type: String,
+//       require: true,
+//       unique: true,
+//       trim: true,
+//       minlength: 5,
+//     },
+//     fname: {
+//       type: String,
+//       require: true,
+//       trim: true,
+//       minlength: 3,
+//     },
+//     lname: {
+//       type: String,
+//       require: true,
+//       trim: true,
+//       minlength: 3,
+//     },
+//     birthday: {
+//       type: Date,
+//       require: true,
+//     },
+//     password: {
+//       type: String,
+//       require: true,
+//     },
+//     pimage: {
+//       type: String,
+//       require: false,
+//     },
+//     create_date: {
+//       type: Date,
+//       default: Date.now(),
+//     },
+//     introduce: {
+//       type: String,
+//       require: false,
+//     },
+//     user_rate: {
+//       type: Number,
+//       default: 0,
+//     },
+//   },
+//   {
+//     timestamps: true, // For specifying when it was created/modified
+//   }
+// );
 
-})
+// user_schema.pre('save', function (next) {
+//   var user = this;
 
-const user_model = mongoose.model('user_data', user_schema)
-module.exports = user_model
+//   bcrypt
+//     .genSalt(10)
+//     .then((salt) => {
+//       bcrypt
+//         .hash(user.password, salt)
+//         .then((encrypted_password) => {
+//           user.password = encrypted_password;
+//           next();
+//         })
+//         .catch((err) => {
+//           console.log(`Error Occured When Hashing. ${err}`);
+//         });
+//     })
+//     .catch((err) => {
+//       console.log(`Error Occured When Salting. ${err}`);
+//     });
+// });
+
+const User = mongoose.model('User', userSchema);
+module.exports = User;
