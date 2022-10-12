@@ -15,21 +15,21 @@ router.route('/add').post((req, res) => {
   const lname = req.body.lname;
   const birthday = req.bodybirthday; //fix later
   const password = req.body.password;
-//   const pimage = req.body.pimage;
-//   const introduce = req.body.introduce;
-//   const user_rate = req.body.user_rate;
+  //   const pimage = req.body.pimage;
+  //   const introduce = req.body.introduce;
+  //   const user_rate = req.body.user_rate;
 
-  const newUser = new User({ 
-      email,
-      fname,
-      lname,
-      birthday,
-      password,
+  const newUser = new User({
+    email,
+    fname,
+    lname,
+    birthday,
+    password,
     //   pimage,
     //   create_date,
     //   introduce,
     //   user_rate
-    });
+  });
 
   newUser
     .save()
