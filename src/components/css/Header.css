@@ -7,6 +7,11 @@ header {
   width: 200px;
 }
 
+.navbar-container {
+  display: flex;
+  justify-content: center;
+}
+
 .nav-link p {
   font-size: 20px;
   padding: 0 15px 0 15px;
@@ -15,6 +20,7 @@ header {
 .navbar {
   display: flex;
   justify-content: space-between;
+  width: 720px;
 }
 
 .navbar-sub {
@@ -46,10 +52,16 @@ header {
 }
 
 .search-form {
+  width: 700px;
   display: flex;
-  padding: 15px 40px 15px 40px;
+  padding: 15px 0px 15px 0px;
   background-color: tomato;
   border-radius: 50px;
+  justify-content: space-around;
+}
+
+#searchValue {
+  width: 250px;
 }
 
 .input-container,
@@ -91,6 +103,9 @@ select {
   .search-form {
     display: block;
     padding: 25px;
+  }
+  #searchValue {
+    width: 95%;
   }
   input,
   select,
