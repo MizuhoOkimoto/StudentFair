@@ -7,7 +7,8 @@
 
 .myProfile-card {
   box-shadow: 10px 10px 10px gray;
-  width: 70%;
+  /* width: 70%; */
+  width: 700px;
   border-radius: 15px;
 }
 

@@ -11,31 +11,33 @@ import './css/Header.css';
 const Header = () => {
   return (
     <header>
-      <nav className="navbar">
-        <Link className="navbar-brand" to="/">
-          <img className="navbar-logo" src={logo} alt="Logo Img" />
-        </Link>
-        <div className="navbar-sub">
-          <Link className="nav-link" to="/">
-            <p>Home</p>
+      <div className="navbar-container">
+        <nav className="navbar">
+          <Link className="navbar-brand" to="/">
+            <img className="navbar-logo" src={logo} alt="Logo Img" />
           </Link>
-          <Link className="nav-link" to="/allList">
-            <p>AllList</p>
-          </Link>
-          <Link className="nav-link" to="/buyList">
-            <p>BuyList</p>
-          </Link>
-          <Link className="nav-link" to="/sellList">
-            <p>SellList</p>
-          </Link>
-          <Link className="nav-link" to="/logIn">
-            <p>Log In</p>
-          </Link>
-          <Link className="nav-link" to="/signUp">
-            <p>Sign Up</p>
-          </Link>
-        </div>
-      </nav>
+          <div className="navbar-sub">
+            <Link className="nav-link" to="/">
+              <p>Home</p>
+            </Link>
+            <Link className="nav-link" to="/allList">
+              <p>AllList</p>
+            </Link>
+            <Link className="nav-link" to="/buyList">
+              <p>BuyList</p>
+            </Link>
+            <Link className="nav-link" to="/sellList">
+              <p>SellList</p>
+            </Link>
+            <Link className="nav-link" to="/logIn">
+              <p>Log In</p>
+            </Link>
+            <Link className="nav-link" to="/signUp">
+              <p>Sign Up</p>
+            </Link>
+          </div>
+        </nav>
+      </div>
       <div className="search-form-container">
         <form action="/" id="search" className="search-form" method="get">
           <div className="input-search">
