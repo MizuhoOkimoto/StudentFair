@@ -6,7 +6,7 @@ import '../components/css/LogIn-Register.css';
 
 import { Link } from 'react-router-dom';
 
-const LOGIN_SERVER_URL = 'http://localhost:8080/login'
+const LOGIN_SERVER_URL = 'http://localhost:8080/login';
 
 // const fetchData = () => {
 //   //const response = await axios.get(SERVER_URL)
@@ -23,11 +23,10 @@ const LOGIN_SERVER_URL = 'http://localhost:8080/login'
 //import Button from '../components/Button';
 
 const LogIn = () => {
-
-  const onSubmitHandler = (e)=>{
-    e.preventDefault()
-    var email = e.target.email
-    var password = e.target.password
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    var email = e.target.email;
+    var password = e.target.password;
 
     //await axios.post(SERVER_URL, {email, fName, lName,password})
     //fetchData()
@@ -41,9 +40,7 @@ const LogIn = () => {
     //     password
     //   })
     // })
-    
-  
-  }
+  };
 
   return (
     <div className="logIn-container">
