@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 require('dotenv').config({ path: '.env' });
 //const user_controller = require('./controller/user_controller');
 
-const HTTP_PORT = process.env.PORT || 1234;
+const HTTP_PORT = process.env.PORT || 8080;
 
 //Application Setting
 const app = express();

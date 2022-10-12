@@ -54,57 +54,6 @@ const userSchema = new Schema(
   }
 );
 
-// const user_schema = new Schema(
-//   {
-//     email: {
-//       type: String,
-//       require: true,
-//       unique: true,
-//       trim: true,
-//       minlength: 5,
-//     },
-//     fname: {
-//       type: String,
-//       require: true,
-//       trim: true,
-//       minlength: 3,
-//     },
-//     lname: {
-//       type: String,
-//       require: true,
-//       trim: true,
-//       minlength: 3,
-//     },
-//     birthday: {
-//       type: Date,
-//       require: true,
-//     },
-//     password: {
-//       type: String,
-//       require: true,
-//     },
-//     pimage: {
-//       type: String,
-//       require: false,
-//     },
-//     create_date: {
-//       type: Date,
-//       default: Date.now(),
-//     },
-//     introduce: {
-//       type: String,
-//       require: false,
-//     },
-//     user_rate: {
-//       type: Number,
-//       default: 0,
-//     },
-//   },
-//   {
-//     timestamps: true, // For specifying when it was created/modified
-//   }
-// );
-
 // user_schema.pre('save', function (next) {
 //   var user = this;
 
