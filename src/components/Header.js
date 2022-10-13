@@ -11,33 +11,60 @@ import './css/Header.css';
 const Header = () => {
   return (
     <header>
-      <div className="navbar-container">
-        <nav className="navbar">
-          <Link className="navbar-brand" to="/">
-            <img className="navbar-logo" src={logo} alt="Logo Img" />
-          </Link>
-          <div className="navbar-sub">
-            <Link className="nav-link" to="/">
-              <p>Home</p>
-            </Link>
-            <Link className="nav-link" to="/allList">
-              <p>AllList</p>
-            </Link>
-            <Link className="nav-link" to="/buyList">
-              <p>BuyList</p>
-            </Link>
-            <Link className="nav-link" to="/sellList">
-              <p>SellList</p>
-            </Link>
-            <Link className="nav-link" to="/logIn">
-              <p>Log In</p>
-            </Link>
-            <Link className="nav-link" to="/signUp">
-              <p>Sign Up</p>
-            </Link>
-          </div>
+      <nav className="navbar">
+      <Link className="navbar-brand" to="/">
+          <img className="navbar-logo" src={logo} alt="Logo Img" />
+        </Link>
+        <div className="navbar-sub">
+        <label for="drop" class="toggle">Menu +</label>
+        <input type="checkbox" id="drop" />
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li>
+                    
+                    <label for="drop-1" class="toggle">Listings +</label>
+                    <a href="#">Listings</a>
+                    <input type="checkbox" id="drop-1"/>
+                    <ul>
+                        <li><a href="/allList">All Lists</a></li>
+                        <li><a href="/buyList">Buy List</a></li>
+                        <li><a href="/sellList">Sell List</a></li>
+                    </ul> 
+
+                </li>          
+                <li><a href="/logIn">Log In</a></li>
+                <li><a href="/signUp">Sign Up</a></li>
+            </ul>
+            </div>
         </nav>
-      </div>
+      {/* <nav className="navbar">
+        <Link className="navbar-brand" to="/">
+          <img className="navbar-logo" src={logo} alt="Logo Img" />
+        </Link>
+        <div className="navbar-sub">
+          <Link className="nav-link" to="/">
+            <p>Home</p>
+          </Link>
+          <Link className="nav-link" to="/allList">
+            <p>AllList</p>
+          </Link>
+          <Link className="nav-link" to="/buyList">
+            <p>BuyList</p>
+          </Link>
+          <Link className="nav-link" to="/sellList">
+            <p>SellList</p>
+          </Link>
+          <Link className="nav-link" to="/logIn">
+            <p>Log In</p>
+          </Link>
+          <Link className="nav-link" to="/signUp">
+            <p>Sign Up</p>
+          </Link>
+        </div>
+      </nav> */}
+      {/* ------------- */}
+      
+      {/* --------------- */}
       <div className="search-form-container">
         <form action="/" id="search" className="search-form" method="get">
           <div className="input-search">
