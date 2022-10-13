@@ -18,7 +18,6 @@ export default class SignUp extends Component {
       email: '',
       fname: '',
       lname: '',
-      birthday: '', //fix later
       password: '',
     };
   }
