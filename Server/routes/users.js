@@ -135,7 +135,7 @@ router.route('/register').post((req, res) => {
     validData.pwd = "Please write your Password(over 8)"
     isValid = false;
   }
-
+  console.log(isValid);
   if(isValid){
     const newUser = new User({
       email,
@@ -150,16 +150,17 @@ router.route('/register').post((req, res) => {
 
     newUser
     .save()
-    .then(() => res.json('User added!'))
+    .then(() => res.json(newUser))
     .catch((err) => res.status(400).json('Error: ' + err));
     console.log(newUser);
     console.log(req.body);
   }
-else{
-  res.send('Need to fill up correctly')
-  console.log(req.body);
-}
-console.log(req.body);
+  else{
+    res.json(isValid)
+    console.log(req.body);
+  }
+  
+  
 });
 
 module.exports = router;

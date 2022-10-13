@@ -66,10 +66,20 @@ export default class SignUp extends Component {
     console.log(user);
 
     // Send the user data to the backend
-    axios.post('http://localhost:8080/users/register', user).then((res) => console.log(res.data));
+    
+      //let 
+      axios.post('http://localhost:8080/users/register', user)
+      .then((res) => {
+        console.log(res)
+        if(res.data != false){
+          window.location = '/LogIn';
+        }
+      });
+      
+    
 
     // Render to the log in page
-    window.location = '/LogIn';
+    //window.location = '/LogIn';
   }
 
   render() {
