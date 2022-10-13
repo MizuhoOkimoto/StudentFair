@@ -78,7 +78,7 @@ select {
 .submit-button {
   background-color: white;
   font-weight: 500;
-  color: tomato;
+  color: rgb(0, 0, 0);
 }
 
 .submit-button:hover {
@@ -134,14 +134,13 @@ nav ul li {
 	margin: 0px;
 	display:inline-block;
 	float: left;
-	background-color: darksalmon;
 	}
 
 /* Styling the links */
 nav a {
 	display:block;
 	padding:14px 20px;	
-	color:#FFF;
+	/* color:#FFF; */
 	font-size:17px;
 	text-decoration:none;
 }
@@ -149,9 +148,9 @@ nav a {
 
 nav ul li ul li:hover { background: #000000; }
 
-/* Background color change on Hover */
+/* Background color change on Hover  IMPORTANT*/ 
 nav a:hover { 
-	background-color: #000000; 
+	background-color: rgb(241, 208, 197); 
 }
 
 /* Hide Dropdowns by Default
@@ -166,6 +165,8 @@ nav ul ul {
 /* Display Dropdowns on Hover */
 nav ul li:hover > ul {
 	display:inherit;
+	top: 50px;
+	background-color: rgb(255, 255, 255); 
 }
 	
 /* Fisrt Tier Dropdown */
@@ -234,7 +235,7 @@ li > a:only-child:after { content: ''; }
 
 	/* Display Dropdown when clicked on Parent Lable */
 	[id^=drop]:checked + ul {
-		display: block;
+		display: contents;
 	}
 
 	/* Change menu item's width to 100% */

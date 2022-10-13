@@ -16,13 +16,13 @@ const Header = () => {
           <img className="navbar-logo" src={logo} alt="Logo Img" />
         </Link>
         <div className="navbar-sub">
-        <label for="drop" class="toggle">Menu +</label>
+        <label for="drop" className="toggle">Menu +</label>
         <input type="checkbox" id="drop" />
             <ul class="menu">
                 <li><a href="/">Home</a></li>
                 <li>
                     
-                    <label for="drop-1" class="toggle">Listings +</label>
+                    <label for="drop-1" className="toggle">Listings +</label>
                     <a href="#">Listings</a>
                     <input type="checkbox" id="drop-1"/>
                     <ul>
