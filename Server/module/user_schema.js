@@ -54,26 +54,26 @@ const userSchema = new Schema(
   }
 );
 
-// user_schema.pre('save', function (next) {
-//   var user = this;
+userSchema.pre('save', function (next) {
+   var user = this;
 
-//   bcrypt
-//     .genSalt(10)
-//     .then((salt) => {
-//       bcrypt
-//         .hash(user.password, salt)
-//         .then((encrypted_password) => {
-//           user.password = encrypted_password;
-//           next();
-//         })
-//         .catch((err) => {
-//           console.log(`Error Occured When Hashing. ${err}`);
-//         });
-//     })
-//     .catch((err) => {
-//       console.log(`Error Occured When Salting. ${err}`);
-//     });
-// });
+   bcrypt
+     .genSalt(10)
+     .then((salt) => {
+       bcrypt
+         .hash(user.password, salt)
+         .then((encrypted_password) => {
+           user.password = encrypted_password;
+           next();
+         })
+         .catch((err) => {
+           console.log(`Error Occured When Hashing. ${err}`);
+         });
+     })
+     .catch((err) => {
+       console.log(`Error Occured When Salting. ${err}`);
+     });
+ });
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

@@ -52,7 +52,9 @@ export default class SignUp extends Component {
   onSubmit(e) {
     // This will prevent the default html form submit behavior from taking place.
     e.preventDefault();
-
+    // TO DO 
+    // - Make a validation of each fields. 
+    // - If any fields is empty, cannot move to log-in page.
     const user = {
       email: this.state.email,
       fname: this.state.fname,
@@ -64,7 +66,7 @@ export default class SignUp extends Component {
     console.log(user);
 
     // Send the user data to the backend
-    axios.post('http://localhost:8080/users/add', user).then((res) => console.log(res.data));
+    axios.post('http://localhost:8080/users/register', user).then((res) => console.log(res.data));
 
     // Render to the log in page
     window.location = '/LogIn';
