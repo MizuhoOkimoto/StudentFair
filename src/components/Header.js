@@ -12,31 +12,45 @@ const Header = () => {
   return (
     <header>
       <nav className="navbar">
-      <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/">
           <img className="navbar-logo" src={logo} alt="Logo Img" />
         </Link>
         <div className="navbar-sub">
-        <label for="drop" className="toggle">Menu +</label>
-        <input type="checkbox" id="drop" />
-            <ul class="menu">
-                <li><a href="/">Home</a></li>
+          <label htmlFor="drop" className="toggle">
+            Menu +
+          </label>
+          <input type="checkbox" id="drop" />
+          <ul className="menu">
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <label htmlFor="drop-1" className="toggle">
+                Listings +
+              </label>
+              <a href="#">Listings</a>
+              <input type="checkbox" id="drop-1" />
+              <ul>
                 <li>
-                    
-                    <label for="drop-1" className="toggle">Listings +</label>
-                    <a href="#">Listings</a>
-                    <input type="checkbox" id="drop-1"/>
-                    <ul>
-                        <li><a href="/allList">All Lists</a></li>
-                        <li><a href="/buyList">Buy List</a></li>
-                        <li><a href="/sellList">Sell List</a></li>
-                    </ul> 
-
-                </li>          
-                <li><a href="/logIn">Log In</a></li>
-                <li><a href="/signUp">Sign Up</a></li>
-            </ul>
-            </div>
-        </nav>
+                  <a href="/allList">All Lists</a>
+                </li>
+                <li>
+                  <a href="/buyList">Buy List</a>
+                </li>
+                <li>
+                  <a href="/sellList">Sell List</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/logIn">Log In</a>
+            </li>
+            <li>
+              <a href="/signUp">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
       {/* <nav className="navbar">
         <Link className="navbar-brand" to="/">
           <img className="navbar-logo" src={logo} alt="Logo Img" />
@@ -63,7 +77,7 @@ const Header = () => {
         </div>
       </nav> */}
       {/* ------------- */}
-      
+
       {/* --------------- */}
       <div className="search-form-container">
         <form action="/" id="search" className="search-form" method="get">
