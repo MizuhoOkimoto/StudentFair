@@ -24,10 +24,6 @@ const userSchema = new Schema(
       trim: true,
       minlength: 3,
     },
-    birthday: {
-      type: String, //fix later
-      require: true,
-    },
     password: {
       type: String,
       require: true,

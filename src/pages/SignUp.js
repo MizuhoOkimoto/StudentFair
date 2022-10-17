@@ -10,7 +10,6 @@ export default class SignUp extends Component {
     this.onChangeUserEmail = this.onChangeUserEmail.bind(this);
     this.onChangeUserFname = this.onChangeUserFname.bind(this);
     this.onChangeUserLname = this.onChangeUserLname.bind(this);
-    // this.onChangeUserBirthday = this.onChangeUserBirthday.bind(this);
     this.onChangeUserPassword = this.onChangeUserPassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -37,11 +36,6 @@ export default class SignUp extends Component {
       lname: e.target.value,
     });
   }
-  // onChangeUserBirthday(e) {
-  //   this.setState({
-  //     birthday: e.target.value,
-  //   });
-  // }
   onChangeUserPassword(e) {
     this.setState({
       password: e.target.value,
@@ -58,7 +52,6 @@ export default class SignUp extends Component {
       email: this.state.email,
       fname: this.state.fname,
       lname: this.state.lname,
-      // birthday: this.state.birthday,
       password: this.state.password,
     };
 
@@ -129,18 +122,6 @@ export default class SignUp extends Component {
             <i className="far fa-user"></i>
             <div className="error"></div>
           </div>
-          {/* <p>Make sure it matches the name on your government ID.</p>
-          <div className="input-container">
-            <input
-              type="date"
-              name="birthDate"
-              id="birth"
-              placeholder="Birth date"
-              value={this.state.birthday}
-              onChange={this.onChangeUserBirthday}
-            />
-            <div className="error"></div>
-          </div> */}
           <p>
             -Password should contains both uppercase and lowercase characters
             <br />
