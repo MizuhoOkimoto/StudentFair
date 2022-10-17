@@ -14,7 +14,7 @@ const path = require('path')
 const router = require('express').Router();
 let User = require('../module/user_schema');
 const emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-const pwdRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,24}$/;
+//const pwdRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,24}$/;
 // First end poiun that handles incoming HTTP GET requests on the users URL path
 router.route('/').get((req, res) => {
   User.find()
@@ -24,7 +24,6 @@ router.route('/').get((req, res) => {
 
 // POST - Login Page
 router.route('/login').post((req, res) => {
-  console.log(req.body);
   let validData = {};
   let isValid = true;
 
@@ -46,27 +45,24 @@ router.route('/login').post((req, res) => {
     isValid = false;
   }
 
-  console.log(isValid);
-
   if(isValid){
     let error = [];
     User.findOne({
       email: req.body.email
     })
     .then((user) =>{
-      console.log(user);
-      console.log(error);
       if(user.email) {
         console.log(user);
         bcrypt.compare(req.body.password, user.password)
         .then((match) =>{
-          console.log(match);
           if(match){
             //req.session.user = user;
-            console.log(`Success to log-in ${req.body.email}`)
+            res.json(user)
+            //console.log(`Success to log-in ${req.body.email}`)
           }
           else{
             error.push("Password does not match!");
+            res.send("Password does not match!");
           }
         })
       }
@@ -74,14 +70,15 @@ router.route('/login').post((req, res) => {
         console.log(`Error comparing passwords: ${err},`);
         error.push("Error=compared password");
       }
-      console.log(error);
+      console.log("123 " + error);
     })
     .catch((err) =>{
       console.log(`Error finding the user from the database: ${err},`);
       error.push("Error=Not found on Data");
+      res.send("There is No Validated E-mail.")
     
     })
-    console.log(error);
+ 
   }
 
 });
@@ -127,14 +124,14 @@ router.route('/register').post((req, res) => {
     validData.email = "Please write your e-mail"
     isValid = false;
   }
-  if(typeof password !== "string" || password.length === 0){
-    validData.password = "Must write your Password"
-    isValid = false;
-  }
-  else if (password.length < 8 || !pwdRegExp.test(password)){
-    validData.pwd = "Please write your Password(over 8)"
-    isValid = false;
-  }
+  // if(typeof password !== "string" || password.length === 0){
+  //   validData.password = "Must write your Password"
+  //   isValid = false;
+  // }
+  // else if (password.length < 8 || !pwdRegExp.test(password)){
+  //   validData.pwd = "Please write your Password(over 8)"
+  //   isValid = false;
+  // }
   console.log(isValid);
   if(isValid){
     const newUser = new User({
@@ -161,6 +158,62 @@ router.route('/register').post((req, res) => {
   }
   
   
+});
+
+// POST -edit
+router.route('/edit/:_email',(req, res) =>{
+  const {email, newPassword} = req.body;
+  User.findOne({email: email})
+      .exec()
+      .then((date) => {
+        if(newPassword.length < 8 || !pwdRegExp.test(newPassword)){
+          User.updateOne({email: email},
+            {$set: {
+              password: newPassword    
+            }})
+            .save()
+        }
+        else{
+          res.send('Please Enter Right Passwords')
+        }        
+      })
+
+});
+
+// password generator
+function tempPasswordGenerator(){
+  return "temp" + Math.floor((Math.random() * (( 9999 - 1000) + 1000)));
+}
+
+// POST -forgot Password
+router.route('/forgot-password').post((req,res) => {
+  const email = req.body.email;
+  const tempPassword = tempPasswordGenerator();
+  User.find({email: email})
+  .exec()
+  .then((err, data) =>{
+    User.updateOne({email: email},
+      {$set: {
+        password: tempPassword
+      }})
+    .save() //?
+    .then(() => {
+      console.log('Success')
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  })
+});
+
+// POST - Reset Password
+router.route('/rest-password').post((req,res) => {
+
+  const email = req.body.email;
+  User.findOneAndUpdate( email, {
+    password: req.body.password
+  } );
+
 });
 
 module.exports = router;

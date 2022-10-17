@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
+const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -24,35 +24,20 @@ const userSchema = new Schema(
       trim: true,
       minlength: 3,
     },
-    birthday: {
-      type: String, //fix later
-      require: true,
-    },
     password: {
       type: String,
       require: true,
-    },
-    // pimage: {
-    //   type: String,
-    //   require: false,
-    // },
-    // create_date: {
-    //   type: Date,
-    //   default: Date.now(),
-    // },
-    // introduce: {
-    //   type: String,
-    //   require: false,
-    // },
-    // user_rate: {
-    //   type: Number,
-    //   default: 0,
-    // },
+    }
   },
   {
     timestamps: true,
   }
 );
+
+const Administer = {
+  user_id: 'admin',
+  password: 'admin01'
+}
 
 userSchema.pre('save', function (next) {
    var user = this;
@@ -74,6 +59,7 @@ userSchema.pre('save', function (next) {
        console.log(`Error Occured When Salting. ${err}`);
      });
  });
+
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

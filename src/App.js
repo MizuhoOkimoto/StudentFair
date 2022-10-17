@@ -12,8 +12,19 @@ import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import MyProfile from './pages/MyProfile';
 import ItemDetail from './pages/ItemDetail';
+import { useState } from 'react';
+
 
 function App() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  function setUser(email, password){
+    setEmail(email);
+    setPassword(password);
+    console.log("working" + email +", " + password);
+  }
+  console.log("working" + email +", " + password);
   return (
     <div className="App">
       <Header />
@@ -22,7 +33,7 @@ function App() {
         <Route exact path="/allList" element={<AllList />} />
         <Route exact path="/buyList" element={<BuyList />} />
         <Route exact path="/sellList" element={<SellList />} />
-        <Route exact path="/logIn" element={<LogIn />} />
+        <Route exact path="/logIn" element={<LogIn setUser={setUser}/>} />
         <Route exact path="/signUp" element={<SignUp />} />
         <Route exact path="/myProfile" element={<MyProfile />} />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
