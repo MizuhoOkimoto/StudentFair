@@ -43,7 +43,7 @@ export default class LogIn extends Component {
     console.log(user);
     axios.post('http://localhost:8080/users/login', user).then((res) => console.log(res.data));
   }
-  render(){
+  render() {
     return (
       <div className="logIn-container">
         <form className="user-form log-in" action="/login" method="post" onSubmit={this.onSubmit}>
@@ -55,11 +55,11 @@ export default class LogIn extends Component {
           </div>
           <div className="border"></div>
           <div className="input-container">
-            <input 
+            <input
               type="text"
-              name="email" 
-              id="email" 
-              placeholder="Username" 
+              name="email"
+              id="email"
+              placeholder="Username"
               value={this.state.email}
               onChange={this.onChangeUserEmail}
             />
@@ -67,18 +67,18 @@ export default class LogIn extends Component {
             <div className="error"></div>
           </div>
           <div className="input-container">
-            <input 
-              type="password" 
-              name="password" 
-              id="password" 
-              placeholder="Password" 
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
               value={this.state.password}
               onChange={this.onChangeUserPassword}
             />
             <i className="fas fa-lock"></i>
             <div className="error"></div>
           </div>
-  
+
           <div className="input-container sign-up">
             <input type="submit" name="submit" id="submitLogin" value="Log in" />
           </div>
@@ -100,4 +100,3 @@ export default class LogIn extends Component {
     );
   }
 }
-

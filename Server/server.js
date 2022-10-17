@@ -27,7 +27,7 @@ connection.on('open', () => {
 
 //Add for the routes
 const general = require('./routes/general');
-app.use('/',general);
+app.use('/', general);
 const usersRouter = require('./routes/users');
 app.use('/users', usersRouter);
 
