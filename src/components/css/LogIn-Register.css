@@ -55,14 +55,16 @@ p.agreement a {
 }
 
 .log-in {
-  width: 50vw;
+  /* width: 50vw; */
+  width: 700px;
   background-color: var(--main-color);
   padding: 2rem;
   display: block;
 }
 
 .sign-up {
-  width: 50vw;
+  /* width: 50vw; */
+  width: 700px;
   background-color: var(--main-color);
   padding: 2rem;
   display: block;
@@ -129,5 +131,10 @@ p.agreement a {
   form.log-in,
   form.sign-up {
     padding: 1rem;
+    width: 70%;
+  }
+  .log-in,
+  .sign-up {
+    width: 100%;
   }
 }

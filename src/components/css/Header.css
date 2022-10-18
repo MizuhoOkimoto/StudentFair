@@ -7,6 +7,11 @@ header {
   width: 200px;
 }
 
+.navbar-container {
+  display: flex;
+  justify-content: center;
+}
+
 .nav-link p {
   font-size: 20px;
   padding: 0 15px 0 15px;
@@ -14,13 +19,15 @@ header {
 
 .navbar {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  width: 720px;
 }
 
 .navbar-sub {
   display: flex;
   align-items: center;
   color: black;
+  padding-left: 180px;
 }
 
 .navbar-logo {
@@ -37,6 +44,7 @@ header {
 
 .nav-link:hover {
   color: darksalmon;
+  border-radius: 25px;
 }
 
 .search-form-container {
@@ -45,11 +53,24 @@ header {
   justify-content: center;
 }
 
-.search-form {
+/* .search-form {
   display: flex;
   padding: 15px 40px 15px 40px;
   background-color: tomato;
   border-radius: 50px;
+} */
+
+.search-form {
+  width: 700px;
+  display: flex;
+  padding: 15px 0px 15px 0px;
+  background-color: tomato;
+  border-radius: 50px;
+  justify-content: space-around;
+}
+
+#searchValue {
+  width: 250px;
 }
 
 .input-container,
@@ -143,12 +164,14 @@ nav a {
 }
 
 nav ul li ul li:hover {
-  background: #000000;
+  /* background: #000000; */
+  border-radius: 25px;
 }
 
 /* Background color change on Hover  IMPORTANT*/
 nav a:hover {
   background-color: rgb(241, 208, 197);
+  border-radius: 25px;
 }
 
 /* Hide Dropdowns by Default
@@ -226,10 +249,13 @@ li > a:only-child:after {
     font-size: 17px;
     text-decoration: none;
     border: none;
+    border-radius: 25px;
   }
 
   .toggle:hover {
-    background-color: #000000;
+    /* background-color: #000000; */
+    opacity: 70%;
+    cursor: pointer;
   }
 
   /* Display Dropdown when clicked on Parent Lable */
@@ -254,7 +280,8 @@ li > a:only-child:after {
 
   nav a:hover,
   nav ul ul ul a {
-    background-color: #000000;
+    /* background-color: #000000; */
+    opacity: 70%;
   }
 
   nav ul li ul li .toggle,
@@ -311,6 +338,10 @@ li > a:only-child:after {
   .search-form {
     display: block;
     padding: 25px;
+    width: 65%;
+  }
+  #searchValue {
+    width: 95%;
   }
   input,
   select,
@@ -327,9 +358,16 @@ li > a:only-child:after {
   label {
     margin-left: 5px;
   }
+  .toggle {
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
   .navbar,
   .navbar-sub,
   a {
     display: block;
+  }
+  .navbar-sub {
+    padding-left: 0;
   }
 }

@@ -11,46 +11,48 @@ import './css/Header.css';
 const Header = () => {
   return (
     <header>
-      <nav className="navbar">
-        <Link className="navbar-brand" to="/">
-          <img className="navbar-logo" src={logo} alt="Logo Img" />
-        </Link>
-        <div className="navbar-sub">
-          <label htmlFor="drop" className="toggle">
-            Menu +
-          </label>
-          <input type="checkbox" id="drop" />
-          <ul className="menu">
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <label htmlFor="drop-1" className="toggle">
-                Listings +
-              </label>
-              <a href="#">Listings</a>
-              <input type="checkbox" id="drop-1" />
-              <ul>
-                <li>
-                  <a href="/allList">All Lists</a>
-                </li>
-                <li>
-                  <a href="/buyList">Buy List</a>
-                </li>
-                <li>
-                  <a href="/sellList">Sell List</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/logIn">Log In</a>
-            </li>
-            <li>
-              <a href="/signUp">Sign Up</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <div className="navbar-container">
+        <nav className="navbar">
+          <Link className="navbar-brand" to="/">
+            <img className="navbar-logo" src={logo} alt="Logo Img" />
+          </Link>
+          <div className="navbar-sub">
+            <label htmlFor="drop" className="toggle">
+              Menu +
+            </label>
+            <input type="checkbox" id="drop" />
+            <ul className="menu">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <label htmlFor="drop-1" className="toggle">
+                  Listings +
+                </label>
+                <a href="#">Listings</a>
+                <input type="checkbox" id="drop-1" />
+                <ul>
+                  <li>
+                    <a href="/allList">All Lists</a>
+                  </li>
+                  <li>
+                    <a href="/buyList">Buy List</a>
+                  </li>
+                  <li>
+                    <a href="/sellList">Sell List</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="/logIn">Log In</a>
+              </li>
+              <li>
+                <a href="/signUp">Sign Up</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
       {/* <nav className="navbar">
         <Link className="navbar-brand" to="/">
           <img className="navbar-logo" src={logo} alt="Logo Img" />

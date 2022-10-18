@@ -10,32 +10,30 @@ import { Link, redirect, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import { render } from '@testing-library/react';
 
-function LogIn(prop){  
+function LogIn(prop) {
   const navi = useNavigate();
   const [errMessage, setErrMessage] = useState('');
 
   const onSubmitHandler = (e) => {
-  
     // This will prevent the default html form submit behavior from taking place.
     e.preventDefault();
-  
+
     const inputData = {
       email: e.target.email.value,
-      password: e.target.password.value
+      password: e.target.password.value,
     };
-  
+
     axios.post('http://localhost:8080/users/login', inputData).then((res) => {
       let data = res.data;
-      console.log(typeof(data));
-      if(typeof(data) !== 'string'){
-        console.log(typeof(data));
+      console.log(typeof data);
+      if (typeof data !== 'string') {
+        console.log(typeof data);
         prop.setUser(res.data);
         //window.location = '/MyProfile';
         navi('/MyProfile', {
-          user: data
-        })
-      }
-      else{
+          user: data,
+        });
+      } else {
         console.log(data);
         setErrMessage('');
         setErrMessage(data);
@@ -45,10 +43,7 @@ function LogIn(prop){
 
   return (
     <div className="logIn-container">
-      <form className="user-form log-in" 
-            action="/login" 
-            method="post" 
-            onSubmit={onSubmitHandler}>
+      <form className="user-form log-in" action="/login" method="post" onSubmit={onSubmitHandler}>
         <div className="title">
           <div className="form-title">
             <p>Log in</p>
@@ -76,12 +71,10 @@ function LogIn(prop){
         >
           Forgot password?
         </a>
-        <p>
-          {errMessage}
-        </p>
+        <p>{errMessage}</p>
       </form>
     </div>
   );
-};
+}
 
 export default LogIn;
