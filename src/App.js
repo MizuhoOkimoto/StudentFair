@@ -12,20 +12,21 @@ import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import MyProfile from './pages/MyProfile';
 import ItemDetail from './pages/ItemDetail';
-import { useState } from 'react';
+import FindId from './pages/FindId';
+import FindPw from './pages/FindPw';
 
+import { useState } from 'react';
 
 function App() {
   const [loginUser, setLoginUser] = useState([]);
   //const [password, setPassword] = useState('');
-  
-  function setUser(data, password){
+
+  function setUser(data, password) {
     setLoginUser(data);
     //setPassword(password);
-    console.log("working" + data);
-    
+    console.log('working' + data);
   }
-  console.log("working" + loginUser );
+  console.log('working' + loginUser);
   return (
     <div className="App">
       <Header />
@@ -34,9 +35,15 @@ function App() {
         <Route exact path="/allList" element={<AllList />} />
         <Route exact path="/buyList" element={<BuyList />} />
         <Route exact path="/sellList" element={<SellList />} />
-        <Route exact path="/logIn" element={<LogIn setUser={setUser}/>} />
+        <Route exact path="/logIn" element={<LogIn setUser={setUser} />} />
         <Route exact path="/signUp" element={<SignUp />} />
-        <Route exact path="/myProfile" element={<MyProfile userData={loginUser.email !== '' ? loginUser : false }/>} />
+        <Route exact path="/findId" element={<FindId />} />
+        <Route exact path="/findPw" element={<FindPw />} />
+        <Route
+          exact
+          path="/myProfile"
+          element={<MyProfile userData={loginUser.email !== '' ? loginUser : false} />}
+        />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
       </Routes>
       <Footer />

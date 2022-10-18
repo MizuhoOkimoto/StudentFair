@@ -10,7 +10,7 @@ import { Link, redirect, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import { render } from '@testing-library/react';
 
-function LogIn(prop) {
+function FindPw(prop) {
   const navi = useNavigate();
   const [errMessage, setErrMessage] = useState('');
 
@@ -20,18 +20,19 @@ function LogIn(prop) {
 
     const inputData = {
       email: e.target.email.value,
-      password: e.target.password.value,
+      fname: e.target.fname.value,
+      lname: e.target.lname.value,
     };
 
-    axios.post('http://localhost:8080/users/login', inputData).then((res) => {
+    axios.post('http://localhost:8080/users/findPw', inputData).then((res) => {
       let data = res.data;
       console.log(typeof data);
       if (typeof data !== 'string') {
         console.log(typeof data);
         prop.setUser(res.data);
-        //window.location = '/MyProfile';
-        navi('/MyProfile', {
-          user: data,
+        //window.location = '/LogIn';
+        navi('/LogIn', {
+          //   user: data,
         });
       } else {
         console.log(data);
@@ -43,36 +44,40 @@ function LogIn(prop) {
 
   return (
     <div className="logIn-container">
-      <form className="user-form log-in" action="/login" method="post" onSubmit={onSubmitHandler}>
+      <form className="user-form log-in" action="/findPw" method="post" onSubmit={onSubmitHandler}>
         <div className="title">
           <div className="form-title">
-            <p>Log in</p>
+            <p>Find My Account Pw</p>
           </div>
           <i className="fas fa-times"></i>
         </div>
         <div className="border"></div>
         <div className="input-container">
-          <input type="text" name="email" id="email" placeholder="Username" />
+          <input type="text" name="email" id="email" placeholder="Email Address" />
           <i className="far fa-envelope"></i>
           <div className="error"></div>
         </div>
         <div className="input-container">
-          <input type="password" name="password" id="password" placeholder="Password" />
-          <i className="fas fa-lock"></i>
+          <input type="text" name="fname" id="fname" placeholder="First name" />
+          <i className="far fa-user"></i>
+          <div className="error"></div>
+        </div>
+        <div className="input-container">
+          <input type="text" name="lname" id="lname" placeholder="Last name" />
+          <i className="far fa-user"></i>
           <div className="error"></div>
         </div>
 
         <div className="input-container sign-up">
-          <input type="submit" name="submit" id="submit" value="Log in" />
+          <input type="submit" name="submit" id="submit" value="Find My Pw" />
         </div>
-        <Link className="findPw" to="/findPw">
-          Forgot password?
+        <Link className="findPw" to="/findId">
+          Forgot Account?
         </Link>
-
         <p>{errMessage}</p>
       </form>
     </div>
   );
 }
 
-export default LogIn;
+export default FindPw;

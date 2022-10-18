@@ -11,36 +11,33 @@ import Button from '../components/Button';
 const onSubmitHandler = (e) => {
   // This will prevent the default html form submit behavior from taking place.
   e.preventDefault();
-  // TO DO 
-  // - Make a validation of each fields. 
+  // TO DO
+  // - Make a validation of each fields.
   // - If any fields is empty, cannot move to log-in page.
   const user = {
     email: e.target.email.value,
     fname: e.target.fname.value,
     lname: e.target.lname.value,
     // birthday: this.state.birthday,
-    password: e.target.password.value
+    password: e.target.password.value,
   };
 
   console.log(user);
 
   // Send the user data to the backend
-  
-    //let 
-    axios.post('http://localhost:8080/users/register', user)
-    .then((res) => {
-      console.log(res)
-      if(res.data != false){
-        window.location = '/LogIn';
-      }
-    });
-    
-  
+
+  //let
+  axios.post('http://localhost:8080/users/register', user).then((res) => {
+    console.log(res);
+    if (res.data != false) {
+      alert('Welcome to Student Fair!');
+      window.location = '/LogIn';
+    }
+  });
 
   // Render to the log in page
   //window.location = '/LogIn';
-}
-
+};
 
 const SignUp = () => {
   return (
@@ -58,7 +55,6 @@ const SignUp = () => {
           <i className="far fa-envelope"></i>
           <div className="error"></div>
         </div>
-        <p>We'll email you trip confirmations and receipts.</p>
         <div className="input-container">
           <input type="text" name="fname" id="fname" placeholder="First name" />
           <i className="far fa-user"></i>
@@ -70,12 +66,7 @@ const SignUp = () => {
           <div className="error"></div>
         </div>
         <div className="input-container">
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Create a Password"
-          />
+          <input type="password" name="password" id="password" placeholder="Create a Password" />
           <i className="fas fa-lock"></i>
           <div className="error"></div>
         </div>
@@ -88,7 +79,6 @@ const SignUp = () => {
         <div className="input-container sign-up">
           <input type="submit" name="submit" id="submitSignUp" value="Agree and continue" />
         </div>
-     
       </form>
     </div>
   );

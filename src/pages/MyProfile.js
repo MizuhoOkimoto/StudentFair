@@ -9,9 +9,7 @@ import Loading from '../components/Loading';
 import '../components/css/My-Profile.css';
 
 const MyProfile = (prop) => {
-
   console.log(prop.userData);
-
 
   return (
     <div className="myProfile-container">
@@ -29,7 +27,9 @@ const MyProfile = (prop) => {
             </Button>
             <div className="name-section name">
               <div className="label">Name</div>
-              <div className="value">{prop.userData.fname} {prop.userData.lname}</div>
+              <div className="value">
+                {prop.userData.fname} {prop.userData.lname}
+              </div>
             </div>
             <div className="name-section user-name">
               <div className="label">User name</div>
@@ -50,7 +50,8 @@ const MyProfile = (prop) => {
               <img
                 className="item-image"
                 src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-              ></img>
+                alt="product"
+              />
               <div className="item-desc-container">
                 <div className="item-title">Mac Book Air M2 Chips</div>
                 <div className="item-price">$ 2000</div>
