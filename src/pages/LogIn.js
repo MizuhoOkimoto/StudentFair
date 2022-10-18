@@ -4,17 +4,14 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 import App from '../App.js';
 
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
-
-
-
-
+import { render } from '@testing-library/react';
 
 function LogIn(prop){  
-  
+  const navi = useNavigate();
   const [errMessage, setErrMessage] = useState('');
 
   const onSubmitHandler = (e) => {
@@ -31,8 +28,12 @@ function LogIn(prop){
       let data = res.data;
       console.log(typeof(data));
       if(typeof(data) !== 'string'){
-        prop.setUser(res.data.email, res.data.password);
-        window.location = '/MyProfile';
+        console.log(typeof(data));
+        prop.setUser(res.data);
+        //window.location = '/MyProfile';
+        navi('/MyProfile', {
+          user: data
+        })
       }
       else{
         console.log(data);

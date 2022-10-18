@@ -27,6 +27,18 @@ const userSchema = new Schema(
     password: {
       type: String,
       require: true,
+    },
+    phone: {
+      type: Number,
+      require: false,
+    },
+    school:{
+      type: String,
+      require: false,
+    },
+    city:{
+      type: String,
+      require: false,
     }
   },
   {

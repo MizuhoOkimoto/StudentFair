@@ -16,15 +16,16 @@ import { useState } from 'react';
 
 
 function App() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginUser, setLoginUser] = useState([]);
+  //const [password, setPassword] = useState('');
   
-  function setUser(email, password){
-    setEmail(email);
-    setPassword(password);
-    console.log("working" + email +", " + password);
+  function setUser(data, password){
+    setLoginUser(data);
+    //setPassword(password);
+    console.log("working" + data);
+    
   }
-  console.log("working" + email +", " + password);
+  console.log("working" + loginUser );
   return (
     <div className="App">
       <Header />
@@ -35,7 +36,7 @@ function App() {
         <Route exact path="/sellList" element={<SellList />} />
         <Route exact path="/logIn" element={<LogIn setUser={setUser}/>} />
         <Route exact path="/signUp" element={<SignUp />} />
-        <Route exact path="/myProfile" element={<MyProfile />} />
+        <Route exact path="/myProfile" element={<MyProfile userData={loginUser.email !== '' ? loginUser : false }/>} />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
       </Routes>
       <Footer />

@@ -8,14 +8,18 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import '../components/css/My-Profile.css';
 
-const MyProfile = () => {
+const MyProfile = (prop) => {
+
+  console.log(prop.userData);
+
+
   return (
     <div className="myProfile-container">
       <div className="myProfile-card">
         <div className="top-container">
           <div className="top-section">
             <div className="profile-image"></div>
-            <div className="my-profile">My Profile</div>
+            <div className="my-profile">{prop.userData.fname}'s Profile</div>
           </div>
         </div>
         <div className="body-section">
@@ -25,15 +29,11 @@ const MyProfile = () => {
             </Button>
             <div className="name-section name">
               <div className="label">Name</div>
-              <div className="value">Mizuho Okimoto</div>
+              <div className="value">{prop.userData.fname} {prop.userData.lname}</div>
             </div>
             <div className="name-section user-name">
               <div className="label">User name</div>
-              <div className="value">example@example.com</div>
-            </div>
-            <div className="name-section password">
-              <div className="label">Password</div>
-              <div className="value">**********</div>
+              <div className="value">{prop.userData.email}</div>
             </div>
             <div className="name-section phone">
               <div className="label">Phone</div>

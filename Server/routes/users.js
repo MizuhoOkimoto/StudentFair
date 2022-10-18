@@ -40,10 +40,10 @@ router.route('/login').post((req, res) => {
     validData.password = "Must write your Password"
     isValid = false;
   }
-  else if (password.length < 8 || !pwdRegExp.test(password)){
-    validData.password = "Please write your Password(over 8)"
-    isValid = false;
-  }
+  // else if (password.length < 8 || !pwdRegExp.test(password)){
+  //   validData.password = "Please write your Password(over 8)"
+  //   isValid = false;
+  // }
 
   if(isValid){
     let error = [];
