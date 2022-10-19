@@ -18,8 +18,9 @@ const onSubmitHandler = (e) => {
     email: e.target.email.value,
     fname: e.target.fname.value,
     lname: e.target.lname.value,
-    // birthday: this.state.birthday,
     password: e.target.password.value,
+    phone: '',
+    city: ''
   };
 
   console.log(user);

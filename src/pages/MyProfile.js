@@ -37,11 +37,11 @@ const MyProfile = (prop) => {
             </div>
             <div className="name-section phone">
               <div className="label">Phone</div>
-              <div className="value">456-456-4564</div>
+              <div className="value">{prop.userData.Phone}</div>
             </div>
             <div className="name-section city">
               <div className="label">City</div>
-              <div className="value">Toronto, ON</div>
+              <div className="value">{prop.userData.City}</div>
             </div>
           </div>
           <div className="profile-history-container">

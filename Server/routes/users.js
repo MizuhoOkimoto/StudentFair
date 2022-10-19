@@ -10,8 +10,10 @@
  * - password
  */
 const bcrypt = require('bcryptjs')
-const path = require('path')
+const path = require('path');
+const { nextTick } = require('process');
 const router = require('express').Router();
+
 let User = require('../module/user_schema');
 const emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 //const pwdRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,24}$/;
@@ -56,9 +58,9 @@ router.route('/login').post((req, res) => {
         bcrypt.compare(req.body.password, user.password)
         .then((match) =>{
           if(match){
-            //req.session.user = user;
+            req.session.user = user;
             res.json(user)
-            //console.log(`Success to log-in ${req.body.email}`)
+            //console.log(`Success to log-in ${req.session.user}`)
           }
           else{
             error.push("Password does not match!");
@@ -70,7 +72,7 @@ router.route('/login').post((req, res) => {
         console.log(`Error comparing passwords: ${err},`);
         error.push("Error=compared password");
       }
-      console.log("123 " + error);
+      
     })
     .catch((err) =>{
       console.log(`Error finding the user from the database: ${err},`);
@@ -98,7 +100,7 @@ router.route('/register').post((req, res) => {
   let isValid = true;
   let validData = {};
   //changed
-  const { email, fname, lname, password } = req.body;
+  const { email, fname, lname, password, phone, city } = req.body;
 
   if(typeof fname !== "string" || fname.length === 0){
     validData.fName = "Must write your first name"
@@ -139,15 +141,15 @@ router.route('/register').post((req, res) => {
       fname,
       lname,
       password,
-      //   pimage,
-      //   create_date,
-      //   introduce,
-      //   user_rate
+      phone,
+      city
     });
 
     newUser
     .save()
-    .then(() => res.json(newUser))
+    .then(() => {
+      res.json(newUser)
+    })
     .catch((err) => res.status(400).json('Error: ' + err));
     console.log(newUser);
     console.log(req.body);
@@ -179,31 +181,98 @@ router.route('/edit/:_email',(req, res) =>{
       })
 
 });
-
-// password generator
-function tempPasswordGenerator(){
-  return "temp" + Math.floor((Math.random() * (( 9999 - 1000) + 1000)));
-}
+// POST -forgot Password
+router.route('/forgot-account').post((req,res) => {
+  const { email, isFound } = req.body;
+  console.log(req.body);
+  console.log("186" + email);
+  console.log("187" + isFound);
+  User.findOne({email: email})
+  .then( (user) => {
+    console.log(user)
+    if(user) res.send(true);
+    else res.send(false);
+  })
+  .catch(err => {
+    console.log(err)
+    
+  })
+  
+});
 
 // POST -forgot Password
 router.route('/forgot-password').post((req,res) => {
   const email = req.body.email;
-  const tempPassword = tempPasswordGenerator();
-  User.find({email: email})
-  .exec()
-  .then((err, data) =>{
-    User.updateOne({email: email},
-      {$set: {
-        password: tempPassword
-      }})
-    .save() //?
-    .then(() => {
-      console.log('Success')
-    })
-    .catch(err => {
-      console.log(err)
-    })
+  const tempPassword = "temp" + Math.floor((Math.random() * (( 9999 - 1000) + 1000)));
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey('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');
+  
+
+
+  bcrypt.genSalt(10)
+  .then((salt) =>{
+   
+    bcrypt
+      .hash(tempPassword, salt)
+      .then((result) =>{
+          let temppwd = result;         
+          User
+          .find({email: email})
+          .then((data) =>{
+            
+            User.updateOne({email: email},
+              {$set: {
+                  password: temppwd
+                }})
+                .then()
+                .catch(err => {
+                  console.log(err)
+                });
+            const emailaddress = data[0].email;
+            const msg = {
+              to: `${emailaddress}`,
+              from: "wchoi28@myseneca.ca",
+              subject: "You Get a Temporary Password - Do Not Reply",
+              html:
+                  `
+                  Here is your temporary password. <br>
+                  <br>
+                  Your Full Name: ${data[0].fname} ${data[0].lname}<br>
+                  ${tempPassword}<br>
+                  Please Reset to New Password On The StudentFair
+                  <br><br>
+                  Thanks To use StudetnFair Service.
+                  <br>
+                  <br>
+                  sincerely<br>
+                  StudentFair Team        <br>
+                  Team9, PRJ666           <br>
+                  Team Member:            <br>
+                  Mizuho Okimoto          <br>
+                  Jun Song                <br>
+                  WonChul Choi            <br>
+                  Tasin Rahman            <br>
+                  Copyright © Winter 2022, All rights reserved | PRJ666 Team 9<br>
+                  `};  
+                  console.log(data[0].email);
+                  //console.log(msg)
+              // sgMail
+              // .send(msg)
+              // .catch(err => {
+              //   console.log(`Error ${err}`);
+              //   res.send("Error to Send the Email");
+              // });
+              res.send(tempPassword);
+            })
+          .catch((err) =>{
+            console.log(`Error Occured When Hashing. ${err}`);        
+          });
+      }).catch((err) =>{
+        console.log(`Error Occured When Salting. ${err}`);
+      });
+
   })
+
 });
 
 // POST - Reset Password
@@ -213,6 +282,12 @@ router.route('/rest-password').post((req,res) => {
   User.findOneAndUpdate( email, {
     password: req.body.password
   } );
+
+});
+
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  console.log('logout')
 
 });
 

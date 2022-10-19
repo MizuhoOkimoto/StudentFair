@@ -4,14 +4,15 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 import App from '../App.js';
 
-import { Link, redirect, useNavigate } from 'react-router-dom';
+
+import { Link, redirect} from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
 import { render } from '@testing-library/react';
 
 function LogIn(prop) {
-  const navi = useNavigate();
+  
   const [errMessage, setErrMessage] = useState('');
 
   const onSubmitHandler = (e) => {
@@ -25,18 +26,17 @@ function LogIn(prop) {
 
     axios.post('http://localhost:8080/users/login', inputData).then((res) => {
       let data = res.data;
-      console.log(typeof data);
+      
       if (typeof data !== 'string') {
-        console.log(typeof data);
+        
         prop.setUser(res.data);
-        //window.location = '/MyProfile';
-        navi('/MyProfile', {
-          user: data,
-        });
+        window.location = '/MyProfile'
+        
       } else {
         console.log(data);
         setErrMessage('');
         setErrMessage(data);
+        
       }
     });
   };
@@ -65,12 +65,17 @@ function LogIn(prop) {
         <div className="input-container sign-up">
           <input type="submit" name="submit" id="submit" value="Log in" />
         </div>
-        <Link className="findPw" to="/findId">
-          Forgot Account?
-        </Link>
-        <Link className="findPw" to="/findPw">
-          Forgot password?
-        </Link>
+        <div>
+          <span>Forgot : </span>
+          <Link className="findPw" to="/findId">
+            <span>Account </span>
+          </Link>
+          <span> / </span>
+          <Link className="findPw" to="/findPw">
+          <span> Password </span>
+          </Link>
+        </div>
+        
 
         <p>{errMessage}</p>
       </form>

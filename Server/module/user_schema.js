@@ -29,10 +29,6 @@ const userSchema = new Schema(
       require: true,
     },
     phone: {
-      type: Number,
-      require: false,
-    },
-    school:{
       type: String,
       require: false,
     },
@@ -74,4 +70,18 @@ userSchema.pre('save', function (next) {
 
 
 const User = mongoose.model('User', userSchema);
+
 module.exports = User;
+
+// module.exports.tempPasswordGenerator = (() => {
+//   let temp = "temp" + Math.floor((Math.random() * (( 9999 - 1000) + 1000)));
+  
+//   let encryptedPassword = bcrypt
+//                 .genSalt(10)
+//                 .then((salt) =>{
+//                   bcrypt
+//                   .hash(temp, salt)
+//                 });
+//   console.log("password : " + temp );
+//   return encryptedPassword;
+// });

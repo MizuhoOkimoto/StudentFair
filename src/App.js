@@ -15,18 +15,35 @@ import ItemDetail from './pages/ItemDetail';
 import FindId from './pages/FindId';
 import FindPw from './pages/FindPw';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [loginUser, setLoginUser] = useState([]);
-  //const [password, setPassword] = useState('');
+  const session = window.sessionStorage;
+  useEffect(() => {
+    if(session){
+      setLoginUser({
+        email: session.getItem('email'),
+        fname: session.getItem('fname'),
+        lname: session.getItem('lname'),
+        password: session.getItem('password'),
+        phone: session.getItem('phone'),
+        city: session.getItem('city'),
+      })
+    }
+  }, []);
 
-  function setUser(data, password) {
-    setLoginUser(data);
-    //setPassword(password);
-    console.log('working' + data);
+  function setUser(data) {
+
+    session.setItem('email', data.email);
+    session.setItem('fname', data.fname);
+    session.setItem('lname', data.lname);
+    session.setItem('password', data.password);
+    session.setItem('phone', data.phone);
+    session.setItem('city', data.city);
+ 
   }
-  console.log('working' + loginUser);
+  console.log(loginUser);
   return (
     <div className="App">
       <Header />
@@ -42,7 +59,7 @@ function App() {
         <Route
           exact
           path="/myProfile"
-          element={<MyProfile userData={loginUser.email !== '' ? loginUser : false} />}
+          element={<MyProfile userData={loginUser} />}
         />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
       </Routes>

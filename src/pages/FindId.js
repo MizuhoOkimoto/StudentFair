@@ -4,44 +4,34 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 import App from '../App.js';
 
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import { Link, redirect} from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
 import { render } from '@testing-library/react';
 
-function FindId(prop) {
-  const navi = useNavigate();
-  const [errMessage, setErrMessage] = useState('');
+function FindId() {
 
+  const [message, setMessage] = useState('');
+  const [isFound, setIsFound] = useState(false);
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.
     e.preventDefault();
 
     const inputData = {
       email: e.target.email.value,
-      //   fname: e.target.fname.value,
-      //   lname: e.target.lname.value,
-    };
+      dummy: false
+    };   
 
-    axios.post('http://localhost:8080/users/findId', inputData).then((res) => {
-      let data = res.data;
-      console.log(typeof data);
-      if (typeof data !== 'string') {
-        console.log(typeof data);
-        prop.setUser(res.data);
-        //window.location = '/LogIn';
-        if (res.data === false) {
-          alert('This Email is not registered move to Sign-Up page.');
-          navi('/SignUp', {});
-        } else {
-          alert('This Email is registered move to Log-In page.');
-          navi('/LogIn', {});
-        }
-      } else {
-        console.log(data);
-        setErrMessage('');
-        setErrMessage(data);
+    axios.post('http://localhost:8080/users/forgot-account', inputData)
+    .then((res) => {
+      let data = res.data
+
+      if(data){
+        setMessage( "You have an account :" + e.target.email.value);
+      }
+      else{
+        setMessage( "We could not find your account on our page. Please Sign up");
       }
     });
   };
@@ -75,7 +65,7 @@ function FindId(prop) {
         <div className="input-container sign-up">
           <input type="submit" name="submit" id="submit" value="Find My Id" />
         </div>
-        <p>{errMessage}</p>
+        <p>{message}</p>
       </form>
     </div>
   );

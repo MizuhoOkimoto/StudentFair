@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import {App} from '../App';
 
 //import { AiOutlineLogin } from "react-icons/ai";
 
@@ -7,8 +8,20 @@ import logo from '../img/studentFair_Logo.png';
 import styled from 'styled-components';
 
 import './css/Header.css';
+import axios from 'axios';
 
 const Header = () => {
+  const onClickHandler =((e) => {
+    e.preventDefault();
+    var temp;
+
+    axios.get('http://localhost:8080/users/logout', temp)
+    .then((res) =>{
+      console.log(res.data)
+      window.location = '/'
+    }
+    )
+  });
   return (
     <header>
       <div className="navbar-container">
@@ -50,7 +63,7 @@ const Header = () => {
                 <a href="/signUp">Sign Up</a>
               </li>
               <li>
-                <a href="/logOut">Log Out</a>
+                <button onClick={onClickHandler}>Log Out</button>
               </li>
             </ul>
           </div>
