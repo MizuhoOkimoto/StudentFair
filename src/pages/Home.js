@@ -21,7 +21,8 @@ const Items = styled.div`
   background-size: cover;
   background-position: center;
   background-image: url('${(props) => props.url}');
-`;
+  display: inline-block; 
+`; // Added line 24 to aligned images to the center
 
 const MainImgContainer = styled.div`
   width: 100%;
@@ -128,11 +129,11 @@ const Home = () => {
         </SubItemBoxes>
       </SubParagraph>
       <SubParagraph color="white">
-        <h1>Category</h1>
+        <h1>Latest Post</h1>
         <SubItemBoxes>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
-              <h3>Computer Accessories</h3>
+              <h3>MacBook Air M2 Chip</h3>
               <Items
                 width="20vw"
                 url="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
@@ -143,7 +144,7 @@ const Home = () => {
           </Link>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
-              <h3>Textbook</h3>
+              <h3>Milk and Honey</h3>
               <Items
                 width="20vw"
                 url="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
@@ -154,7 +155,7 @@ const Home = () => {
           </Link>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
-              <h3>Lab material</h3>
+              <h3>RTX 3060</h3>
               <Items
                 width="20vw"
                 url="https://images.unsplash.com/photo-1587134160474-cd3c9a60a34a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
@@ -165,7 +166,7 @@ const Home = () => {
           </Link>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
-              <h3>Electronics</h3>
+              <h3>iPhone 11</h3>
               <Items
                 width="20vw"
                 url="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
