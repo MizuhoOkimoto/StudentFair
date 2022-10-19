@@ -19,9 +19,9 @@ function FindId(prop) {
     e.preventDefault();
 
     const inputData = {
-      //   email: e.target.email.value,
-      fname: e.target.fname.value,
-      lname: e.target.lname.value,
+      email: e.target.email.value,
+      //   fname: e.target.fname.value,
+      //   lname: e.target.lname.value,
     };
 
     axios.post('http://localhost:8080/users/findId', inputData).then((res) => {
@@ -31,7 +31,13 @@ function FindId(prop) {
         console.log(typeof data);
         prop.setUser(res.data);
         //window.location = '/LogIn';
-        navi('/LogIn', {});
+        if (res.data === false) {
+          alert('This Email is not registered move to Sign-Up page.');
+          navi('/SignUp', {});
+        } else {
+          alert('This Email is registered move to Log-In page.');
+          navi('/LogIn', {});
+        }
       } else {
         console.log(data);
         setErrMessage('');
@@ -50,12 +56,12 @@ function FindId(prop) {
           <i className="fas fa-times"></i>
         </div>
         <div className="border"></div>
-        {/* <div className="input-container">
+        <div className="input-container">
           <input type="text" name="email" id="email" placeholder="Email Address" />
           <i className="far fa-envelope"></i>
           <div className="error"></div>
-        </div> */}
-        <div className="input-container">
+        </div>
+        {/* <div className="input-container">
           <input type="text" name="fname" id="fname" placeholder="First name" />
           <i className="far fa-user"></i>
           <div className="error"></div>
@@ -64,14 +70,11 @@ function FindId(prop) {
           <input type="text" name="lname" id="lname" placeholder="Last name" />
           <i className="far fa-user"></i>
           <div className="error"></div>
-        </div>
+        </div> */}
 
         <div className="input-container sign-up">
           <input type="submit" name="submit" id="submit" value="Find My Id" />
         </div>
-        <Link className="findPw" to="/findPw">
-          Forgot password?
-        </Link>
         <p>{errMessage}</p>
       </form>
     </div>

@@ -49,6 +49,9 @@ const Header = () => {
               <li>
                 <a href="/signUp">Sign Up</a>
               </li>
+              <li>
+                <a href="/logOut">Log Out</a>
+              </li>
             </ul>
           </div>
         </nav>

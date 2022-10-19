@@ -20,8 +20,8 @@ function FindPw(prop) {
 
     const inputData = {
       email: e.target.email.value,
-      fname: e.target.fname.value,
-      lname: e.target.lname.value,
+      //   fname: e.target.fname.value,
+      //   lname: e.target.lname.value,
     };
 
     axios.post('http://localhost:8080/users/findPw', inputData).then((res) => {
@@ -47,7 +47,7 @@ function FindPw(prop) {
       <form className="user-form log-in" action="/findPw" method="post" onSubmit={onSubmitHandler}>
         <div className="title">
           <div className="form-title">
-            <p>Find My Account Pw</p>
+            <p>Find My Password</p>
           </div>
           <i className="fas fa-times"></i>
         </div>
@@ -57,7 +57,7 @@ function FindPw(prop) {
           <i className="far fa-envelope"></i>
           <div className="error"></div>
         </div>
-        <div className="input-container">
+        {/* <div className="input-container">
           <input type="text" name="fname" id="fname" placeholder="First name" />
           <i className="far fa-user"></i>
           <div className="error"></div>
@@ -66,14 +66,12 @@ function FindPw(prop) {
           <input type="text" name="lname" id="lname" placeholder="Last name" />
           <i className="far fa-user"></i>
           <div className="error"></div>
-        </div>
+        </div> */}
 
         <div className="input-container sign-up">
-          <input type="submit" name="submit" id="submit" value="Find My Pw" />
+          <input type="submit" name="submit" id="submit" value="Find My Password" />
         </div>
-        <Link className="findPw" to="/findId">
-          Forgot Account?
-        </Link>
+
         <p>{errMessage}</p>
       </form>
     </div>

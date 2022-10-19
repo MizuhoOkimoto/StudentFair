@@ -70,6 +70,15 @@ p.agreement a {
   display: block;
 }
 
+.findPw {
+  display: block;
+  color: gray;
+}
+
+.findPw:visited {
+  color: gray;
+}
+
 .findPw,
 .signUp_btn,
 .logIn_btn {

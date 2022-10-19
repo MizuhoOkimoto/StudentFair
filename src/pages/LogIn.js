@@ -65,6 +65,9 @@ function LogIn(prop) {
         <div className="input-container sign-up">
           <input type="submit" name="submit" id="submit" value="Log in" />
         </div>
+        <Link className="findPw" to="/findId">
+          Forgot Account?
+        </Link>
         <Link className="findPw" to="/findPw">
           Forgot password?
         </Link>

@@ -19,7 +19,7 @@ header {
 
 .navbar {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-around;
   width: 720px;
 }
 
@@ -27,7 +27,8 @@ header {
   display: flex;
   align-items: center;
   color: black;
-  padding-left: 180px;
+  /* justify-content: space-between; */
+  /* padding-left: 180px; */
 }
 
 .navbar-logo {
