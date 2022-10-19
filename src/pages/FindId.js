@@ -41,7 +41,7 @@ function FindId() {
       <form className="user-form log-in" action="/findId" method="post" onSubmit={onSubmitHandler}>
         <div className="title">
           <div className="form-title">
-            <p>Find My Account Id</p>
+            <p>Find My Username</p>
           </div>
           <i className="fas fa-times"></i>
         </div>
@@ -63,7 +63,7 @@ function FindId() {
         </div> */}
 
         <div className="input-container sign-up">
-          <input type="submit" name="submit" id="submit" value="Find My Id" />
+          <input type="submit" name="submit" id="submit" value="Find My Username" />
         </div>
         <p>{message}</p>
       </form>

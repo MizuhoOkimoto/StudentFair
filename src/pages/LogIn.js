@@ -66,13 +66,12 @@ function LogIn(prop) {
           <input type="submit" name="submit" id="submit" value="Log in" />
         </div>
         <div>
-          <span>Forgot : </span>
           <Link className="findPw" to="/findId">
-            <span>Account </span>
+            Forgot <span>Username?</span>
           </Link>
-          <span> / </span>
+          <span> or </span>
           <Link className="findPw" to="/findPw">
-          <span> Password </span>
+          Forgot <span> Password?</span>
           </Link>
         </div>
         
