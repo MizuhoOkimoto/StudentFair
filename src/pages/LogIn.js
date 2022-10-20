@@ -9,6 +9,7 @@ import { Link, redirect} from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
+import '../components/css/Footer.css';
 import { render } from '@testing-library/react';
 
 function LogIn(prop) {
@@ -74,11 +75,10 @@ function LogIn(prop) {
           Forgot <span> Password?</span>
           </Link>
         </div>
-        
-
         <p>{errMessage}</p>
       </form>
     </div>
+    
   );
 }
 

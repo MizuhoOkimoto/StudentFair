@@ -30,6 +30,7 @@ p.agreement a {
 .signUp-container {
   display: flex;
   justify-content: center;
+  min-height: calc(100vh - 450px);
 }
 
 .user-form div.sign-up {
