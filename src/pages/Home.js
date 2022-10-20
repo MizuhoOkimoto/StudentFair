@@ -21,7 +21,7 @@ const Items = styled.div`
   background-size: cover;
   background-position: center;
   background-image: url('${(props) => props.url}');
-  display: inline-block; 
+  display: inline-block;
 `; // Added line 24 to aligned images to the center
 
 const MainImgContainer = styled.div`
@@ -139,7 +139,8 @@ const Home = () => {
                 url="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
               ></Items>
               {/* <p className="lead">Open Box</p> */}
-              <br/><Button color="gray">View More</Button>
+              <br />
+              <Button color="gray">View More</Button>
             </Card>
           </Link>
           <Link className="nav-link" to="/">
@@ -150,7 +151,8 @@ const Home = () => {
                 url="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
               ></Items>
               {/* <p className="lead">Only 25cad A+ quality</p> */}
-              <br/><Button color="gray">View More</Button>
+              <br />
+              <Button color="gray">View More</Button>
             </Card>
           </Link>
           <Link className="nav-link" to="/">
@@ -161,7 +163,8 @@ const Home = () => {
                 url="https://images.unsplash.com/photo-1587134160474-cd3c9a60a34a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
               ></Items>
               {/* <p className="lead">No mining used for gaming</p> */}
-              <br/><Button color="gray">View More</Button>
+              <br />
+              <Button color="gray">View More</Button>
             </Card>
           </Link>
           <Link className="nav-link" to="/">
@@ -172,7 +175,8 @@ const Home = () => {
                 url="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
               ></Items>
               {/* <p className="lead">AAA state no crack damage</p> */}
-              <br/><Button color="gray">View More</Button>
+              <br />
+              <Button color="gray">View More</Button>
             </Card>
           </Link>
         </SubItemBoxes>

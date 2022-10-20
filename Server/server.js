@@ -2,7 +2,7 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session')
+const session = require('express-session');
 const mongoose = require('mongoose');
 require('dotenv').config({ path: '.env' });
 const HTTP_PORT = process.env.PORT || 8080;
@@ -12,12 +12,14 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
-}));
-app.use((req, res, next) =>{
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use((req, res, next) => {
   res.locals.user = req.session.user;
   next();
 });

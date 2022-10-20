@@ -1,5 +1,5 @@
 import styled from 'styled-components';
- 
+
 const ItemBox = styled.div`
   background-color: #fff;
   padding-top: 1px;
@@ -13,7 +13,7 @@ const ItemBox = styled.div`
   min-height: 200px;
   margin-top: 20px;
   margin-left: auto;
-  margin-right: auto;  
+  margin-right: auto;
 
   @media only screen and (max-width: 938px) {
     max-width: 200px;

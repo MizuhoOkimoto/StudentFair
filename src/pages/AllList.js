@@ -29,7 +29,11 @@ const AllList = () => {
                 alt="list-img"
               />
               <div className="list-desces">
-                <div className="list-desc title"><Link className="nav-link" to="/itemdetail">MacBook Air M2 Chip</Link></div>
+                <div className="list-desc title">
+                  <Link className="nav-link" to="/itemdetail">
+                    MacBook Air M2 Chip
+                  </Link>
+                </div>
                 <div className="list-desc state">Open Box</div>
                 <div className="list-desc price">$ 1445</div>
                 <div className="list-desc seller-name">Jun Song</div>

@@ -4,8 +4,7 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 import App from '../App.js';
 
-
-import { Link, redirect} from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
@@ -13,7 +12,6 @@ import '../components/css/Footer.css';
 import { render } from '@testing-library/react';
 
 function LogIn(prop) {
-  
   const [errMessage, setErrMessage] = useState('');
 
   const onSubmitHandler = (e) => {
@@ -27,17 +25,14 @@ function LogIn(prop) {
 
     axios.post('http://localhost:8080/users/login', inputData).then((res) => {
       let data = res.data;
-      
+
       if (typeof data !== 'string') {
-        
         prop.setUser(res.data);
-        window.location = '/MyProfile'
-        
+        window.location = '/MyProfile';
       } else {
         console.log(data);
         setErrMessage('');
         setErrMessage(data);
-        
       }
     });
   };
@@ -72,13 +67,12 @@ function LogIn(prop) {
           </Link>
           <span> or </span>
           <Link className="findPw" to="/findPw">
-          Forgot <span> Password?</span>
+            Forgot <span> Password?</span>
           </Link>
         </div>
         <p>{errMessage}</p>
       </form>
     </div>
-    
   );
 }
 

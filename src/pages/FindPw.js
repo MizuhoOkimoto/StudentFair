@@ -20,13 +20,13 @@ function FindPw(prop) {
 
     const inputData = {
       email: e.target.email.value,
-      dummy: false
+      dummy: false,
     };
 
     axios.post('http://localhost:8080/users/forgot-password', inputData).then((res) => {
       let data = res.data;
       console.log(data);
-      setMessage("Your temporary password : " + res.data);
+      setMessage('Your temporary password : ' + res.data);
       // if (typeof data !== 'string') {
       //   console.log(typeof data);
       //   prop.setUser(res.data);

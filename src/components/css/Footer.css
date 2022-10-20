@@ -89,21 +89,17 @@ a:visited:hover {
   margin: 20px 0px 9px 0px;
 }
 
-
 @media only screen and (max-width: 500px) {
   .footer {
     display: inline;
     flex-direction: column;
     padding-top: 10px;
     position: relative;
-  
+
     height: 215px;
   }
   .footer-info {
     display: inline-block;
-    /* text-align: center; */
-    /* align-items: center;
-    */
   }
   .footer-info-left,
   .footer-info-center,
@@ -113,6 +109,5 @@ a:visited:hover {
     flex-direction: column;
     margin: 10px;
     font-weight: bold;
-    width: 450px;
   }
 }

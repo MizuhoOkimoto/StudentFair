@@ -21,7 +21,7 @@ function App() {
   const [loginUser, setLoginUser] = useState([]);
   const session = window.sessionStorage;
   useEffect(() => {
-    if(session){
+    if (session) {
       setLoginUser({
         email: session.getItem('email'),
         fname: session.getItem('fname'),
@@ -29,19 +29,17 @@ function App() {
         password: session.getItem('password'),
         phone: session.getItem('phone'),
         city: session.getItem('city'),
-      })
+      });
     }
   }, []);
 
   function setUser(data) {
-
     session.setItem('email', data.email);
     session.setItem('fname', data.fname);
     session.setItem('lname', data.lname);
     session.setItem('password', data.password);
     session.setItem('phone', data.phone);
     session.setItem('city', data.city);
- 
   }
   console.log(loginUser);
   return (
@@ -56,11 +54,7 @@ function App() {
         <Route exact path="/signUp" element={<SignUp />} />
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
-        <Route
-          exact
-          path="/myProfile"
-          element={<MyProfile userData={loginUser} />}
-        />
+        <Route exact path="/myProfile" element={<MyProfile userData={loginUser} />} />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
       </Routes>
       <Footer />

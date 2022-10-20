@@ -20,7 +20,7 @@ const onSubmitHandler = (e) => {
     lname: e.target.lname.value,
     password: e.target.password.value,
     phone: '',
-    city: ''
+    city: '',
   };
 
   console.log(user);

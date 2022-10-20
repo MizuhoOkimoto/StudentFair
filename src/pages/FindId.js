@@ -4,14 +4,13 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 import App from '../App.js';
 
-import { Link, redirect} from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
 import { render } from '@testing-library/react';
 
 function FindId() {
-
   const [message, setMessage] = useState('');
   const [isFound, setIsFound] = useState(false);
   const onSubmitHandler = (e) => {
@@ -20,18 +19,16 @@ function FindId() {
 
     const inputData = {
       email: e.target.email.value,
-      dummy: false
-    };   
+      dummy: false,
+    };
 
-    axios.post('http://localhost:8080/users/forgot-account', inputData)
-    .then((res) => {
-      let data = res.data
+    axios.post('http://localhost:8080/users/forgot-account', inputData).then((res) => {
+      let data = res.data;
 
-      if(data){
-        setMessage( "You have an account :" + e.target.email.value);
-      }
-      else{
-        setMessage( "We could not find your account on our page. Please Sign up");
+      if (data) {
+        setMessage('You have an account :' + e.target.email.value);
+      } else {
+        setMessage('We could not find your account on our page. Please Sign up');
       }
     });
   };
