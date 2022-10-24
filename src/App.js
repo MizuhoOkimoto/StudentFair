@@ -14,6 +14,7 @@ import MyProfile from './pages/MyProfile';
 import ItemDetail from './pages/ItemDetail';
 import FindId from './pages/FindId';
 import FindPw from './pages/FindPw';
+import Admin from './pages/Admin';
 
 import { useEffect, useState } from 'react';
 
@@ -47,6 +48,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/allList" element={<AllList />} />
         <Route exact path="/buyList" element={<BuyList />} />
         <Route exact path="/sellList" element={<SellList />} />
