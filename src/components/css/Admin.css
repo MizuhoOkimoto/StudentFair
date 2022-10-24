@@ -1,0 +1,12 @@
+.admin-container {
+    margin: 0 auto;
+    margin-top: 50px;
+    max-width: var(--sm);
+    padding: var(--sm-spacing);
+    width: 70%;
+    padding-bottom: 50px;
+  }
+
+  /* .myProfile-card {
+    width: 100%;
+  } */
