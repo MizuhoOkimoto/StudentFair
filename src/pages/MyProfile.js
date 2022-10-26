@@ -8,6 +8,10 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import '../components/css/My-Profile.css';
 
+const onClickEvent = () => {
+  window.location = '/editProfile'
+}
+
 const MyProfile = (prop) => {
   console.log(prop.userData);
 
@@ -22,7 +26,7 @@ const MyProfile = (prop) => {
         </div>
         <div className="body-section">
           <div className="main-profile-container">
-            <Button className="edit-btn" color="gray">
+            <Button className="edit-btn" color="gray" onClick={onClickEvent}>
               Edit Profile
             </Button>
             <div className="name-section name">

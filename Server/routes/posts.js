@@ -7,7 +7,6 @@ var posts = [];
 
 router.get('/', (req, res) => {
   Post.find()
-    .exec()
     .then((post) => {
       post = post.map((value) => value.toObject());
       posts = post;

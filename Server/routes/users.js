@@ -24,6 +24,13 @@ router.route('/').get((req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 });
 
+//Admin Account
+const Admin = {
+  email:  'admin@admin.com',
+  pwd:    process.env.DB_CONFIG_PWD
+}; 
+
+
 // POST - Login Page
 router.route('/login').post((req, res) => {
   let validData = {};
@@ -48,32 +55,46 @@ router.route('/login').post((req, res) => {
 
   if (isValid) {
     let error = [];
-    User.findOne({
-      email: req.body.email,
-    })
-      .then((user) => {
-        if (user.email) {
-          console.log(user);
-          bcrypt.compare(req.body.password, user.password).then((match) => {
-            if (match) {
-              req.session.user = user;
-              res.json(user);
-              //console.log(`Success to log-in ${req.session.user}`)
-            } else {
-              error.push('Password does not match!');
-              res.send('Password does not match!');
-            }
-          });
-        } else {
-          console.log(`Error comparing passwords: ${err},`);
-          error.push('Error=compared password');
-        }
+    //Check Admin ID 
+    if(req.body.email === Admin.email){
+      if(req.body.password === Admin.pwd){
+        //TODO: Move To Admin Page
+        console.log("admin");
+      }
+      else{
+        error.push('Password does not match!');
+        res.send('Password does not match!');
+      }
+    }
+    else{
+     
+      User.findOne({
+        email: req.body.email,
       })
-      .catch((err) => {
-        console.log(`Error finding the user from the database: ${err},`);
-        error.push('Error=Not found on Data');
-        res.send('There is No Validated E-mail.');
-      });
+        .then((user) => {
+          if (user.email) {
+            console.log(user);
+            bcrypt.compare(req.body.password, user.password).then((match) => {
+              if (match) {
+                req.session.user = user;
+                res.json(user);
+                //console.log(`Success to log-in ${req.session.user}`)
+              } else {
+                error.push('Password does not match!');
+                res.send('Password does not match!');
+              }
+            });
+          } else {
+            console.log(`Error comparing passwords: ${err},`);
+            error.push('Error=compared password');
+          }
+        })
+        .catch((err) => {
+          console.log(`Error finding the user from the database: ${err},`);
+          error.push('Error=Not found on Data');
+          res.send('There is No Validated E-mail.');
+        });
+    }
   }
 });
 
@@ -267,7 +288,16 @@ router.route('/rest-password').post((req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.send(true);
+  res.redirect('/')
   
 });
+
+router.post('/delete', (req, res) =>{
+  User.deleteOne({email: req.body.email})
+      .then(() => {
+        console.log('Succes to delete');
+        res.redirect('/');
+      })
+})
 
 module.exports = router;

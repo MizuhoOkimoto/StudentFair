@@ -16,7 +16,7 @@ import ItemDetail from './pages/ItemDetail';
 import FindId from './pages/FindId';
 import FindPw from './pages/FindPw';
 import Admin from './pages/Admin';
-
+import Edit from './pages/EditPage';
 
 import { useEffect, useState } from 'react';
 
@@ -71,6 +71,7 @@ function App() {
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
         <Route exact path="/myProfile" element={<MyProfile userData={loginUser} />} />
+        <Route exact path="/editProfile" element={<Edit userData={loginUser} />} />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
       </Routes>
       <Footer />

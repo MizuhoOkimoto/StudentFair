@@ -38,9 +38,13 @@ connection.on('open', () => {
 
 //Add for the routes
 const general = require('./routes/general');
-app.use('/', general);
 const usersRouter = require('./routes/users');
+const reportsRouter = require('./routes/reports');
+
+app.use('/', general);
 app.use('/users', usersRouter);
+app.use('/reports', reportsRouter);
+
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
