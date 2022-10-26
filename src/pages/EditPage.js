@@ -4,7 +4,7 @@ import axios from 'axios';
 import Button from '../components/Button';
 
 const clickToDelete = () => {
-    
+    window.location='/deleteAccount'
 }
 
 const clickToUpdate = () => {

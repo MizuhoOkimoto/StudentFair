@@ -17,7 +17,7 @@ import FindId from './pages/FindId';
 import FindPw from './pages/FindPw';
 import Admin from './pages/Admin';
 import Edit from './pages/EditPage';
-
+import Delete from './pages/DeleteUser';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -52,7 +52,15 @@ function App() {
 
   function userOut(){
     session.clear();
+  }
 
+  function prepToDelete(){
+    const usermail = session.getItem('email');
+    return usermail
+  }
+
+  function ResetSession(){
+    session.clear();
   }
 
   console.log("line 56 : " +loginUser.email);
@@ -72,6 +80,7 @@ function App() {
         <Route exact path="/findPw" element={<FindPw />} />
         <Route exact path="/myProfile" element={<MyProfile userData={loginUser} />} />
         <Route exact path="/editProfile" element={<Edit userData={loginUser} />} />
+        <Route exact path="/deleteAccount" element={<Delete usermail={prepToDelete} clear={ResetSession}/>} />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
       </Routes>
       <Footer />

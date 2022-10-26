@@ -14,6 +14,7 @@ const { nextTick } = require('process');
 const router = require('express').Router();
 const NodeEmailer = require('nodemailer');
 let User = require('../module/user_schema');
+require('dotenv').config({ path: '../.env' });
 const emailRegExp =
   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 //const pwdRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,24}$/;
@@ -27,7 +28,7 @@ router.route('/').get((req, res) => {
 // E-mail Setting
 const transporter = NodeEmailer.createTransport({
   service: 'gmail',
-  auth: { user: 'demian824@gmail.com', pass: 'tmfzzcjjwytwdkkb' },
+  auth: { user: 'demian824@gmail.com', pass: process.env.EMAIL_KEY },
 });
 
 // Send Temp Password to User 
@@ -301,11 +302,13 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/delete', (req, res) =>{
+  const {email}  = req.body;
+  console.log(email);
   User.deleteOne({email: req.body.email})
       .then(() => {
-        console.log('Succes to delete');
-        res.redirect('/');
+        res.send(true);
       })
+      .catch(err =>  console.log(`Error : ${err}`));
 })
 
 module.exports = router;
