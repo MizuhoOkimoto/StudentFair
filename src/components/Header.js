@@ -47,10 +47,10 @@ function Header(prop){
                 </ul>
               </li>
               <li>
-                {prop.flag !== null ? <a href="/myProfile">My Page</a> : <a href="/logIn">Log In</a>}
+                {prop.flag === 'true' ? <a href="/myProfile">My Page</a> : <a href="/logIn">Log In</a>}
               </li>
               <li>
-                {prop.flag !== null ? <a href="/logOut">Log Out</a> : <a href="/signUp">Sign Up</a> }
+                {prop.flag === 'true' ? <a href="/logOut">Log Out</a> : <a href="/signUp">Sign Up</a> }
               </li>
               
             </ul>
