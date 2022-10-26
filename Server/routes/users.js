@@ -12,7 +12,7 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const { nextTick } = require('process');
 const router = require('express').Router();
-
+const NodeEmailer = require('nodemailer');
 let User = require('../module/user_schema');
 const emailRegExp =
   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -23,6 +23,42 @@ router.route('/').get((req, res) => {
     .then((users) => res.json(users))
     .catch((err) => res.status(400).json('Error: ' + err));
 });
+
+// E-mail Setting
+const transporter = NodeEmailer.createTransport({
+  service: 'gmail',
+  auth: { user: 'demian824@gmail.com', pass: 'tmfzzcjjwytwdkkb' },
+});
+
+// Send Temp Password to User 
+const sendTempPassword = async (temp, email, name) =>{
+  const mailOptions = {
+    to: email,
+    subject: 'You Get a Temporary Password - Do Not Reply',
+    html: 
+        `
+          Here is your temporary password. <br>
+          <br>
+          Your Full Name: ${name}<br>
+          ${temp}<br>
+          Please Reset to New Password On The StudentFair
+          <br><br>
+          Thanks To use StudetnFair Service.
+          <br>
+          <br>
+          sincerely<br>
+          StudentFair Team        <br>
+          Team9, PRJ666           <br>
+          Team Member:            <br>
+          Mizuho Okimoto          <br>
+          Jun Song                <br>
+          WonChul Choi            <br>
+          Tasin Rahman            <br>
+          Copyright © Winter 2022, All rights reserved | PRJ666 Team 9<br>
+          `,
+  }
+  await transporter.sendMail(mailOptions);
+}
 
 //Admin Account
 const Admin = {
@@ -232,39 +268,11 @@ router.route('/forgot-password').post((req, res) => {
                 console.log(err);
               });
             const emailaddress = data[0].email;
-            const msg = {
-              to: `${emailaddress}`,
-              from: 'wchoi28@myseneca.ca',
-              subject: 'You Get a Temporary Password - Do Not Reply',
-              html: `
-                  Here is your temporary password. <br>
-                  <br>
-                  Your Full Name: ${data[0].fname} ${data[0].lname}<br>
-                  ${tempPassword}<br>
-                  Please Reset to New Password On The StudentFair
-                  <br><br>
-                  Thanks To use StudetnFair Service.
-                  <br>
-                  <br>
-                  sincerely<br>
-                  StudentFair Team        <br>
-                  Team9, PRJ666           <br>
-                  Team Member:            <br>
-                  Mizuho Okimoto          <br>
-                  Jun Song                <br>
-                  WonChul Choi            <br>
-                  Tasin Rahman            <br>
-                  Copyright © Winter 2022, All rights reserved | PRJ666 Team 9<br>
-                  `,
-            };
-            console.log(data[0].email);
-            //console.log(msg)
-            // sgMail
-            // .send(msg)
-            // .catch(err => {
-            //   console.log(`Error ${err}`);
-            //   res.send("Error to Send the Email");
-            // });
+            const fullName = data[0].fname + " " + data[0].lname;
+            sendTempPassword(tempPassword, emailaddress, fullName);  
+            
+              
+
             res.send(tempPassword);
           })
           .catch((err) => {
