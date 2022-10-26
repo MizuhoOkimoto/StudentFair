@@ -266,7 +266,8 @@ router.route('/rest-password').post((req, res) => {
 
 router.get('/logout', (req, res) => {
   req.session.destroy();
-  console.log('logout');
+  res.send(true);
+  
 });
 
 module.exports = router;

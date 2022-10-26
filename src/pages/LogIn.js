@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import App from '../App.js';
+
 
 import { Link, redirect } from 'react-router-dom';
 
@@ -30,7 +30,6 @@ function LogIn(prop) {
         prop.setUser(res.data);
         window.location = '/MyProfile';
       } else {
-        console.log(data);
         setErrMessage('');
         setErrMessage(data);
       }

@@ -10,17 +10,9 @@ import styled from 'styled-components';
 import './css/Header.css';
 import axios from 'axios';
 
-const Header = () => {
-  const onClickHandler = (e) => {
-    e.preventDefault();
-    var temp;
-
-    axios.get('http://localhost:8080/users/logout', temp).then((res) => {
-      console.log(res.data);
-      window.location = '/';
-    });
-  };
-  return (
+function Header(prop){
+    console.log(prop.flag);
+    return (
     <header>
       <div className="navbar-container">
         <nav className="navbar">
@@ -38,7 +30,7 @@ const Header = () => {
               </li>
               <li>
                 <label htmlFor="drop-1" className="toggle">
-                  Listings +
+                  Listings
                 </label>
                 <a href="#">Listings</a>
                 <input type="checkbox" id="drop-1" />
@@ -55,14 +47,12 @@ const Header = () => {
                 </ul>
               </li>
               <li>
-                <a href="/logIn">Log In</a>
+                {prop.flag !== null ? <a href="/myProfile">My Page</a> : <a href="/logIn">Log In</a>}
               </li>
               <li>
-                <a href="/signUp">Sign Up</a>
+                {prop.flag !== null ? <a href="/logOut">Log Out</a> : <a href="/signUp">Sign Up</a> }
               </li>
-              <li>
-                <button onClick={onClickHandler}>Log Out</button>
-              </li>
+              
             </ul>
           </div>
         </nav>
