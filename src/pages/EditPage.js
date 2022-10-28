@@ -7,10 +7,6 @@ const clickToCancel = () => {
   window.location = '/myProfile';
 };
 
-// const clickToDelete = () => {
-//     window.location = '/deleteAccount';
-//   };
-
 const clickToUpdate = () => {
   window.location = '/myProfile';
 };

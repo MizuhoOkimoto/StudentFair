@@ -9,8 +9,21 @@ import Loading from '../components/Loading';
 import '../components/css/My-Profile.css';
 
 const onClickEvent = () => {
-  window.location = '/editProfile'
-}
+  window.location = '/editProfile';
+};
+
+const clickedSeeMoreBtn = () => {
+  window.location = '/allUserPost';
+};
+
+const clickToDelete = () => {
+  if (window.confirm('Are you sure to delete your account?') === true) {
+    alert('Your account is safely deleted.');
+    window.location = '/deleteAccount';
+  } else {
+    alert('You canceled delete your account!');
+  }
+};
 
 const MyProfile = (prop) => {
   console.log(prop.userData);
@@ -28,6 +41,9 @@ const MyProfile = (prop) => {
           <div className="main-profile-container">
             <Button className="edit-btn" color="gray" onClick={onClickEvent}>
               Edit Profile
+            </Button>
+            <Button className="edit-btn" color="gray" onClick={clickToDelete}>
+              Delete Profile
             </Button>
             <div className="name-section name">
               <div className="label">Name</div>
@@ -49,7 +65,7 @@ const MyProfile = (prop) => {
             </div>
           </div>
           <div className="profile-history-container">
-            <p>Your Post</p>
+            <p>Your Latest Post</p>
             <div className="post-item-card">
               <img
                 className="item-image"
@@ -68,6 +84,11 @@ const MyProfile = (prop) => {
                   Delete Post
                 </Button>
               </div>
+            </div>
+            <div className="seeMoreBtn">
+              <Button className="button" color="gray" onClick={clickedSeeMoreBtn}>
+                See More...
+              </Button>
             </div>
           </div>
         </div>
