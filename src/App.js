@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [loginUser, setLoginUser] = useState([]);
-  
+
   const session = window.sessionStorage;
   useEffect(() => {
     if (session) {
@@ -36,8 +36,6 @@ function App() {
         isLogin: session.getItem('isLogin'),
       });
     }
-    
-    
   }, []);
 
   function setUser(data) {
@@ -50,20 +48,20 @@ function App() {
     session.setItem('isLogin', true);
   }
 
-  function userOut(){
+  function userOut() {
     session.clear();
   }
 
-  function prepToDelete(){
+  function prepToDelete() {
     const usermail = session.getItem('email');
-    return usermail
+    return usermail;
   }
 
-  function ResetSession(){
+  function ResetSession() {
     session.clear();
   }
 
-  console.log("line 56 : " +loginUser.email);
+  console.log('line 56 : ' + loginUser.email);
   return (
     <div className="App">
       <Header flag={loginUser.isLogin} />
@@ -80,7 +78,11 @@ function App() {
         <Route exact path="/findPw" element={<FindPw />} />
         <Route exact path="/myProfile" element={<MyProfile userData={loginUser} />} />
         <Route exact path="/editProfile" element={<Edit userData={loginUser} />} />
-        <Route exact path="/deleteAccount" element={<Delete usermail={prepToDelete} clear={ResetSession}/>} />
+        <Route
+          exact
+          path="/deleteAccount"
+          element={<Delete usermail={prepToDelete} clear={ResetSession} />}
+        />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
       </Routes>
       <Footer />
