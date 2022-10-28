@@ -12,7 +12,7 @@ import { render } from '@testing-library/react';
 
 function FindPw(prop) {
   const navi = useNavigate();
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
 
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.
@@ -26,19 +26,20 @@ function FindPw(prop) {
     axios.post('http://localhost:8080/users/forgot-password', inputData).then((res) => {
       let data = res.data;
       console.log(data);
-      setMessage('Your temporary password : ' + res.data);
-      // if (typeof data !== 'string') {
-      //   console.log(typeof data);
-      //   prop.setUser(res.data);
-      //   //window.location = '/LogIn';
-      //   navi('/LogIn', {
-      //     //   user: data,
-      //   });
-      // } else {
-      //   console.log(data);
-      //   setErrMessage('');
-      //   setErrMessage(data);
-      // }
+      // setMessage('Your temporary password : ' + res.data);
+      if (typeof data !== 'string') {
+        console.log(typeof data);
+        prop.setUser(res.data);
+        alert("Can't find your password. Please try again.");
+        //window.location = '/LogIn';
+        navi('/FindPw', {});
+      } else {
+        console.log(data);
+        alert('Your temporary password is sent to your registered email.');
+        // setErrMessage('');
+        // setErrMessage(data);
+        navi('/LogIn', {});
+      }
     });
   };
 
@@ -72,7 +73,7 @@ function FindPw(prop) {
           <input type="submit" name="submit" id="submit" value="Find My Password" />
         </div>
 
-        <p>{message}</p>
+        {/* <p>{message}</p> */}
       </form>
     </div>
   );

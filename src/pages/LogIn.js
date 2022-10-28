@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 
-
 import { Link, redirect } from 'react-router-dom';
 
 // import Button from "../components/Button";
@@ -12,7 +11,7 @@ import '../components/css/Footer.css';
 import { render } from '@testing-library/react';
 
 function LogIn(prop) {
-  const [errMessage, setErrMessage] = useState('');
+  // const [errMessage, setErrMessage] = useState('');
 
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.
@@ -30,8 +29,9 @@ function LogIn(prop) {
         prop.setUser(res.data);
         window.location = '/MyProfile';
       } else {
-        setErrMessage('');
-        setErrMessage(data);
+        alert("Password or Id doesn't match! Please try again.");
+        // setErrMessage('');
+        // setErrMessage(data);
       }
     });
   };
@@ -69,7 +69,7 @@ function LogIn(prop) {
             Forgot <span> Password?</span>
           </Link>
         </div>
-        <p>{errMessage}</p>
+        {/* <p>{errMessage}</p> */}
       </form>
     </div>
   );

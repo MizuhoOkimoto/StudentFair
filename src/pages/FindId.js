@@ -4,15 +4,16 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 import App from '../App.js';
 
-import { Link, redirect } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
 import { render } from '@testing-library/react';
 
 function FindId() {
-  const [message, setMessage] = useState('');
-  const [isFound, setIsFound] = useState(false);
+  const navi = useNavigate();
+  // const [message, setMessage] = useState('');
+  // const [isFound, setIsFound] = useState(false);
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.
     e.preventDefault();
@@ -26,9 +27,11 @@ function FindId() {
       let data = res.data;
 
       if (data) {
-        setMessage('You have an account :' + e.target.email.value);
+        alert('You have an account. Redirect to Log In page.');
+        navi('/LogIn', {});
       } else {
-        setMessage('We could not find your account on our page. Please Sign up');
+        alert('We could not find your account on our page. Redirect to Sign Up page');
+        navi('/SignUp', {});
       }
     });
   };
@@ -62,7 +65,7 @@ function FindId() {
         <div className="input-container sign-up">
           <input type="submit" name="submit" id="submit" value="Find My Username" />
         </div>
-        <p>{message}</p>
+        {/* <p>{message}</p> */}
       </form>
     </div>
   );
