@@ -18,6 +18,7 @@ import FindPw from './pages/FindPw';
 import Admin from './pages/Admin';
 import Edit from './pages/EditPage';
 import Delete from './pages/DeleteUser';
+import Report from './pages/Report';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
           element={<Delete usermail={prepToDelete} clear={ResetSession} />}
         />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
+        <Route exact path="/report" element={<Report userData={loginUser} />} />
       </Routes>
       <Footer />
     </div>

@@ -10,9 +10,9 @@ import styled from 'styled-components';
 import './css/Header.css';
 import axios from 'axios';
 
-function Header(prop){
-    console.log(prop.flag);
-    return (
+function Header(prop) {
+  console.log(prop.flag);
+  return (
     <header>
       <div className="navbar-container">
         <nav className="navbar">
@@ -47,12 +47,20 @@ function Header(prop){
                 </ul>
               </li>
               <li>
-                {prop.flag === 'true' ? <a href="/myProfile">My Page</a> : <a href="/logIn">Log In</a>}
+                {prop.flag === 'true' ? (
+                  <a href="/myProfile">My Page</a>
+                ) : (
+                  <a href="/logIn">Log In</a>
+                )}
               </li>
+              <li>{prop.flag === 'true' ? <a href="/report">Report</a> : ''}</li>
               <li>
-                {prop.flag === 'true' ? <a href="/logOut">Log Out</a> : <a href="/signUp">Sign Up</a> }
+                {prop.flag === 'true' ? (
+                  <a href="/logOut">Log Out</a>
+                ) : (
+                  <a href="/signUp">Sign Up</a>
+                )}
               </li>
-              
             </ul>
           </div>
         </nav>
@@ -123,6 +131,6 @@ function Header(prop){
       </div>
     </header>
   );
-};
+}
 
 export default Header;
