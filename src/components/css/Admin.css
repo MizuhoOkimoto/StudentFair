@@ -1,12 +1,27 @@
 .admin-container {
+    padding-bottom: 50px;
+    justify-content: center;
+  }
+
+  .table {
     margin: 0 auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     max-width: var(--sm);
     padding: var(--sm-spacing);
     width: 70%;
     padding-bottom: 50px;
   }
-
-  /* .myProfile-card {
-    width: 100%;
-  } */
+  .switch-page {
+    margin: 40px 50px 20px 300px;
+    text-align: left;
+    /* display: flex; */
+    width: 720px;
+  }
+  
+  .users-btn,
+  .posts-btn,
+  .reports-btn {
+    margin-right: 10px;
+  }
+  
