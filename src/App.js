@@ -17,6 +17,7 @@ import FindId from './pages/FindId';
 import FindPw from './pages/FindPw';
 import Admin from './pages/Admin';
 import Edit from './pages/EditPage';
+import UpdatePassword from './pages/UpdatePassword';
 import Delete from './pages/DeleteUser';
 import Report from './pages/Report';
 import { useEffect, useState } from 'react';
@@ -48,7 +49,15 @@ function App() {
     session.setItem('city', data.city);
     session.setItem('isLogin', true);
   }
-
+  function updatePassword(data){
+    session.setItem('password', data.newPassword);
+    console.log(session);
+  }
+  function updateInfo(data){
+    session.setItem('phone', data.newPhone);
+    session.setItem('city', data.newCity);
+    console.log(session);
+  }
   function userOut() {
     session.clear();
   }
@@ -78,7 +87,14 @@ function App() {
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
         <Route exact path="/myProfile" element={<MyProfile userData={loginUser} />} />
-        <Route exact path="/editProfile" element={<Edit userData={loginUser} />} />
+        <Route 
+          exact 
+          path="/editProfile" 
+          element={<Edit userData={loginUser} updateInfo={updateInfo} />} />
+        <Route 
+          exact 
+          path="/update_password" 
+          element={<UpdatePassword userData={loginUser} updatePassword={updatePassword}/>} />
         <Route
           exact
           path="/deleteAccount"

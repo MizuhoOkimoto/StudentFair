@@ -11,7 +11,9 @@ import '../components/css/My-Profile.css';
 const onClickEvent = () => {
   window.location = '/editProfile';
 };
-
+const onClickChangePasswordEvent = () => {
+  window.location = '/update_password';
+};
 const clickedSeeMoreBtn = () => {
   window.location = '/allUserPost';
 };
@@ -40,10 +42,13 @@ const MyProfile = (prop) => {
         <div className="body-section">
           <div className="main-profile-container">
             <Button className="edit-btn" color="gray" onClick={onClickEvent}>
-              Edit Profile
+              Edit<br/>Profile
+            </Button>
+            <Button className="edit-btn" color="gray" onClick={onClickChangePasswordEvent}>
+              Change<br/>Password
             </Button>
             <Button className="edit-btn" color="gray" onClick={clickToDelete}>
-              Delete Profile
+              Delete<br/>Profile
             </Button>
             <div className="name-section name">
               <div className="label">Name</div>
@@ -57,11 +62,11 @@ const MyProfile = (prop) => {
             </div>
             <div className="name-section phone">
               <div className="label">Phone</div>
-              <div className="value">{prop.userData.Phone}</div>
+              <div className="value">{prop.userData.phone}</div>
             </div>
             <div className="name-section city">
               <div className="label">City</div>
-              <div className="value">{prop.userData.City}</div>
+              <div className="value">{prop.userData.city}</div>
             </div>
           </div>
           <div className="profile-history-container">

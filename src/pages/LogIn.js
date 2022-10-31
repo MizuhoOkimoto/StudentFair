@@ -58,7 +58,7 @@ function LogIn(prop) {
         </div>
 
         <div className="input-container sign-up">
-          <input type="submit" name="submit" id="submit" value="Log in" />
+          <input type="submit" name="" id="submit" value="Log in" />
         </div>
         <div>
           <Link className="findPw" to="/findId">

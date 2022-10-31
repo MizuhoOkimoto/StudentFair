@@ -206,31 +206,35 @@ router.route('/register').post((req, res) => {
 });
 
 // POST -edit
-router.route('/edit/:_email', (req, res) => {
-  const { email, newPassword } = req.body;
-  User.findOne({ email: email })
-    .exec()
-    .then((date) => {
-      if (newPassword.length < 8 || !pwdRegExp.test(newPassword)) {
+router.route('/update_info').post((req, res) => {
+  const { email, newPhone, newCity } = req.body;
+ 
+  User.findOne({email: email})
+      .then((user) => {
         User.updateOne(
           { email: email },
           {
             $set: {
-              password: newPassword,
+              phone: newPhone,
+              city: newCity,
             },
           }
-        ).save();
-      } else {
-        res.send('Please Enter Right Passwords');
-      }
-    });
+        ).then(() => {
+          res.send("Updated")
+        }).catch((err) => {
+            console.log(err);
+            res.send("err")
+          });
+
+        
+      })
+  
 });
-// POST -forgot Password
+
+// POST -forgot account
 router.route('/forgot-account').post((req, res) => {
   const { email, isFound } = req.body;
   console.log(req.body);
-  console.log('186' + email);
-  console.log('187' + isFound);
   User.findOne({ email: email })
     .then((user) => {
       console.log(user);
@@ -263,17 +267,12 @@ router.route('/forgot-password').post((req, res) => {
                   password: temppwd,
                 },
               }
-            )
-              .then()
-              .catch((err) => {
+            ).catch((err) => {
                 console.log(err);
-              });
+            });
             const emailaddress = data[0].email;
             const fullName = data[0].fname + " " + data[0].lname;
             sendTempPassword(tempPassword, emailaddress, fullName);  
-            
-              
-
             res.send(tempPassword);
           })
           .catch((err) => {
@@ -288,10 +287,39 @@ router.route('/forgot-password').post((req, res) => {
 
 // POST - Reset Password
 router.route('/rest-password').post((req, res) => {
-  const email = req.body.email;
-  User.findOneAndUpdate(email, {
-    password: req.body.password,
-  });
+  const { email, newPassword } = req.body;
+  
+  console.log(email + ", " + newPassword);
+
+  bcrypt.genSalt(10).then((salt) => {
+    bcrypt
+      .hash(newPassword, salt)
+      .then((result) => {
+        let temppwd = result;
+        User.find({ email: email })
+          .then((data) => {
+            User.updateOne(
+              { email: email },
+              {
+                $set: {
+                  password: temppwd,
+                },
+              }
+            ).catch((err) => {
+                console.log(err);
+            });
+            
+            res.send(temppwd);
+          })
+          .catch((err) => {
+            console.log(`Error Occured When Hashing. ${err}`);
+          });
+      })
+      .catch((err) => {
+        console.log(`Error Occured When Salting. ${err}`);
+      });
+  });  
+
 });
 
 router.get('/logout', (req, res) => {
