@@ -27,7 +27,7 @@ function Admin(prop) {
           <Button className="users-btn">
             Users
           </Button>
-          <Link to="/AdminPosts">
+          <Link to="/adminPosts">
           <Button className="posts-btn">
             Posts
           </Button>
@@ -52,9 +52,6 @@ function Admin(prop) {
               {users.map((data) => (
                 <tr
                   key={data._id}
-                  // onClick={() => {
-                  //   history.push(`/users/${data._id}`);
-                  // }}
                 >
                   <td>{data._id}</td>
                   <td>{data.email}</td>

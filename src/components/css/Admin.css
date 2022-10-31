@@ -1,33 +1,37 @@
 .admin-container {
-    padding-bottom: 50px;
-    justify-content: center;
-    width: 70%;
-    margin-left:auto; 
-    margin-right:auto;
-  }
+  padding-bottom: 50px;
+  justify-content: center;
+  width: 70%;
+  margin-left:auto; 
+  margin-right:auto;
+}
 
-  .table {
-    margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    max-width: var(--sm);
-    padding: var(--sm-spacing);
-    padding-bottom: 50px;
-  }
-  .switch-page {
-    text-align: left;
-    margin-left:auto; 
-    margin-right:auto;
-    margin-top: 30px;
-    margin-bottom: 20px;
-  }
-  
-  .users-btn,
-  .posts-btn,
-  .reports-btn {
-    margin-right: 10px;
-  }
-  /* .users-btn{
-    background-color: red; 
-  } */
-  
+.table {
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  max-width: var(--sm);
+  padding: var(--sm-spacing);
+  padding-bottom: 50px;
+}
+.switch-page {
+  text-align: left;
+  margin-left:auto; 
+  margin-right:auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.users-btn,
+.posts-btn,
+.reports-btn {
+  margin-right: 10px;
+}
+/* .users-btn{
+  background-color: red; 
+} */
+
+.message {
+  font-size: x-large;
+  text-align: center;
+}

@@ -95,8 +95,9 @@ router.route('/login').post((req, res) => {
     //Check Admin ID 
     if(req.body.email === Admin.email){
       if(req.body.password === Admin.pwd){
-        //TODO: Move To Admin Page
+        //TODO: Check the redirect
         console.log("admin");
+        return res.redirect('/admin');
       }
       else{
         error.push('Password does not match!');
