@@ -16,7 +16,7 @@ function Admin(prop) {
     console.log(data);
   })
   .catch((error) => {
-    console.log(error.response.data);
+    console.log(error + " Unable to get data from MongoDB");
   })
 },[]);
 
