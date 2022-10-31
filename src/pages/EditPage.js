@@ -29,8 +29,9 @@ const editPage = (prop) => {
     axios.post('http://localhost:8080/users/update_info', updatedData).then((res) => {
             console.log(res.data);
             prop.updateInfo(updatedData);
+            window.location = '/MyProfile';
          });
-    window.location = '/myProfile';
+    
   };
 
   return (
