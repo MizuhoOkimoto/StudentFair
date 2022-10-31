@@ -11,7 +11,7 @@ router.route('/').get((req, res) => {
             report = report.map((value) => value.toObject());
             reports = report;
             global.reports = reports;
-
+            console.log(reports);
             res.json(reports);
         })
         .catch((err) => 
@@ -27,15 +27,27 @@ router.route('/detail/:report_number')
         });
 });
 
-router.route('/edit').get((req, res) => {
-    Report.find({ report_number: req.body.report_number})
-          .then((err, reports) =>{
-            Report.updateOne(
-                {
-                    report_number: req.body.report_number
-                }
-            )
-          })
+router.route('/create_report').post((req, res) => {
+
+    const { email, category, title, description, date } = req.body;
+    
+    console.log(reports.length);
+    
+    const newReport = new Report({        
+      report_number: reports.length + 1, 
+      user_id: email,
+      category: category,
+      title: title,
+      description: description,
+      date: date,
+    });
+
+    newReport.save().then(() =>{
+        reports.push(newReport);
+        res.send(true);
+
+        }).catch((err) => res.status(400).json('Error: ' + err));
+    console.log(newReport);   
 });
 
 

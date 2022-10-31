@@ -2,50 +2,41 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-
 import { Link } from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
+//import { create } from '../../Server/module/report_schema';
 
-const onSubmitHandler = (e) => {
-  // This will prevent the default html form submit behavior from taking place.
-  e.preventDefault();
-  // TO DO
-  // - Make a validation of each fields.
-  // - If any fields is empty, cannot move to log-in page.
-  const user = {
-    email: e.target,
-    reportPostNumber: e.target,
-    reportDesc: e.target,
+
+
+function Report(prop){
+  
+  const create_date= new Date();
+ 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+
+    const newReport = {
+      email: prop.userData.email,
+      category: '',
+      title:e.target.reportTitle.value,
+      description: e.target.reportDesc.value,
+      date: create_date
+    };
+
+    axios.post('http://localhost:8080/reports/create_report', newReport).then((res) => {
+      console.log(res);
+      if (res.data === true) {
+        alert('Your report successfully reported');
+        window.location = '/';
+      } else {
+        alert('You typed wrong report number. Please check again.');
+      }
+    },[]);
+  
   };
 
-  console.log(user);
-
-  // Send the user data to the backend
-
-  //let
-  axios.post('http://localhost:8080/users/report', user).then((res) => {
-    console.log(res);
-    if (res.data === true) {
-      alert('Your report successfully reported');
-      window.location = '/';
-    } else {
-      alert('You typed wrong report number. Please check again.');
-    }
-  });
-
-  // Render to the log in page
-  //window.location = '/LogIn';
-};
-
-const Report = (prop) => {
-  console.log(prop.userData);
-  //   console.log(prop);
-  //   if (!prop.userData.email) {
-  //     alert('Only Registered User can report.');
-  //     //   window.location = '/allList';
-  //   }
   return (
     <div className="signUp-container">
       <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
@@ -57,27 +48,27 @@ const Report = (prop) => {
         </div>
         <div className="border" />
         <div className="input-container">
-          Reporter Id
+          User Email
           <span>{prop.userData.email}</span>
         </div>
         <div className="input-container">
-          Reporter Name
+          User Name
           <span>
             {prop.userData.fname} {prop.userData.lname}
           </span>
         </div>
         <div className="input-container">
-          Report Date
+          Date
           <span>
-            {new Date().getFullYear()}-{new Date().getMonth() + 1}-{new Date().getDate()}
+            {create_date.getFullYear()}-{create_date.getMonth() + 1}-{create_date.getDate()}
           </span>
         </div>
         <div className="input-container">
           <input
             type="text"
-            name="reportPostNumber"
-            id="reportPostNumber"
-            placeholder="Post Number"
+            name="reportTitle"
+            id="reportTitle"
+            placeholder="Report Title"
           />
         </div>
         <textarea
@@ -85,7 +76,7 @@ const Report = (prop) => {
           type="text"
           name="reportDesc"
           id="reportDesc"
-          placeholder="Report Details.."
+          placeholder="Report Details"
           maxLength="1000"
           cols="88"
           rows="7"

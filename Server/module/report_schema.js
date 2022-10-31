@@ -15,6 +15,10 @@ const reportSchema = new Schema({
     type: String,
     require: true,
   },
+  title: {
+    type: String,
+    require: true,
+  },
   description: {
     type: String,
     require: true,
@@ -23,11 +27,7 @@ const reportSchema = new Schema({
     type: Date,
     require: true,
   },
-  time: {
-    type: Number,
-    require: true,
-  },
 });
 
-const report = mongoose.model('Post', reportSchema);
+const report = mongoose.model('Report', reportSchema);
 module.exports = report;

@@ -110,7 +110,6 @@ router.route('/login').post((req, res) => {
       })
         .then((user) => {
           if (user.email) {
-            console.log(user);
             bcrypt.compare(req.body.password, user.password).then((match) => {
               if (match) {
                 req.session.user = user;
