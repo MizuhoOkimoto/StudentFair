@@ -1,35 +1,43 @@
 import { Table, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
 
 function Admin(prop) {
   const [users, setUsers] = useState(null);
-  let history = useNavigate();
+  //let history = useNavigate();
 
-  axios.get('http://localhost:8080/users').then((res) => {
+  useEffect(() => {
+  axios.get('http://localhost:8080/users')
+  .then((res) => {
     let data = res.data;
     setUsers(data);
-    //console.log(data); //TODO: Fix the infinity loop! , [prop.query]???
-  }, []);
+    console.log(data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  })
+},[]);
 
   if (users) {
     return (
       <div className="admin-container">
         <div className="switch-page">
-          <Button className="users-btn" color="gray">
+          <Button className="users-btn">
             Users
           </Button>
-          <Button className="posts-btn" color="gray">
+          <Link to="/AdminPosts">
+          <Button className="posts-btn">
             Posts
           </Button>
-          <Button className="reports-btn" color="gray">
+          </Link>
+          <Button className="reports-btn">
             Reports
           </Button>
         </div>
         <div className="user-table">
-          <table className="table" bordered="true">
+          <Table className="table" striped bordered hover>
             <thead>
               <tr>
                 <th>User id</th>
@@ -44,9 +52,9 @@ function Admin(prop) {
               {users.map((data) => (
                 <tr
                   key={data._id}
-                  onClick={() => {
-                    history.push(`/users/${data._id}`);
-                  }}
+                  // onClick={() => {
+                  //   history.push(`/users/${data._id}`);
+                  // }}
                 >
                   <td>{data._id}</td>
                   <td>{data.email}</td>
@@ -57,7 +65,7 @@ function Admin(prop) {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         </div>
       </div>
     );
