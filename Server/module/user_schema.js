@@ -45,11 +45,6 @@ const userSchema = new Schema(
   }
 );
 
-const Administer = {
-  user_id: 'admin',
-  password: 'admin01',
-};
-
 userSchema.pre('save', function (next) {
   var user = this;
 
