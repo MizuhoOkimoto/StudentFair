@@ -67,7 +67,36 @@ const Admin = {
   pwd:    process.env.DB_CONFIG_PWD
 }; 
 
+// POST Upload profile Pic
+router.post("/upload_userPic",(req, res) =>{
+  const email = req.body.email;
 
+  User.findOne({
+    email: email
+  }).then(() =>{
+    console.log(`${email}: Profile Picture is updated on the server`);
+    let fileFromUI = req.files;
+
+    fileFromUI.image.name = `user_profile${path.parse(fileFromUI.image.name).ext}`;
+
+    fileFromUI.image.mv(`/uploads/profile_pic/${fileFromUI.image.name}`)
+        .then(()=>{
+          User.updateOne({
+            email: email
+          },
+          {
+            img_url: `/uploads/profile_pic/${fileFromUI.image.name}`
+          })
+         .then((user)=>{
+            console.log("User information was updated with Picture");
+            req.session.user = user;
+          });
+        });
+
+
+  });
+
+});
 // POST - Login Page
 router.route('/login').post((req, res) => {
   let validData = {};
