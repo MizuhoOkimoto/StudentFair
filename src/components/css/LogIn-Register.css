@@ -49,25 +49,20 @@ p.agreement a {
 }
 
 .sign-up > input {
-  padding: 0.7rem;
   background-color: rgb(255, 255, 255, 0%);
   color: var(--main-color);
   cursor: pointer;
 }
 
 .log-in {
-  /* width: 50vw; */
-  width: 700px;
   background-color: var(--main-color);
   padding: 2rem;
   display: block;
 }
 
 .sign-up {
-  /* width: 50vw; */
   width: 700px;
   background-color: var(--main-color);
-  padding: 2rem;
   display: block;
 }
 
@@ -79,6 +74,10 @@ p.agreement a {
 .findPw:visited {
   color: gray;
 }
+
+/* .log-in-button {
+  width: 1000px;
+} */
 
 .findPw,
 .signUp_btn,
