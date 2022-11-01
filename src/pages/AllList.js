@@ -10,6 +10,10 @@ import Loading from '../components/Loading';
 import List from '../components/ItemList';
 import '../components/css/Item-List.css';
 
+const clickedReport = () => {
+  window.location = '/report';
+};
+
 const AllList = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -48,6 +52,9 @@ const AllList = () => {
                 <div className="list-desc seller-name">Jun Song</div>
                 <div className="list-desc location">Toronto</div>
               </div>
+              <Button onClick={clickedReport} className="report-button" color="red">
+                Report
+              </Button>
             </List>
             <List>
               <img
@@ -62,6 +69,9 @@ const AllList = () => {
                 <div className="list-desc seller-name">Mizuho Okimoto</div>
                 <div className="list-desc location">Losedale</div>
               </div>
+              <Button onClick={clickedReport} className="report-button" color="red">
+                Report
+              </Button>
             </List>
             <List>
               <img
@@ -76,6 +86,9 @@ const AllList = () => {
                 <div className="list-desc seller-name">Wonchul Choi</div>
                 <div className="list-desc location">Thornhill</div>
               </div>
+              <Button onClick={clickedReport} className="report-button" color="red">
+                Report
+              </Button>
             </List>
             <List>
               <img
@@ -90,6 +103,9 @@ const AllList = () => {
                 <div className="list-desc seller-name">Jun Song</div>
                 <div className="list-desc location">Toronto</div>
               </div>
+              <Button onClick={clickedReport} className="report-button" color="red">
+                Report
+              </Button>
             </List>
           </div>
           <div className="item-list-page-btn-container">

@@ -21,6 +21,7 @@ import Edit from './pages/EditPage';
 import UpdatePassword from './pages/UpdatePassword';
 import Delete from './pages/DeleteUser';
 import Report from './pages/Report';
+import CustomerService from './pages/CustomerService';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -50,11 +51,11 @@ function App() {
     session.setItem('city', data.city);
     session.setItem('isLogin', true);
   }
-  function updatePassword(data){
+  function updatePassword(data) {
     session.setItem('password', data.newPassword);
     console.log(session);
   }
-  function updateInfo(data){
+  function updateInfo(data) {
     session.setItem('phone', data.newPhone);
     session.setItem('city', data.newCity);
     console.log(session);
@@ -89,14 +90,16 @@ function App() {
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
         <Route exact path="/myProfile" element={<MyProfile userData={loginUser} />} />
-        <Route 
-          exact 
-          path="/editProfile" 
-          element={<Edit userData={loginUser} updateInfo={updateInfo} />} />
-        <Route 
-          exact 
-          path="/update_password" 
-          element={<UpdatePassword userData={loginUser} updatePassword={updatePassword}/>} />
+        <Route
+          exact
+          path="/editProfile"
+          element={<Edit userData={loginUser} updateInfo={updateInfo} />}
+        />
+        <Route
+          exact
+          path="/update_password"
+          element={<UpdatePassword userData={loginUser} updatePassword={updatePassword} />}
+        />
         <Route
           exact
           path="/deleteAccount"
@@ -104,6 +107,7 @@ function App() {
         />
         <Route exact path="/itemDetail" element={<ItemDetail />} />
         <Route exact path="/report" element={<Report userData={loginUser} />} />
+        <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
       </Routes>
       <Footer />
     </div>

@@ -44,6 +44,21 @@
   margin-top: 15px;
 }
 
+.file-container {
+  background: var(--b-bg-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#fragment-file {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+}
+
 .profile-image {
   background-color: lightgray;
   width: 130px;
