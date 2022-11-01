@@ -75,17 +75,17 @@ router.post("/upload_userPic",(req, res) =>{
     email: email
   }).then(() =>{
     console.log(`${email}: Profile Picture is updated on the server`);
-    let fileFromUI = req.files;
+    let fileFromUI = req.files.profile_pic;
 
-    fileFromUI.image.name = `user_profile${path.parse(fileFromUI.image.name).ext}`;
+    fileFromUI.name = `user_profile${path.parse(fileFromUI.name).ext}`;
 
-    fileFromUI.image.mv(`/uploads/profile_pic/${fileFromUI.image.name}`)
+    fileFromUI.mv(`../uploads/profile_pic/${fileFromUI.name}`)
         .then(()=>{
           User.updateOne({
             email: email
           },
           {
-            img_url: `/uploads/profile_pic/${fileFromUI.image.name}`
+            img_url: `../uploads/profile_pic/${fileFromUI.name}`
           })
          .then((user)=>{
             console.log("User information was updated with Picture");

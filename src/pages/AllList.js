@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import  axios from 'axios';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
@@ -16,6 +17,14 @@ const AllList = () => {
       setLoading(false);
     }, 1700);
   }, []);
+
+  let menu;
+  axios.get('http://localhost:8080/posts').then((res) => {
+    console.log(res);
+  }).catch((err) =>{
+    console.log(err);
+  });
+
   return (
     <div>
       {loading && <Loading />}

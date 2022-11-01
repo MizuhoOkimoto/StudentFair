@@ -42,11 +42,12 @@ connection.on('open', () => {
 const general = require('./routes/general');
 const usersRouter = require('./routes/users');
 const reportsRouter = require('./routes/reports');
+const postRouter = require('./routes/posts');
 
 app.use('/', general);
 app.use('/users', usersRouter);
 app.use('/reports', reportsRouter);
-
+app.use('/posts', postRouter);
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
