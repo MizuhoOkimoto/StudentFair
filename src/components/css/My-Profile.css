@@ -37,6 +37,13 @@
   align-content: center;
 }
 
+.my-profile-upload {
+  font-size: 10px;
+  position: absolute;
+  margin-left: -75px;
+  margin-top: 15px;
+}
+
 .profile-image {
   background-color: lightgray;
   width: 130px;
