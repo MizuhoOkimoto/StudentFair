@@ -137,7 +137,7 @@ p.agreement a {
 }
 
 .report-text-area {
-  max-width: 670px;
+  /* max-width: 670px; */
   padding: 15px;
   margin-top: 5px;
 }
@@ -147,6 +147,9 @@ p.agreement a {
   form.sign-up {
     padding: 1rem;
     width: 70%;
+  }
+  .report-text-area {
+    width: 100%;
   }
   .log-in,
   .sign-up {
