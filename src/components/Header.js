@@ -53,7 +53,6 @@ function Header(prop) {
                   <a href="/logIn">Log In</a>
                 )}
               </li>
-              <li>{prop.flag === 'true' ? <a href="/report">Report</a> : ''}</li>
               <li>
                 {prop.flag === 'true' ? (
                   <a href="/logOut">Log Out</a>

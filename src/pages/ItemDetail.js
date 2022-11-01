@@ -8,6 +8,10 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import '../components/css/Item-Detail.css';
 
+const clickedReport = () => {
+  window.location = '/report';
+};
+
 const ItemDetail = () => {
   return (
     <div className="item-detail-container">
@@ -47,6 +51,9 @@ const ItemDetail = () => {
           </div>
         </div>
         <div className="detail-footer">
+          <Button onClick={clickedReport} className="detail-report-button" color="red">
+            Report
+          </Button>
           <Link className="btn-link" to="/allList">
             <Button className="btn" color="gray">
               Back to the List

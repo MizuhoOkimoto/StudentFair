@@ -38,6 +38,11 @@
   color: green;
 }
 
+.report-button {
+  font-size: 10px;
+  height: 25px;
+}
+
 .item-list-page-btn-container {
   display: flex;
   align-items: center;

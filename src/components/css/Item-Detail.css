@@ -82,6 +82,7 @@
 
 .btn {
   cursor: pointer;
+  margin-left: 15px;
 }
 
 .btn-link:hover {
