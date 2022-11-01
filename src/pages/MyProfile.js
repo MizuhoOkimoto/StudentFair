@@ -27,6 +27,8 @@ const clickToDelete = () => {
   }
 };
 
+const clickedUploadBtn = () => {};
+
 const MyProfile = (prop) => {
   console.log(prop.userData);
 
@@ -36,19 +38,32 @@ const MyProfile = (prop) => {
         <div className="top-container">
           <div className="top-section">
             <div className="profile-image"></div>
-            <div className="my-profile">{prop.userData.fname}'s Profile</div>
+            <div className="my-profile-container">
+              <div className="my-profile">{prop.userData.fname}'s Profile</div>
+              <div className="my-profile-upload">
+                <Button onClick={clickedUploadBtn} color="green">
+                  Upload
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
         <div className="body-section">
           <div className="main-profile-container">
             <Button className="edit-btn" color="gray" onClick={onClickEvent}>
-              Edit<br/>Profile
+              Edit
+              <br />
+              Profile
             </Button>
             <Button className="edit-btn" color="gray" onClick={onClickChangePasswordEvent}>
-              Change<br/>Password
+              Change
+              <br />
+              Password
             </Button>
             <Button className="edit-btn" color="gray" onClick={clickToDelete}>
-              Delete<br/>Profile
+              Delete
+              <br />
+              Profile
             </Button>
             <div className="name-section name">
               <div className="label">Name</div>
