@@ -14,6 +14,10 @@ const clickedCustomerService = () => {
   window.location = '/customerService';
 };
 
+const clickedReport = () => {
+  window.location = '/report';
+};
+
 const Footer = () => {
   return (
     <FooterBox>
@@ -42,7 +46,9 @@ const Footer = () => {
               <section className="footer-info__contents" onClick={clickedCustomerService}>
                 Contact Us
               </section>
-              <section className="footer-info__contents">Report Post</section>
+              <section className="footer-info__contents" onClick={clickedReport}>
+                Report Post
+              </section>
             </section>
           </section>
 
