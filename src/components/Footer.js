@@ -10,6 +10,10 @@ const FooterBox = styled.footer`
   background-color: antiquewhite;
 `;
 
+const clickedCustomerService = () => {
+  window.location = '/customerService';
+};
+
 const Footer = () => {
   return (
     <FooterBox>
@@ -35,7 +39,9 @@ const Footer = () => {
             </section>
             <section className="footer-info-right">
               <section className="footer-info__title">SUPPORT</section>
-              <section className="footer-info__contents">Contact Us</section>
+              <section className="footer-info__contents" onClick={clickedCustomerService}>
+                Contact Us
+              </section>
               <section className="footer-info__contents">Report Post</section>
             </section>
           </section>

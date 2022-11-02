@@ -8,10 +8,6 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import '../components/css/My-Profile.css';
 
-const clickedCustomerService = () => {
-  window.location = '/customerService';
-};
-
 const onClickEvent = () => {
   window.location = '/editProfile';
 };
@@ -57,11 +53,6 @@ const MyProfile = (prop) => {
         </div>
         <div className="body-section">
           <div className="main-profile-container">
-            <Button className="edit-btn" color="gray" onClick={clickedCustomerService}>
-              Contact
-              <br />
-              Customer Service
-            </Button>
             <Button className="edit-btn" color="gray" onClick={onClickEvent}>
               Edit
               <br />

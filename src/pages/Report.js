@@ -8,33 +8,32 @@ import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 //import { create } from '../../Server/module/report_schema';
 
+function Report(prop) {
+  const create_date = new Date();
 
-
-function Report(prop){
-  
-  const create_date= new Date();
- 
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
     const newReport = {
       email: prop.userData.email,
       category: '',
-      title:e.target.reportTitle.value,
+      title: e.target.reportTitle.value,
       description: e.target.reportDesc.value,
-      date: create_date
+      date: create_date,
     };
 
     axios.post('http://localhost:8080/reports/create_report', newReport).then((res) => {
       console.log(res);
+
+      // if(res.)
+
       if (res.data === true) {
         alert('Your report successfully reported');
         window.location = '/';
       } else {
         alert('You typed wrong report number. Please check again.');
       }
-    },[]);
-  
+    }, []);
   };
 
   return (
@@ -64,12 +63,7 @@ function Report(prop){
           </span>
         </div>
         <div className="input-container">
-          <input
-            type="text"
-            name="reportTitle"
-            id="reportTitle"
-            placeholder="Report Title"
-          />
+          <input type="text" name="reportTitle" id="reportTitle" placeholder="Report Title" />
         </div>
         <textarea
           className="report-text-area"
@@ -88,6 +82,6 @@ function Report(prop){
       </form>
     </div>
   );
-};
+}
 
 export default Report;

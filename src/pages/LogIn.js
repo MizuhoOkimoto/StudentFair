@@ -27,14 +27,16 @@ function LogIn(prop) {
 
       if (typeof data !== 'string') {
         //ToDo: Put condition and change address
-        if(/*condition*/){
-          prop.setUser(res.data);
-          window.location = '/';
-        }
-        else{
-          prop.setUser(res.data);
-          window.location = '/MyProfile';
-        }
+        // if(/*condition*/){
+        //   prop.setUser(res.data);
+        //   window.location = '/';
+        // }
+        // else{
+        //   prop.setUser(res.data);
+        //   window.location = '/MyProfile';
+        // }
+        prop.setUser(res.data);
+        window.location = '/MyProfile';
       } else {
         alert("Password or Id doesn't match! Please try again.");
         // setErrMessage('');
