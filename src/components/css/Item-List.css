@@ -7,8 +7,8 @@
 }
 
 .list-image {
-  width: 150px;
-  height: 150px;
+  width: 175px;
+  height: 175px;
   object-fit: cover;
 }
 
@@ -22,6 +22,20 @@
 .list-desc {
   font-size: 17px;
   font-weight: 400;
+}
+
+.post-num {
+  font-size: 15px;
+}
+
+.post-num,
+.state,
+.price,
+.seller-name,
+.location,
+.title {
+  text-align: right;
+  width: 100%;
 }
 
 .title {

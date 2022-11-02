@@ -11,6 +11,7 @@ import List from '../components/ItemList';
 import '../components/css/Item-List.css';
 
 const AllList = () => {
+  const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     window.setTimeout(() => {
@@ -19,81 +20,53 @@ const AllList = () => {
   }, []);
 
   let menu;
-  axios
-    .get('http://localhost:8080/posts')
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  useEffect(() => {
+    console.log('PokeList component mounts');
+
+    window.setTimeout(() => {
+      axios
+        .get('http://localhost:8080/posts')
+        .then((res) => {
+          console.log(res);
+          const { data } = res;
+
+          setList(data);
+          console.log(list);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 0);
+  }, []);
 
   return (
     <div>
+      {console.log(list)}
       {loading && <Loading />}
       {!loading && (
         <div>
           <div className="item-list-container">
-            <List>
-              <img
-                className="list-image"
-                src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                alt="list-img"
-              />
-              <div className="list-desces">
-                <div className="list-desc title">
-                  <Link className="nav-link" to="/itemdetail">
-                    MacBook Air M2 Chip
-                  </Link>
+            {list.map((e) => (
+              <List key={e._id}>
+                <img
+                  className="list-image"
+                  src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  alt="list-img"
+                />
+                <div className="list-desces">
+                  <div className="list-desc post-num">No. {e.post_number}</div>
+                  <div className="list-desc title">
+                    <Link className="nav-link" to="/itemdetail">
+                      {e.post_title}
+                    </Link>
+                  </div>
+                  <div className="list-desc state">Condition: {e.condition}</div>
+                  <div className="list-desc price">Price: ${e.price}</div>
+                  <div className="list-desc seller-name">Seller: {e.user_id.split('@')[0]}</div>
+                  <div className="list-desc location">Location: {e.location}</div>
                 </div>
-                <div className="list-desc state">Open Box</div>
-                <div className="list-desc price">$ 1445</div>
-                <div className="list-desc seller-name">Jun Song</div>
-                <div className="list-desc location">Toronto</div>
-              </div>
-            </List>
-            <List>
-              <img
-                className="list-image"
-                src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                alt="list-img"
-              />
-              <div className="list-desces">
-                <div className="list-desc title">Milk and Honey</div>
-                <div className="list-desc state">A+ quality</div>
-                <div className="list-desc price">$ 25</div>
-                <div className="list-desc seller-name">Mizuho Okimoto</div>
-                <div className="list-desc location">Losedale</div>
-              </div>
-            </List>
-            <List>
-              <img
-                className="list-image"
-                src="https://images.unsplash.com/photo-1587134160474-cd3c9a60a34a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                alt="list-img"
-              />
-              <div className="list-desces">
-                <div className="list-desc title">RTX 3060</div>
-                <div className="list-desc state">No mining used for gaming</div>
-                <div className="list-desc price">$ 1445</div>
-                <div className="list-desc seller-name">Wonchul Choi</div>
-                <div className="list-desc location">Thornhill</div>
-              </div>
-            </List>
-            <List>
-              <img
-                className="list-image"
-                src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                alt="list-img"
-              />
-              <div className="list-desces">
-                <div className="list-desc title">iPhone 11</div>
-                <div className="list-desc state">AAA state no crack damage</div>
-                <div className="list-desc price">$ 995</div>
-                <div className="list-desc seller-name">Jun Song</div>
-                <div className="list-desc location">Toronto</div>
-              </div>
-            </List>
+              </List>
+            ))}
           </div>
           <div className="item-list-page-btn-container">
             <div className="item-list-page-btn">
