@@ -27,9 +27,12 @@ import CreatePost from './pages/CreatePost';
 import { useEffect, useState } from 'react';
 
 function App() {
+  let tempData;
   const [loginUser, setLoginUser] = useState([]);
-
+  const [post_list, setPost_list] = useState([]);
+  const [isPostEmpty, seIsPostEmpty] = useState(true);
   const session = window.sessionStorage;
+  const post_session = window.sessionStorage;
   useEffect(() => {
     if (session) {
       setLoginUser({
@@ -42,7 +45,22 @@ function App() {
         isLogin: session.getItem('isLogin'),
       });
     }
+   
   }, []);
+
+  useEffect(() => {
+    setPost_list(tempData);
+    
+  }, tempData);
+
+  function setPostList(data){
+    // post_session.setItem('post_list', data);
+    // console.log(post_session.getItem('post_list'));
+    if(post_list != data){
+      tempData = data;
+    }
+    console.log(tempData);
+  }
 
   function setUser(data) {
     session.setItem('email', data.email);
@@ -75,15 +93,22 @@ function App() {
     session.clear();
   }
 
-  console.log('line 56 : ' + loginUser.email);
+  
   return (
     <div className="App">
       <Header flag={loginUser.isLogin} />
+
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Home setPostList={setPostList} />} />
         <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/adminPosts" element={<AdminPosts />} />
-        <Route exact path="/allList" element={<AllList />} />
+
+        
+
+        <Route exact path="/allList" element={<AllList post_list={post_list}/>} />
+
+        
+        
         <Route exact path="/buyList" element={<BuyList />} />
         <Route exact path="/sellList" element={<SellList />} />
         <Route exact path="/logIn" element={<LogIn setUser={setUser} />} />
@@ -91,7 +116,13 @@ function App() {
         <Route exact path="/signUp" element={<SignUp />} />
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
-        <Route exact path="/myProfile" element={<MyProfile userData={loginUser} />} />
+        
+
+        <Route path='/myProfile/' element={<MyProfile userData={loginUser} />} />
+     
+        
+
+
         <Route
           exact
           path="/editProfile"

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Card from '../components/ItemBox';
 
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 // import Button from "../components/Button";
 import Button from '../components/Button';
 
@@ -61,7 +61,12 @@ const SubItemBoxes = styled.div`
   flex-wrap: wrap;
 `;
 
-const Home = () => {
+function Home(prop){
+  axios.get('http://localhost:8080/posts')
+    .then((res) => {
+      prop.setPostList(res.data);
+    });
+
   return (
     <div>
       <MainImgContainer />

@@ -10,19 +10,19 @@ import Loading from '../components/Loading';
 import List from '../components/ItemList';
 import '../components/css/Item-List.css';
 
-const AllList = () => {
+const AllList = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [listNum, setListNum] = useState(1);
-
+  console.log("prop : " + prop.post_list)
   let temp = [];
-
+  //setList(prop.post_list);
   useEffect(() => {
     window.setTimeout(() => {
       setLoading(false);
     }, 1700);
   }, []);
-
+ 
   let menu;
   useEffect(() => {
     console.log('Component mounts');

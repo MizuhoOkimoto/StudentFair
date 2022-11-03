@@ -153,36 +153,68 @@ const posts = [
 module.exports.getSample = () => {
   return posts;
 };
-
-module.exports.getPostByCategory = (category) => {
+module.exports.getPostByCategory = (data, category) => {
   var postByCategory = [];
 
-  for (var e in posts) {
-    if (e.category === category) {
+  for (var e in data) {
+    if (e.category == category) {
       postByCategory.push(e);
+      console.log(e);
     }
   }
   return postByCategory;
 };
+module.exports.getPostByLastest = function(data){
+   // for(var i = data.length - 1, j = 0; i <= 0 && j < 4; i--, j++){
+  //   PostByLastest.push(data[i]);
+  // }
+  let PostByLastest = [];
+  let i = 0;
+  let postListFromDB = [];   
+  post.find()
+      .then((data) => {      
+        postListFromDB = data;      
+      })
+      .catch((err) => res.status(400).json('Error: ' + err));
+  let j = postListFromDB.length - 1;
+  
+  while(i < 4){
+    PostByLastest[i] = postListFromDB[j];
+    i++;
+    j--;
+  }
+  return PostByLastest;
+};
+module.exports.getPostByUser = (data, user) => {
+  var postByUser = [];
 
-module.exports.getPostByUserId = (user) => {
-  var postByUserId = [];
-
-  for (var e in posts) {
-    if (e.category === user) {
-      postByUserId.push(e);
+  for (var e in data) {
+    if (e.user_id == user) {
+      postByUser.push(e);
     }
   }
-  return postByUserId;
+  return postByUser;
 };
 
-module.exports.getPostByKeyword = (Keyword) => {
+module.exports.getPostByField = (data, field) => {
+  var postByField = [];
+
+  for (var e in data) {
+    if (e.post_field == field) {
+      postByField.push(e);
+    }
+  }
+  return postByField;
+};
+
+module.exports.getPostByKeyword = (data, Keyword) => {
   var postByKeyword = [];
 
-  for (var e in posts) {
-    if (e.post_title === Keyword) {
+  for (var e in data) {
+    if (e.post_title == Keyword) {
       postByKeyword.push(e);
-    } else if (e.post_title.include(Keyword)) {
+    } 
+    else if (e.post_title.include(Keyword)) {
       postByKeyword.push(e);
     }
   }

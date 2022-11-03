@@ -11,7 +11,7 @@ import './css/Header.css';
 import axios from 'axios';
 
 function Header(prop) {
-  console.log(prop.flag);
+  
   return (
     <header>
       <div className="navbar-container">

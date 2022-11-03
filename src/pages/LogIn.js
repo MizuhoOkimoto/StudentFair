@@ -36,7 +36,7 @@ function LogIn(prop) {
         //   window.location = '/MyProfile';
         // }
         prop.setUser(res.data);
-        window.location = '/MyProfile';
+        window.location = '/MyProfile/';
       } else {
         alert("Password or Id doesn't match! Please try again.");
         // setErrMessage('');
