@@ -31,13 +31,12 @@ const transporter = NodeEmailer.createTransport({
   auth: { user: 'demian824@gmail.com', pass: process.env.EMAIL_KEY },
 });
 
-// Send Temp Password to User 
-const sendTempPassword = async (temp, email, name) =>{
+// Send Temp Password to User
+const sendTempPassword = async (temp, email, name) => {
   const mailOptions = {
     to: email,
     subject: 'You Get a Temporary Password - Do Not Reply',
-    html: 
-        `
+    html: `
           Here is your temporary password. <br>
           <br>
           Your Full Name: ${name}<br>
@@ -57,45 +56,42 @@ const sendTempPassword = async (temp, email, name) =>{
           Tasin Rahman            <br>
           Copyright © Winter 2022, All rights reserved | PRJ666 Team 9<br>
           `,
-  }
+  };
   await transporter.sendMail(mailOptions);
-}
+};
 
 //Admin Account
 const Admin = {
-  email:  'admin@admin.com',
-  pwd:    process.env.DB_CONFIG_PWD
-}; 
+  email: 'admin@admin.com',
+  pwd: process.env.DB_CONFIG_PWD,
+};
 
 // POST Upload profile Pic
-router.post("/upload_userPic",(req, res) =>{
+router.post('/upload_userPic', (req, res) => {
   const email = req.body.email;
 
   User.findOne({
-    email: email
-  }).then(() =>{
+    email: email,
+  }).then(() => {
     console.log(`${email}: Profile Picture is updated on the server`);
     let fileFromUI = req.files.profile_pic;
 
     fileFromUI.name = `user_profile${path.parse(fileFromUI.name).ext}`;
 
-    fileFromUI.mv(`../uploads/profile_pic/${fileFromUI.name}`)
-        .then(()=>{
-          User.updateOne({
-            email: email
-          },
-          {
-            img_url: `../uploads/profile_pic/${fileFromUI.name}`
-          })
-         .then((user)=>{
-            console.log("User information was updated with Picture");
-            req.session.user = user;
-          });
-        });
-
-
+    fileFromUI.mv(`../uploads/profile_pic/${fileFromUI.name}`).then(() => {
+      User.updateOne(
+        {
+          email: email,
+        },
+        {
+          img_url: `../uploads/profile_pic/${fileFromUI.name}`,
+        }
+      ).then((user) => {
+        console.log('User information was updated with Picture');
+        req.session.user = user;
+      });
+    });
   });
-
 });
 // POST - Login Page
 router.route('/login').post((req, res) => {
@@ -121,20 +117,17 @@ router.route('/login').post((req, res) => {
 
   if (isValid) {
     let error = [];
-    //Check Admin ID 
-    if(req.body.email === Admin.email){
-      if(req.body.password === Admin.pwd){
+    //Check Admin ID
+    if (req.body.email === Admin.email) {
+      if (req.body.password === Admin.pwd) {
         //TODO: Check the redirect
-        console.log("admin");
+        console.log('admin');
         return res.redirect('/admin');
-      }
-      else{
+      } else {
         error.push('Password does not match!');
         res.send('Password does not match!');
       }
-    }
-    else{
-     
+    } else {
       User.findOne({
         email: req.body.email,
       })
@@ -237,27 +230,25 @@ router.route('/register').post((req, res) => {
 // POST -edit
 router.route('/update_info').post((req, res) => {
   const { email, newPhone, newCity } = req.body;
- 
-  User.findOne({email: email})
-      .then((user) => {
-        User.updateOne(
-          { email: email },
-          {
-            $set: {
-              phone: newPhone,
-              city: newCity,
-            },
-          }
-        ).then(() => {
-          res.send("Updated")
-        }).catch((err) => {
-            console.log(err);
-            res.send("err")
-          });
 
-        
+  User.findOne({ email: email }).then((user) => {
+    User.updateOne(
+      { email: email },
+      {
+        $set: {
+          phone: newPhone,
+          city: newCity,
+        },
+      }
+    )
+      .then(() => {
+        res.send('Updated');
       })
-  
+      .catch((err) => {
+        console.log(err);
+        res.send('err');
+      });
+  });
 });
 
 // POST -forgot account
@@ -297,11 +288,11 @@ router.route('/forgot-password').post((req, res) => {
                 },
               }
             ).catch((err) => {
-                console.log(err);
+              console.log(err);
             });
             const emailaddress = data[0].email;
-            const fullName = data[0].fname + " " + data[0].lname;
-            sendTempPassword(tempPassword, emailaddress, fullName);  
+            const fullName = data[0].fname + ' ' + data[0].lname;
+            sendTempPassword(tempPassword, emailaddress, fullName);
             res.send(tempPassword);
           })
           .catch((err) => {
@@ -317,8 +308,8 @@ router.route('/forgot-password').post((req, res) => {
 // POST - Reset Password
 router.route('/rest-password').post((req, res) => {
   const { email, newPassword } = req.body;
-  
-  console.log(email + ", " + newPassword);
+
+  console.log(email + ', ' + newPassword);
 
   bcrypt.genSalt(10).then((salt) => {
     bcrypt
@@ -335,9 +326,9 @@ router.route('/rest-password').post((req, res) => {
                 },
               }
             ).catch((err) => {
-                console.log(err);
+              console.log(err);
             });
-            
+
             res.send(temppwd);
           })
           .catch((err) => {
@@ -347,25 +338,23 @@ router.route('/rest-password').post((req, res) => {
       .catch((err) => {
         console.log(`Error Occured When Salting. ${err}`);
       });
-  });  
-
+  });
 });
 
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.send(true);
-  res.redirect('/')
-  
+  res.redirect('/');
 });
 
-router.post('/delete', (req, res) =>{
-  const {email}  = req.body;
+router.post('/delete', (req, res) => {
+  const { email } = req.body;
   console.log(email);
-  User.deleteOne({email: req.body.email})
-      .then(() => {
-        res.send(true);
-      })
-      .catch(err =>  console.log(`Error : ${err}`));
-})
+  User.deleteOne({ email: req.body.email })
+    .then(() => {
+      res.send(true);
+    })
+    .catch((err) => console.log(`Error : ${err}`));
+});
 
 module.exports = router;

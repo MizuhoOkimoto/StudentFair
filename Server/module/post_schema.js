@@ -164,21 +164,22 @@ module.exports.getPostByCategory = (data, category) => {
   }
   return postByCategory;
 };
-module.exports.getPostByLastest = function(data){
-   // for(var i = data.length - 1, j = 0; i <= 0 && j < 4; i--, j++){
+module.exports.getPostByLastest = function (data) {
+  // for(var i = data.length - 1, j = 0; i <= 0 && j < 4; i--, j++){
   //   PostByLastest.push(data[i]);
   // }
   let PostByLastest = [];
   let i = 0;
-  let postListFromDB = [];   
-  post.find()
-      .then((data) => {      
-        postListFromDB = data;      
-      })
-      .catch((err) => res.status(400).json('Error: ' + err));
+  let postListFromDB = [];
+  post
+    .find()
+    .then((data) => {
+      postListFromDB = data;
+    })
+    .catch((err) => res.status(400).json('Error: ' + err));
   let j = postListFromDB.length - 1;
-  
-  while(i < 4){
+
+  while (i < 4) {
     PostByLastest[i] = postListFromDB[j];
     i++;
     j--;
@@ -213,8 +214,7 @@ module.exports.getPostByKeyword = (data, Keyword) => {
   for (var e in data) {
     if (e.post_title == Keyword) {
       postByKeyword.push(e);
-    } 
-    else if (e.post_title.include(Keyword)) {
+    } else if (e.post_title.include(Keyword)) {
       postByKeyword.push(e);
     }
   }

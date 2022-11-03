@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Link,  useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
@@ -30,7 +30,7 @@ const clickToDelete = () => {
 const clickedUploadBtn = () => {};
 
 const MyProfile = (prop) => {
-  let {fname} =useParams();
+  let { fname } = useParams();
   console.log(fname);
 
   return (

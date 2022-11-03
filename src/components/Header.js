@@ -11,7 +11,6 @@ import './css/Header.css';
 import axios from 'axios';
 
 function Header(prop) {
-  
   return (
     <header>
       <div className="navbar-container">

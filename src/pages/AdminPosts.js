@@ -8,35 +8,30 @@ function AdminPosts(prop) {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
-  axios.get('http://localhost:8080/posts')
-  .then((res) => {
-    let data = res.data;
-    setPosts(data);
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error + " Unable to get data from MongoDB");
-  })
-},[]);
+    axios
+      .get('http://localhost:8080/posts')
+      .then((res) => {
+        let data = res.data;
+        setPosts(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error + ' Unable to get data from MongoDB');
+      });
+  }, []);
 
   if (posts) {
     return (
       <div className="admin-container">
         <div className="switch-page">
-        <Link to="/admin">
-          <Button className="users-btn">
-            Users
-          </Button>
+          <Link to="/admin">
+            <Button className="users-btn">Users</Button>
           </Link>
           <Link to="/AdminPosts">
-          <Button className="posts-btn">
-            Posts
-          </Button>
+            <Button className="posts-btn">Posts</Button>
           </Link>
           <Link to="/AdminReports">
-          <Button className="reports-btn">
-            Reports
-          </Button>
+            <Button className="reports-btn">Reports</Button>
           </Link>
         </div>
         <div className="user-table">
@@ -52,9 +47,7 @@ function AdminPosts(prop) {
             </thead>
             <tbody>
               {posts.map((data) => (
-                <tr
-                  key={data._id}
-                >
+                <tr key={data._id}>
                   <td>{data.post_number}</td>
                   <td>{data.user_id}</td>
                   <td>{data.post_category}</td>
@@ -70,25 +63,19 @@ function AdminPosts(prop) {
   } else {
     return (
       <div className="admin-container">
-    <div className="switch-page">
-        <Link to="/admin">
-          <Button className="users-btn">
-            Users
-          </Button>
+        <div className="switch-page">
+          <Link to="/admin">
+            <Button className="users-btn">Users</Button>
           </Link>
           <Link to="/AdminPosts">
-          <Button className="posts-btn">
-            Posts
-          </Button>
+            <Button className="posts-btn">Posts</Button>
           </Link>
           <Link to="/AdminReports">
-          <Button className="reports-btn">
-            Reports
-          </Button>
+            <Button className="reports-btn">Reports</Button>
           </Link>
-        <div className="message">There is no item post information</div>
+          <div className="message">There is no item post information</div>
         </div>
-        </div>
+      </div>
     );
   }
 }

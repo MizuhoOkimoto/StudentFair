@@ -8,36 +8,31 @@ function AdminReports(prop) {
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
-  axios.get('http://localhost:8080/reports')
-  .then((res) => {
-    let data = res.data;
-    setPosts(data);
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error + " Unable to get data from MongoDB");
-  })
-},[]);
+    axios
+      .get('http://localhost:8080/reports')
+      .then((res) => {
+        let data = res.data;
+        setPosts(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error + ' Unable to get data from MongoDB');
+      });
+  }, []);
 
   if (posts) {
     return (
       <div className="admin-container">
         <div className="switch-page">
-        <Link to="/admin">
-          <Button className="users-btn">
-            Users
-          </Button>
+          <Link to="/admin">
+            <Button className="users-btn">Users</Button>
           </Link>
           <Link to="/AdminPosts">
-          <Button className="posts-btn">
-            Posts
-          </Button>
+            <Button className="posts-btn">Posts</Button>
           </Link>
           <Link to="/AdminReports">
-            <Button className="reports-btn">
-              Reports
-            </Button>
-            </Link>
+            <Button className="reports-btn">Reports</Button>
+          </Link>
         </div>
         <div className="user-table">
           <Table className="table" striped bordered hover>
@@ -52,9 +47,7 @@ function AdminReports(prop) {
             </thead>
             <tbody>
               {posts.map((data) => (
-                <tr
-                  key={data._id}
-                >
+                <tr key={data._id}>
                   <td>{data.report_number}</td>
                   <td>{data.user_id}</td>
                   <td>{data.category}</td>
@@ -69,27 +62,21 @@ function AdminReports(prop) {
     );
   } else {
     return (
-        <div className="admin-container">
-      <div className="switch-page">
+      <div className="admin-container">
+        <div className="switch-page">
           <Link to="/admin">
-            <Button className="users-btn">
-              Users
-            </Button>
-            </Link>
-            <Link to="/AdminPosts">
-            <Button className="posts-btn">
-              Posts
-            </Button>
-            </Link>
-            <Link to="/AdminReports">
-            <Button className="reports-btn">
-              Reports
-            </Button>
-            </Link>
+            <Button className="users-btn">Users</Button>
+          </Link>
+          <Link to="/AdminPosts">
+            <Button className="posts-btn">Posts</Button>
+          </Link>
+          <Link to="/AdminReports">
+            <Button className="reports-btn">Reports</Button>
+          </Link>
           <div className="message">There is no report information</div>
-          </div>
-          </div>
-      );
+        </div>
+      </div>
+    );
   }
 }
 export default AdminReports;

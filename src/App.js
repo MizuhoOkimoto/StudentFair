@@ -46,18 +46,16 @@ function App() {
         isLogin: session.getItem('isLogin'),
       });
     }
-   
   }, []);
 
   useEffect(() => {
     setPost_list(tempData);
-    
   }, tempData);
 
-  function setPostList(data){
+  function setPostList(data) {
     // post_session.setItem('post_list', data);
     // console.log(post_session.getItem('post_list'));
-    if(post_list != data){
+    if (post_list != data) {
       tempData = data;
     }
     console.log(tempData);
@@ -94,7 +92,6 @@ function App() {
     session.clear();
   }
 
-  
   return (
     <div className="App">
       <Header flag={loginUser.isLogin} />
@@ -104,8 +101,8 @@ function App() {
         <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/adminPosts" element={<AdminPosts />} />
         <Route exact path="/adminReports" element={<AdminReports />} />
-      
-        <Route exact path="/allList" element={<AllList post_list={post_list}/>} />
+
+        <Route exact path="/allList" element={<AllList post_list={post_list} />} />
 
         <Route exact path="/buyList" element={<BuyList />} />
         <Route exact path="/sellList" element={<SellList />} />
@@ -115,7 +112,7 @@ function App() {
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
 
-        <Route path='/myProfile/' element={<MyProfile userData={loginUser} />} />
+        <Route path="/myProfile/" element={<MyProfile userData={loginUser} />} />
 
         <Route
           exact

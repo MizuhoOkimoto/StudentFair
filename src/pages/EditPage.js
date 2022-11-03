@@ -1,37 +1,31 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Button from '../components/Button';
 
-
-
 const clickToCancel = () => {
   window.location = '/myProfile';
 };
 
-
-
 const editPage = (prop) => {
   let email = prop.userData.email;
-  let fullname = prop.userData.fname + " " + prop.userData.lname;
+  let fullname = prop.userData.fname + ' ' + prop.userData.lname;
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-  
-    const updatedData = {  
-      email: email,  
+
+    const updatedData = {
+      email: email,
       newPhone: e.target.newPhone.value,
       newCity: e.target.newCity.value,
-    };    
+    };
     console.log(updatedData);
     axios.post('http://localhost:8080/users/update_info', updatedData).then((res) => {
-            console.log(res.data);
-            prop.updateInfo(updatedData);
-            window.location = '/MyProfile';
-         });
-    
+      console.log(res.data);
+      prop.updateInfo(updatedData);
+      window.location = '/MyProfile';
+    });
   };
 
   return (
@@ -69,7 +63,7 @@ const editPage = (prop) => {
         <div className="input-container">
           <p id="fullname">{fullname}</p>
         </div>
-        
+
         <div className="input-container">
           <input type="text" name="newPhone" id="newPhone" placeholder="Phone Number" />
           <i className="fas fa-lock"></i>

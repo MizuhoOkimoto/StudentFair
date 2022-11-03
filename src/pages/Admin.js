@@ -38,9 +38,7 @@ function Admin(prop) {
             <Button className="posts-btn">Posts</Button>
           </Link>
           <Link to="/AdminReports">
-          <Button className="reports-btn">
-            Reports
-          </Button>
+            <Button className="reports-btn">Reports</Button>
           </Link>
         </div>
         <div className="user-table">
@@ -78,25 +76,19 @@ function Admin(prop) {
   } else {
     return (
       <div className="admin-container">
-    <div className="switch-page">
-        <Link to="/admin">
-          <Button className="users-btn">
-            Users
-          </Button>
+        <div className="switch-page">
+          <Link to="/admin">
+            <Button className="users-btn">Users</Button>
           </Link>
           <Link to="/AdminPosts">
-          <Button className="posts-btn">
-            Posts
-          </Button>
+            <Button className="posts-btn">Posts</Button>
           </Link>
           <Link to="/AdminReports">
-          <Button className="reports-btn">
-            Reports
-          </Button>
+            <Button className="reports-btn">Reports</Button>
           </Link>
-        <div className="message">There is no user information</div>
+          <div className="message">There is no user information</div>
         </div>
-        </div>
+      </div>
     );
   }
 }

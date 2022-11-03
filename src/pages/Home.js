@@ -61,11 +61,10 @@ const SubItemBoxes = styled.div`
   flex-wrap: wrap;
 `;
 
-function Home(prop){
-  axios.get('http://localhost:8080/posts')
-    .then((res) => {
-      prop.setPostList(res.data);
-    });
+function Home(prop) {
+  axios.get('http://localhost:8080/posts').then((res) => {
+    prop.setPostList(res.data);
+  });
 
   return (
     <div>
@@ -188,6 +187,6 @@ function Home(prop){
       </SubParagraph>
     </div>
   );
-};
+}
 
 export default Home;

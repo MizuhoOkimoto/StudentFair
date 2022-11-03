@@ -14,7 +14,7 @@ const AllList = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [listNum, setListNum] = useState(1);
-  console.log("prop : " + prop.post_list)
+  console.log('prop : ' + prop.post_list);
   let temp = [];
   //setList(prop.post_list);
   useEffect(() => {
@@ -22,7 +22,7 @@ const AllList = (prop) => {
       setLoading(false);
     }, 1700);
   }, []);
- 
+
   let menu;
   useEffect(() => {
     console.log('Component mounts');
