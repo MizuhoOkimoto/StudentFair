@@ -17,6 +17,7 @@ import FindId from './pages/FindId';
 import FindPw from './pages/FindPw';
 import Admin from './pages/Admin';
 import AdminPosts from './pages/AdminPosts';
+import AdminReports from './pages/AdminReports';
 import Edit from './pages/EditPage';
 import UpdatePassword from './pages/UpdatePassword';
 import Delete from './pages/DeleteUser';
@@ -102,13 +103,10 @@ function App() {
         <Route exact path="/" element={<Home setPostList={setPostList} />} />
         <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/adminPosts" element={<AdminPosts />} />
-
-        
-
+        <Route exact path="/adminReports" element={<AdminReports />} />
+      
         <Route exact path="/allList" element={<AllList post_list={post_list}/>} />
 
-        
-        
         <Route exact path="/buyList" element={<BuyList />} />
         <Route exact path="/sellList" element={<SellList />} />
         <Route exact path="/logIn" element={<LogIn setUser={setUser} />} />
@@ -116,12 +114,8 @@ function App() {
         <Route exact path="/signUp" element={<SignUp />} />
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
-        
 
         <Route path='/myProfile/' element={<MyProfile userData={loginUser} />} />
-     
-        
-
 
         <Route
           exact
