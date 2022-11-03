@@ -37,7 +37,11 @@ function Admin(prop) {
           <Link to="/adminPosts">
             <Button className="posts-btn">Posts</Button>
           </Link>
-          <Button className="reports-btn">Reports</Button>
+          <Link to="/AdminReports">
+          <Button className="reports-btn">
+            Reports
+          </Button>
+          </Link>
         </div>
         <div className="user-table">
           <Table className="table" striped bordered hover>
@@ -72,7 +76,28 @@ function Admin(prop) {
       </div>
     );
   } else {
-    return <div>There is no user information</div>;
+    return (
+      <div className="admin-container">
+    <div className="switch-page">
+        <Link to="/admin">
+          <Button className="users-btn">
+            Users
+          </Button>
+          </Link>
+          <Link to="/AdminPosts">
+          <Button className="posts-btn">
+            Posts
+          </Button>
+          </Link>
+          <Link to="/AdminReports">
+          <Button className="reports-btn">
+            Reports
+          </Button>
+          </Link>
+        <div className="message">There is no user information</div>
+        </div>
+        </div>
+    );
   }
 }
 export default Admin;

@@ -33,9 +33,11 @@ function AdminPosts(prop) {
             Posts
           </Button>
           </Link>
+          <Link to="/AdminReports">
           <Button className="reports-btn">
             Reports
           </Button>
+          </Link>
         </div>
         <div className="user-table">
           <Table className="table" striped bordered hover>
@@ -79,9 +81,11 @@ function AdminPosts(prop) {
             Posts
           </Button>
           </Link>
+          <Link to="/AdminReports">
           <Button className="reports-btn">
             Reports
           </Button>
+          </Link>
         <div className="message">There is no item post information</div>
         </div>
         </div>

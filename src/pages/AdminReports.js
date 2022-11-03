@@ -33,9 +33,11 @@ function AdminReports(prop) {
             Posts
           </Button>
           </Link>
-          <Button className="reports-btn">
-            Reports
-          </Button>
+          <Link to="/AdminReports">
+            <Button className="reports-btn">
+              Reports
+            </Button>
+            </Link>
         </div>
         <div className="user-table">
           <Table className="table" striped bordered hover>
@@ -67,25 +69,27 @@ function AdminReports(prop) {
     );
   } else {
     return (
-      <div className="admin-container">
-    <div className="switch-page">
-        <Link to="/admin">
-          <Button className="users-btn">
-            Users
-          </Button>
-          </Link>
-          <Link to="/AdminPosts">
-          <Button className="posts-btn">
-            Posts
-          </Button>
-          </Link>
-          <Button className="reports-btn">
-            Reports
-          </Button>
-        <div className="message">There is no item post information</div>
-        </div>
-        </div>
-    );
+        <div className="admin-container">
+      <div className="switch-page">
+          <Link to="/admin">
+            <Button className="users-btn">
+              Users
+            </Button>
+            </Link>
+            <Link to="/AdminPosts">
+            <Button className="posts-btn">
+              Posts
+            </Button>
+            </Link>
+            <Link to="/AdminReports">
+            <Button className="reports-btn">
+              Reports
+            </Button>
+            </Link>
+          <div className="message">There is no report information</div>
+          </div>
+          </div>
+      );
   }
 }
 export default AdminReports;
