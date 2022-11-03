@@ -58,6 +58,10 @@ const AllList = () => {
     console.log(e);
   };
 
+  const createBtnPressed = () => {
+    window.location = '/createPost';
+  };
+
   return (
     <div>
       {console.log(list)}
@@ -65,6 +69,11 @@ const AllList = () => {
       {!loading && (
         <div>
           <div className="item-list-container">
+            <div className="item-list-create-post-button">
+              <Button onClick={createBtnPressed} className="create-button" color="tomato">
+                Create Post
+              </Button>
+            </div>
             {list.map((e) => (
               <List key={e._id}>
                 <img
@@ -74,7 +83,7 @@ const AllList = () => {
                 />
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
-                  <div className="list-desc title">
+                  <div className="list-desc postTitle">
                     <Link className="nav-link" to="/itemdetail">
                       {e.post_title}
                     </Link>

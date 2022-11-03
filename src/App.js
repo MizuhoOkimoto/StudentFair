@@ -22,6 +22,8 @@ import UpdatePassword from './pages/UpdatePassword';
 import Delete from './pages/DeleteUser';
 import Report from './pages/Report';
 import CustomerService from './pages/CustomerService';
+import CreatePost from './pages/CreatePost';
+
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -108,6 +110,7 @@ function App() {
         <Route exact path="/itemDetail" element={<ItemDetail />} />
         <Route exact path="/report" element={<Report userData={loginUser} />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
+        <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />
       </Routes>
       <Footer />
     </div>

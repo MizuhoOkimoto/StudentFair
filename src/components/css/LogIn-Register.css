@@ -142,6 +142,31 @@ p.agreement a {
   margin-top: 5px;
 }
 
+#location,
+#item_price {
+  width: 15%;
+}
+
+.file-container {
+  height: 60px;
+  background: var(--b-bg-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.file-container:hover {
+  filter: brightness(0.9);
+}
+
+#fragment-file {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+}
+
 @media only screen and (max-width: 768px) {
   form.log-in,
   form.sign-up {

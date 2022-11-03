@@ -71,12 +71,12 @@ header {
 }
 
 #searchValue {
-  width: 250px;
+  width: 450px;
 }
 
 .input-container,
 label {
-  margin: 0 10px 0 10px;
+  /* margin: 0 10px 0 10px; */
   align-items: center;
   display: flex;
 }

@@ -103,7 +103,7 @@ function Header(prop) {
               placeholder="What item you looking for?"
             />
           </div>
-          <div className="input-container">
+          {/* <div className="input-container">
             <label htmlFor="location">Location</label>
             <select aria-label="pick_location" id="location">
               <option value="Toronto">Toronto</option>
@@ -112,7 +112,7 @@ function Header(prop) {
               <option value="Vancouver">Vancouver</option>
               <option value="Montreal">Montreal</option>
             </select>
-          </div>
+          </div> */}
           <div className="input-container">
             <div className="typeOfService">
               <label htmlFor="buyOrSell"></label>
