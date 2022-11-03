@@ -13,6 +13,10 @@ import '../components/css/Item-List.css';
 const AllList = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [listNum, setListNum] = useState(1);
+
+  let temp = [];
+
   useEffect(() => {
     window.setTimeout(() => {
       setLoading(false);
@@ -21,7 +25,7 @@ const AllList = () => {
 
   let menu;
   useEffect(() => {
-    console.log('PokeList component mounts');
+    console.log('Component mounts');
 
     window.setTimeout(() => {
       axios
@@ -29,15 +33,30 @@ const AllList = () => {
         .then((res) => {
           console.log(res);
           const { data } = res;
-
+          // let tempData = [];
+          // for (let i = listNum - 1; i < listNum * 5; i++) {
+          //   tempData.push(data[i]);
+          // }
           setList(data);
-          console.log(list);
+          // console.log(list);
         })
         .catch((err) => {
           console.log(err);
         });
     }, 0);
   }, []);
+
+  const renderPageButton = (e) => {
+    Math.ceil(list.length / 5);
+    for (let i = 0; i < Math.ceil(list.length / 5); i++) {
+      temp.push(i + 1);
+    }
+    console.log(temp);
+  };
+
+  const pageBtnClicked = (e) => {
+    console.log(e);
+  };
 
   return (
     <div>
@@ -71,11 +90,18 @@ const AllList = () => {
           <div className="item-list-page-btn-container">
             <div className="item-list-page-btn">
               <div className="page-btn">{'<'}</div>
-              <div className="page-btn">1</div>
-              <div className="page-btn">2</div>
-              <div className="page-btn">3</div>
-              <div className="page-btn">4</div>
-              <div className="page-btn">...</div>
+              {renderPageButton(Math.ceil(list.length / 5))}
+              {temp.map((e) => (
+                <div
+                  key={e}
+                  onClick={() => {
+                    pageBtnClicked(e);
+                  }}
+                  className="page-btn"
+                >
+                  {e}
+                </div>
+              ))}
               <div className="page-btn">{'>'}</div>
             </div>
           </div>
