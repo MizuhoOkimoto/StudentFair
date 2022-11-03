@@ -9,32 +9,35 @@ function Admin(prop) {
   //let history = useNavigate();
 
   useEffect(() => {
-  axios.get('http://localhost:8080/users')
-  .then((res) => {
-    let data = res.data;
-    setUsers(data);
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error + " Unable to get data from MongoDB");
-  })
-},[]);
+    axios
+      .get('http://localhost:8080/users')
+      .then((res) => {
+        let data = res.data;
+        setUsers(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error + ' Unable to get data from MongoDB');
+      });
+  }, []);
+
+  const clickToDelete = () => {
+    if (window.confirm('Are you sure to delete your account?') === true) {
+      alert('Your account is safely deleted.');
+    } else {
+      alert('You canceled delete your account!');
+    }
+  };
 
   if (users) {
     return (
       <div className="admin-container">
         <div className="switch-page">
-          <Button className="users-btn">
-            Users
-          </Button>
+          <Button className="users-btn">Users</Button>
           <Link to="/adminPosts">
-          <Button className="posts-btn">
-            Posts
-          </Button>
+            <Button className="posts-btn">Posts</Button>
           </Link>
-          <Button className="reports-btn">
-            Reports
-          </Button>
+          <Button className="reports-btn">Reports</Button>
         </div>
         <div className="user-table">
           <Table className="table" striped bordered hover>
@@ -46,19 +49,21 @@ function Admin(prop) {
                 <th>Last Name</th>
                 <th>Phone</th>
                 <th>City</th>
+                <th>Manage</th>
               </tr>
             </thead>
             <tbody>
               {users.map((data) => (
-                <tr
-                  key={data._id}
-                >
+                <tr key={data._id}>
                   <td>{data._id}</td>
                   <td>{data.email}</td>
                   <td>{data.fname}</td>
                   <td>{data.lname}</td>
                   <td>{data.phone}</td>
                   <td>{data.city}</td>
+                  <td className="deleteUser" style={{ color: 'blue' }} onClick={clickToDelete}>
+                    delete
+                  </td>
                 </tr>
               ))}
             </tbody>

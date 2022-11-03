@@ -2,8 +2,8 @@
   padding-bottom: 50px;
   justify-content: center;
   width: 70%;
-  margin-left:auto; 
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .table {
@@ -16,8 +16,8 @@
 }
 .switch-page {
   text-align: left;
-  margin-left:auto; 
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 30px;
   margin-bottom: 20px;
 }
@@ -34,4 +34,12 @@
 .message {
   font-size: x-large;
   text-align: center;
+}
+
+.deleteUser {
+  text-decoration: underline;
+  color: blue;
+}
+.deleteUser:hover {
+  transform: translateY(-0.65px);
 }
