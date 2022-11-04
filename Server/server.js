@@ -21,10 +21,12 @@ app.use(
     saveUninitialized: true,
   })
 );
+
 app.use((req, res, next) => {
   res.locals.user = req.session.user;
   next();
 });
+
 //Mongoose.connection
 const uri = process.env.MONGODB_CONNECT;
 mongoose.connect(uri, {

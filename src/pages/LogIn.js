@@ -25,22 +25,16 @@ function LogIn(prop) {
     axios.post('http://localhost:8080/users/login', inputData).then((res) => {
       let data = res.data;
 
-      if (typeof data !== 'string') {
+      if(inputData.email === "admin@admin.com" && inputData.password === "team9") {
+        prop.setUser(res.data);
+        window.location = '/admin';
+      }
+      else if (typeof data !== 'string') {
         //ToDo: Put condition and change address
-        // if(/*condition*/){
-        //   prop.setUser(res.data);
-        //   window.location = '/';
-        // }
-        // else{
-        //   prop.setUser(res.data);
-        //   window.location = '/MyProfile';
-        // }
         prop.setUser(res.data);
         window.location = '/MyProfile/';
       } else {
         alert("Password or Id doesn't match! Please try again.");
-        // setErrMessage('');
-        // setErrMessage(data);
       }
     });
   };
