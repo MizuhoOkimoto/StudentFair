@@ -24,6 +24,7 @@ import Delete from './pages/DeleteUser';
 import Report from './pages/Report';
 import CustomerService from './pages/CustomerService';
 import CreatePost from './pages/CreatePost';
+import AboutUs from './pages/AboutUs';
 
 import { useEffect, useState } from 'react';
 
@@ -101,6 +102,7 @@ function App() {
         <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/adminPosts" element={<AdminPosts />} />
         <Route exact path="/adminReports" element={<AdminReports />} />
+        <Route exact path="/aboutUs" element={<AboutUs />} />
 
         <Route exact path="/allList" element={<AllList post_list={post_list} />} />
 
@@ -133,6 +135,7 @@ function App() {
         <Route exact path="/report" element={<Report userData={loginUser} />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />
+
       </Routes>
       <Footer />
     </div>

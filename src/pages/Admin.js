@@ -24,6 +24,7 @@ function Admin(prop) {
   const clickToDelete = () => {
     if (window.confirm('Are you sure to delete your account?') === true) {
       alert('Your account is safely deleted.');
+      
     } else {
       alert('You canceled delete your account!');
     }
