@@ -13,23 +13,32 @@ const clickToCancel = () => {
 
 
 
-const editPage = (prop) => {
+const EditPage = (prop) => {
   let email = prop.userData.email;
   let fullname = prop.userData.fname + " " + prop.userData.lname;
-
+  const [file,setFile] =useState(null);
+  const onInputChange = (e) => {
+    setFile(e.target.files[0])
+    
+  }
   const onSubmitHandler = (e) => {
+    
     e.preventDefault();
-  
+
+    
     const updatedData = {  
       email: email,  
       newPhone: e.target.newPhone.value,
       newCity: e.target.newCity.value,
+     
     };    
-    console.log(updatedData);
+    
+   
+
     axios.post('http://localhost:8080/users/update_info', updatedData).then((res) => {
             console.log(res.data);
             prop.updateInfo(updatedData);
-            window.location = '/MyProfile';
+            //window.location = '/MyProfile';
          });
     
   };
@@ -55,7 +64,7 @@ const editPage = (prop) => {
         <div>City</div>
         <div></div>
       </div> */}
-      <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
+      <form className="user-form sign-up" action="/" enctype="multipart/form-data" method="POST" onSubmit={onSubmitHandler}>
         <div className="title">
           <div className="form-title">
             <p>Edit Profile</p>
@@ -91,4 +100,4 @@ const editPage = (prop) => {
   );
 };
 
-export default editPage;
+export default EditPage;

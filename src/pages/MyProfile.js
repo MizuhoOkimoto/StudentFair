@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import { Link,  useHistory, useParams } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { Link,  useHistory, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import '../components/css/My-Profile.css';
+import axios from 'axios';
 
 const onClickEvent = () => {
   window.location = '/editProfile';
@@ -27,27 +28,32 @@ const clickToDelete = () => {
   }
 };
 
-const clickedUploadBtn = () => {};
 
-const MyProfile = (prop) => {
-  let {fname} =useParams();
-  console.log(fname);
+
+function MyProfile(prop){
+  const [image, setImage ] = useState();
+  const inputRef = useRef();
+  
+ const onImgChange = (e) =>{
+  setImage(e.target.files[0])
+  console.log(image)
+ }
+
+ const onImgInputBtnClick = (e) =>{
+  e.preventDefault();
+  inputRef.current.click();
+ };
 
   return (
     <div className="myProfile-container">
       <div className="myProfile-card">
         <div className="top-container">
           <div className="top-section">
-            <div className="profile-image"></div>
+            <div className="profile-image"> <a href='/myProfile/upload_picture'>move</a></div>
             <div className="my-profile-container">
               <div className="my-profile">{prop.userData.fname}'s Profile</div>
               <div className="my-profile-upload">
-                <Button onClick={clickedUploadBtn} color="green">
-                  <div className="input-container file-container">
-                    <input type="file" name="fragment-file" id="fragment-file" />
-                    <span id="filename">Upload</span>
-                  </div>
-                </Button>
+                
               </div>
             </div>
           </div>

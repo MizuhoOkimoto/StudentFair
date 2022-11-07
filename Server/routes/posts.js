@@ -52,6 +52,17 @@ router.route('/getSellPost').get((req, res) =>{
   
 
 });
+router.route('/').get((req, res) => {
+  Post.find()
+    .then((data) => {      
+      let posts = data;
+      postListFromDB = data;
+      req.session.posts = posts
+      console.log('Count of posts : ' + data.length);
+      res.send(posts);
+    })
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
 
 router.route('/sample_data').get((req, res) => {
   Post.find().count({}, (err, count) =>{

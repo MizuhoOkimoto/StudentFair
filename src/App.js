@@ -23,6 +23,7 @@ import Delete from './pages/DeleteUser';
 import Report from './pages/Report';
 import CustomerService from './pages/CustomerService';
 import CreatePost from './pages/CreatePost';
+import UploadProfilePic from './pages/UploadProfileImg'
 
 import { useEffect, useState } from 'react';
 
@@ -105,12 +106,12 @@ function App() {
 
         
 
-        <Route exact path="/allList" element={<AllList post_list={post_list}/>} />
+        <Route exact path="/lists" element={<AllList post_list={post_list}/>} />
 
         
         
-        <Route exact path="/buyList" element={<BuyList />} />
-        <Route exact path="/sellList" element={<SellList />} />
+        <Route exact path="/lists/buy" element={<BuyList />} />
+        <Route exact path="/lists/sell" element={<SellList />} />
         <Route exact path="/logIn" element={<LogIn setUser={setUser} />} />
         <Route exact path="/logOut" element={<LogOut userOut={userOut} />} />
         <Route exact path="/signUp" element={<SignUp />} />
@@ -119,7 +120,7 @@ function App() {
         
 
         <Route path='/myProfile/' element={<MyProfile userData={loginUser} />} />
-     
+        <Route path='/myProfile/upload_picture' element={<UploadProfilePic userData={loginUser} />} />
         
 
 

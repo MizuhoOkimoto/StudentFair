@@ -11,8 +11,34 @@
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const { nextTick } = require('process');
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 const NodeEmailer = require('nodemailer');
+const multer = require('multer');
+const multerConfig = multer.diskStorage({
+  destination: (req, file, callback) =>{
+    callback(null, 'uploads/profile_pic');
+  },
+  filename: (req, file, callback) => {
+    //const ext = file.minetype.split('/')[1];
+    callback(null, `${curUser.email}_profile_${file.originalname}`)
+  },
+});
+
+const isImage = (req, file, callback) =>{
+  if(file.mimetype.startsWith('image')){
+    callback(null, true);
+  }
+  else{
+    callback(new Error('Only Image is Allowed'))
+  }
+}
+const upload = multer({
+  storage: multerConfig,
+  fitter: isImage,
+})
+//const imgUpload = upload.single('photo');
+
 let User = require('../module/user_schema');
 require('dotenv').config({ path: '../.env' });
 const emailRegExp =
@@ -61,6 +87,7 @@ const sendTempPassword = async (temp, email, name) =>{
   await transporter.sendMail(mailOptions);
 }
 
+let curUser = null;
 //Admin Account
 const Admin = {
   email:  'admin@admin.com',
@@ -68,35 +95,40 @@ const Admin = {
 }; 
 
 // POST Upload profile Pic
-router.post("/upload_userPic",(req, res) =>{
-  const email = req.body.email;
+router.post('/upload_userPic', upload.single('photo'), (req,res) => {
 
-  User.findOne({
-    email: email
-  }).then(() =>{
-    console.log(`${email}: Profile Picture is updated on the server`);
-    let fileFromUI = req.files.profile_pic;
-
-    fileFromUI.name = `user_profile${path.parse(fileFromUI.name).ext}`;
-
-    fileFromUI.mv(`../uploads/profile_pic/${fileFromUI.name}`)
-        .then(()=>{
-          User.updateOne({
-            email: email
-          },
+  // const { email, newPhone, newCity, file } = req.body;
+  
+  console.log(res)
+  console.log(req.file)
+  console.log(curUser)
+  
+  let profileImgUrl = `uploads/profile_pic/${curUser.email}_profile_${req.file.originalname}`
+  
+  User.findOne({email: curUser.email})
+      .then((user) => {
+        User.updateOne(
+          { email: curUser.email },
           {
-            img_url: `../uploads/profile_pic/${fileFromUI.name}`
-          })
-         .then((user)=>{
-            console.log("User information was updated with Picture");
-            req.session.user = user;
+            $set: {
+              img_url: profileImgUrl,
+            },
+          }
+        ).then((user) => {
+          curUser = user;
+          console.log(curUser)
+          res.send(true)
+        }).catch((err) => {
+            console.log(err);
+            res.send(err)
           });
-        });
+
+        
+      })
 
 
-  });
+})
 
-});
 // POST - Login Page
 router.route('/login').post((req, res) => {
   let validData = {};
@@ -143,7 +175,9 @@ router.route('/login').post((req, res) => {
             bcrypt.compare(req.body.password, user.password).then((match) => {
               if (match) {
                 req.session.user = user;
+                console.log(req.session.user);
                 res.json(user);
+                curUser = user;
                 //console.log(`Success to log-in ${req.session.user}`)
               } else {
                 error.push('Password does not match!');
@@ -234,8 +268,10 @@ router.route('/register').post((req, res) => {
   }
 });
 
+
+
 // POST -edit
-router.route('/update_info').post((req, res) => {
+router.route('/update_info').post( (req, res) => {
   const { email, newPhone, newCity } = req.body;
  
   User.findOne({email: email})
@@ -248,7 +284,8 @@ router.route('/update_info').post((req, res) => {
               city: newCity,
             },
           }
-        ).then(() => {
+        ).then((user) => {
+          curUser = user;
           res.send("Updated")
         }).catch((err) => {
             console.log(err);
@@ -355,7 +392,7 @@ router.get('/logout', (req, res) => {
   req.session.destroy();
   res.send(true);
   res.redirect('/')
-  
+  curUser = null;
 });
 
 router.post('/delete', (req, res) =>{
@@ -366,6 +403,7 @@ router.post('/delete', (req, res) =>{
         res.send(true);
       })
       .catch(err =>  console.log(`Error : ${err}`));
+      curUser = null;
 })
 
 module.exports = router;

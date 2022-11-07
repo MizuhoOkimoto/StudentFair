@@ -3,14 +3,14 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-const fileUpload = require('express-fileupload');
+
 const mongoose = require('mongoose');
 require('dotenv').config({ path: '.env' });
 const HTTP_PORT = process.env.PORT || 8080;
 
 //Application Setting
 const app = express();
-app.use(fileUpload());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());

@@ -11,7 +11,11 @@ import './css/Header.css';
 import axios from 'axios';
 
 function Header(prop) {
-  
+
+  const onClickHandler = (e) =>{
+
+  }
+
   return (
     <header>
       <div className="navbar-container">
@@ -36,13 +40,13 @@ function Header(prop) {
                 <input type="checkbox" id="drop-1" />
                 <ul>
                   <li>
-                    <a href="/allList">All Lists</a>
+                    <a href="/lists">Lists</a>
                   </li>
                   <li>
-                    <a href="/buyList">Buy List</a>
+                    <a href="/lists/buy">Buy</a>
                   </li>
                   <li>
-                    <a href="/sellList">Sell List</a>
+                    <a href="/lists/sell">Sell</a>
                   </li>
                 </ul>
               </li>
@@ -123,7 +127,7 @@ function Header(prop) {
               </select>
             </div>
           </div>
-          <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button" onClick={onClickHandler}>
             Search
           </button>
         </form>
