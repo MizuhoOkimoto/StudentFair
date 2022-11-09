@@ -66,4 +66,25 @@ router.route('/sample_data').get((req, res) => {
   });
 });
 
+router.route('/deletePost/:id').delete(async (req, res) => {
+  const id = req.params.id;
+  const deletePost = await Post.deleteOne({ post_number: id });
+  if(deletePost.acknowledged) {
+    return res.status(200).json({message: "Post Deleted!"});
+  }
+  return res.status(400).json({message: "Could not delete post!"})
+})
+
+router.route('/getUserPosts/:id').get((req, res) => {
+  const id = req.params.id;
+  // Find
+  //SELECT * FROM POSTS WHERE USER_ID = iD
+  Post.find({ user_id: id })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+
 module.exports = router;

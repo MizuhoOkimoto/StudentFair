@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
 
-function Admin(prop) {
+function Admin() {
   const [users, setUsers] = useState(null);
-  //let history = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios
@@ -14,17 +14,26 @@ function Admin(prop) {
       .then((res) => {
         let data = res.data;
         setUsers(data);
+        setLoading(false);
         console.log(data);
       })
       .catch((error) => {
         console.log(error + ' Unable to get data from MongoDB');
       });
-  }, []);
+  }, [loading]);
 
-  const clickToDelete = () => {
-    if (window.confirm('Are you sure to delete your account?') === true) {
+  const clickToDelete = (email) => {
+
+  if (window.confirm('Are you sure to delete your account?') === true) {
+    const inputData = {
+      email: email,
+    };
+    console.log(inputData);
+    axios.post('http://localhost:8080/users/delete', inputData).then((res) => {
+      console.log(res.data);
       alert('Your account is safely deleted.');
-      
+      setLoading(true);
+  });
     } else {
       alert('You canceled delete your account!');
     }
@@ -64,7 +73,7 @@ function Admin(prop) {
                   <td>{data.lname}</td>
                   <td>{data.phone}</td>
                   <td>{data.city}</td>
-                  <td className="deleteUser" style={{ color: 'blue' }} onClick={clickToDelete}>
+                  <td className="deleteUser" style={{ color: 'blue' }} onClick={() => clickToDelete((data.email))}>
                     delete
                   </td>
                 </tr>
