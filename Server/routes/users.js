@@ -122,6 +122,7 @@ router.route('/login').post((req, res) => {
       if (req.body.password === Admin.pwd) {
         //TODO: Check the redirect
         console.log('admin');
+       
         return res.redirect('/admin');
       } else {
         error.push('Password does not match!');
@@ -132,11 +133,13 @@ router.route('/login').post((req, res) => {
         email: req.body.email,
       })
         .then((user) => {
+          console.log(user , "USERRR2")
           if (user.email) {
             bcrypt.compare(req.body.password, user.password).then((match) => {
               if (match) {
                 req.session.user = user;
-                res.json(user);
+                console.log(user, "USERRR");
+                return res.json(user);
                 //console.log(`Success to log-in ${req.session.user}`)
               } else {
                 error.push('Password does not match!');
@@ -211,6 +214,7 @@ router.route('/register').post((req, res) => {
       password,
       phone,
       city,
+      role:'user'
     });
 
     newUser

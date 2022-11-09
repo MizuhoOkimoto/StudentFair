@@ -1,13 +1,19 @@
 import { Table, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
 
-function AdminPosts(prop) {
+function AdminPosts({isAdmin}) {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if(!isAdmin){
+      navigate('/login');
+      return;
+    }
     axios
       .get('http://localhost:8080/posts')
       .then((res) => {

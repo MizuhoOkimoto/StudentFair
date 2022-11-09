@@ -46,6 +46,7 @@ const usersRouter = require('./routes/users');
 const reportsRouter = require('./routes/reports');
 const postRouter = require('./routes/posts');
 
+//TODO：Add Authentication　Middleware for admin
 app.use('/', general);
 app.use('/users', usersRouter);
 app.use('/reports', reportsRouter);

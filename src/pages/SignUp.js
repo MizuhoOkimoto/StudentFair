@@ -21,6 +21,7 @@ const onSubmitHandler = (e) => {
     password: e.target.password.value,
     phone: '',
     city: '',
+    role: 'user'
   };
 
   console.log(user);

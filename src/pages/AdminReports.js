@@ -1,13 +1,18 @@
 import { Table, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
 
-function AdminReports(prop) {
+function AdminReports({isAdmin}) {
   const [posts, setPosts] = useState(null);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
+      if(!isAdmin){
+        navigate('/login');
+        return;
+      }
     axios
       .get('http://localhost:8080/reports')
       .then((res) => {
