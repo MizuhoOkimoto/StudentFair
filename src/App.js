@@ -104,7 +104,11 @@ function App() {
         <Route exact path="/adminReports" element={<AdminReports />} />
         <Route exact path="/aboutUs" element={<AboutUs />} />
 
-        <Route exact path="/allList" element={<AllList post_list={post_list} />} />
+        <Route
+          exact
+          path="/allList"
+          element={<AllList flag={loginUser.isLogin} post_list={post_list} />}
+        />
 
         <Route exact path="/buyList" element={<BuyList />} />
         <Route exact path="/sellList" element={<SellList />} />
@@ -135,7 +139,6 @@ function App() {
         <Route exact path="/report" element={<Report userData={loginUser} />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />
-
       </Routes>
       <Footer />
     </div>

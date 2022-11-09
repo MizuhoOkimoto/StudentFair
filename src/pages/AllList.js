@@ -69,11 +69,16 @@ const AllList = (prop) => {
       {!loading && (
         <div>
           <div className="item-list-container">
-            <div className="item-list-create-post-button">
-              <Button onClick={createBtnPressed} className="create-button" color="tomato">
-                Create Post
-              </Button>
-            </div>
+            {prop.flag === 'true' ? (
+              <div className="item-list-create-post-button">
+                <Button onClick={createBtnPressed} className="create-button" color="tomato">
+                  Create Post
+                </Button>
+              </div>
+            ) : (
+              ''
+            )}
+
             {list.map((e) => (
               <List key={e._id}>
                 <img

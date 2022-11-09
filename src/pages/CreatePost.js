@@ -66,8 +66,8 @@ const CreatePost = (prop) => {
         <div className="input-container">
           <input type="text" name="title" id="title" placeholder="Title" />
         </div>
-        <div className="input-container">
-          Type of Post
+        <div className="input-container post-options">
+          <span>Type of Post</span>
           <div className="typeOfService">
             <label htmlFor="type_post"></label>
             <select aria-label="type_post" id="type_post">
@@ -75,7 +75,7 @@ const CreatePost = (prop) => {
               <option>Buy</option>
             </select>
           </div>
-          Item Condition
+          <span>Item Condition</span>
           <div className="itemCondition">
             <label htmlFor="item_condition"></label>
             <select aria-label="item_condition" id="item_condition">
@@ -84,16 +84,16 @@ const CreatePost = (prop) => {
               <option>C</option>
             </select>
           </div>
-          Item Price
+          <span>Item Price</span>
           <input type="text" name="item_price" id="item_price" placeholder="Price" />
-          Item Location
+          <span>Item Location</span>
           <input type="text" name="location" id="location" placeholder="Location" />
         </div>
         <div className="input-container">
           <input type="text" name="category" id="category" placeholder="Category" />
         </div>
 
-        <div class="input-container file-container">
+        <div className="input-container file-container">
           <input type="file" name="fragment-file" id="fragment-file" multiple="multiple" />
           <span id="filename">Click here to upload your pics</span>
         </div>
