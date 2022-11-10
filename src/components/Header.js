@@ -11,10 +11,7 @@ import './css/Header.css';
 import axios from 'axios';
 
 function Header(prop) {
-
-  const onClickHandler = (e) =>{
-
-  }
+  const onClickHandler = (e) => {};
 
   return (
     <header>

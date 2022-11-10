@@ -32,11 +32,23 @@ const AllList = (prop) => {
         .get('http://localhost:8080/posts')
         .then((res) => {
           console.log(res);
-          const { data } = res;
-          // let tempData = [];
+          let { data } = res;
+          let tempData = [];
+
           // for (let i = listNum - 1; i < listNum * 5; i++) {
           //   tempData.push(data[i]);
           // }
+
+          // for (let i = data.length - 1; i >= 0; i++) {
+          //   let temp = null;
+          //   console.log(data[i]);
+          //   if (data[i].create_date > data[i - 1].create_date) {
+          //     temp = data[i - 1];
+          //     data[i - 1] = data[i];
+          //     data[i] = temp;
+          //   }
+          // }
+          console.log(data);
           setList(data);
           // console.log(list);
         })

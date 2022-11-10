@@ -79,6 +79,9 @@
   font-size: 20px;
   padding: 20px 0 10px 0;
 }
+.contact-seller {
+  padding-top: 15px;
+}
 
 .btn {
   cursor: pointer;

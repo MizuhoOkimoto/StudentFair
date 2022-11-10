@@ -49,6 +49,31 @@ const ItemDetail = () => {
               TORONTO, ON M4K 1R3 647 786 4344 (MAIN NUMBER) 416 792 4545
             </div>
           </div>
+
+          <div className="contact-seller">
+            <form className="user-form sign-up contact-seller" action="/" method="POST">
+              <div className="title">
+                <div className="form-title">
+                  <p>Contact to Seller</p>
+                </div>
+                <i className="fas fa-times"></i>
+              </div>
+              <div className="border" />
+              <textarea
+                className="report-text-area"
+                type="text"
+                name="contactSeller"
+                id="contactSeller"
+                placeholder="Type your message"
+                maxLength="1000"
+                cols="88"
+                rows="3"
+              />
+              <div className="input-container sign-up">
+                <input type="submit" name="submit" id="submitSignUp" value="Send message" />
+              </div>
+            </form>
+          </div>
         </div>
         <div className="detail-footer">
           <Button onClick={clickedReport} className="detail-report-button" color="red">
