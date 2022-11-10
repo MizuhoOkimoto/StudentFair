@@ -16,6 +16,7 @@ const clickToCancel = () => {
 const UploadProfilePic = (prop) => {
   let email = prop.userData.email;
   let fullname = prop.userData.fname + " " + prop.userData.lname;
+  let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + email;
  
   const [file,setFile] =useState(null);
 
@@ -37,7 +38,7 @@ const UploadProfilePic = (prop) => {
     
   
     
-    axios.post('http://localhost:8080/users/upload_userPic', formData, config).then((res) => {
+    axios.post(uploadAddress, formData, config).then((res) => {
             console.log(res.data);
             
          });

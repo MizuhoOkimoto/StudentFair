@@ -8,35 +8,86 @@ import { Link } from 'react-router-dom';
 // import Button from "../components/Button";
 import Button from '../components/Button';
 
-const onSubmitHandler = (e) => {
-  // This will prevent the default html form submit behavior from taking place.
-  e.preventDefault();
-  // TO DO
-  // - Make a validation of each fields.
-  // - If any fields is empty, cannot move to log-in page.
-  const user = {};
 
-  console.log(user);
-
-  // Send the user data to the backend
-
-  //let
-  axios.post('http://localhost:8080/users/createPost', user).then((res) => {
-    console.log(res);
-    if (res.data != false) {
-      alert('Your post is successfully created!');
-      window.location = '/allList';
-    }
-  });
-
-  // Render to the log in page
-  //window.location = '/LogIn';
-};
 
 const CreatePost = (prop) => {
   const create_date = new Date();
   const userInfo = prop.userData;
-  console.log(userInfo);
+
+
+  const [file,setFile] =useState(null);
+  const [postNum,setPostNum] =useState(null);
+  const onInputChange = (e) => {
+    setFile(e.target.files)
+
+    
+  }
+
+  const onSubmitHandler = (e) => {
+    // This will prevent the default html form submit behavior from taking place.
+    e.preventDefault();
+    console.log(file)
+
+    
+    const newpost = {
+      email: userInfo.email,
+      field: e.target.type_post.value, 
+      title: e.target.title.value, 
+      category: e.target.category.value, 
+      desc: e.target.itemDetail.value, 
+      con: e.target.item_condition.value, 
+      price: e.target.item_price.value,
+
+    };
+  
+    console.log(newpost);
+  
+    // Send the user data to the backend
+  
+  
+    axios.post('http://localhost:8080/posts/create_post', newpost).then((res) => {
+      console.log(res.data);
+      setPostNum(res.data.post_number);
+      uploadPhoto(res.data.post_number);
+     
+    });
+  
+    // Render to the log in page
+    //window.location = '/LogIn';
+    const formData = new FormData();
+    
+    for( var i = 0; i< file.length; i++ ){
+      formData.append('photo', file[i]);
+      console.log(i)
+    }
+    
+    
+    const config ={
+      headers:{
+        'content-type': 'multipart/form-data',
+      }
+    }
+    const uploadPhoto = (postNum) =>{
+      let address = 'http://localhost:8080/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
+    axios.post(address, formData, config).then((res) =>{
+      console.log(res.data)
+    })
+    }
+    
+
+     // if (res.data != false) {
+        
+        
+      
+
+      //   alert('Your post is successfully created!');
+      //   //window.location = '/lists';
+      // }
+  
+  };
+  
+
+
   return (
     <div className="signUp-container">
       <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
@@ -94,7 +145,7 @@ const CreatePost = (prop) => {
         </div>
 
         <div class="input-container file-container">
-          <input type="file" name="fragment-file" id="fragment-file" multiple="multiple" />
+          <input type="file" class="form-control-file" name="photo" id="photo" multiple="multiple" onChange={onInputChange} />
           <span id="filename">Click here to upload your pics</span>
         </div>
 

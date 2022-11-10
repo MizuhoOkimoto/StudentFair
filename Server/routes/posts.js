@@ -2,20 +2,111 @@ const Post = require('../module/post_schema');
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const { route } = require('./users');
+const multer = require('multer');
+const multerConfig = multer.diskStorage({
+  destination: (req, file, callback) =>{
+    callback(null, 'uploads/post_pic');
+  },
+  filename: (req, file, callback) => {
+    //const ext = file.minetype.split('/')[1];
+    callback(null, `${postNumber}_${email}_${file.originalname}`)
+  },
+});
+
+const isImage = (req, file, callback) =>{
+  if(file.mimetype.startsWith('image')){
+    callback(null, true);
+  }
+  else{
+    callback(new Error('Only Image is Allowed'))
+  }
+};
+const upload = multer({
+  storage: multerConfig,
+  fitter: isImage,
+});
 
 var postListFromDB = [];
+var postNumber;
+var email;
 
-router.route('/').get((req, res) => {
+
+router.post('/upload_post_pic/:postid/:email', upload.array('photo') ,(req, res) =>{
+  const params = req.params;
+  const file = req.files;
+  
+  let imgArray = [];
+  
+  for(var e in file){
+    
+    let postImgUrl = `uploads/post_pic/${params.email}_${params.postid}_${e.originalname}`
+    imgArray.push(postImgUrl);
+  }
+  
+  
+  console.log(params)
+  console.log(file)
+
+  Post.findOne({post_number: params.postid})
+      .then(() => {
+        Post.updateOne(
+          { post_number: params.postid },
+          {
+            $set: {
+              img: imgArray,
+            },
+          }
+        ).then(() =>{
+          res.send(true);
+        }).catch((err) => {
+            console.log(err);
+            res.send(err);
+          });
+     });
+
+
+});
+router.post('/create_post', (req, res) => {
+  const { email, field, title, category, desc, con, price } = req.body;
+  let lastPost;
   Post.find()
-    .then((data) => {      
-      let posts = data;
-      postListFromDB = data;
-      req.session.posts = posts
-      console.log('Count of posts : ' + data.length);
-      res.send(posts);
+    .then((data) => {   
+      lastPost = data[data.length - 1];
+      const newPost = new Post({
+        post_number: (lastPost.post_number + 1), 
+        user_id: email,
+        post_field: field,
+        post_title: title,
+        post_category: category,
+        description: desc,
+        condition: con,
+        price: price
+      });
+
+      newPost.save().then(()=>{
+        res.send(newPost);
+       }).catch((err) =>{
+          res.status(400).json('Error: ' + err);
+        });
     })
     .catch((err) => res.status(400).json('Error: ' + err));
+
+  // const newPost = new Post({
+  //   post_number: curNum, 
+  //   user_id: email,
+  //   post_field: field,
+  //   post_title: title,
+  //   post_category: category,
+  //   description: desc,
+  //   condition: con,
+  //   price: price
+  // });
+  // console.log(newPost);
+  
+
 });
+
 
 router.route('/getPostByLastest').get((req, res) =>{
   Post.find()
@@ -29,30 +120,44 @@ router.route('/getPostByLastest').get((req, res) =>{
 
 });
 
+router.post('/delete/:postid', (req, res) =>{
+  const {post_id}  = req.params.postid;
+  Post.deleteOne({post_number: post_id})
+      .then(() => {
+        res.send(true);
+      })
+      .catch(err =>  console.log(`Error : ${err}`));
+     
+});
+
 router.route('/getBuyPost').get((req, res) =>{
-  let buyPostList;
+ 
   Post.find({post_field: 'Buy'})
-      .then((data) => {      
-        buyPostList = data;      
-        res.send(buyPostList);
+      .then((data) => { 
+        res.send(data);
       }).catch((err) => res.status(400).json('Error: ' + err));
   
   
 
 });
 
-router.route('/getSellPost').get((req, res) =>{
-  let buyPostList;
+router.get('/getUserPost/:email', (req, res) =>{
+  const email = req.params.email;
+  Post.find({
+    user_id: email
+  }).then((data)=>{
+    res.send(data);
+  }).catch((err) => res.status(400).json('Error: ' + err));
+});
+
+router.get('/getSellPost', (req, res) =>{
   Post.find({post_field: 'Sell'})
       .then((data) => {      
-        buyPostList = data;      
-        res.send(buyPostList);
+        res.send(data);
       }).catch((err) => res.status(400).json('Error: ' + err));
-  
-  
-
 });
-router.route('/').get((req, res) => {
+
+router.get('/', (req, res) => {
   Post.find()
     .then((data) => {      
       let posts = data;
@@ -86,5 +191,6 @@ router.route('/sample_data').get((req, res) => {
     }
 });
 });
+
 
 module.exports = router;

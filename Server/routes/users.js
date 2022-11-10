@@ -95,20 +95,14 @@ const Admin = {
 }; 
 
 // POST Upload profile Pic
-router.post('/upload_userPic', upload.single('photo'), (req,res) => {
-
-  // const { email, newPhone, newCity, file } = req.body;
+router.post('/upload_userPic/:email', upload.single('photo'), (req,res) => {
+  const email = req.params.email;
+  let profileImgUrl = `uploads/profile_pic/${email}_profile_${req.file.originalname}`;
   
-  console.log(res)
-  console.log(req.file)
-  console.log(curUser)
-  
-  let profileImgUrl = `uploads/profile_pic/${curUser.email}_profile_${req.file.originalname}`
-  
-  User.findOne({email: curUser.email})
+  User.findOne({email: email})
       .then((user) => {
         User.updateOne(
-          { email: curUser.email },
+          { email: email },
           {
             $set: {
               img_url: profileImgUrl,
@@ -399,6 +393,15 @@ router.post('/delete', (req, res) =>{
   const {email}  = req.body;
   console.log(email);
   User.deleteOne({email: req.body.email})
+      .then(() => {
+        res.send(true);
+      })
+      .catch(err =>  console.log(`Error : ${err}`));
+      curUser = null;
+})
+router.post('/delete/:email', (req, res) =>{
+  const {email}  = req.params.email;;
+  User.deleteOne({email: email})
       .then(() => {
         res.send(true);
       })

@@ -43,6 +43,9 @@ const postSchema = new Schema({
     type: Date,
     require: true,
   },
+  img:{
+    require: false,
+  }
 });
 
 const post = mongoose.model('Post', postSchema);
