@@ -36,6 +36,7 @@ function App() {
   const [isPostEmpty, seIsPostEmpty] = useState(true);
   const session = window.sessionStorage;
   const post_session = window.sessionStorage;
+
   useEffect(() => {
     if (session) {
       setLoginUser({
@@ -102,7 +103,7 @@ function App() {
 
       <Routes>
         <Route exact path="/" element={<Home setPostList={setPostList} />} />
-        <Route exact path="/admin" element={<Admin isAdmin={loginUser.role}/>} />
+        <Route exact path="/admin" element={<Admin isAdmin={loginUser.role} />} />
         <Route exact path="/adminPosts" element={<AdminPosts isAdmin={loginUser.role} />} />
         <Route exact path="/adminReports" element={<AdminReports isAdmin={loginUser.role} />} />
         <Route exact path="/aboutUs" element={<AboutUs />} />
