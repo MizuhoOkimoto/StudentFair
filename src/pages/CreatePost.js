@@ -71,18 +71,15 @@ const CreatePost = (prop) => {
       let address = 'http://localhost:8080/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
     axios.post(address, formData, config).then((res) =>{
       console.log(res.data)
+      if (res.data != false) {
+        alert('Your post is successfully created!');
+        window.location = '/lists';
+      }
     })
     }
     
 
-     // if (res.data != false) {
-        
-        
-      
-
-      //   alert('Your post is successfully created!');
-      //   //window.location = '/lists';
-      // }
+     
   
   };
   
