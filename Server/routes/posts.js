@@ -33,7 +33,7 @@ var curEmail;
 
 
 router.post('/upload_post_pic/:postid/:email', upload.array('photo') ,(req, res) =>{
-  var params = req.params;
+  let params = req.params;
   const file = req.files;
 
   let imgArray = [];
@@ -51,8 +51,8 @@ router.post('/upload_post_pic/:postid/:email', upload.array('photo') ,(req, res)
               img: imgArray,
             },
           }
-        ).then(() =>{
-          res.send(true);
+        ).then((data) =>{
+          res.send(data);
         }).catch((err) => {
             console.log(err);
             res.send(err);
@@ -92,8 +92,7 @@ router.post('/create_post', (req, res) => {
 
 });
 
-
-router.route('/getPostByLastest').get((req, res) =>{
+router.get('/getPostByLastest', (req, res) =>{
   Post.find()
       .then((data) => {      
         postListFromDB = data;      
@@ -104,6 +103,8 @@ router.route('/getPostByLastest').get((req, res) =>{
   res.send(PostByLastest);
 
 });
+
+
 
 router.post('/delete/:postid', (req, res) =>{
   const {post_id}  = req.params.postid;

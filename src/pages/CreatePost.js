@@ -73,7 +73,7 @@ const CreatePost = (prop) => {
       console.log(res.data)
       if (res.data != false) {
         alert('Your post is successfully created!');
-        //window.location = '/lists';
+        window.location = '/lists';
       }
     })
     }

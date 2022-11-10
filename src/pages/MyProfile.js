@@ -28,22 +28,23 @@ const clickToDelete = () => {
   }
 };
 
+const SetMyPost = (e) =>{
+  
+  
+ 
+  
+}
 
 
 function MyProfile(prop){
-  const [image, setImage ] = useState();
+  const [userPost, setUserPost] = useState(null);
+  const [lastIndex, setLastIndex] = useState(null);
   const inputRef = useRef();
+  axios.get(`http://localhost:8080/posts/getUserPost/${prop.userData.email}`).then((res) =>{
+    SetMyPost(res.data);
+  });
   
- const onImgChange = (e) =>{
-  setImage(e.target.files[0])
-  console.log(image)
- }
-
- const onImgInputBtnClick = (e) =>{
-  e.preventDefault();
-  inputRef.current.click();
- };
-
+  
   return (
     <div className="myProfile-container">
       <div className="myProfile-card">
