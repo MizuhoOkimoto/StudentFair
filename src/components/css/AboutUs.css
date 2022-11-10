@@ -1,8 +1,70 @@
-/* .aboutus-container {
-
-} */
-.about-us_title {
-    font-size: xx-large;
+.aboutus-container {
+    position: relative;
+    /* text-align: center; */
+}
+/* .about-us_title {
+    font-size: 5rem;
     font-weight: 700;
+    color: rgb(248, 155, 124);
+    position: absolute;
+    top: 30%;
+    left: 58%;
+    transform: translate(-50%, -50%); 
+}
+.about-us_title:first-letter {
+    font-size: 150%;
+    color: rgba(36, 39, 224, 0.877)
+  } */
+
+.main_image {
     margin-top: 20px;
+    background-image: url(../../img/AboutUs.png);
+    width: 38%;
+}
+
+.contents {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.getintouch{
+    background-color: rgba(245, 245, 245, 0.76);
+    padding: 30px 30px;
+    margin-left: 10px;
+}
+.contact_title {
+    color: rgb(75, 73, 73);
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+.contact_content {
+    color: rgb(75, 73, 73);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.contact_btn{
+    background-color:gray;
+    color:whitesmoke;
+    border: 2px solid gray;
+}
+.team {
+    background-color: rgba(245, 245, 245, 0.76);
+    padding: 30px 30px;
+    margin-right: 10px;
+}
+.team_titile {
+    color: rgb(75, 73, 73);
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+.team_content {
+    color: rgb(75, 73, 73);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.about_buttom {
+    margin: 60px 10px 70px 10px;
 }
