@@ -17,6 +17,8 @@ import FindId from './pages/FindId';
 import FindPw from './pages/FindPw';
 import Admin from './pages/Admin';
 import AdminPosts from './pages/AdminPosts';
+import AdminReports from './pages/AdminReports';
+import AboutUs from './pages/AboutUs';
 import Edit from './pages/EditPage';
 import UpdatePassword from './pages/UpdatePassword';
 import Delete from './pages/DeleteUser';
@@ -34,6 +36,7 @@ function App() {
   const [isPostEmpty, seIsPostEmpty] = useState(true);
   const session = window.sessionStorage;
   const post_session = window.sessionStorage;
+
   useEffect(() => {
     if (session) {
       setLoginUser({
@@ -44,6 +47,7 @@ function App() {
         phone: session.getItem('phone'),
         city: session.getItem('city'),
         isLogin: session.getItem('isLogin'),
+        isAdmin: session.getItem('isAdmin')
       });
     }
   }, []);
@@ -69,6 +73,7 @@ function App() {
     session.setItem('phone', data.phone);
     session.setItem('city', data.city);
     session.setItem('isLogin', true);
+    session.setItem('isAdmin', data.role === 'admin'? true : false)
   }
   function updatePassword(data) {
     session.setItem('password', data.newPassword);
@@ -98,8 +103,10 @@ function App() {
 
       <Routes>
         <Route exact path="/" element={<Home setPostList={setPostList} />} />
-        <Route exact path="/admin" element={<Admin />} />
-        <Route exact path="/adminPosts" element={<AdminPosts />} />
+        <Route exact path="/admin" element={<Admin isAdmin={loginUser.role} />} />
+        <Route exact path="/adminPosts" element={<AdminPosts isAdmin={loginUser.role} />} />
+        <Route exact path="/adminReports" element={<AdminReports isAdmin={loginUser.role} />} />
+        <Route exact path="/aboutUs" element={<AboutUs />} />
 
         <Route
           exact

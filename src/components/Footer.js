@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import './css/Footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 const FooterBox = styled.footer`
   bottom: 0;
@@ -26,9 +27,11 @@ const Footer = () => {
           <section className="footer-info">
             <section className="footer-info-left">
               <section className="footer-info__title">StudentFair</section>
-              <section to="/" className="footer-info__contents">
+              <Link to="/aboutUs">
+              <section className="footer-info__contents">
                 About Us
               </section>
+              </Link>
               <section className="footer-info__contents">
                 <a href="https://github.com/MizuhoOkimoto/StudentFair" target="blank">
                   GitHub

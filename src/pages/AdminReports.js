@@ -9,10 +9,10 @@ function AdminReports({isAdmin}) {
   const navigate = useNavigate();
   
   useEffect(() => {
-      if(!isAdmin){
-        navigate('/login');
-        return;
-      }
+      // if(!isAdmin){
+      //   navigate('/login');
+      //   return;
+      // }
     axios
       .get('http://localhost:8080/reports')
       .then((res) => {

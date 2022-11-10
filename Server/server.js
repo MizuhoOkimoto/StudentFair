@@ -46,7 +46,8 @@ const usersRouter = require('./routes/users');
 const reportsRouter = require('./routes/reports');
 const postRouter = require('./routes/posts');
 
-//TODO：Add Authentication　Middleware for admin
+// TODO：Add Authentication　Middleware for admin
+// Because if I type localhost:8080/posts, I can see the data
 app.use('/', general);
 app.use('/users', usersRouter);
 app.use('/reports', reportsRouter);

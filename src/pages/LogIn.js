@@ -1,16 +1,10 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-
-import { Link, redirect } from 'react-router-dom';
-// import Button from "../components/Button";
-import Button from '../components/Button';
+import { Link, useNavigate } from 'react-router-dom';
 import '../components/css/Footer.css';
-import { render } from '@testing-library/react';
 
 function LogIn(prop) {
-  // const [errMessage, setErrMessage] = useState('');
+  const navigate = useNavigate();
 
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.
@@ -23,12 +17,15 @@ function LogIn(prop) {
 
     axios.post('http://localhost:8080/users/login', inputData).then((res) => {
       let data = res.data;
- 
-      console.log(process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASS);
-      
+      console.log(process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASS + ': This is admin');
       if(inputData.email === `${process.env.REACT_APP_ADMIN_EMAIL}` && inputData.password === `${process.env.REACT_APP_ADMIN_PASS}`) {
-        prop.setUser(res.data);
+        prop.setUser(data);
+        console.log(data);
+        console.log('this is admin')
         window.location = '/admin';
+        //navigate('/admin');
+        console.log('does not call admin page');
+        return;
         //TODO(Mizuho): solve MyProfile page 
       }
       else if (typeof data !== 'string') {

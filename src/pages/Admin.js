@@ -8,13 +8,14 @@ function Admin({isAdmin}) {
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  
   console.log(isAdmin, "ISADMIN")
   useEffect(() => {
-    if(!isAdmin){
-      navigate('/login');
-      return;
-    }
+    // if(!isAdmin){
+    //   console.log(isAdmin, "This user is not admin")
+    //   navigate('/login');
+    //   return;
+    // }
     axios
       .get('http://localhost:8080/users')
       .then((res) => {
