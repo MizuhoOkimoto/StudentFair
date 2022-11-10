@@ -33,12 +33,9 @@ function Header(prop) {
                 <label htmlFor="drop-1" className="toggle">
                   Listings
                 </label>
-                <a href="#">Listings</a>
+                <a href="/lists">Listings</a>
                 <input type="checkbox" id="drop-1" />
                 <ul>
-                  <li>
-                    <a href="/lists">Lists</a>
-                  </li>
                   <li>
                     <a href="/lists/buy">Buy</a>
                   </li>
