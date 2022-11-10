@@ -21,10 +21,12 @@ app.use(
     saveUninitialized: true,
   })
 );
+
 app.use((req, res, next) => {
   res.locals.user = req.session.user;
   next();
 });
+
 //Mongoose.connection
 const uri = process.env.MONGODB_CONNECT;
 mongoose.connect(uri, {
@@ -44,6 +46,7 @@ const usersRouter = require('./routes/users');
 const reportsRouter = require('./routes/reports');
 const postRouter = require('./routes/posts');
 
+//TODO：Add Authentication　Middleware for admin
 app.use('/', general);
 app.use('/users', usersRouter);
 app.use('/reports', reportsRouter);

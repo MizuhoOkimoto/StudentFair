@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 
-function BuyList(){
+function BuyList() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     console.log('PokeList component mounts');
@@ -17,20 +17,20 @@ function BuyList(){
       setLoading(false);
     }, 1700);
   }, []);
-  axios.get('http://localhost:8080/posts/getBuyPost')
-  .then((res) => {
-    console.log(res);
-    
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  axios
+    .get('http://localhost:8080/posts/getBuyPost')
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   return (
     <div>
       {loading && <Loading />}
       {!loading && <p>Buy List</p>}
     </div>
   );
-};
+}
 
 export default BuyList;

@@ -14,7 +14,7 @@ const AllList = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [listNum, setListNum] = useState(1);
-  console.log("prop : " + prop.post_list)
+  console.log('prop : ' + prop.post_list);
   let temp = [];
   //setList(prop.post_list);
   useEffect(() => {
@@ -22,7 +22,7 @@ const AllList = (prop) => {
       setLoading(false);
     }, 1700);
   }, []);
- 
+
   let menu;
   useEffect(() => {
     console.log('Component mounts');
@@ -69,11 +69,16 @@ const AllList = (prop) => {
       {!loading && (
         <div>
           <div className="item-list-container">
-            <div className="item-list-create-post-button">
-              <Button onClick={createBtnPressed} className="create-button" color="tomato">
-                Create Post
-              </Button>
-            </div>
+            {prop.flag === 'true' ? (
+              <div className="item-list-create-post-button">
+                <Button onClick={createBtnPressed} className="create-button" color="tomato">
+                  Create Post
+                </Button>
+              </div>
+            ) : (
+              ''
+            )}
+
             {list.map((e) => (
               <List key={e._id}>
                 <img

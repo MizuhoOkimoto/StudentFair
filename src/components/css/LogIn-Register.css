@@ -167,6 +167,15 @@ p.agreement a {
   position: absolute;
 }
 
+.post-options > div {
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+.post-options > input {
+  background-color: beige;
+}
+
 @media only screen and (max-width: 768px) {
   form.log-in,
   form.sign-up {

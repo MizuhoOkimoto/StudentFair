@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 
 import { Link, redirect } from 'react-router-dom';
-
 // import Button from "../components/Button";
 import Button from '../components/Button';
 import '../components/css/Footer.css';
@@ -24,23 +23,19 @@ function LogIn(prop) {
 
     axios.post('http://localhost:8080/users/login', inputData).then((res) => {
       let data = res.data;
-
-      if (typeof data !== 'string') {
-        //ToDo: Put condition and change address
-        // if(/*condition*/){
-        //   prop.setUser(res.data);
-        //   window.location = '/';
-        // }
-        // else{
-        //   prop.setUser(res.data);
-        //   window.location = '/MyProfile';
-        // }
+ 
+      console.log(process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASS);
+      
+      if(inputData.email === `${process.env.REACT_APP_ADMIN_EMAIL}` && inputData.password === `${process.env.REACT_APP_ADMIN_PASS}`) {
+        prop.setUser(res.data);
+        window.location = '/admin';
+        //TODO(Mizuho): solve MyProfile page 
+      }
+      else if (typeof data !== 'string') {
         prop.setUser(res.data);
         window.location = '/MyProfile/';
       } else {
         alert("Password or Id doesn't match! Please try again.");
-        // setErrMessage('');
-        // setErrMessage(data);
       }
     });
   };
