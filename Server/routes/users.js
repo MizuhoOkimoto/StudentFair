@@ -88,6 +88,7 @@ const sendTempPassword = async (temp, email, name) =>{
 }
 
 let curUser = null;
+
 //Admin Account
 const Admin = {
   email:  'admin@admin.com',
@@ -116,11 +117,7 @@ router.post('/upload_userPic/:email', upload.single('photo'), (req,res) => {
             console.log(err);
             res.send(err)
           });
-
-        
       })
-
-
 })
 
 // POST - Login Page
@@ -170,9 +167,8 @@ router.route('/login').post((req, res) => {
               if (match) {
                 req.session.user = user;
                 console.log(req.session.user);
-                res.json(user);
                 curUser = user;
-                //console.log(`Success to log-in ${req.session.user}`)
+                return res.json(user);
               } else {
                 error.push('Password does not match!');
                 res.send('Password does not match!');
@@ -206,7 +202,7 @@ router.route('/register').post((req, res) => {
   let isValid = true;
   let validData = {};
   //changed
-  const { email, fname, lname, password, phone, city } = req.body;
+  const { email, fname, lname, password, phone, city, role } = req.body;
 
   if (typeof fname !== 'string' || fname.length === 0) {
     validData.fName = 'Must write your first name';
@@ -246,6 +242,7 @@ router.route('/register').post((req, res) => {
       password,
       phone,
       city,
+      role
     });
 
     newUser

@@ -12,6 +12,7 @@ function Admin({isAdmin}) {
   console.log(isAdmin, "ISADMIN")
   useEffect(() => {
     if(!isAdmin){
+      console.log(isAdmin, "inside ISADMIN")
       navigate('/login');
       return;
     }

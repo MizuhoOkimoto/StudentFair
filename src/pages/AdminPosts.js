@@ -29,14 +29,14 @@ function AdminPosts({isAdmin}) {
 
   const clickToDelete = async (postNum) => {
 
-    if (window.confirm('Are you sure to delete your account?') === true) {
+    if (window.confirm('Are you sure to delete the post?') === true) {
       const res= await axios.delete(`http://localhost:8080/posts/deletePost/${postNum}`);
       console.log(res);
-        alert('Your account is safely deleted.');
+        alert('The post is deleted');
         setLoading(true);
     
       } else {
-        alert('You canceled delete your account!');
+        alert('You canceled delete the post!');
       }
     };
 
