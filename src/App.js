@@ -23,7 +23,7 @@ import Delete from './pages/DeleteUser';
 import Report from './pages/Report';
 import CustomerService from './pages/CustomerService';
 import CreatePost from './pages/CreatePost';
-import UploadProfilePic from './pages/UploadProfileImg'
+import UploadProfilePic from './pages/UploadProfileImg';
 
 import { useEffect, useState } from 'react';
 
@@ -46,18 +46,16 @@ function App() {
         isLogin: session.getItem('isLogin'),
       });
     }
-   
   }, []);
 
   useEffect(() => {
     setPost_list(tempData);
-    
   }, tempData);
 
-  function setPostList(data){
+  function setPostList(data) {
     // post_session.setItem('post_list', data);
     // console.log(post_session.getItem('post_list'));
-    if(post_list != data){
+    if (post_list != data) {
       tempData = data;
     }
     console.log(tempData);
@@ -94,7 +92,6 @@ function App() {
     session.clear();
   }
 
-  
   return (
     <div className="App">
       <Header flag={loginUser.isLogin} />
@@ -104,25 +101,25 @@ function App() {
         <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/adminPosts" element={<AdminPosts />} />
 
-        
+        <Route
+          exact
+          path="/lists"
+          element={<AllList flag={loginUser.isLogin} post_list={post_list} />}
+        />
 
-        <Route exact path="/lists" element={<AllList post_list={post_list}/>} />
-
-        
-        
-        <Route exact path="/lists/buy" element={<BuyList />} />
-        <Route exact path="/lists/sell" element={<SellList />} />
+        <Route exact path="/lists/buy" element={<BuyList flag={loginUser.isLogin} />} />
+        <Route exact path="/lists/sell" element={<SellList flag={loginUser.isLogin} />} />
         <Route exact path="/logIn" element={<LogIn setUser={setUser} />} />
         <Route exact path="/logOut" element={<LogOut userOut={userOut} />} />
         <Route exact path="/signUp" element={<SignUp />} />
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
-        
 
-        <Route path='/myProfile/' element={<MyProfile userData={loginUser} />} />
-        <Route path='/myProfile/upload_picture' element={<UploadProfilePic userData={loginUser} />} />
-        
-
+        <Route path="/myProfile/" element={<MyProfile userData={loginUser} />} />
+        <Route
+          path="/myProfile/upload_picture"
+          element={<UploadProfilePic userData={loginUser} />}
+        />
 
         <Route
           exact
