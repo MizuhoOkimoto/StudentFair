@@ -10,7 +10,7 @@ const multerConfig = multer.diskStorage({
   },
   filename: (req, file, callback) => {
     //const ext = file.minetype.split('/')[1];
-    callback(null, `${postNumber}_${email}_${file.originalname}`)
+    callback(null, `Post_${curPostNumber}_${curEmail}_${file.originalname}`)
   },
 });
 
@@ -28,26 +28,20 @@ const upload = multer({
 });
 
 var postListFromDB = [];
-var postNumber;
-var email;
+var curPostNumber;
+var curEmail;
 
 
 router.post('/upload_post_pic/:postid/:email', upload.array('photo') ,(req, res) =>{
-  const params = req.params;
+  var params = req.params;
   const file = req.files;
-  
+
   let imgArray = [];
-  
-  for(var e in file){
-    
-    let postImgUrl = `uploads/post_pic/${params.email}_${params.postid}_${e.originalname}`
-    imgArray.push(postImgUrl);
+  for(let i = 0; i < file.length; i++){    
+    imgArray.push(`uploads/post_pic/${params.postid}_${params.email}_${file[i].originalname}`);
   }
   
   
-  console.log(params)
-  console.log(file)
-
   Post.findOne({post_number: params.postid})
       .then(() => {
         Post.updateOne(
@@ -69,12 +63,16 @@ router.post('/upload_post_pic/:postid/:email', upload.array('photo') ,(req, res)
 });
 router.post('/create_post', (req, res) => {
   const { email, field, title, category, desc, con, price } = req.body;
+  curEmail = email;
   let lastPost;
   Post.find()
     .then((data) => {   
       lastPost = data[data.length - 1];
+      curPostNumber = Number(lastPost.post_number) + 1
+       
+
       const newPost = new Post({
-        post_number: (lastPost.post_number + 1), 
+        post_number: curPostNumber, 
         user_id: email,
         post_field: field,
         post_title: title,

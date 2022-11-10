@@ -62,6 +62,7 @@ const posts = [
     price: 995.0,
     location: 'Toronto',
     create_date: 'Oct 4 2021',
+
   },
   {
     post_number: 2,
