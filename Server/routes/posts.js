@@ -92,19 +92,6 @@ router.post('/create_post', (req, res) => {
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 
-  // const newPost = new Post({
-  //   post_number: curNum, 
-  //   user_id: email,
-  //   post_field: field,
-  //   post_title: title,
-  //   post_category: category,
-  //   description: desc,
-  //   condition: con,
-  //   price: price
-  // });
-  // console.log(newPost);
-  
-
 });
 
 
