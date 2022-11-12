@@ -7,12 +7,37 @@ import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import '../components/css/Item-Detail.css';
+import axios from 'axios';
 
 const clickedReport = () => {
   window.location = '/report';
 };
 
-const ItemDetail = () => {
+
+const ItemDetail = (prop) => {
+  const [postDetail, setPostDetail] = useState(null);
+  const postNum = 1;
+  useEffect(()=>{
+    
+    const url = 'http://localhost:8080/posts/detail/' + postNum
+    axios.get(url).then((res) => {
+      console.log(res.data);
+      setPostDetail(res.data);
+    });
+},[])
+    
+  const delivery_message = (e) => {
+    e.preventDefault();
+    const emailDetail =  {
+      to: postDetail.user_id,
+      from: prop.userData.email,
+      desc: e.target.contactSeller.value,
+    };
+    const sendEmail = 'http://localhost:8080/posts/detail/contact/' + postNum
+    axios.post(sendEmail, emailDetail);
+  };
+  
+
   return (
     <div className="item-detail-container">
       <div className="item-detail-box">
@@ -51,7 +76,7 @@ const ItemDetail = () => {
           </div>
 
           <div className="contact-seller">
-            <form className="user-form sign-up contact-seller" action="/" method="POST">
+            <form className="user-form sign-up contact-seller" action="/" method="POST"  onSubmit={delivery_message} >
               <div className="title">
                 <div className="form-title">
                   <p>Contact to Seller</p>
@@ -69,8 +94,9 @@ const ItemDetail = () => {
                 cols="88"
                 rows="3"
               />
+             
               <div className="input-container sign-up">
-                <input type="submit" name="submit" id="submitSignUp" value="Send message" />
+                <input type="submit" name="submit" id="submitSignUp" value="Send message"/>
               </div>
             </form>
           </div>

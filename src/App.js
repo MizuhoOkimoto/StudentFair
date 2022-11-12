@@ -29,6 +29,7 @@ import UploadProfilePic from './pages/UploadProfileImg';
 
 import { useEffect, useState } from 'react';
 
+
 function App() {
   let tempData;
   const [loginUser, setLoginUser] = useState([]);
@@ -143,7 +144,7 @@ function App() {
           path="/deleteAccount"
           element={<Delete usermail={prepToDelete} clear={ResetSession} />}
         />
-        <Route exact path="/itemDetail" element={<ItemDetail />} />
+        <Route exact path="/itemDetail" element={<ItemDetail userData={loginUser}/>} />
         <Route exact path="/report" element={<Report userData={loginUser} />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />

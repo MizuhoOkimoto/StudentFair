@@ -1,8 +1,51 @@
 const Post = require('../module/post_schema');
+const User = require('../module/user_schema');
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const { route } = require('./users');
+require('dotenv').config({ path: '../.env' });
+const NodeEmailer = require('nodemailer');
+// E-mail Setting
+const transporter = NodeEmailer.createTransport({
+  service: 'gmail',
+  auth: { user: 'demian824@gmail.com', pass: process.env.EMAIL_KEY },
+});
+
+// Send Temp Password to User 
+const deliveryMessage = async ( toAddress, fromAddress, name, post, desc) =>{
+  const mailOptions = {
+    to: toAddress,
+    subject: 'You Get a Meessage about your ',
+    html: 
+        `
+          Hello, ${name}. 
+          You have got a message from ${fromAddress} <br>
+          <br>
+          User - ${fromAddress} - is interested about your post
+          <br>
+          Post Info
+          - ${post.post_number}
+          - ${post.post_title}
+          <br><br>
+          Message
+          ${desc}
+          <br>
+          <br>
+          sincerely<br>
+          StudentFair Team        <br>
+          Team9, PRJ666           <br>
+          Team Member:            <br>
+          Mizuho Okimoto          <br>
+          Jun Song                <br>
+          WonChul Choi            <br>
+          Tasin Rahman            <br>
+          Copyright © Winter 2022, All rights reserved | PRJ666 Team 9<br>
+          `,
+  }
+  await transporter.sendMail(mailOptions);
+}
+
+
 const multer = require('multer');
 const multerConfig = multer.diskStorage({
   destination: (req, file, callback) =>{
@@ -103,7 +146,41 @@ router.get('/getPostByLastest', (req, res) =>{
   res.send(PostByLastest);
 
 });
+// detail page
+router.get('/detail/:post_number', (req, res) =>{
+  const post_number  = req.params.post_number;
+  
+  Post.findOne({post_number: post_number})
+  .then((result) =>{
+    res.send(result);
+  })
+ 
+});
 
+router.post('/detail/contact/:post_number', (req, res) => {
+  const post_number = req.params.post_number;
+
+  const { to, from, desc } = req.body;
+  console.log(post_number);
+  console.log(to);
+  console.log(from);
+  console.log(desc);
+  User.find({
+    email: to
+  }).then((user) =>{
+    let name = user.fname + ' ' + user.lname;
+
+    Post.find({
+      post_number: post_number
+    }).then((result) => {
+      deliveryMessage(to, from, name, result, desc);
+    }).catch(err => console.log(err));
+
+
+    
+  }).catch(err => console.log(err));
+
+})
 
 
 router.post('/delete/:postid', (req, res) =>{
