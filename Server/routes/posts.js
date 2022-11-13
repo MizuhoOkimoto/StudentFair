@@ -74,6 +74,13 @@ var postListFromDB = [];
 var curPostNumber;
 var curEmail;
 
+router.post('/search', (req, res)=>{
+  const keyword = req.body.keyword;
+  Post.find().then((data) =>{
+    let result = Post.getPostByKeyword(data, keyword);
+    res.send(result);
+  });
+});
 
 router.post('/upload_post_pic/:postid/:email', upload.array('photo') ,(req, res) =>{
   let params = req.params;
@@ -199,9 +206,6 @@ router.route('/getBuyPost').get((req, res) =>{
       .then((data) => { 
         res.send(data);
       }).catch((err) => res.status(400).json('Error: ' + err));
-  
-  
-
 });
 
 router.get('/getUserPost/:email', (req, res) =>{
