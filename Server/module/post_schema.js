@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
   post_number: {
-    type: String,
+    type: Number,
     require: true,
     unique: true,
   },
