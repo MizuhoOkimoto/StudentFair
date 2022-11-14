@@ -7,6 +7,20 @@ import axios from 'axios';
 // import Button from "../components/Button";
 import Button from '../components/Button';
 
+import buyCategoryImg from '../img/home_pic/buy_category_img.avif';
+import sellCategoryImg from '../img/home_pic/sell_category_img.avif';
+import mainBannerImg from '../img/home_pic/main_banner_img.avif';
+
+import latestPostImg1 from '../img/post_pic/mac-book.avif';
+import latestPostImg2 from '../img/post_pic/note-nook.avif';
+import latestPostImg3 from '../img/post_pic/graphic-card.avif';
+import latestPostImg4 from '../img/post_pic/iphone-phone.avif';
+
+import categoryImg1 from '../img/home_pic/category-computer.avif';
+import categoryImg2 from '../img/home_pic/category-textbook.avif';
+import categoryImg3 from '../img/home_pic/category-labmaterials.avif';
+import categoryImg4 from '../img/home_pic/category-electronics.avif';
+
 const Items = styled.div`
   width: ${(props) => {
     if (props.width) {
@@ -31,7 +45,7 @@ const MainImgContainer = styled.div`
   padding: 0;
   background-size: cover;
   background-position: center;
-  background-image: url('https://images.unsplash.com/photo-1571867424488-4565932edb41?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80');
+  background-image: url('${mainBannerImg}');
 `;
 
 const MainParagraph = styled.div`
@@ -73,13 +87,13 @@ function Home(prop) {
         <Link className="nav-link" to="/">
           <Card className="category-card">
             <h3>Buy</h3>
-            <Items url="https://images.unsplash.com/photo-1586250300376-bee39fc56013?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"></Items>
+            <Items url={buyCategoryImg}></Items>
           </Card>
         </Link>
         <Link className="nav-link" to="/">
           <Card className="category-card">
             <h3>Sell</h3>
-            <Items url="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"></Items>
+            <Items url={sellCategoryImg}></Items>
           </Card>
         </Link>
       </MainParagraph>
@@ -89,10 +103,7 @@ function Home(prop) {
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
               <h3>MacBook Air M2 Chip</h3>
-              <Items
-                width="20vw"
-                url="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-              ></Items>
+              <Items width="20vw" url={latestPostImg1}></Items>
               <p className="lead">Open Box</p>
               <Button color="packages">View More</Button>
             </Card>
@@ -100,10 +111,7 @@ function Home(prop) {
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
               <h3>Milk and Honey</h3>
-              <Items
-                width="20vw"
-                url="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-              ></Items>
+              <Items width="20vw" url={latestPostImg2}></Items>
               <p className="lead">Only 25cad A+ quality</p>
               <Button color="packages">View More</Button>
             </Card>
@@ -111,10 +119,7 @@ function Home(prop) {
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
               <h3>RTX 3060</h3>
-              <Items
-                width="20vw"
-                url="https://images.unsplash.com/photo-1587134160474-cd3c9a60a34a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-              ></Items>
+              <Items width="20vw" url={latestPostImg3}></Items>
               <p className="lead">No mining used for gaming</p>
               <Button color="packages">View More</Button>
             </Card>
@@ -122,10 +127,7 @@ function Home(prop) {
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
               <h3>iPhone 11</h3>
-              <Items
-                width="20vw"
-                url="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-              ></Items>
+              <Items width="20vw" url={latestPostImg4}></Items>
               <p className="lead">AAA state no crack damage</p>
               <Button color="packages">View More</Button>
             </Card>
@@ -138,10 +140,7 @@ function Home(prop) {
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
               <h3>Computer Accessories</h3>
-              <Items
-                width="20vw"
-                url="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-              ></Items>
+              <Items width="20vw" url={categoryImg1}></Items>
               {/* <p className="lead">Open Box</p> */}
               <br />
               <Button color="gray">View More</Button>
@@ -150,10 +149,7 @@ function Home(prop) {
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
               <h3>Textbook</h3>
-              <Items
-                width="20vw"
-                url="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-              ></Items>
+              <Items width="20vw" url={categoryImg2}></Items>
               {/* <p className="lead">Only 25cad A+ quality</p> */}
               <br />
               <Button color="gray">View More</Button>
@@ -162,10 +158,7 @@ function Home(prop) {
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
               <h3>Lab Materials</h3>
-              <Items
-                width="20vw"
-                url="https://images.unsplash.com/photo-1587134160474-cd3c9a60a34a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-              ></Items>
+              <Items width="20vw" url={categoryImg3}></Items>
               {/* <p className="lead">No mining used for gaming</p> */}
               <br />
               <Button color="gray">View More</Button>
@@ -174,10 +167,7 @@ function Home(prop) {
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
               <h3>Electronics </h3>
-              <Items
-                width="20vw"
-                url="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-              ></Items>
+              <Items width="20vw" url={categoryImg4}></Items>
               {/* <p className="lead">AAA state no crack damage</p> */}
               <br />
               <Button color="gray">View More</Button>

@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import '../components/css/Item-Detail.css';
+import mainImg1 from '../img/post_pic/mac-book.avif';
+import subImg1 from '../img/post_pic/mac-book2.webp';
+import subImg2 from '../img/post_pic/mac-book3.webp';
 
 const clickedReport = () => {
   window.location = '/report';
@@ -26,19 +29,10 @@ const ItemDetail = () => {
         </div>
         <div className="detail-body">
           <div className="detail-images">
-            <img
-              className="main-image"
-              src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-            />
+            <img className="main-image" src={mainImg1} alt="main-product-img" />
             <div className="detail-sub-images">
-              <img
-                className="sub-image"
-                src="https://kjca.images.icas.io/api/v1/f72ed6af/images/9b/9b2ca975-ebd3-4b06-abf0-618d9e3dd2f4?rule=kijijica-640-webp"
-              ></img>
-              <img
-                className="sub-image"
-                src="https://kjca.images.icas.io/api/v1/f72ed6af/images/cb/cbcee4e8-b1e0-4453-ab79-5f2c09f39188?rule=kijijica-640-webp"
-              ></img>
+              <img className="sub-image" src={subImg1} alt="sub-product-img1"></img>
+              <img className="sub-image" src={subImg2} alt="sub-product-img2"></img>
               <div className="sub-image see-more-images">More images+</div>
             </div>
           </div>
@@ -79,7 +73,7 @@ const ItemDetail = () => {
           <Button onClick={clickedReport} className="detail-report-button" color="red">
             Report
           </Button>
-          <Link className="btn-link" to="/allList">
+          <Link className="btn-link" to="/lists">
             <Button className="btn" color="gray">
               Back to the List
             </Button>

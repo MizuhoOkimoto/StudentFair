@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import List from '../components/ItemList';
 import '../components/css/Item-List.css';
+import mainImg from '../img/post_pic/mac-book.avif';
 
 const AllList = (prop) => {
   const [list, setList] = useState([]);
@@ -93,11 +94,7 @@ const AllList = (prop) => {
 
             {list.map((e) => (
               <List key={e._id}>
-                <img
-                  className="list-image"
-                  src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                  alt="list-img"
-                />
+                <img className="list-image" src={mainImg} alt="list-img" />
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
                   <div className="list-desc postTitle">

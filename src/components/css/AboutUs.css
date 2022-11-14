@@ -1,6 +1,6 @@
 .aboutus-container {
-    position: relative;
-    /* text-align: center; */
+  position: relative;
+  /* text-align: center; */
 }
 /* .about-us_title {
     font-size: 5rem;
@@ -17,54 +17,55 @@
   } */
 
 .main_image {
-    margin-top: 20px;
-    background-image: url(../../img/AboutUs.png);
-    width: 38%;
+  margin-top: 20px;
+  background-image: url(../../img/AboutUs.png);
+  width: 38%;
 }
 
 .contents {
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-top: 20px;
-    margin-bottom: 50px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 0 40px 0 40px;
 }
 
-.getintouch{
-    background-color: rgba(245, 245, 245, 0.76);
-    padding: 30px 30px;
-    margin-left: 10px;
+.getintouch {
+  background-color: rgba(245, 245, 245, 0.76);
+  padding: 30px 30px;
+  margin-left: 10px;
 }
 .contact_title {
-    color: rgb(75, 73, 73);
-    font-size: 2.8rem;
-    font-weight: 700;
+  color: rgb(75, 73, 73);
+  font-size: 2.8rem;
+  font-weight: 700;
 }
 .contact_content {
-    color: rgb(75, 73, 73);
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 20px;
+  color: rgb(75, 73, 73);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 20px;
 }
-.contact_btn{
-    background-color:gray;
-    color:whitesmoke;
-    border: 2px solid gray;
+.contact_btn {
+  background-color: gray;
+  color: whitesmoke;
+  border: 2px solid gray;
 }
 .team {
-    background-color: rgba(245, 245, 245, 0.76);
-    padding: 30px 30px;
-    margin-right: 10px;
+  background-color: rgba(245, 245, 245, 0.76);
+  padding: 30px 30px;
+  margin-right: 10px;
 }
 .team_titile {
-    color: rgb(75, 73, 73);
-    font-size: 2.8rem;
-    font-weight: 700;
+  color: rgb(75, 73, 73);
+  font-size: 2.8rem;
+  font-weight: 700;
 }
 .team_content {
-    color: rgb(75, 73, 73);
-    font-size: 1.5rem;
-    font-weight: 500;
+  color: rgb(75, 73, 73);
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 .about_buttom {
-    margin: 60px 10px 70px 10px;
+  margin: 60px 10px 70px 10px;
 }
