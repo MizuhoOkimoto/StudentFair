@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
 
-function AdminPosts({isAdmin}) {
+function AdminPosts({ isAdmin }) {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -28,25 +28,29 @@ function AdminPosts({isAdmin}) {
   }, [loading]);
 
   const clickToDelete = async (postNum) => {
-
     if (window.confirm('Are you sure to delete the post?') === true) {
-      const res= await axios.delete(`http://localhost:8080/posts/deletePost/${postNum}`);
+      const res = await axios.delete(`http://localhost:8080/posts/deletePost/${postNum}`);
       console.log(res);
-        alert('The post is deleted');
-        setLoading(true);
-    
-      } else {
-        alert('You canceled delete the post!');
-      }
-    };
-
-    const clickToFilter = async (userData)=> {
-      // Response the data(object) and see the 'data' attribute
-      const response = await axios.get(`http://localhost:8080/posts/getUserPosts/${userData}`);
-      console.log(response.data);
-      setPosts(response.data);
+      alert('The post is deleted');
+      setLoading(true);
+    } else {
+      alert('You canceled delete the post!');
     }
+  };
 
+  const clickToFilter = async (userData) => {
+    console.log(userData);
+    // Response the data(object) and see the 'data' attribute
+    const response = await axios.get(`http://localhost:8080/posts/getUserPosts/${userData}`);
+    console.log(response.data);
+    setPosts(response.data);
+  };
+
+  const clickToUnfilter = async () => {
+    const response = await axios.get(`http://localhost:8080/posts`);
+    console.log(response.data);
+    setPosts(response.data);
+  };
 
   if (posts) {
     return (
@@ -78,17 +82,26 @@ function AdminPosts({isAdmin}) {
               {posts.map((data) => (
                 <tr key={data._id}>
                   <td>{data.post_number}</td>
-                  <td onClick={()=>clickToFilter((data.user_id))}> {data.user_id}</td>
+                  <td onClick={() => clickToFilter(data.user_id)}> {data.user_id}</td>
                   <td>{data.post_category}</td>
                   <td>{data.price}</td>
                   <td>{data.create_date}</td>
-                  <td className="deleteUser" style={{ color: 'blue' }} onClick={()=>clickToDelete((data.post_number))}>
+                  <td
+                    className="deleteUser"
+                    style={{ color: 'blue' }}
+                    onClick={() => clickToDelete(data.post_number)}
+                  >
                     delete
                   </td>
                 </tr>
               ))}
             </tbody>
           </Table>
+        </div>
+        <div className="back_btn">
+          <Link style={{ color: 'blue' }} onClick={() => clickToUnfilter()}>
+            Back to the all list
+          </Link>
         </div>
       </div>
     );

@@ -43,3 +43,9 @@
 .deleteUser:hover {
   transform: translateY(-0.65px);
 }
+
+.back_btn {
+  font-size: 1rem;
+  text-decoration: underline;
+  color: blue;
+}

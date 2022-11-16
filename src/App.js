@@ -29,7 +29,6 @@ import UploadProfilePic from './pages/UploadProfileImg';
 
 import { useEffect, useState } from 'react';
 
-
 function App() {
   let tempData;
   const [loginUser, setLoginUser] = useState([]);
@@ -37,6 +36,9 @@ function App() {
   const [isPostEmpty, seIsPostEmpty] = useState(true);
   const session = window.sessionStorage;
   const post_session = window.sessionStorage;
+
+  // Don't remove: Mizuho is using this console to find an issue
+  //console.log(loginUser.isAdmin);
 
   useEffect(() => {
     if (session) {
@@ -48,7 +50,7 @@ function App() {
         phone: session.getItem('phone'),
         city: session.getItem('city'),
         isLogin: session.getItem('isLogin'),
-        isAdmin: session.getItem('isAdmin')
+        isAdmin: session.getItem('isAdmin'),
       });
     }
   }, []);
@@ -74,7 +76,7 @@ function App() {
     session.setItem('phone', data.phone);
     session.setItem('city', data.city);
     session.setItem('isLogin', true);
-    session.setItem('isAdmin', data.role === 'admin'? true : false)
+    session.setItem('isAdmin', data.role === 'admin' ? true : false);
   }
   function updatePassword(data) {
     session.setItem('password', data.newPassword);
@@ -104,9 +106,9 @@ function App() {
 
       <Routes>
         <Route exact path="/" element={<Home setPostList={setPostList} />} />
-        <Route exact path="/admin" element={<Admin isAdmin={loginUser.role} />} />
-        <Route exact path="/adminPosts" element={<AdminPosts isAdmin={loginUser.role} />} />
-        <Route exact path="/adminReports" element={<AdminReports isAdmin={loginUser.role} />} />
+        <Route exact path="/admin" element={<Admin isAdmin={loginUser} />} />
+        <Route exact path="/adminPosts" element={<AdminPosts isAdmin={loginUser.isAdmin} />} />
+        <Route exact path="/adminReports" element={<AdminReports isAdmin={loginUser.isAdmin} />} />
         <Route exact path="/aboutUs" element={<AboutUs />} />
 
         <Route
@@ -144,7 +146,7 @@ function App() {
           path="/deleteAccount"
           element={<Delete usermail={prepToDelete} clear={ResetSession} />}
         />
-        <Route exact path="/itemDetail" element={<ItemDetail userData={loginUser}/>} />
+        <Route exact path="/itemDetail" element={<ItemDetail userData={loginUser} />} />
         <Route exact path="/report" element={<Report userData={loginUser} />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />

@@ -4,18 +4,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
 
-function Admin({isAdmin}) {
+function Admin({ isAdmin }) {
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
-  console.log(isAdmin, "ISADMIN")
+
   useEffect(() => {
-    // if(!isAdmin){
-    //   console.log(isAdmin, "This user is not admin")
-    //   navigate('/login');
-    //   return;
-    // }
+    console.log(isAdmin, 'ISADMIN');
+    console.log(isAdmin.isAdmin, 'this is admin');
+    if (isAdmin.isAdmin == 'false' || !isAdmin) {
+      console.log(isAdmin, 'This user is not admin');
+      navigate('/login');
+      return;
+    }
     axios
       .get('http://localhost:8080/users')
       .then((res) => {
@@ -30,17 +31,16 @@ function Admin({isAdmin}) {
   }, [loading]);
 
   const clickToDelete = (email) => {
-
-  if (window.confirm('Are you sure to delete your account?') === true) {
-    const inputData = {
-      email: email,
-    };
-    console.log(inputData);
-    axios.post('http://localhost:8080/users/delete', inputData).then((res) => {
-      console.log(res.data);
-      alert('Your account is safely deleted.');
-      setLoading(true);
-  });
+    if (window.confirm('Are you sure to delete your account?') === true) {
+      const inputData = {
+        email: email,
+      };
+      console.log(inputData);
+      axios.post('http://localhost:8080/users/delete', inputData).then((res) => {
+        console.log(res.data);
+        alert('Your account is safely deleted.');
+        setLoading(true);
+      });
     } else {
       alert('You canceled delete your account!');
     }
@@ -80,7 +80,11 @@ function Admin({isAdmin}) {
                   <td>{data.lname}</td>
                   <td>{data.phone}</td>
                   <td>{data.city}</td>
-                  <td className="deleteUser" style={{ color: 'blue' }} onClick={() => clickToDelete((data.email))}>
+                  <td
+                    className="deleteUser"
+                    style={{ color: 'blue' }}
+                    onClick={() => clickToDelete(data.email)}
+                  >
                     delete
                   </td>
                 </tr>
