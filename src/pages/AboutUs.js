@@ -6,10 +6,6 @@ import main_pic from '../img/AboutUs.png';
 function AboutUs(prop) {
   return (
     <div className="aboutus-container">
-      {/* <div className="about-us_title">
-          About Us
-        </div>
-        <img className="main_image" src={main_pic} alt="main Img"></img> */}
       <img className="main_image" src={main_pic} alt="main Img"></img>
       <div className="contents">
         StudentFair is Canada's main online marketplace for focusing on school supplies and class

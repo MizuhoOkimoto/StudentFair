@@ -26,6 +26,7 @@ import Report from './pages/Report';
 import CustomerService from './pages/CustomerService';
 import CreatePost from './pages/CreatePost';
 import UploadProfilePic from './pages/UploadProfileImg';
+import NotFound from './pages/NotFound';
 
 import { useEffect, useState } from 'react';
 
@@ -106,6 +107,7 @@ function App() {
 
       <Routes>
         <Route exact path="/" element={<Home setPostList={setPostList} />} />
+        <Route path="*" element={<NotFound />} />
         <Route exact path="/admin" element={<Admin isAdmin={loginUser} />} />
         <Route exact path="/adminPosts" element={<AdminPosts isAdmin={loginUser.isAdmin} />} />
         <Route exact path="/adminReports" element={<AdminReports isAdmin={loginUser.isAdmin} />} />
