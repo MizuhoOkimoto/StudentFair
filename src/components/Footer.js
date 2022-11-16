@@ -28,9 +28,7 @@ const Footer = () => {
             <section className="footer-info-left">
               <section className="footer-info__title">StudentFair</section>
               <Link to="/aboutUs">
-              <section className="footer-info__contents">
-                About Us
-              </section>
+                <section className="footer-info__contents">About Us</section>
               </Link>
               <section className="footer-info__contents">
                 <a href="https://github.com/MizuhoOkimoto/StudentFair" target="blank">

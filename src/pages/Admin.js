@@ -12,7 +12,7 @@ function Admin({ isAdmin }) {
   useEffect(() => {
     console.log(isAdmin, 'ISADMIN');
     console.log(isAdmin.isAdmin, 'this is admin');
-    if (isAdmin.isAdmin == 'false' || !isAdmin) {
+    if (isAdmin.isAdmin === 'false' || !isAdmin) {
       console.log(isAdmin, 'This user is not admin');
       navigate('/login');
       return;
