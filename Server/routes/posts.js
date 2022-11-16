@@ -151,7 +151,6 @@ router.get('/getPostByLastest', (req, res) => {
 // detail page
 router.get('/detail/:post_number', (req, res) => {
   const post_number = req.params.post_number;
-
   Post.findOne({ post_number: post_number }).then((result) => {
     res.send(result);
   });
@@ -159,7 +158,6 @@ router.get('/detail/:post_number', (req, res) => {
 
 router.post('/detail/contact/:post_number', (req, res) => {
   const post_number = req.params.post_number;
-
   const { to, from, desc } = req.body;
   console.log(post_number);
   console.log(to);
@@ -199,7 +197,7 @@ router.route('/getBuyPost').get((req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-// Using it in the AdminPosts Page
+// Please do not remove/modify: Using it in the AdminPosts Page
 router.get('/getUserPosts/:email', (req, res) => {
   const email = req.params.email;
   Post.find({
@@ -207,6 +205,7 @@ router.get('/getUserPosts/:email', (req, res) => {
   })
     .then((data) => {
       res.send(data);
+      console.log(data);
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 });

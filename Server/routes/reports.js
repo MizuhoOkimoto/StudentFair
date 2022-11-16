@@ -25,6 +25,19 @@ router.route('/detail/:report_number').get((req, res) => {
   });
 });
 
+// Please do not remove/modify: Using it in the AdminPosts Page
+router.get('/getUserReports/:email', (req, res) => {
+  const email = req.params.email;
+  console.log(email);
+  Report.find({
+    user_id: email,
+  })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
+
 router.route('/create_report').post((req, res) => {
   const { email, category, title, description, date } = req.body;
 

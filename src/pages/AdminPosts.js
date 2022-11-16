@@ -52,6 +52,14 @@ function AdminPosts({ isAdmin }) {
     setPosts(response.data);
   };
 
+  const clickToViewDetails = async (postNum) => {
+    console.log(postNum);
+    const response = await axios.get(`http://localhost:8080/posts/detail/${postNum}`);
+    console.log(response);
+    //TODO: it should be itemdetail page
+    navigate(`/lists`);
+  };
+
   if (posts) {
     return (
       <div className="admin-container">
@@ -81,7 +89,12 @@ function AdminPosts({ isAdmin }) {
             <tbody>
               {posts.map((data) => (
                 <tr key={data._id}>
-                  <td>{data.post_number}</td>
+                  <td
+                    onClick={() => clickToViewDetails(data.post_number)}
+                    style={{ color: 'blue', textDecoration: 'underline' }}
+                  >
+                    {data.post_number}
+                  </td>
                   <td onClick={() => clickToFilter(data.user_id)}> {data.user_id}</td>
                   <td>{data.post_category}</td>
                   <td>{data.price}</td>
@@ -100,7 +113,7 @@ function AdminPosts({ isAdmin }) {
         </div>
         <div className="back_btn">
           <Link style={{ color: 'blue' }} onClick={() => clickToUnfilter()}>
-            Back to the all list
+            View all posts
           </Link>
         </div>
       </div>
