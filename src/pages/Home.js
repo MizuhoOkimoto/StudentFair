@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Card from '../components/ItemBox';
 
 import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+
 // import Button from "../components/Button";
 import Button from '../components/Button';
 
@@ -20,6 +22,8 @@ import categoryImg1 from '../img/home_pic/category-computer.avif';
 import categoryImg2 from '../img/home_pic/category-textbook.avif';
 import categoryImg3 from '../img/home_pic/category-labmaterials.avif';
 import categoryImg4 from '../img/home_pic/category-electronics.avif';
+
+
 
 const Items = styled.div`
   width: ${(props) => {
@@ -76,10 +80,25 @@ const SubItemBoxes = styled.div`
 `;
 
 function Home(prop) {
-  axios.get('http://localhost:8080/posts').then((res) => {
-    prop.setPostList(res.data);
-  });
+  const [recent, setRecent] = useState();
+  const [last, setLast] = useState(0);
+  useEffect(() =>{
+    if(recent === undefined || recent.length === 0){
+    axios.get('http://localhost:8080/posts').then((res) => {
+      //prop.setPostList(res);
+      console.log(res.data);
+      setRecent(res.data);
+      let index = res.data.length;
+      console.log(index);
+      setLast(index - 1);
+      
+    });
+  }
+  },[recent]);
+  
 
+  console.log(recent);
+  console.log(last);
   return (
     <div>
       <MainImgContainer />
@@ -97,43 +116,55 @@ function Home(prop) {
           </Card>
         </Link>
       </MainParagraph>
-      <SubParagraph color="antiquewhite">
+      {
+        recent !== undefined ?
+        <SubParagraph color="antiquewhite">
         <h1>New Post</h1>
         <SubItemBoxes>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
-              <h3>MacBook Air M2 Chip</h3>
+              <h3>{recent[last].post_title}</h3>
               <Items width="20vw" url={latestPostImg1}></Items>
-              <p className="lead">Open Box</p>
+              <p className="lead">
+                [{recent[last].post_field}] Price: $ {recent[last].price}
+              
+                
+              </p>
               <Button color="packages">View More</Button>
             </Card>
           </Link>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
-              <h3>Milk and Honey</h3>
+              <h3>{recent[last - 1].post_title}</h3>
               <Items width="20vw" url={latestPostImg2}></Items>
-              <p className="lead">Only 25cad A+ quality</p>
+              <p className="lead">
+              [{recent[last - 1].post_field}] Price: $ {recent[last - 1].price}
+              </p>
               <Button color="packages">View More</Button>
             </Card>
           </Link>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
-              <h3>RTX 3060</h3>
+            <h3>{recent[last - 2].post_title}</h3>
               <Items width="20vw" url={latestPostImg3}></Items>
-              <p className="lead">No mining used for gaming</p>
+              <p className="lead">[{recent[last - 2].post_field}] Price: $ {recent[last - 2].price}</p>
               <Button color="packages">View More</Button>
             </Card>
           </Link>
           <Link className="nav-link" to="/">
             <Card padding="15px" className="category-card">
-              <h3>iPhone 11</h3>
+            <h3>{recent[last - 3].post_title}</h3>
               <Items width="20vw" url={latestPostImg4}></Items>
-              <p className="lead">AAA state no crack damage</p>
+              <p className="lead">[{recent[last - 3].post_field}] Price: $ {recent[last - 3].price}</p>
               <Button color="packages">View More</Button>
             </Card>
           </Link>
         </SubItemBoxes>
       </SubParagraph>
+        : ""
+      }
+
+      
       <SubParagraph color="white">
         <h1>Category</h1>
         <SubItemBoxes>

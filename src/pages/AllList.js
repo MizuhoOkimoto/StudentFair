@@ -60,6 +60,7 @@ const AllList = (prop) => {
     window.location = '/createPost';
   };
 
+
   return (
     <div>
       {console.log(list)}
@@ -83,7 +84,7 @@ const AllList = (prop) => {
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
                   <div className="list-desc postTitle">
-                    <Link className="nav-link" to="/itemdetail">
+                    <Link className="nav-link" to={"/list/post/detail/" + e.post_number}>
                       {e.post_title}
                     </Link>
                   </div>

@@ -95,6 +95,19 @@ const Admin = {
   pwd:    process.env.DB_CONFIG_PWD
 }; 
 
+router.get('/getSellInfo/:email', (req, res) =>{
+  const email = req.params.email;
+  User.findOne({email: email}).then(
+    (user) =>{
+      console.log(user)
+      res.send(user);
+    }
+  ).catch((err) =>{
+    console.log(err);
+    res.send(false)
+  });
+});
+
 // POST Upload profile Pic
 router.post('/upload_userPic/:email', upload.single('photo'), (req,res) => {
   const email = req.params.email;
@@ -307,9 +320,7 @@ router.route('/forgot-account').post((req, res) => {
 router.route('/forgot-password').post((req, res) => {
   const email = req.body.email;
   const tempPassword = 'temp' + Math.floor(Math.random() * (9999 - 1000 + 1000));
-  const sgMail = require('@sendgrid/mail');
-  sgMail.setApiKey('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');
-
+  
   bcrypt.genSalt(10).then((salt) => {
     bcrypt
       .hash(tempPassword, salt)

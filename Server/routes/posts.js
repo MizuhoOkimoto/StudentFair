@@ -138,19 +138,11 @@ router.post('/create_post', (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-router.get('/getPostByLastest', (req, res) => {
-  Post.find()
-    .then((data) => {
-      postListFromDB = data;
-    })
-    .catch((err) => res.status(400).json('Error: ' + err));
-  let PostByLastest = [];
-  PostByLastest = Post.getPostByLastest(postListFromDB);
-  res.send(PostByLastest);
-});
+
 // detail page
 router.get('/detail/:post_number', (req, res) => {
   const post_number = req.params.post_number;
+  console.log(post_number);
   Post.findOne({ post_number: post_number }).then((result) => {
     res.send(result);
   });
@@ -236,6 +228,8 @@ router.get('/getSellPost', (req, res) => {
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 });
+
+
 
 router.get('/', (req, res) => {
   Post.find()

@@ -122,7 +122,7 @@ function App() {
         <Route exact path="/lists/buy" element={<BuyList flag={loginUser.isLogin} />} />
         <Route exact path="/lists/sell" element={<SellList flag={loginUser.isLogin} />} />
         <Route 
-          path="/list/post/detail/:postNum" 
+          path="/list/post/detail/:post" 
           element={<ItemDetail userData={loginUser} />} 
         />
         

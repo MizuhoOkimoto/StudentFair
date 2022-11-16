@@ -169,26 +169,17 @@ module.exports.getPostByCategory = (data, category) => {
   return postByCategory;
 };
 module.exports.getPostByLastest = function (data) {
-  // for(var i = data.length - 1, j = 0; i <= 0 && j < 4; i--, j++){
-  //   PostByLastest.push(data[i]);
-  // }
-  let PostByLastest = [];
-  let i = 0;
-  let postListFromDB = [];
-  post
-    .find()
-    .then((data) => {
-      postListFromDB = data;
-    })
-    .catch((err) => res.status(400).json('Error: ' + err));
-  let j = postListFromDB.length - 1;
-
-  while (i < 4) {
-    PostByLastest[i] = postListFromDB[j];
-    i++;
-    j--;
+  if(data.length < 4){
+    return data;
   }
-  return PostByLastest;
+  else{
+    let index = data.length - 1;
+    let post = [];
+    for(index; (index - 4) < index; index--){
+      post.push(data[index]);
+    }
+    return post;
+  }
 };
 module.exports.getPostByUser = (data, user) => {
   var postByUser = [];

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
@@ -17,14 +17,43 @@ const clickedReport = () => {
 };
 
 const ItemDetail = (prop) => {
-  const { params } = prop;
-  console.log(params);
+  const {post} = useParams();
+
+  const [curPost, setCurPost] = useState();
+  const [sell, setSell] = useState();
+  const url = 'http://localhost:8080/posts/detail/' + post
+  console.log(post);
+  
+  useEffect(()=>{
+    if(curPost === undefined || curPost.length == 0)
+    axios.get(url).then((res) =>{
+      console.log(res.data)
+      setCurPost(res.data);
+    })
+  },[curPost]);
+  console.log(curPost)
+  useEffect(()=>{
+    if(curPost != undefined){
+      
+      const sellUrl = 'http://localhost:8080/users/getSellInfo/' + curPost.user_id
+
+  
+        if(sell === undefined || sell.length == 0)
+        axios.get(sellUrl).then((res) =>{
+          console.log(res.data)
+          setSell(res.data);
+        })
+      
+    }
+  
+  },[]);
+    console.log(sell)
   
   const onSubmitHandler = (e) =>{
     e.preventDefault();
     const inputData = {
       to: '',
-      //from: prop.userData.email,
+      from: prop.userData.email,
       desc: e.target.contactSeller.value,
     };
     const postNum = 1;
@@ -38,13 +67,16 @@ const ItemDetail = (prop) => {
   
   return (
     <div className="item-detail-container">
+      { 
+      curPost !== undefined ?
       <div className="item-detail-box">
+        
         <div className="detail-header">
-          <div className="detail-title">MacBook Air M2 Chip</div>
-          <div className="detail-price">$ 1445</div>
+          <div className="detail-title">{curPost.post_title}</div>
+          <div className="detail-price">$ {curPost.price}</div>
           <div className="detail-address">
-            <div className="address-label">Address:</div>
-            <div className="address-value">180 - Fairview Mall Dr</div>
+            <div className="address-label">Location:</div>
+            <div className="address-value">{curPost.location}</div>
           </div>
         </div>
         <div className="detail-body">
@@ -59,16 +91,25 @@ const ItemDetail = (prop) => {
           <div className="detail-desc">
             <div className="desc-title">Description</div>
             <div className="desc-content">
-              OPEN EVERYDAY FROM 10AM TILL 8PM CANADIAN OUTLET 644 DANFORTH AVENUE PAPE & DANFORTH
-              TORONTO, ON M4K 1R3 647 786 4344 (MAIN NUMBER) 416 792 4545
+              {curPost.description}
             </div>
           </div>
-
-          <div className="contact-seller">
+          {
+            (prop.userData.email !== '') ?
+            <div className="contact-seller">
             <form className="user-form sign-up contact-seller" action="/" method="POST" onSubmit={onSubmitHandler}>
               <div className="title">
                 <div className="form-title">
                   <p>Contact to Seller</p>
+                </div>
+                <div>
+                  <p>
+                    Name: {(sell !== undefined) ? (sell.fname + ' ' + sell.lname) : "" }
+                    <br/> 
+                    Email: {(sell !== undefined) ? (sell.email) : "" }
+                    <br/>
+                    Phone: {(sell !== undefined) ? (sell.phone) : "" }
+                  </p>
                 </div>
                 <i className="fas fa-times"></i>
               </div>
@@ -88,6 +129,10 @@ const ItemDetail = (prop) => {
               </div>
             </form>
           </div>
+            :
+            ""
+          }
+          
         </div>
         <div className="detail-footer">
           <Button onClick={clickedReport} className="detail-report-button" color="red">
@@ -100,6 +145,10 @@ const ItemDetail = (prop) => {
           </Link>
         </div>
       </div>
+      :
+      ""
+    }
+      
     </div>
   );
 };
