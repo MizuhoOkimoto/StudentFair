@@ -382,7 +382,7 @@ router.route('/rest-password').post((req, res) => {
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.send(true);
-  res.redirect('/')
+
   curUser = null;
 });
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import { Link } from 'react-router-dom';
 
@@ -15,7 +16,26 @@ const clickedReport = () => {
   window.location = '/report';
 };
 
-const ItemDetail = () => {
+const ItemDetail = (prop) => {
+  const { params } = prop;
+  console.log(params);
+  
+  const onSubmitHandler = (e) =>{
+    e.preventDefault();
+    const inputData = {
+      to: '',
+      //from: prop.userData.email,
+      desc: e.target.contactSeller.value,
+    };
+    const postNum = 1;
+    const url = 'http://localhost:8080/posts/detail/contact/' + postNum;
+
+    axios.post(url, inputData).then((result) => {
+      console.log(result);
+    });
+  };
+   
+  
   return (
     <div className="item-detail-container">
       <div className="item-detail-box">
@@ -45,7 +65,7 @@ const ItemDetail = () => {
           </div>
 
           <div className="contact-seller">
-            <form className="user-form sign-up contact-seller" action="/" method="POST">
+            <form className="user-form sign-up contact-seller" action="/" method="POST" onSubmit={onSubmitHandler}>
               <div className="title">
                 <div className="form-title">
                   <p>Contact to Seller</p>

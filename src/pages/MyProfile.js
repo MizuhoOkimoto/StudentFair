@@ -28,22 +28,32 @@ const clickToDelete = () => {
   }
 };
 
-const SetMyPost = (e) =>{
-  
-  
- 
-  
-}
-
 
 function MyProfile(prop){
-  const [userPost, setUserPost] = useState(null);
-  const [lastIndex, setLastIndex] = useState(null);
-  const inputRef = useRef();
-  axios.get(`http://localhost:8080/posts/getUserPost/${prop.userData.email}`).then((res) =>{
-    SetMyPost(res.data);
-  });
   
+  
+  const [userPost, setUserPost] = useState();
+  
+  useEffect(() => {
+    if(userPost === undefined || userPost.length === 0){
+      axios.get(`http://localhost:8080/posts/getLastUserPost/${prop.userData.email}`).then((res) =>{
+        setUserPost(res.data)
+      });
+     
+    }
+  }, [userPost]);
+  
+  console.log(userPost);
+
+  const deletePostHandler = () => {
+    console.log(userPost);
+    const url = 'http://localhost:8080/posts/delete/' + userPost.post_number;
+    axios.post(url).then( (res) =>{
+      console.log(res.data);
+    });
+    window.location = '/MyProfile'
+  };
+ 
   
   return (
     <div className="myProfile-container">
@@ -95,33 +105,39 @@ function MyProfile(prop){
               <div className="value">{prop.userData.city}</div>
             </div>
           </div>
-          <div className="profile-history-container">
-            <p>Your Latest Post</p>
-            <div className="post-item-card">
-              <img
-                className="item-image"
-                src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                alt="product"
-              />
-              <div className="item-desc-container">
-                <div className="item-title">Mac Book Air M2 Chips</div>
-                <div className="item-price">$ 2000</div>
+
+          {
+            userPost !== undefined ?
+            <div className="profile-history-container">
+         
+              <p>Your Latest Post</p>
+              <div className="post-item-card">
+                <img
+                  className="item-image"
+                  src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  alt="product"
+                />
+                <div className="item-desc-container">
+                  <div className="item-title">{userPost.post_title}</div>
+                  <div className="item-price">$ {userPost.price}</div>
+                </div>
+                <div className="btns">
+                  <Button className="button" color="gray">
+                    Edit Post
+                  </Button>
+                  <Button className="button" color="#c94c4c" onClick={deletePostHandler}>
+                    Delete Post
+                  </Button>
+                </div>
               </div>
-              <div className="btns">
-                <Button className="button" color="gray">
-                  Edit Post
-                </Button>
-                <Button className="button" color="#c94c4c">
-                  Delete Post
+              <div className="seeMoreBtn">
+                <Button className="button" color="gray" onClick={clickedSeeMoreBtn}>
+                  See More...
                 </Button>
               </div>
             </div>
-            <div className="seeMoreBtn">
-              <Button className="button" color="gray" onClick={clickedSeeMoreBtn}>
-                See More...
-              </Button>
-            </div>
-          </div>
+            : ''
+          }  
         </div>
       </div>
     </div>

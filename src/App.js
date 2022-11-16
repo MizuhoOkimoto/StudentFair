@@ -121,6 +121,11 @@ function App() {
 
         <Route exact path="/lists/buy" element={<BuyList flag={loginUser.isLogin} />} />
         <Route exact path="/lists/sell" element={<SellList flag={loginUser.isLogin} />} />
+        <Route 
+          path="/list/post/detail/:postNum" 
+          element={<ItemDetail userData={loginUser} />} 
+        />
+        
         <Route exact path="/logIn" element={<LogIn setUser={setUser} />} />
         <Route exact path="/logOut" element={<LogOut userOut={userOut} />} />
         <Route exact path="/signUp" element={<SignUp />} />
@@ -148,7 +153,7 @@ function App() {
           path="/deleteAccount"
           element={<Delete usermail={prepToDelete} clear={ResetSession} />}
         />
-        <Route exact path="/itemDetail" element={<ItemDetail userData={loginUser} />} />
+        
         <Route exact path="/report" element={<Report userData={loginUser} />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />

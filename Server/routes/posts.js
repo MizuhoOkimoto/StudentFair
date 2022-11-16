@@ -11,23 +11,23 @@ const transporter = NodeEmailer.createTransport({
   auth: { user: 'demian824@gmail.com', pass: process.env.EMAIL_KEY },
 });
 
-// Send Temp Password to User
-const deliveryMessage = async (toAddress, fromAddress, name, post, desc) => {
+
+const deliveryMessage = async (from, name, result, desc) => {
   const mailOptions = {
-    to: toAddress,
+    to: result[0].user_id,
     subject: 'You Get a Meessage about your ',
     html: `
           Hello, ${name}. 
-          You have got a message from ${fromAddress} <br>
+          You have got a message from ${from} <br>
           <br>
-          User - ${fromAddress} - is interested about your post
+          User - ${from} - is interested about your post
           <br>
           Post Info
-          - ${post.post_number}
-          - ${post.post_title}
+          - Post Number: ${result[0].post_number}
+          - Post Title: ${result[0].post_title}
           <br><br>
-          Message
-          ${desc}
+          Message:
+          - ${desc}
           <br>
           <br>
           sincerely<br>
@@ -37,10 +37,10 @@ const deliveryMessage = async (toAddress, fromAddress, name, post, desc) => {
           Mizuho Okimoto          <br>
           Jun Song                <br>
           WonChul Choi            <br>
-          Tasin Rahman            <br>
           Copyright © Winter 2022, All rights reserved | PRJ666 Team 9<br>
           `,
   };
+  console.log(mailOptions);
   await transporter.sendMail(mailOptions);
 };
 
@@ -159,10 +159,7 @@ router.get('/detail/:post_number', (req, res) => {
 router.post('/detail/contact/:post_number', (req, res) => {
   const post_number = req.params.post_number;
   const { to, from, desc } = req.body;
-  console.log(post_number);
-  console.log(to);
-  console.log(from);
-  console.log(desc);
+ 
   User.find({
     email: to,
   })
@@ -173,7 +170,9 @@ router.post('/detail/contact/:post_number', (req, res) => {
         post_number: post_number,
       })
         .then((result) => {
-          deliveryMessage(to, from, name, result, desc);
+          console.log(result);
+          deliveryMessage(from, name, result, desc);
+
         })
         .catch((err) => console.log(err));
     })
@@ -181,7 +180,8 @@ router.post('/detail/contact/:post_number', (req, res) => {
 });
 
 router.post('/delete/:postid', (req, res) => {
-  const { post_id } = req.params.postid;
+  const post_id  = req.params.postid;
+  console.log(post_id);
   Post.deleteOne({ post_number: post_id })
     .then(() => {
       res.send(true);
@@ -205,7 +205,26 @@ router.get('/getUserPosts/:email', (req, res) => {
   })
     .then((data) => {
       res.send(data);
+
+    })
+    .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+router.get('/getLastUserPost/:email', (req, res) => {
+  const email = req.params.email;
+  Post.find({
+    user_id: email,
+  })
+    .then((data) => {
       console.log(data);
+      let lastIndex =  data.length;
+      if(lastIndex > 0){
+        res.send(data[lastIndex - 1])
+      }
+      else if (lastIndex == 0){
+        res.send(data[0])
+      }
+      
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 });

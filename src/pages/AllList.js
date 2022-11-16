@@ -24,7 +24,7 @@ const AllList = (prop) => {
     }, 1700);
   }, []);
 
-  let menu;
+
   useEffect(() => {
     console.log('Component mounts');
 
@@ -34,24 +34,9 @@ const AllList = (prop) => {
         .then((res) => {
           console.log(res);
           let { data } = res;
-          let tempData = [];
 
-          // for (let i = listNum - 1; i < listNum * 5; i++) {
-          //   tempData.push(data[i]);
-          // }
+          setList(data.reverse());
 
-          // for (let i = data.length - 1; i >= 0; i++) {
-          //   let temp = null;
-          //   console.log(data[i]);
-          //   if (data[i].create_date > data[i - 1].create_date) {
-          //     temp = data[i - 1];
-          //     data[i - 1] = data[i];
-          //     data[i] = temp;
-          //   }
-          // }
-          console.log(data);
-          setList(data);
-          // console.log(list);
         })
         .catch((err) => {
           console.log(err);
