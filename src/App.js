@@ -28,6 +28,7 @@ import CustomerService from './pages/CustomerService';
 import CreatePost from './pages/CreatePost';
 import UploadProfilePic from './pages/UploadProfileImg';
 import NotFound from './pages/NotFound';
+import ReportNonLogin from './pages/ReportNonLogin';
 
 import { useEffect, useState } from 'react';
 
@@ -161,6 +162,7 @@ function App() {
         />
 
         <Route exact path="/report" element={<Report userData={loginUser} flag={loginUser.isLogin}/>} />
+        <Route exact path="/report_login" element={<ReportNonLogin />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />
       </Routes>

@@ -2,9 +2,6 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-// This is for waring message
-//import {Alert} from 'react-bootstrap';
-
 function Report(prop) {
   const create_date = new Date();
   const navigate = useNavigate();
@@ -34,29 +31,8 @@ function Report(prop) {
     }, []);
   };
 
- 
+  if(prop.flag === 'true'){
   return (
-
-    // Display waring message:
-    // <div>
-    //         {prop.flag === 'false' ? (
-    //           <div className="waring">
-    //             <Alert variant="danger">
-    //   <Alert.Heading>Hey, nice to see you</Alert.Heading>
-    //   <p>
-    //     Aww yeah, you successfully read this important alert message. This
-    //     example text is going to run a bit longer so that you can see how
-    //     spacing within an alert works with this kind of content.
-    //   </p>
-    //   <hr />
-    //   <p className="mb-0">
-    //     Whenever you need to, be sure to use margin utilities to keep things
-    //     nice and tidy.
-    //   </p>
-    // </Alert>
-    //           </div>
-    //         ) : (
-
     <div className="signUp-container">
       <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
         <div className="title">
@@ -113,10 +89,14 @@ function Report(prop) {
         </div>
       </form>
     </div>
-   
-  )
-    // }
-    // </div>
-};
+    
+  );
+  }  else {
+    return(
+      navigate('/report_login')
+    );
+
+  }
+}
 
 export default Report;
