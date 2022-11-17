@@ -7,6 +7,7 @@ import axios from 'axios';
 function AdminReports({ isAdmin }) {
   const [reports, setReports] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [review, setReviewed] = useState(false);
 
   // State variable to keep track of all the expanded rows
   // By default, nothing expanded. Hence initialized with empty array.
@@ -67,6 +68,10 @@ function AdminReports({ isAdmin }) {
     setExpandedRows(newExpandedRows);
   };
 
+  const clickReviewed = async () => {
+    review(true);
+  };
+
   if (reports) {
     return (
       <div className="admin-container">
@@ -90,7 +95,9 @@ function AdminReports({ isAdmin }) {
                 <th>Category</th>
                 <th>title</th>
                 <th>Description</th>
-                <th>Manage</th>
+                <th>Expand</th>
+                {/* TODO */}
+                {/* <th>Manage</th> */}
               </tr>
             </thead>
             <tbody>
@@ -115,6 +122,8 @@ function AdminReports({ isAdmin }) {
                         {expandState[data.report_number] ? 'Hide' : 'Show'}
                       </Button>
                     </td>
+                    {/* TODO
+                    <td onClick={() => clickReviewed()}><input type="checkbox" />Reviewed</td> */}
                   </tr>
                   <>
                     {expandedRows.includes(data.report_number) ? (
