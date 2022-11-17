@@ -8,82 +8,67 @@ import { Link } from 'react-router-dom';
 // import Button from "../components/Button";
 import Button from '../components/Button';
 
-
-
 const CreatePost = (prop) => {
   const create_date = new Date();
   const userInfo = prop.userData;
 
-
-  const [file,setFile] =useState(null);
-  const [postNum,setPostNum] =useState(null);
+  const [file, setFile] = useState(null);
+  const [postNum, setPostNum] = useState(null);
   const onInputChange = (e) => {
-    setFile(e.target.files)
-
-    
-  }
+    setFile(e.target.files);
+  };
 
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.
     e.preventDefault();
-    console.log(file)
+    console.log(file);
 
-    
     const newpost = {
       email: userInfo.email,
-      field: e.target.type_post.value, 
-      title: e.target.title.value, 
-      category: e.target.category.value, 
-      desc: e.target.itemDetail.value, 
-      con: e.target.item_condition.value, 
+      field: e.target.type_post.value,
+      title: e.target.title.value,
+      category: e.target.category.value,
+      desc: e.target.itemDetail.value,
+      con: e.target.item_condition.value,
       price: e.target.item_price.value,
-
     };
-  
+
     console.log(newpost);
-  
+
     // Send the user data to the backend
-  
-  
+
     axios.post('http://localhost:8080/posts/create_post', newpost).then((res) => {
       console.log(res.data);
       setPostNum(res.data.post_number);
       uploadPhoto(res.data.post_number);
-     
     });
-  
+
     // Render to the log in page
     //window.location = '/LogIn';
     const formData = new FormData();
-    
-    for( var i = 0; i< file.length; i++ ){
+
+    for (var i = 0; i < file.length; i++) {
       formData.append('photo', file[i]);
-      console.log(i)
+      console.log(i);
     }
-    
-    
-    const config ={
-      headers:{
+
+    const config = {
+      headers: {
         'content-type': 'multipart/form-data',
-      }
-    }
-    const uploadPhoto = (postNum) =>{
-      let address = 'http://localhost:8080/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
-    axios.post(address, formData, config).then((res) =>{
-      console.log(res.data)
-      if (res.data != false) {
-        alert('Your post is successfully created!');
-        window.location = '/lists';
-      }
-    })
-    }
-    
-
-     
-  
+      },
+    };
+    const uploadPhoto = (postNum) => {
+      let address =
+        'http://localhost:8080/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
+      axios.post(address, formData, config).then((res) => {
+        console.log(res.data);
+        if (res.data != false) {
+          alert('Your post is successfully created!');
+          window.location = '/lists';
+        }
+      });
+    };
   };
-  
-
 
   return (
     <div className="signUp-container">
@@ -132,17 +117,39 @@ const CreatePost = (prop) => {
               <option>C</option>
             </select>
           </div>
+        </div>
+        <div className="input-container">
           Item Price
           <input type="text" name="item_price" id="item_price" placeholder="Price" />
           Item Location
-          <input type="text" name="location" id="location" placeholder="Location" />
+          <label htmlFor="location"></label>
+          <select aria-label="pick_location" id="location">
+            <option>Toronto</option>
+            <option>Niagara</option>
+            <option>Kingston</option>
+            <option>Vancouver</option>
+            <option>Montreal</option>
+          </select>
         </div>
         <div className="input-container">
-          <input type="text" name="category" id="category" placeholder="Category" />
+          Category
+          <select aria-label="pick_category" id="category">
+            <option>Computer Accessories</option>
+            <option>Textbook</option>
+            <option>Lab Materials</option>
+            <option>Electronics</option>
+          </select>
         </div>
 
         <div class="input-container file-container">
-          <input type="file" class="form-control-file" name="photo" id="photo" multiple="multiple" onChange={onInputChange} />
+          <input
+            type="file"
+            class="form-control-file"
+            name="photo"
+            id="photo"
+            multiple="multiple"
+            onChange={onInputChange}
+          />
           <span id="filename">Click here to upload your pics</span>
         </div>
 

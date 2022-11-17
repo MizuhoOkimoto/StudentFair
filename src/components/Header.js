@@ -101,16 +101,18 @@ function Header(prop) {
               placeholder="What item you looking for?"
             />
           </div>
-          {/* <div className="input-container">
-            <label htmlFor="location">Location</label>
-            <select aria-label="pick_location" id="location">
-              <option value="Toronto">Toronto</option>
-              <option value="Niagara">Niagara</option>
-              <option value="Kingston">Kingston</option>
-              <option value="Vancouver">Vancouver</option>
-              <option value="Montreal">Montreal</option>
-            </select>
-          </div> */}
+          <div className="input-container">
+            <div className="typeOfService">
+              <label htmlFor="location"></label>
+              <select aria-label="pick_location" id="buyOrSell">
+                <option>Toronto</option>
+                <option>Niagara</option>
+                <option>Kingston</option>
+                <option>Vancouver</option>
+                <option>Montreal</option>
+              </select>
+            </div>
+          </div>
           <div className="input-container">
             <div className="typeOfService">
               <label htmlFor="buyOrSell"></label>
