@@ -108,7 +108,7 @@ const ItemDetail = (prop) => {
                   >
                     <div className="title">
                       <div className="form-title">
-                        <p>Contact to Seller</p>
+                        <p>Contact to {sell !== undefined ? sell.fname + ' ' + sell.lname : ''}</p>
                       </div>
                       <div>
                         <p>
@@ -153,7 +153,7 @@ const ItemDetail = (prop) => {
             )}
           </div>
           <div className="detail-footer">
-            <Link className="btn-link" to="/AllUserPost">
+            <Link className="btn-link" to="/lists">
               <Button className="btn" color="gray">
                 Back to the List
               </Button>
