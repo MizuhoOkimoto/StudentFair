@@ -68,6 +68,10 @@ const ItemDetail = (prop) => {
     });
   };
 
+  const clickedSeeMoreBtn = () => {
+    window.location = '/allUserPost';
+  };
+
   return (
     <div className="item-detail-container">
       {curPost !== undefined ? (
@@ -95,49 +99,61 @@ const ItemDetail = (prop) => {
             </div>
             {prop.userData.email !== '' ? (
               <div className="contact-seller">
-                <form
-                  className="user-form sign-up contact-seller"
-                  action="/"
-                  method="POST"
-                  onSubmit={onSubmitHandler}
-                >
-                  <div className="title">
-                    <div className="form-title">
-                      <p>Contact to Seller</p>
+                <div className="contact-form">
+                  <form
+                    className="user-form sign-up contact-seller"
+                    action="/"
+                    method="POST"
+                    onSubmit={onSubmitHandler}
+                  >
+                    <div className="title">
+                      <div className="form-title">
+                        <p>Contact to Seller</p>
+                      </div>
+                      <div>
+                        <p>
+                          Name: {sell !== undefined ? sell.fname + ' ' + sell.lname : ''}
+                          <br />
+                          Email: {sell !== undefined ? sell.email : ''}
+                          <br />
+                          Phone: {sell !== undefined ? sell.phone : ''}
+                        </p>
+                      </div>
+                      <i className="fas fa-times"></i>
                     </div>
-                    <div>
-                      <p>
-                        Name: {sell !== undefined ? sell.fname + ' ' + sell.lname : ''}
-                        <br />
-                        Email: {sell !== undefined ? sell.email : ''}
-                        <br />
-                        Phone: {sell !== undefined ? sell.phone : ''}
-                      </p>
+                    <div className="border" />
+                    <textarea
+                      className="report-text-area"
+                      type="text"
+                      name="contactSeller"
+                      id="contactSeller"
+                      placeholder="Type your message"
+                      maxLength="1000"
+                      cols="88"
+                      rows="3"
+                    />
+                    <div className="input-container sign-up item-detail-submit-btn">
+                      <input type="submit" name="submit" id="submitSignUp" value="Send message" />
                     </div>
-                    <i className="fas fa-times"></i>
-                  </div>
-                  <div className="border" />
-                  <textarea
-                    className="report-text-area"
-                    type="text"
-                    name="contactSeller"
-                    id="contactSeller"
-                    placeholder="Type your message"
-                    maxLength="1000"
-                    cols="88"
-                    rows="3"
-                  />
-                  <div className="input-container sign-up">
-                    <input type="submit" name="submit" id="submitSignUp" value="Send message" />
-                  </div>
-                </form>
+                  </form>
+                </div>
+                <div className="post-contact">
+                  <div>{sell !== undefined ? sell.fname + ' ' + sell.lname : ''}</div>
+                  <div>Phone: {sell !== undefined ? sell.phone : ''}</div>
+                  <div>Location: {sell !== undefined ? sell.city : ''}</div>
+                  <div>Rate: {}</div>
+
+                  <Button className="button" color="gray" onClick={clickedSeeMoreBtn}>
+                    View other item from the user
+                  </Button>
+                </div>
               </div>
             ) : (
               ''
             )}
           </div>
           <div className="detail-footer">
-            <Link className="btn-link" to="/lists">
+            <Link className="btn-link" to="/AllUserPost">
               <Button className="btn" color="gray">
                 Back to the List
               </Button>
