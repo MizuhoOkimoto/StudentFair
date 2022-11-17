@@ -16,7 +16,7 @@ const onClickChangePasswordEvent = () => {
   window.location = '/update_password';
 };
 const clickedSeeMoreBtn = () => {
-  window.location = '/allUserPost';
+  window.location = '/myProfile/post/history';
 };
 
 const clickToDelete = () => {

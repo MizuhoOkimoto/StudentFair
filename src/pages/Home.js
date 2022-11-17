@@ -121,42 +121,39 @@ function Home(prop) {
         <SubParagraph color="antiquewhite">
         <h1>New Post</h1>
         <SubItemBoxes>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to={"/list/post/detail/" + recent[last].post_number}>
             <Card padding="15px" className="category-card">
               <h3>{recent[last].post_title}</h3>
               <Items width="20vw" url={latestPostImg1}></Items>
               <p className="lead">
-                [{recent[last].post_field}] Price: $ {recent[last].price}
-              
-                
+                [{recent[last].post_field}] Price: $ {recent[last].price}              
               </p>
-              <Button color="packages">View More</Button>
             </Card>
           </Link>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to={"/list/post/detail/" + recent[last - 1].post_number}>
             <Card padding="15px" className="category-card">
               <h3>{recent[last - 1].post_title}</h3>
               <Items width="20vw" url={latestPostImg2}></Items>
               <p className="lead">
               [{recent[last - 1].post_field}] Price: $ {recent[last - 1].price}
               </p>
-              <Button color="packages">View More</Button>
+
             </Card>
           </Link>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to={"/list/post/detail/" + recent[last - 2].post_number}>
             <Card padding="15px" className="category-card">
             <h3>{recent[last - 2].post_title}</h3>
               <Items width="20vw" url={latestPostImg3}></Items>
               <p className="lead">[{recent[last - 2].post_field}] Price: $ {recent[last - 2].price}</p>
-              <Button color="packages">View More</Button>
+
             </Card>
           </Link>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to={"/list/post/detail/" + recent[last - 3].post_number}>
             <Card padding="15px" className="category-card">
             <h3>{recent[last - 3].post_title}</h3>
               <Items width="20vw" url={latestPostImg4}></Items>
               <p className="lead">[{recent[last - 3].post_field}] Price: $ {recent[last - 3].price}</p>
-              <Button color="packages">View More</Button>
+
             </Card>
           </Link>
         </SubItemBoxes>

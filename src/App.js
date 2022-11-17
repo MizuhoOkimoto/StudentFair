@@ -12,6 +12,7 @@ import LogIn from './pages/LogIn';
 import LogOut from './pages/LogOut';
 import SignUp from './pages/SignUp';
 import MyProfile from './pages/MyProfile';
+import MyPostHistory from './pages/myPostList';
 import ItemDetail from './pages/ItemDetail';
 import FindId from './pages/FindId';
 import FindPw from './pages/FindPw';
@@ -116,11 +117,11 @@ function App() {
         <Route
           exact
           path="/lists"
-          element={<AllList flag={loginUser.isLogin} post_list={post_list} />}
+          element={<AllList userData={loginUser} post_list={post_list} />}
         />
 
-        <Route exact path="/lists/buy" element={<BuyList flag={loginUser.isLogin} />} />
-        <Route exact path="/lists/sell" element={<SellList flag={loginUser.isLogin} />} />
+        <Route exact path="/lists/buy" element={<BuyList userData={loginUser} />} />
+        <Route exact path="/lists/sell" element={<SellList userData={loginUser} />} />
         <Route 
           path="/list/post/detail/:post" 
           element={<ItemDetail userData={loginUser} />} 
@@ -137,7 +138,11 @@ function App() {
           path="/myProfile/upload_picture"
           element={<UploadProfilePic userData={loginUser} />}
         />
-
+        <Route
+          exact
+          path="/myProfile/post/history"
+          element={<MyPostHistory userData={loginUser} post_list={post_list} />}
+        />
         <Route
           exact
           path="/editProfile"
