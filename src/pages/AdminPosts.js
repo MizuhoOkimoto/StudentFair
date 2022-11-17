@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
+import Moment from 'react-moment';
 
 function AdminPosts({ isAdmin }) {
   const [posts, setPosts] = useState(null);
@@ -56,10 +57,9 @@ function AdminPosts({ isAdmin }) {
     console.log(postNum);
     const response = await axios.get(`http://localhost:8080/posts/detail/${postNum}`);
     console.log(response);
-    //TODO: it should be itemdetail page
     navigate(`/list/post/detail/${postNum}`);
   };
-
+  const dateToFormat = '1976-04-19';
   if (posts) {
     return (
       <div className="admin-container">
@@ -95,10 +95,19 @@ function AdminPosts({ isAdmin }) {
                   >
                     {data.post_number}
                   </td>
-                  <td onClick={() => clickToFilter(data.user_id)}> {data.user_id}</td>
+                  <td
+                    onClick={() => clickToFilter(data.user_id)}
+                    style={{ textDecoration: 'underline' }}
+                  >
+                    {' '}
+                    {data.user_id}
+                  </td>
                   <td>{data.post_category}</td>
-                  <td>{data.price}</td>
-                  <td>{data.create_date}</td>
+                  <td>${data.price}</td>
+
+                  <td>
+                    <Moment format="YYYY/MM/DD">{data.create_date}</Moment>
+                  </td>
                   <td
                     className="deleteUser"
                     style={{ color: 'blue' }}
