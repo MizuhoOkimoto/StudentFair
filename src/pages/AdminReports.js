@@ -7,6 +7,14 @@ import axios from 'axios';
 function AdminReports({ isAdmin }) {
   const [reports, setReports] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [review, setReviewed] = useState(false);
+
+  // State variable to keep track of all the expanded rows
+  // By default, nothing expanded. Hence initialized with empty array.
+  const [expandedRows, setExpandedRows] = useState([]);
+  // State variable to keep track which row is currently expanded.
+  const [expandState, setExpandState] = useState({});
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +49,29 @@ function AdminReports({ isAdmin }) {
     setReports(response.data);
   };
 
+  /**
+   * This function gets called when show/hide link is clicked.
+   */
+  const handleEpandRow = (event, reportNum) => {
+    const currentExpandedRows = expandedRows;
+    const isRowExpanded = currentExpandedRows.includes(reportNum);
+
+    let obj = {};
+    isRowExpanded ? (obj[reportNum] = false) : (obj[reportNum] = true);
+    setExpandState(obj);
+
+    // If the row is expanded, we are here to hide it. Hence remove
+    // it from the state variable. Otherwise add to it.
+    const newExpandedRows = isRowExpanded
+      ? currentExpandedRows.filter((id) => id !== reportNum)
+      : currentExpandedRows.concat(reportNum);
+    setExpandedRows(newExpandedRows);
+  };
+
+  const clickReviewed = async () => {
+    review(true);
+  };
+
   if (reports) {
     return (
       <div className="admin-container">
@@ -64,17 +95,51 @@ function AdminReports({ isAdmin }) {
                 <th>Category</th>
                 <th>title</th>
                 <th>Description</th>
+                <th>Expand</th>
+                {/* TODO */}
+                {/* <th>Manage</th> */}
               </tr>
             </thead>
             <tbody>
               {reports.map((data) => (
-                <tr key={data._id}>
-                  <td>{data.report_number}</td>
-                  <td onClick={() => clickToFilter(data.user_id)}>{data.user_id}</td>
-                  <td>{data.category}</td>
-                  <td>{data.title}</td>
-                  <td>{data.description}</td>
-                </tr>
+                <>
+                  <tr key={data.report_number}>
+                    <td>{data.report_number}</td>
+                    <td onClick={() => clickToFilter(data.user_id)}>{data.user_id}</td>
+                    <td>{data.category}</td>
+                    <td>{data.title}</td>
+                    <td className="desc">
+                      {data.description.length > 60
+                        ? `${data.description.substring(0, 60)}...`
+                        : data.description}
+                    </td>
+                    <td>
+                      <Button
+                        variant="link"
+                        onClick={(event) => handleEpandRow(event, data.report_number)}
+                        className="report_manage_btn"
+                      >
+                        {expandState[data.report_number] ? 'Hide' : 'Show'}
+                      </Button>
+                    </td>
+                    {/* TODO
+                    <td onClick={() => clickReviewed()}><input type="checkbox" />Reviewed</td> */}
+                  </tr>
+                  <>
+                    {expandedRows.includes(data.report_number) ? (
+                      <tr key={data.report_number}>
+                        <td colSpan="6">
+                          <div
+                          // style={{ backgroundColor: '#343A40', color: '#FFF', padding: '10px' }}
+                          >
+                            <p className="desc_title"> Description </p>
+                            <p>{data.description}</p>
+                          </div>
+                        </td>
+                      </tr>
+                    ) : null}
+                  </>
+                </>
               ))}
             </tbody>
           </Table>

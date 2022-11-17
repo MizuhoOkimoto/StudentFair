@@ -81,6 +81,29 @@
 }
 .contact-seller {
   padding-top: 15px;
+  display: flex;
+}
+
+.contact-form {
+  width: 50%;
+  border: 1px solid gray;
+  margin: 5px;
+  padding: 5px;
+}
+.contact-form > form {
+  flex-direction: column;
+  width: 100%;
+}
+
+.post-contact {
+  width: 100%;
+  border: 1px solid gray;
+  margin: 5px;
+  padding: 5px;
+}
+
+.item-detail-submit-btn {
+  width: 100%;
 }
 
 .btn {

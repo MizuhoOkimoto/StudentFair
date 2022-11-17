@@ -49,3 +49,12 @@
   text-decoration: underline;
   color: blue;
 }
+
+.report_manage_btn {
+  margin: 0px;
+}
+
+.desc_title {
+  margin-bottom: 2px;
+  font-weight: 700;
+}

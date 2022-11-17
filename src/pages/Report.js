@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import { Link } from 'react-router-dom';
-
-// import Button from "../components/Button";
-import Button from '../components/Button';
-//import { create } from '../../Server/module/report_schema';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Report(prop) {
   const create_date = new Date();
+  const navigate = useNavigate();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -36,6 +31,7 @@ function Report(prop) {
     }, []);
   };
 
+  if(prop.flag === 'true'){
   return (
     <div className="signUp-container">
       <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
@@ -63,6 +59,18 @@ function Report(prop) {
           </span>
         </div>
         <div className="input-container">
+          Category
+          <select aria-label="pick_category" id="category">
+            <option>Please select Category</option>
+            <option>Rude or vulgar</option>
+            <option>Harassment or hate speech</option>
+            <option>Spam orCopyright issue</option>
+            <option>Inappropriate post</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div className="input-container">
           <input type="text" name="reportTitle" id="reportTitle" placeholder="Report Title" />
         </div>
         <textarea
@@ -81,7 +89,14 @@ function Report(prop) {
         </div>
       </form>
     </div>
+    
   );
+  }  else {
+    return(
+      navigate('/report_login')
+    );
+
+  }
 }
 
 export default Report;

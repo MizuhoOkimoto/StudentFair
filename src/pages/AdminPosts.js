@@ -99,7 +99,6 @@ function AdminPosts({ isAdmin }) {
                     onClick={() => clickToFilter(data.user_id)}
                     style={{ textDecoration: 'underline' }}
                   >
-                    {' '}
                     {data.user_id}
                   </td>
                   <td>{data.post_category}</td>
