@@ -24,23 +24,24 @@ const MyPostlistPage = (prop) => {
     }, 1700);
   }, []);
 
-  const url = 'http://localhost:8080/posts/getUserPosts/' + prop.userData.email
+  const url = 'http://localhost:8080/posts/getUserPosts/' + prop.userData.email;
   useEffect(() => {
     console.log('Component mounts');
-    
+
     window.setTimeout(() => {
-      axios.get(url).then((res) => {
+      axios
+        .get(url)
+        .then((res) => {
           console.log(res);
           let { data } = res;
 
           setList(data.reverse());
-
         })
         .catch((err) => {
           console.log(err);
         });
     }, 0);
-  }, []);
+  }, [list]);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);
@@ -57,7 +58,6 @@ const MyPostlistPage = (prop) => {
   const createBtnPressed = () => {
     window.location = '/createPost';
   };
-
 
   return (
     <div>
@@ -82,7 +82,7 @@ const MyPostlistPage = (prop) => {
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
                   <div className="list-desc postTitle">
-                    <Link className="nav-link" to={"/list/post/detail/" + e.post_number}>
+                    <Link className="nav-link" to={'/list/post/detail/' + e.post_number}>
                       {e.post_title}
                     </Link>
                   </div>

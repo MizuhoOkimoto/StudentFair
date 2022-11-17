@@ -54,7 +54,6 @@ function App() {
         isAdmin: session.getItem('imgUrl'),
         isLogin: session.getItem('isLogin'),
         isAdmin: session.getItem('isAdmin'),
-        
       });
     }
   }, []);
@@ -82,9 +81,8 @@ function App() {
     session.setItem('img_url', data.img_url);
     session.setItem('isLogin', true);
     session.setItem('isAdmin', data.role === 'admin' ? true : false);
-    
   }
-  function updateProfilePic(data){
+  function updateProfilePic(data) {
     session.setItem('img_url', data.img_url);
   }
   function updatePassword(data) {
@@ -124,16 +122,21 @@ function App() {
         <Route
           exact
           path="/lists"
-          element={<AllList userData={loginUser} post_list={post_list} />}
+          element={<AllList flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />}
         />
 
-        <Route exact path="/lists/buy" element={<BuyList userData={loginUser} />} />
-        <Route exact path="/lists/sell" element={<SellList userData={loginUser} />} />
-        <Route 
-          path="/list/post/detail/:post" 
-          element={<ItemDetail userData={loginUser} />} 
+        <Route
+          exact
+          path="/lists/buy"
+          element={<BuyList flag={loginUser.isLogin} userData={loginUser} />}
         />
-        
+        <Route
+          exact
+          path="/lists/sell"
+          element={<SellList flag={loginUser.isLogin} userData={loginUser} />}
+        />
+        <Route path="/list/post/detail/:post" element={<ItemDetail userData={loginUser} />} />
+
         <Route exact path="/logIn" element={<LogIn setUser={setUser} />} />
         <Route exact path="/logOut" element={<LogOut userOut={userOut} />} />
         <Route exact path="/signUp" element={<SignUp />} />
@@ -165,7 +168,7 @@ function App() {
           path="/deleteAccount"
           element={<Delete usermail={prepToDelete} clear={ResetSession} />}
         />
-        
+
         <Route exact path="/report" element={<Report userData={loginUser} />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />
