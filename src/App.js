@@ -175,6 +175,7 @@ function App() {
           element={<Report userData={loginUser} flag={loginUser.isLogin} />}
         />
         <Route exact path="/report_login" element={<ReportNonLogin />} />
+        <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />
       </Routes>
       <Footer />

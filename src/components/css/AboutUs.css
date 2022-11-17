@@ -1,5 +1,6 @@
 .aboutus-container {
   position: relative;
+
   /* text-align: center; */
 }
 /* .about-us_title {
@@ -19,7 +20,7 @@
 .main_image {
   margin-top: 20px;
   background-image: url(../../img/AboutUs.png);
-  width: 38%;
+  width: 35%;
 }
 
 .contents {
