@@ -24,7 +24,6 @@ const SellList = (prop) => {
     }, 1700);
   }, []);
 
-
   useEffect(() => {
     console.log('Component mounts');
 
@@ -36,7 +35,6 @@ const SellList = (prop) => {
           let { data } = res;
 
           setList(data.reverse());
-
         })
         .catch((err) => {
           console.log(err);
@@ -83,7 +81,7 @@ const SellList = (prop) => {
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
                   <div className="list-desc postTitle">
-                    <Link className="nav-link" to="/itemdetail">
+                    <Link className="nav-link" to={'/list/post/detail/' + e.post_number}>
                       {e.post_title}
                     </Link>
                   </div>
