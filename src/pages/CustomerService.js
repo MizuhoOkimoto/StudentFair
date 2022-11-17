@@ -4,9 +4,6 @@ import axios from 'axios';
 import '../components/css/LogIn-Register.css';
 import { Link } from 'react-router-dom';
 
-// import Button from "../components/Button";
-import Button from '../components/Button';
-//import { create } from '../../Server/module/report_schema';
 
 function CustomerService(prop) {
   const create_date = new Date();
@@ -80,5 +77,4 @@ function CustomerService(prop) {
     </div>
   );
 }
-
 export default CustomerService;
