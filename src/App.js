@@ -160,7 +160,7 @@ function App() {
           element={<Delete usermail={prepToDelete} clear={ResetSession} />}
         />
 
-        <Route exact path="/report" element={<Report userData={loginUser} />} />
+        <Route exact path="/report" element={<Report userData={loginUser} flag={loginUser.isLogin}/>} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />
       </Routes>
