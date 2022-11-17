@@ -1,12 +1,6 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import { Link } from 'react-router-dom';
-
-// import Button from "../components/Button";
-import Button from '../components/Button';
-//import { create } from '../../Server/module/report_schema';
+import { Form } from 'react-bootstrap';
 
 function Report(prop) {
   const create_date = new Date();
@@ -62,6 +56,18 @@ function Report(prop) {
             {create_date.getFullYear()}-{create_date.getMonth() + 1}-{create_date.getDate()}
           </span>
         </div>
+        <div className="input-container">
+          Category
+          <select aria-label="pick_category" id="category">
+            <option>Please select Category</option>
+            <option>Rude or vulgar</option>
+            <option>Harassment or hate speech</option>
+            <option>Spam orCopyright issue</option>
+            <option>Inappropriate post</option>
+            <option>Other</option>
+          </select>
+        </div>
+
         <div className="input-container">
           <input type="text" name="reportTitle" id="reportTitle" placeholder="Report Title" />
         </div>
