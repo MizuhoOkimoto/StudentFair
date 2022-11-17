@@ -38,7 +38,7 @@ const EditPage = (prop) => {
     axios.post('http://localhost:8080/users/update_info', updatedData).then((res) => {
             console.log(res.data);
             prop.updateInfo(updatedData);
-            //window.location = '/MyProfile';
+            window.location = '/MyProfile';
          });
     
   };
@@ -64,7 +64,7 @@ const EditPage = (prop) => {
         <div>City</div>
         <div></div>
       </div> */}
-      <form className="user-form sign-up" action="/" enctype="multipart/form-data" method="POST" onSubmit={onSubmitHandler}>
+      <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
         <div className="title">
           <div className="form-title">
             <p>Edit Profile</p>
