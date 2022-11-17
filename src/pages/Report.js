@@ -1,6 +1,5 @@
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import { Form } from 'react-bootstrap';
 
 function Report(prop) {
   const create_date = new Date();
