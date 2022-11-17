@@ -17,13 +17,15 @@ const deliveryMessage = async (from, name, result, desc) => {
     to: result[0].user_id,
     subject: 'You Get a Meessage about your ',
     html: `
-          Hello, ${name}. 
+          Hello, ${name}. <br>
           You have got a message from ${from} <br>
           <br>
-          User - ${from} - is interested about your post
+          User <br>
+          - ${from} <br>
+          - is interested about your post
           <br>
-          Post Info
-          - Post Number: ${result[0].post_number}
+          Post Info<br>
+          - Post Number: ${result[0].post_number}<br>
           - Post Title: ${result[0].post_title}
           <br><br>
           Message:
@@ -151,19 +153,20 @@ router.get('/detail/:post_number', (req, res) => {
 router.post('/detail/contact/:post_number', (req, res) => {
   const post_number = req.params.post_number;
   const { to, from, desc } = req.body;
- 
-  User.find({
+  console.log(to);
+  User.findOne({
     email: to,
-  })
-    .then((user) => {
-      let name = user.fname + ' ' + user.lname;
-
+  }).then((user) => {
+    console.log(user)
+      const username = user.fname + ' ' + user.lname;
+      console.log(user)
+      console.log(username)
       Post.find({
         post_number: post_number,
       })
         .then((result) => {
-          console.log(result);
-          deliveryMessage(from, name, result, desc);
+
+          deliveryMessage(from, username, result, desc);
 
         })
         .catch((err) => console.log(err));

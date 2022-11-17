@@ -46,18 +46,29 @@ const ItemDetail = (prop) => {
       
     }
   
-  },[]);
-    console.log(sell)
+  },[sell]);
+  if(curPost != undefined){
+      
+    const sellUrl = 'http://localhost:8080/users/getSellInfo/' + curPost.user_id
+
+
+      if(sell === undefined || sell.length == 0)
+      axios.get(sellUrl).then((res) =>{
+        console.log(res.data)
+        setSell(res.data);
+      })
+    
+  }
+  console.log(sell)
   
   const onSubmitHandler = (e) =>{
     e.preventDefault();
     const inputData = {
-      to: '',
+      to: sell.email,
       from: prop.userData.email,
       desc: e.target.contactSeller.value,
     };
-    const postNum = 1;
-    const url = 'http://localhost:8080/posts/detail/contact/' + postNum;
+    const url = 'http://localhost:8080/posts/detail/contact/' + post;
 
     axios.post(url, inputData).then((result) => {
       console.log(result);
