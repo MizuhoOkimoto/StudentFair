@@ -57,7 +57,7 @@ function AdminPosts({ isAdmin }) {
     const response = await axios.get(`http://localhost:8080/posts/detail/${postNum}`);
     console.log(response);
     //TODO: it should be itemdetail page
-    navigate(`/lists`);
+    navigate(`/list/post/detail/${postNum}`);
   };
 
   if (posts) {
