@@ -113,27 +113,24 @@ router.post('/upload_userPic/:email', upload.single('photo'), (req,res) => {
   const email = req.params.email;
   const profileImgUrl = "profileImg/" + email+ "_profile_" + req.file.originalname;
   console.log(profileImgUrl)
+  User.updateOne(
+    { email: email },
+    {
+      $set: {
+        img_url: "profileImg/" + email+ "_profile_" + req.file.originalname
+      },
+    }
+  ).then((user) => {
+    curUser = user;
+    
+    
+    console.log(curUser)
+    res.send(true)
+  }).catch((err) => {
+      console.log(err);
+      res.send(err)
+    });
   
-  User.findOne({email: email})
-      .then((user) => {
-        User.updateOne(
-          { email: email },
-          {
-            $set: {
-              img_url: "profileImg/" + email+ "_profile_" + req.file.originalname
-            },
-          }
-        ).then((user) => {
-          curUser = user;
-          
-          
-          console.log(curUser)
-          res.send(true)
-        }).catch((err) => {
-            console.log(err);
-            res.send(err)
-          });
-      })
 })
 
 // POST - Login Page

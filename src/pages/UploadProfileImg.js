@@ -39,7 +39,8 @@ const UploadProfilePic = (prop) => {
   
     
     axios.post(uploadAddress, formData, config).then((res) => {
-            console.log("line 42" + res.data);
+            console.log("line 42");
+            console.log(res.data);
             if(res.data === true){
               prop.updateProfilePic(res.data);
               window.location ='/myProfile'
