@@ -47,9 +47,11 @@ const CreatePost = (prop) => {
     //window.location = '/LogIn';
     const formData = new FormData();
 
-    for (var i = 0; i < file.length; i++) {
-      formData.append('photo', file[i]);
-      console.log(i);
+    if (file !== null) {
+      for (var i = 0; i < file.length; i++) {
+        formData.append('photo', file[i]);
+        console.log(i);
+      }
     }
 
     const config = {
@@ -141,10 +143,10 @@ const CreatePost = (prop) => {
           </select>
         </div>
 
-        <div class="input-container file-container">
+        <div className="input-container file-container">
           <input
             type="file"
-            class="form-control-file"
+            className="form-control-file"
             name="photo"
             id="photo"
             multiple="multiple"
