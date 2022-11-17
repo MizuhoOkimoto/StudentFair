@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import AllList from './pages/AllList';
+import AllUserPost from './pages/AllUserPost.js';
 import BuyList from './pages/BuyList';
 import SellList from './pages/SellList';
 import LogIn from './pages/LogIn';
@@ -119,13 +120,18 @@ function App() {
           element={<AllList flag={loginUser.isLogin} post_list={post_list} />}
         />
 
+        <Route
+          exact
+          path="/allUserPost"
+          element={
+            <AllUserPost userData={loginUser} flag={loginUser.isLogin} post_list={post_list} />
+          }
+        />
+
         <Route exact path="/lists/buy" element={<BuyList flag={loginUser.isLogin} />} />
         <Route exact path="/lists/sell" element={<SellList flag={loginUser.isLogin} />} />
-        <Route 
-          path="/list/post/detail/:post" 
-          element={<ItemDetail userData={loginUser} />} 
-        />
-        
+        <Route path="/list/post/detail/:post" element={<ItemDetail userData={loginUser} />} />
+
         <Route exact path="/logIn" element={<LogIn setUser={setUser} />} />
         <Route exact path="/logOut" element={<LogOut userOut={userOut} />} />
         <Route exact path="/signUp" element={<SignUp />} />
@@ -153,7 +159,7 @@ function App() {
           path="/deleteAccount"
           element={<Delete usermail={prepToDelete} clear={ResetSession} />}
         />
-        
+
         <Route exact path="/report" element={<Report userData={loginUser} />} />
         <Route exact path="/customerService" element={<CustomerService userData={loginUser} />} />
         <Route exact path="/createPost" element={<CreatePost userData={loginUser} />} />
