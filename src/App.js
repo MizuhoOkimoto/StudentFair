@@ -51,8 +51,10 @@ function App() {
         password: session.getItem('password'),
         phone: session.getItem('phone'),
         city: session.getItem('city'),
+        isAdmin: session.getItem('imgUrl'),
         isLogin: session.getItem('isLogin'),
         isAdmin: session.getItem('isAdmin'),
+        
       });
     }
   }, []);
@@ -77,8 +79,13 @@ function App() {
     session.setItem('password', data.password);
     session.setItem('phone', data.phone);
     session.setItem('city', data.city);
+    session.setItem('img_url', data.img_url);
     session.setItem('isLogin', true);
     session.setItem('isAdmin', data.role === 'admin' ? true : false);
+    
+  }
+  function updateProfilePic(data){
+    session.setItem('img_url', data.img_url);
   }
   function updatePassword(data) {
     session.setItem('password', data.newPassword);
@@ -136,12 +143,12 @@ function App() {
         <Route path="/myProfile/" element={<MyProfile userData={loginUser} />} />
         <Route
           path="/myProfile/upload_picture"
-          element={<UploadProfilePic userData={loginUser} />}
+          element={<UploadProfilePic userData={loginUser} updateProfilePic={updateProfilePic} />}
         />
         <Route
           exact
           path="/myProfile/post/history"
-          element={<MyPostHistory userData={loginUser} post_list={post_list} />}
+          element={<MyPostHistory userData={loginUser} />}
         />
         <Route
           exact

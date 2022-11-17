@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
+//import path from '../img/uploads/profile_pic/'
 import { Link,  useHistory, useParams } from 'react-router-dom';
 
 // import Button from "../components/Button";
@@ -30,22 +31,32 @@ const clickToDelete = () => {
 
 
 function MyProfile(prop){
-  
-  
+  const temp = prop.userData;
+  console.log(temp.email)
   const [userPost, setUserPost] = useState();
+  const [user, setUser] = useState();
+  // useEffect(() => {
+  //   if(user === undefined || user.length === 0){
+      
+  //     axios.get(`http://localhost:8080/users/${prop.userData.email}`).then((res) =>{
+  //       setUser(res.data)
+  //     });
+  //   }
+  // }, [user]);
   
   useEffect(() => {
     if(userPost === undefined || userPost.length === 0){
-      axios.get(`http://localhost:8080/posts/getLastUserPost/${prop.userData.email}`).then((res) =>{
+      console.log(prop.userData.email)
+      axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) =>{
         setUserPost(res.data)
       });
-     
     }
   }, [userPost]);
   
   console.log(userPost);
 
   const deletePostHandler = () => {
+    
     console.log(userPost);
     const url = 'http://localhost:8080/posts/delete/' + userPost.post_number;
     axios.post(url).then( (res) =>{
@@ -60,8 +71,19 @@ function MyProfile(prop){
       <div className="myProfile-card">
         <div className="top-container">
           <div className="top-section">
-            <div className="profile-image"> <a href='/myProfile/upload_picture'>move</a></div>
+            <div className="profile-image"> 
+              
+              <img
+                  className="item-image"
+                  //src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  src={prop.userData.img_url}
+                  alt="profile"
+                />
+            </div>
+            <Link className="nav-link" to="/myProfile/upload_picture">move</Link>
+            
             <div className="my-profile-container">
+            
               <div className="my-profile">{prop.userData.fname}'s Profile</div>
               <div className="my-profile-upload">
                 
@@ -115,6 +137,7 @@ function MyProfile(prop){
                 <img
                   className="item-image"
                   src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  
                   alt="product"
                 />
                 <div className="item-desc-container">

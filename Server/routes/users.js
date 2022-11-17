@@ -17,7 +17,7 @@ const NodeEmailer = require('nodemailer');
 const multer = require('multer');
 const multerConfig = multer.diskStorage({
   destination: (req, file, callback) =>{
-    callback(null, 'uploads/profile_pic');
+    callback(null, '../public/profileImg');
   },
   filename: (req, file, callback) => {
     //const ext = file.minetype.split('/')[1];
@@ -36,8 +36,8 @@ const isImage = (req, file, callback) =>{
 const upload = multer({
   storage: multerConfig,
   fitter: isImage,
-})
-//const imgUpload = upload.single('photo');
+});
+
 
 let User = require('../module/user_schema');
 require('dotenv').config({ path: '../.env' });
@@ -111,7 +111,8 @@ router.get('/getSellInfo/:email', (req, res) =>{
 // POST Upload profile Pic
 router.post('/upload_userPic/:email', upload.single('photo'), (req,res) => {
   const email = req.params.email;
-  let profileImgUrl = `uploads/profile_pic/${email}_profile_${req.file.originalname}`;
+  const profileImgUrl = "profileImg/" + email+ "_profile_" + req.file.originalname;
+  console.log(profileImgUrl)
   
   User.findOne({email: email})
       .then((user) => {
@@ -119,11 +120,13 @@ router.post('/upload_userPic/:email', upload.single('photo'), (req,res) => {
           { email: email },
           {
             $set: {
-              img_url: profileImgUrl,
+              img_url: "profileImg/" + email+ "_profile_" + req.file.originalname
             },
           }
         ).then((user) => {
           curUser = user;
+          
+          
           console.log(curUser)
           res.send(true)
         }).catch((err) => {
@@ -215,7 +218,7 @@ router.route('/register').post((req, res) => {
   let isValid = true;
   let validData = {};
   //changed
-  const { email, fname, lname, password, phone, city, role } = req.body;
+  const { email, fname, lname, password, phone, city, img_url, role } = req.body;
 
   if (typeof fname !== 'string' || fname.length === 0) {
     validData.fName = 'Must write your first name';
@@ -255,6 +258,7 @@ router.route('/register').post((req, res) => {
       password,
       phone,
       city,
+      img_url,
       role
     });
 
@@ -415,6 +419,15 @@ router.post('/delete/:email', (req, res) =>{
       })
       .catch(err =>  console.log(`Error : ${err}`));
       curUser = null;
+})
+router.get('/:email', (req, res) =>{
+  const {email}  = req.params.email;
+  console.log( email)
+  User.find({email: email})
+      .then((data) => {
+        res.send(data);
+      })
+      .catch(err =>  console.log(`Error : ${err}`));
 })
 
 module.exports = router;

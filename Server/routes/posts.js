@@ -199,30 +199,33 @@ router.get('/getUserPosts/:email', (req, res) => {
     user_id: email,
   })
     .then((data) => {
+      console.log(data);
       res.send(data);
 
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-router.get('/getLastUserPost/:email', (req, res) => {
+router.get('/getRecent/:email', (req, res) => {
   const email = req.params.email;
+  console.log("line 210 on posts : " + email);
   Post.find({
     user_id: email,
-  })
-    .then((data) => {
-      console.log(data);
-      let lastIndex =  data.length;
+  }).then((result) => {
+      console.log("line 215" );
+      console.log( result);
+      let lastIndex =  result.length;
+      console.log(lastIndex)
       if(lastIndex > 0){
-        res.send(data[lastIndex - 1])
+        res.send(result[lastIndex - 1])
       }
       else if (lastIndex == 0){
-        res.send(data[0])
+        res.send(result[0])
       }
       
     })
     .catch((err) => res.status(400).json('Error: ' + err));
-});
+} );
 
 router.get('/getSellPost', (req, res) => {
   Post.find({ post_field: 'Sell' })

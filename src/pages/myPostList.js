@@ -24,17 +24,15 @@ const MyPostlistPage = (prop) => {
     }, 1700);
   }, []);
 
-
+  const url = 'http://localhost:8080/posts/getUserPosts/' + prop.userData.email
   useEffect(() => {
     console.log('Component mounts');
-
+    
     window.setTimeout(() => {
-      axios
-        .get(`http://localhost:8080/posts/getUserPosts/${prop.userData.email}`)
-        .then((res) => {
+      axios.get(url).then((res) => {
           console.log(res);
           let { data } = res;
-          console.log(res.data)
+
           setList(data.reverse());
 
         })
@@ -42,7 +40,7 @@ const MyPostlistPage = (prop) => {
           console.log(err);
         });
     }, 0);
-  }, [list]);
+  }, []);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);

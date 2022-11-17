@@ -39,8 +39,9 @@ const UploadProfilePic = (prop) => {
   
     
     axios.post(uploadAddress, formData, config).then((res) => {
-            console.log(res.data);
-            if(res.data == true){
+            console.log("line 42" + res.data);
+            if(res.data === true){
+              prop.updateProfilePic(res.data);
               window.location ='/myProfile'
             }
          });
@@ -60,7 +61,7 @@ const UploadProfilePic = (prop) => {
         <div className="border"></div>
         
         <div className="input-container">
-          <input type="file" class="form-control-file" name="photo" onChange={onInputChange} />
+          <input type="file" className="form-control-file" name="photo" onChange={onInputChange} />
         </div>
         <div className="input-container sign-up">
           <input type="submit" name="submit" id="submit" value="Update" />
