@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import AllList from './pages/AllList';
+import ListByCategory from './pages/ListByCategory';
 import BuyList from './pages/BuyList';
 import SellList from './pages/SellList';
 import LogIn from './pages/LogIn';
@@ -52,7 +53,7 @@ function App() {
         password: session.getItem('password'),
         phone: session.getItem('phone'),
         city: session.getItem('city'),
-        isAdmin: session.getItem('imgUrl'),
+        imgURL: session.getItem('img_url'),
         isLogin: session.getItem('isLogin'),
         isAdmin: session.getItem('isAdmin'),
       });
@@ -84,7 +85,7 @@ function App() {
     session.setItem('isAdmin', data.role === 'admin' ? true : false);
   }
   function updateProfilePic(data) {
-    session.setItem('img_url', data.img_url);
+    session.setItem('img_url', data);
   }
   function updatePassword(data) {
     session.setItem('password', data.newPassword);
@@ -125,7 +126,11 @@ function App() {
           path="/lists"
           element={<AllList flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />}
         />
-
+         <Route
+          exact
+          path="/lists/:category"
+          element={<ListByCategory flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />}
+        />
         <Route
           exact
           path="/lists/buy"

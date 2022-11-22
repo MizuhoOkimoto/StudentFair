@@ -17,7 +17,7 @@ const UploadProfilePic = (prop) => {
   let email = prop.userData.email;
   let fullname = prop.userData.fname + " " + prop.userData.lname;
   let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + email;
- 
+  console.log(prop.userData)
   const [file,setFile] =useState(null);
 
   const onInputChange = (e) => {
@@ -39,14 +39,15 @@ const UploadProfilePic = (prop) => {
   
     
     axios.post(uploadAddress, formData, config).then((res) => {
-            console.log("line 42");
-            console.log(res.data);
-            if(res.data === true){
-              prop.updateProfilePic(res.data);
-              window.location ='/myProfile'
-            }
+          console.log("line 42");
+          console.log(res.data);          
+          console.log(res)  
+          prop.updateProfilePic(res.data);
+          
+          window.location ='/myProfile'            
          });
 
+    
 
   };
 

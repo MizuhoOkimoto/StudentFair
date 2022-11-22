@@ -199,7 +199,7 @@ router.get('/getUserPosts/:email', (req, res) => {
     user_id: email,
   })
     .then((data) => {
-      console.log(data);
+   
       res.send(data);
 
     })
@@ -208,21 +208,17 @@ router.get('/getUserPosts/:email', (req, res) => {
 
 router.get('/getRecent/:email', (req, res) => {
   const email = req.params.email;
-  console.log("line 210 on posts : " + email);
+
   Post.find({
     user_id: email,
   }).then((result) => {
-      console.log("line 215" );
-      console.log( result);
       let lastIndex =  result.length;
-      console.log(lastIndex)
       if(lastIndex > 0){
         res.send(result[lastIndex - 1])
       }
       else if (lastIndex == 0){
         res.send(result[0])
       }
-      
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 } );
@@ -243,10 +239,21 @@ router.get('/', (req, res) => {
       let posts = data;
       postListFromDB = data;
       req.session.posts = posts;
-      console.log('Count of posts : ' + data.length);
       res.send(posts);
     })
     .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+router.get('/:category', (req, res) => {
+  const category = req.params.category;
+  
+  Post.find({
+    post_category: category,
+  }).then((result) => {
+      
+    res.send(result)
+
+  }).catch((err) => res.status(400).json('Error: ' + err));
 });
 
 router.route('/sample_data').get((req, res) => {

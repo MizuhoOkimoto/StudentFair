@@ -31,7 +31,7 @@ const clickToDelete = () => {
 
 function MyProfile(prop) {
   const temp = prop.userData;
-  console.log(temp.email);
+  console.log(temp);
   const [userPost, setUserPost] = useState();
   const [user, setUser] = useState();
   // useEffect(() => {
@@ -47,12 +47,13 @@ function MyProfile(prop) {
     if (userPost === undefined || userPost.length === 0) {
       console.log(prop.userData.email);
       axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
+        console.log(res.data)
         setUserPost(res.data);
       });
     }
   }, [userPost]);
 
-  console.log(userPost);
+  console.log(prop.userData);
 
   const deletePostHandler = () => {
     console.log(userPost);
@@ -72,7 +73,7 @@ function MyProfile(prop) {
               <img
                 className="item-image"
                 //src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                src={prop.userData.img_url}
+                src={"/"+prop.userData.imgURL}
                 alt="profile"
               />
             </div>
@@ -81,6 +82,7 @@ function MyProfile(prop) {
             </Link>
 
             <div className="my-profile-container">
+              
               <div className="my-profile">{prop.userData.fname}'s Profile</div>
               <div className="my-profile-upload"></div>
             </div>

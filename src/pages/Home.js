@@ -165,7 +165,7 @@ function Home(prop) {
       <SubParagraph color="white">
         <h1>Category</h1>
         <SubItemBoxes>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to={"/lists/Computer"}>
             <Card padding="15px" className="category-card">
               <h3>Computer Accessories</h3>
               <Items width="20vw" url={categoryImg1}></Items>
@@ -174,7 +174,7 @@ function Home(prop) {
               <Button color="gray">View More</Button>
             </Card>
           </Link>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to={"/lists/TextBook"}>
             <Card padding="15px" className="category-card">
               <h3>Textbook</h3>
               <Items width="20vw" url={categoryImg2}></Items>
@@ -183,7 +183,7 @@ function Home(prop) {
               <Button color="gray">View More</Button>
             </Card>
           </Link>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to={"/lists/Lab"}>
             <Card padding="15px" className="category-card">
               <h3>Lab Materials</h3>
               <Items width="20vw" url={categoryImg3}></Items>
@@ -192,7 +192,7 @@ function Home(prop) {
               <Button color="gray">View More</Button>
             </Card>
           </Link>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to={"/lists/Electronics"}>
             <Card padding="15px" className="category-card">
               <h3>Electronics </h3>
               <Items width="20vw" url={categoryImg4}></Items>

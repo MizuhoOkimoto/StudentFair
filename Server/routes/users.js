@@ -120,12 +120,9 @@ router.post('/upload_userPic/:email', upload.single('photo'), (req,res) => {
         img_url: "profileImg/" + email+ "_profile_" + req.file.originalname
       },
     }
-  ).then((user) => {
-    curUser = user;
+  ).then(() => {
     
-    
-    console.log(curUser)
-    res.send(true)
+    res.send("profileImg/" + email+ "_profile_" + req.file.originalname);
   }).catch((err) => {
       console.log(err);
       res.send(err)
