@@ -138,10 +138,16 @@ const ItemDetail = (prop) => {
                   </form>
                 </div>
                 <div className="post-contact">
-                  <div>{sell !== undefined ? sell.fname + ' ' + sell.lname : ''}</div>
-                  <div>Phone: {sell !== undefined ? sell.phone : ''}</div>
-                  <div>Location: {sell !== undefined ? sell.city : ''}</div>
-                  <div>Rate: {}</div>
+                  <div className="contact-item contact-name">
+                    Seller Name: {sell !== undefined ? sell.fname + ' ' + sell.lname : ''}
+                  </div>
+                  <div className="contact-item contact-phone">
+                    Phone: {sell !== undefined ? sell.phone : ''}
+                  </div>
+                  <div className="contact-item contact-location">
+                    Location: {sell !== undefined ? sell.city : ''}
+                  </div>
+                  <div className="contact-item contact-rate">Rate: {}</div>
 
                   <Button className="button" color="gray" onClick={clickedSeeMoreBtn}>
                     View other item from the user
