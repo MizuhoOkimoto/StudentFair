@@ -18,10 +18,12 @@ const CreatePost = (prop) => {
     setFile(e.target.files);
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     // This will prevent the default html form submit behavior from taking place.
     e.preventDefault();
     console.log(file);
+
+const posts = await axios.get(`http://localhost:8080/posts/`);
 
     const newpost = {
       email: userInfo.email,

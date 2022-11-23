@@ -6,6 +6,7 @@ const postSchema = new Schema({
     type: Number,
     require: true,
     unique: true,
+    
   },
   user_id: {
     type: String,

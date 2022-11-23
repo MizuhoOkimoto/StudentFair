@@ -12,36 +12,38 @@ import '../components/css/Item-List.css';
 import mainImg from '../img/post_pic/mac-book.avif';
 
 const MyPostlistPage = (prop) => {
+  console.log(prop, "PROOOOOOOOOP");
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [listNum, setListNum] = useState(1);
   console.log('prop : ' + prop.post_list);
   let temp = [];
   //setList(prop.post_list);
-  useEffect(() => {
-    window.setTimeout(() => {
-      setLoading(false);
-    }, 1700);
-  }, []);
+  // useEffect(() => {
+  //   window.setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1700);
+  // }, []);
 
-  const url = 'http://localhost:8080/posts/getUserPosts/' + prop.userData.email;
+  const email = prop.userData.email;
+  //const url = 'http://localhost:8080/posts/getUserPosts/' + prop.userData.email;
   useEffect(() => {
     console.log('Component mounts');
 
-    window.setTimeout(() => {
-      axios
-        .get(url)
-        .then((res) => {
-          console.log(res);
+    
+      const getData = async () => { 
+        const res = await axios
+        .get(`http://localhost:8080/posts/getUserPosts/${email}`)
+        
           let { data } = res;
 
+          console.log(res, "RESPONSE");
           setList(data.reverse());
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }, 0);
-  }, [1]);
+    
+
+      }
+      getData();
+  }, []);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);

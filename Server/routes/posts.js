@@ -114,9 +114,13 @@ router.post('/create_post', (req, res) => {
   let lastPost;
   Post.find()
     .then((data) => {
+      console.log(data)
+      if(!data.length){
+        curPostNumber = 1;
+      }else{
       lastPost = data[data.length - 1];
       curPostNumber = Number(lastPost.post_number) + 1;
-
+      }
       const newPost = new Post({
         post_number: curPostNumber,
         user_id: email,
@@ -139,6 +143,32 @@ router.post('/create_post', (req, res) => {
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 });
+
+
+  // Mizuho is using this for post edit
+  router.put('/:postNumber', (req, res) => {
+    const postNum = req.params.postNumber;
+    const { email, field, title, category, desc, con, price } = req.body;
+    curEmail = email;
+    console.log(req.body, "BODY");
+    Post.updateOne({post_number: postNum},  {post_field: field,
+      post_title : title,
+      post_category:category,
+      description: desc,
+      condition: con,
+      price: price,
+      })
+
+          .then(() => {
+           res.status(201).json({"message": "Post Updated!"});
+          })
+          .catch((err) => {
+            res.status(400).json('Error: ' + err);
+          });
+      })
+     
+
+
 
 
 // detail page
@@ -272,6 +302,7 @@ router.route('/sample_data').get((req, res) => {
       console.log('Data is already loaded');
     }
   });
+
 });
 
 module.exports = router;

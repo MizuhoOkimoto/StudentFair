@@ -61,6 +61,11 @@ function MyProfile(prop) {
     });
   };
 
+  const editPostHandler = () => {
+    navigate("/updatePost",  {state:{postNum:userPost.post_number}})
+  
+  };
+
   const clickToAdmin = () => {
    navigate("/admin")
    
@@ -150,7 +155,7 @@ function MyProfile(prop) {
                   <div className="item-price">$ {userPost.price}</div>
                 </div>
                 <div className="btns">
-                  <Button className="button" color="gray">
+                  <Button className="button" color="gray" onClick={editPostHandler}>
                     Edit Post
                   </Button>
                   <Button className="button" color="#c94c4c" onClick={deletePostHandler}>
