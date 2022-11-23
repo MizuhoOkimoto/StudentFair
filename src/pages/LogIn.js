@@ -20,13 +20,12 @@ function LogIn(prop) {
       console.log(process.env.REACT_APP_ADMIN_EMAIL, process.env.REACT_APP_ADMIN_PASS + ': This is admin');
       if(inputData.email === `${process.env.REACT_APP_ADMIN_EMAIL}` && inputData.password === `${process.env.REACT_APP_ADMIN_PASS}`) {
         prop.setUser(data);
-        console.log(data);
+        console.log(data, "HI");
         console.log('this is admin')
-        window.location = '/admin';
-        //navigate('/admin');
+        // window.location = '/admin';
+        navigate('/admin');
         console.log('does not call admin page');
         return;
-        //TODO(Mizuho): solve MyProfile page 
       }
       else if (typeof data !== 'string') {
         prop.setUser(res.data);

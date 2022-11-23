@@ -46,6 +46,7 @@ function App() {
 
   useEffect(() => {
     if (session) {
+      //console.log(session);
       setLoginUser({
         email: session.getItem('email'),
         fname: session.getItem('fname'),
@@ -82,7 +83,7 @@ function App() {
     session.setItem('city', data.city);
     session.setItem('img_url', data.img_url);
     session.setItem('isLogin', true);
-    session.setItem('isAdmin', data.role === 'admin' ? true : false);
+    session.setItem('isAdmin', data.admin);
   }
   function updateProfilePic(data) {
     session.setItem('img_url', data);
@@ -117,8 +118,8 @@ function App() {
         <Route exact path="/" element={<Home setPostList={setPostList} />} />
         <Route path="*" element={<NotFound />} />
         <Route exact path="/admin" element={<Admin isAdmin={loginUser} />} />
-        <Route exact path="/adminPosts" element={<AdminPosts isAdmin={loginUser.isAdmin} />} />
-        <Route exact path="/adminReports" element={<AdminReports isAdmin={loginUser.isAdmin} />} />
+        <Route exact path="/adminPosts" element={<AdminPosts isAdmin={loginUser} />} />
+        <Route exact path="/adminReports" element={<AdminReports isAdmin={loginUser} />} />
         <Route exact path="/aboutUs" element={<AboutUs />} />
 
         <Route

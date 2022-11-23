@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 //import path from '../img/uploads/profile_pic/'
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams, useNavigate } from 'react-router-dom';
 
 // import Button from "../components/Button";
 import Button from '../components/Button';
@@ -31,18 +31,11 @@ const clickToDelete = () => {
 
 function MyProfile(prop) {
   const temp = prop.userData;
-  console.log(temp);
+  console.log(temp, " TEMP");
   const [userPost, setUserPost] = useState();
   const [user, setUser] = useState();
-  // useEffect(() => {
-  //   if(user === undefined || user.length === 0){
 
-  //     axios.get(`http://localhost:8080/users/${prop.userData.email}`).then((res) =>{
-  //       setUser(res.data)
-  //     });
-  //   }
-  // }, [user]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (userPost === undefined || userPost.length === 0) {
       console.log(prop.userData.email);
@@ -50,10 +43,11 @@ function MyProfile(prop) {
         console.log(res.data)
         setUserPost(res.data);
       });
-    }
+   }
   }, [userPost]);
 
   console.log(prop.userData);
+  console.log(userPost);
 
   const deletePostHandler = () => {
     console.log(userPost);
@@ -61,8 +55,17 @@ function MyProfile(prop) {
     axios.post(url).then((res) => {
       console.log(res.data);
     });
-    window.location = '/MyProfile';
+    axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
+      console.log(res.data)
+      setUserPost(res.data);
+    });
   };
+
+  const clickToAdmin = () => {
+   navigate("/admin")
+   
+  };
+
 
   return (
     <div className="myProfile-container">
@@ -105,6 +108,13 @@ function MyProfile(prop) {
               <br />
               Profile
             </Button>
+
+            {(temp.isAdmin === "true" && <Button className="edit-btn" color="gray" onClick={clickToAdmin}>
+            Admin
+            <br />
+            Page
+            </Button>)}
+
             <div className="name-section name">
               <div className="label">Name</div>
               <div className="value">
@@ -125,7 +135,8 @@ function MyProfile(prop) {
             </div>
           </div>
 
-          {userPost !== undefined ? (
+          {/* NOTE: If it's true, && renders the component, if it's false, the component does not display */}
+          {userPost && (
             <div className="profile-history-container">
               <p>Your Latest Post</p>
               <div className="post-item-card">
@@ -153,8 +164,6 @@ function MyProfile(prop) {
                 </Button>
               </div>
             </div>
-          ) : (
-            ''
           )}
         </div>
       </div>

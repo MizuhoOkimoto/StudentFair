@@ -41,7 +41,7 @@ const MyPostlistPage = (prop) => {
           console.log(err);
         });
     }, 0);
-  }, [list]);
+  }, [1]);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);

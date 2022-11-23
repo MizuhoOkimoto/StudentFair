@@ -5,16 +5,16 @@ import '../components/css/Admin.css';
 import axios from 'axios';
 import Moment from 'react-moment';
 
-function AdminPosts({ isAdmin }) {
+function AdminPosts(props) {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if(!isAdmin){
-    //   navigate('/login');
-    //   return;
-    // }
+    if(!props.isAdmin){
+      navigate('/login');
+      return;
+    }
     axios
       .get('http://localhost:8080/posts')
       .then((res) => {

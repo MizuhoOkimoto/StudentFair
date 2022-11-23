@@ -4,16 +4,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
 
-function Admin({ isAdmin }) {
+function Admin(props) {
+console.log(props, "props")
+
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+console.log(localStorage.getItem("session"), "AHHHHHHHHHHHHH")
 
   useEffect(() => {
-    console.log(isAdmin, 'ISADMIN');
-    console.log(isAdmin.isAdmin, 'this is admin');
-    if (isAdmin.isAdmin === 'false' || !isAdmin) {
-      console.log(isAdmin, 'This user is not admin');
+    // console.log(isAdmin, 'ISADMIN');
+  
+    if (!props.isAdmin) {
+      // console.log(isAdmin, 'This user is not admin');
       navigate('/login');
       return;
     }

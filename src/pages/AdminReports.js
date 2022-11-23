@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../components/css/Admin.css';
 import axios from 'axios';
 
-function AdminReports({ isAdmin }) {
+function AdminReports(props) {
   const [reports, setReports] = useState(null);
   const [loading, setLoading] = useState(false);
   const [review, setReviewed] = useState(false);
@@ -18,10 +18,10 @@ function AdminReports({ isAdmin }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if(!isAdmin){
-    //   navigate('/login');
-    //   return;
-    // }
+    if(!props.isAdmin){
+      navigate('/login');
+      return;
+    }
     axios
       .get('http://localhost:8080/reports')
       .then((res) => {
