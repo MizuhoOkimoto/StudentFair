@@ -85,6 +85,7 @@ const AllList = (prop) => {
                       {e.post_title}
                     </Link>
                   </div>
+                  <div className="list-desc state">Field: {e.post_field}</div>
                   <div className="list-desc state">Condition: {e.condition}</div>
                   <div className="list-desc price">Price: ${e.price}</div>
                   <div className="list-desc seller-name">Seller: {e.user_id.split('@')[0]}</div>

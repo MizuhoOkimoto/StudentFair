@@ -31,6 +31,7 @@ import UploadProfilePic from './pages/UploadProfileImg';
 import NotFound from './pages/NotFound';
 import ReportNonLogin from './pages/ReportNonLogin';
 import EditPost from './pages/EditPost';
+import SearchList from './pages/SearchList';
 
 import { useEffect, useState } from 'react';
 
@@ -127,6 +128,13 @@ function App() {
           exact
           path="/lists"
           element={<AllList flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />}
+        />
+        <Route
+          exact
+          path="/searchResult"
+          element={
+            <SearchList flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />
+          }
         />
         <Route
           exact

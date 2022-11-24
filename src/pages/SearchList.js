@@ -11,7 +11,7 @@ import List from '../components/ItemList';
 import '../components/css/Item-List.css';
 import mainImg from '../img/post_pic/mac-book.avif';
 
-const BuyList = (prop) => {
+const SearchList = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [listNum, setListNum] = useState(1);
@@ -29,12 +29,42 @@ const BuyList = (prop) => {
 
     window.setTimeout(() => {
       axios
-        .get('http://localhost:8080/posts/getBuyPost')
+        .get('http://localhost:8080/posts')
         .then((res) => {
           console.log(res);
           let { data } = res;
 
-          setList(data.reverse());
+          let query = window.location.search;
+          let param = new URLSearchParams(query);
+          let searchValue = param.get('searchValue');
+          let location = param.get('location');
+          let typeOfService = param.get('typeOfService');
+
+          //   console.log(searchValue);
+          //   console.log(location);
+          //   console.log(typeOfService.split(' ')[0]);
+          //   console.log(data.length);
+          //   console.log(data);
+          let temp = [];
+          for (let i = 0; i < data.length; i++) {
+            if (
+              (data[i].location === location || location === 'All') &&
+              (data[i].post_field === typeOfService.split(' ')[0] ||
+                typeOfService.split(' ')[0] === 'All')
+            ) {
+              if (searchValue === '') {
+                temp.push(data[i]);
+              } else {
+                console.log(data[i].post_title.toLowerCase());
+                if (data[i].post_title.toLowerCase().includes(searchValue.toLowerCase())) {
+                  temp.push(data[i]);
+                }
+              }
+            }
+          }
+          console.log(temp);
+          setList(temp.reverse());
+          //   setList(data.reverse());
         })
         .catch((err) => {
           console.log(err);
@@ -118,4 +148,4 @@ const BuyList = (prop) => {
   );
 };
 
-export default BuyList;
+export default SearchList;

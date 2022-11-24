@@ -11,7 +11,20 @@ import './css/Header.css';
 import axios from 'axios';
 
 function Header(prop) {
-  const onClickHandler = (e) => {};
+  // const onClickHandler = (e) => {
+  //   e.preventDefault();
+  //   console.log(e);
+  //   console.log(e.target.searchValue.value);
+  //   console.log(e.target.buyOrSell.value);
+  //   console.log(e.target.typeOfService.value);
+  //   const searchData = {
+  //     searchValue: e.target.searchValue.value,
+  //     buyOrSell: e.target.buyOrSell.value,
+  //     typeOfService: e.target.typeOfService.value,
+  //   };
+
+  //   console.log(searchData);
+  // };
 
   return (
     <header>
@@ -91,7 +104,13 @@ function Header(prop) {
 
       {/* --------------- */}
       <div className="search-form-container">
-        <form action="/" id="search" className="search-form" method="get">
+        <form
+          action="/searchResult"
+          id="search"
+          className="search-form"
+          method="get"
+          // onSubmit={onClickHandler}
+        >
           <div className="input-search">
             <label htmlFor="searchValue"></label>
             <input
@@ -104,26 +123,28 @@ function Header(prop) {
           <div className="input-container">
             <div className="typeOfService">
               <label htmlFor="location"></label>
-              <select aria-label="pick_location" id="buyOrSell">
-                <option>Toronto</option>
-                <option>Niagara</option>
-                <option>Kingston</option>
-                <option>Vancouver</option>
-                <option>Montreal</option>
+              <select aria-label="pick_location" id="buyOrSell" name="location" form="search">
+                <option value={'All'}>All</option>
+                <option value={'Toronto'}>Toronto</option>
+                <option value={'Niagara'}>Niagara</option>
+                <option value={'Kingston'}>Kingston</option>
+                <option value={'Vancouver'}>Vancouver</option>
+                <option value={'Montreal'}>Montreal</option>
               </select>
             </div>
           </div>
           <div className="input-container">
             <div className="typeOfService">
               <label htmlFor="buyOrSell"></label>
-              <select aria-label="type_guest" id="buyOrSell">
-                <option>All List</option>
-                <option>Buy List</option>
-                <option>Sell List</option>
+              <select aria-label="type_guest" id="typeOfService" name="typeOfService" form="search">
+                <option value={'All List'}>All List</option>
+                <option value={'Buy List'}>Buy List</option>
+                <option value={'Sell List'}>Sell List</option>
               </select>
             </div>
           </div>
-          <button type="submit" className="submit-button" onClick={onClickHandler}>
+
+          <button type="submit" className="submit-button">
             Search
           </button>
         </form>

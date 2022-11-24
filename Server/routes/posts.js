@@ -108,7 +108,7 @@ router.post('/upload_post_pic/:postid/:email', upload.array('photo'), (req, res)
   });
 });
 router.post('/create_post', (req, res) => {
-  const { email, field, title, category, desc, con, price } = req.body;
+  const { email, field, title, category, desc, con, price, location = '' } = req.body;
   curEmail = email;
   let lastPost;
   Post.find()
@@ -129,6 +129,7 @@ router.post('/create_post', (req, res) => {
         description: desc,
         condition: con,
         price: price,
+        location: location,
       });
 
       newPost
