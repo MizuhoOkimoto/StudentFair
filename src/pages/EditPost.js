@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const UpdatePost = (prop) => {
+  const navigate = useNavigate();
   const location = useLocation();
   const number = location.state.postNum;
 
@@ -205,7 +206,14 @@ const UpdatePost = (prop) => {
           rows="7"
         />
         <div className="input-container sign-up">
-          <input type="submit" name="submitPost" id="submitPost" value="Update" />
+          <input
+            type="submit"
+            name="submitPost"
+            id="submitPost"
+            value="Update"
+            // navigate(-1) is for going back to the previous page
+            onClick={() => navigate(-1)}
+          />
         </div>
       </form>
     </div>
