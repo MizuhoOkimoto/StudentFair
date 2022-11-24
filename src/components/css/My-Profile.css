@@ -93,10 +93,21 @@
 }
 
 .item-image {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   background-position: center;
   background-size: cover;
+  border-radius: 50%;
+}
+
+.nav-link {
+  position: absolute;
+  right: 170px;
+  top: 110px;
+  background-color: ivory;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px grey;
 }
 
 .post-item-card {
