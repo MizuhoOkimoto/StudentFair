@@ -54,7 +54,7 @@ const UploadProfilePic = (prop) => {
           <input type="file" className="form-control-file" name="photo" onChange={onInputChange} />
         </div>
         <div className="input-container sign-up">
-          <input type="submit" name="submit" id="submit" value="Update" />
+          <input className="upload-btn" type="submit" name="submit" id="submit" value="Update" />
         </div>
       </form>
     </div>

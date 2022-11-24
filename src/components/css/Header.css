@@ -85,6 +85,10 @@ label {
   color: white;
 }
 
+.upload-btn {
+  border-radius: 0px;
+}
+
 input,
 select,
 .submit-button {

@@ -90,7 +90,7 @@ function MyProfile(prop) {
                 alt="profile"
               />
             </div>
-            <Link className="nav-link" to="/myProfile/upload_picture">
+            <Link className="nav-link profile-pic-upload-btn" to="/myProfile/upload_picture">
               move
             </Link>
 
