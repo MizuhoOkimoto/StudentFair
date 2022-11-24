@@ -119,7 +119,7 @@ function Home(prop) {
             <Link className="nav-link" to={'/list/post/detail/' + recent[last].post_number}>
               <Card padding="15px" className="category-card">
                 <h3>{recent[last].post_title}</h3>
-                <Items width="20vw" url={latestPostImg1}></Items>
+                <Items width="20vw" url={recent[last].img[0]}></Items>
                 <p className="lead">
                   [{recent[last].post_field}] Price: $ {recent[last].price}
                 </p>
@@ -128,7 +128,7 @@ function Home(prop) {
             <Link className="nav-link" to={'/list/post/detail/' + recent[last - 1].post_number}>
               <Card padding="15px" className="category-card">
                 <h3>{recent[last - 1].post_title}</h3>
-                <Items width="20vw" url={latestPostImg2}></Items>
+                <Items width="20vw" url={recent[last - 1].img[0]}></Items>
                 <p className="lead">
                   [{recent[last - 1].post_field}] Price: $ {recent[last - 1].price}
                 </p>
@@ -137,7 +137,7 @@ function Home(prop) {
             <Link className="nav-link" to={'/list/post/detail/' + recent[last - 2].post_number}>
               <Card padding="15px" className="category-card">
                 <h3>{recent[last - 2].post_title}</h3>
-                <Items width="20vw" url={latestPostImg3}></Items>
+                <Items width="20vw" url={recent[last - 2].img[0]}></Items>
                 <p className="lead">
                   [{recent[last - 2].post_field}] Price: $ {recent[last - 2].price}
                 </p>
@@ -146,7 +146,7 @@ function Home(prop) {
             <Link className="nav-link" to={'/list/post/detail/' + recent[last - 3].post_number}>
               <Card padding="15px" className="category-card">
                 <h3>{recent[last - 3].post_title}</h3>
-                <Items width="20vw" url={latestPostImg4}></Items>
+                <Items width="20vw" url={recent[last - 3].img[0]}></Items>
                 <p className="lead">
                   [{recent[last - 3].post_field}] Price: $ {recent[last - 3].price}
                 </p>
@@ -167,7 +167,7 @@ function Home(prop) {
               <Items width="20vw" url={categoryImg1}></Items>
               {/* <p className="lead">Open Box</p> */}
               <br />
-              <Button color="gray">View More</Button>
+              
             </Card>
           </Link>
           <Link className="nav-link" to={'/lists/TextBook'}>
@@ -176,7 +176,7 @@ function Home(prop) {
               <Items width="20vw" url={categoryImg2}></Items>
               {/* <p className="lead">Only 25cad A+ quality</p> */}
               <br />
-              <Button color="gray">View More</Button>
+           
             </Card>
           </Link>
           <Link className="nav-link" to={'/lists/Lab'}>
@@ -185,7 +185,7 @@ function Home(prop) {
               <Items width="20vw" url={categoryImg3}></Items>
               {/* <p className="lead">No mining used for gaming</p> */}
               <br />
-              <Button color="gray">View More</Button>
+            
             </Card>
           </Link>
           <Link className="nav-link" to={'/lists/Electronics'}>
@@ -194,7 +194,7 @@ function Home(prop) {
               <Items width="20vw" url={categoryImg4}></Items>
               {/* <p className="lead">AAA state no crack damage</p> */}
               <br />
-              <Button color="gray">View More</Button>
+           
             </Card>
           </Link>
         </SubItemBoxes>

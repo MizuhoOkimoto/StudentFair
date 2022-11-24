@@ -34,9 +34,10 @@ const UploadProfilePic = (prop) => {
       console.log(res.data);
       console.log(res);
       prop.updateProfilePic(res.data);
-
       window.location = '/myProfile';
+      
     });
+    
   };
 
   return (

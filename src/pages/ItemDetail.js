@@ -86,10 +86,10 @@ const ItemDetail = (prop) => {
           </div>
           <div className="detail-body">
             <div className="detail-images">
-              <img className="main-image" src={mainImg1} alt="main-product-img" />
+              <img className="main-image" src={curPost.img[0]} alt="main-product-img" />
               <div className="detail-sub-images">
-                <img className="sub-image" src={subImg1} alt="sub-product-img1"></img>
-                <img className="sub-image" src={subImg2} alt="sub-product-img2"></img>
+                <img className="sub-image" src={curPost.img[1] === undefined ? '/postImg/No_img.png' : curPost.img[1] } alt="sub-product-img1"></img>
+                <img className="sub-image" src={curPost.img[2] === undefined ? '/postImg/No_img.png' : curPost.img[2]} alt="sub-product-img2"></img>
                 <div className="sub-image see-more-images">More images+</div>
               </div>
             </div>

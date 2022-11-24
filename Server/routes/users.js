@@ -114,12 +114,12 @@ router.post('/upload_userPic/:email', upload.single('photo'), (req, res) => {
     { email: email },
     {
       $set: {
-        img_url: 'profileImg/' + email + '_profile_' + req.file.originalname,
+        img_url: '/profileImg/' + email + '_profile_' + req.file.originalname,
       },
     }
   )
     .then(() => {
-      res.send('profileImg/' + email + '_profile_' + req.file.originalname);
+      res.send('/profileImg/' + email + '_profile_' + req.file.originalname);
     })
     .catch((err) => {
       console.log(err);

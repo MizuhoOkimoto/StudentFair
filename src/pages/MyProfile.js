@@ -86,7 +86,7 @@ function MyProfile(prop) {
               <img
                 className="item-image"
                 //src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                src={'/' + prop.userData.imgURL}
+                src={prop.userData.imgURL}
                 alt="profile"
               />
             </div>

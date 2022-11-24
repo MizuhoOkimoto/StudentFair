@@ -21,7 +21,7 @@ const onSubmitHandler = (e) => {
     password: e.target.password.value,
     phone: '',
     city: '',
-    img_url: '',
+    img_url: '/profileImg/no_profile.png',
     role: 'user',
   };
 
