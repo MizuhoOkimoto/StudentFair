@@ -32,6 +32,7 @@ const CreatePost = (prop) => {
       category: e.target.category.value,
       desc: e.target.itemDetail.value,
       con: e.target.item_condition.value,
+      loc: e.target.location.value,
       price: e.target.item_price.value,
       img: ['/postImg/No_img.png',]
     };
