@@ -6,7 +6,6 @@ const postSchema = new Schema({
     type: Number,
     require: true,
     unique: true,
-    
   },
   user_id: {
     type: String,
@@ -44,9 +43,9 @@ const postSchema = new Schema({
     type: Date,
     require: true,
   },
-  img:{
+  img: {
     require: false,
-  }
+  },
 });
 
 const post = mongoose.model('Post', postSchema);
@@ -63,7 +62,7 @@ const posts = [
     price: 995.0,
     location: 'Toronto',
     create_date: 'Oct 4 2021',
-    img:[]
+    img: [],
   },
   {
     post_number: 2,
@@ -75,7 +74,7 @@ const posts = [
     price: 1445.0,
     location: 'Thornhill',
     create_date: 'Oct 15 2021',
-    img:[]
+    img: [],
   },
   {
     post_number: 3,
@@ -86,7 +85,7 @@ const posts = [
     description: 'A+ quality',
     price: 25.0,
     create_date: 'Sep 4 2022',
-    img:[]
+    img: [],
   },
   {
     post_number: 4,
@@ -99,7 +98,7 @@ const posts = [
     price: 1445.0,
     location: 'Toronto',
     create_date: 'Oct 4 2022',
-    img:[]
+    img: [],
   },
   {
     post_number: 5,
@@ -111,7 +110,7 @@ const posts = [
     price: 19.99,
     location: 'Toronto',
     create_date: 'Oct 5 2022',
-    img:[]
+    img: [],
   },
   {
     post_number: 6,
@@ -123,7 +122,7 @@ const posts = [
     price: 19.99,
     location: 'Toronto',
     create_date: 'Oct 5 2022',
-    img:[]
+    img: [],
   },
   {
     post_number: 7,
@@ -135,7 +134,7 @@ const posts = [
     price: 19.99,
     location: 'Toronto',
     create_date: 'Oct 7 2022',
-    img:[]
+    img: [],
   },
   {
     post_number: 8,
@@ -147,7 +146,7 @@ const posts = [
     price: 19.99,
     location: 'Toronto',
     create_date: 'Oct 7 2022',
-    img:[]
+    img: [],
   },
   {
     post_number: 9,
@@ -159,7 +158,7 @@ const posts = [
     price: 19.99,
     location: 'Toronto',
     create_date: 'Oct 17 2022',
-    img:[]
+    img: [],
   },
 ];
 
@@ -178,13 +177,12 @@ module.exports.getPostByCategory = (data, category) => {
   return postByCategory;
 };
 module.exports.getPostByLastest = function (data) {
-  if(data.length < 4){
+  if (data.length < 4) {
     return data;
-  }
-  else{
+  } else {
     let index = data.length - 1;
     let post = [];
-    for(index; (index - 4) < index; index--){
+    for (index; index - 4 < index; index--) {
       post.push(data[index]);
     }
     return post;

@@ -1,53 +1,38 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-
 import { Link, useLocation } from 'react-router-dom';
-
-// import Button from "../components/Button";
-import Button from '../components/Button';
 
 const UpdatePost = (prop) => {
   const location = useLocation();
-  const number =location.state.postNum;
+  const number = location.state.postNum;
 
-  console.log(location.state.postNum , "POST NUMBER")
-
+  console.log(location.state.postNum, 'POST NUMBER');
 
   const Update_date = new Date();
   const userInfo = prop.userData;
 
   const [file, setFile] = useState(null);
   const [postNum, setPostNum] = useState(null);
-  const [post, setPost] = useState(); 
+  const [post, setPost] = useState();
   const onInputChange = (e) => {
     setFile(e.target.files);
   };
 
   useEffect(() => {
-     const getPost = async () => {
-         const res = await axios.get(`http://localhost:8080/posts/detail/${number}`);
-         console.log(res);
-          setPost(res.data);
-    }
-
+    const getPost = async () => {
+      const res = await axios.get(`http://localhost:8080/posts/detail/${number}`);
+      console.log(res);
+      setPost(res.data);
+    };
     getPost();
-  },[])
-
-
-
-
-
-
-
+  }, []);
 
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.
     e.preventDefault();
     console.log(file);
     const newpost = {
-    
       field: e.target.type_post.value,
       title: e.target.title.value,
       category: e.target.category.value,
@@ -59,18 +44,15 @@ const UpdatePost = (prop) => {
     console.log(newpost);
 
     // Send the user data to the backend
-
     axios.put(`http://localhost:8080/posts/${number}`, newpost).then((res) => {
       console.log(res.data);
       setPostNum(res.data.post_number);
-      console.log(file)
-      if(file){
-      uploadPhoto(number);
+      console.log(file);
+      if (file) {
+        uploadPhoto(number);
       }
     });
 
-    // Render to the log in page
-    //window.location = '/LogIn';
     const formData = new FormData();
 
     if (file !== null) {
@@ -98,7 +80,6 @@ const UpdatePost = (prop) => {
     };
   };
 
-  //CHANGE NAMES TO Update
   return (
     <div className="signUp-container">
       <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
@@ -126,7 +107,14 @@ const UpdatePost = (prop) => {
           </span>
         </div>
         <div className="input-container">
-            <input type="text" name="title" id="title" placeholder="Title" value={post?.post_title} onChange={(e)=>setPost({...post, post_title: e.target.value})}/>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Title"
+            value={post?.post_title}
+            onChange={(e) => setPost({ ...post, post_title: e.target.value })}
+          />
         </div>
         <div className="input-container">
           Type of Post
@@ -140,7 +128,12 @@ const UpdatePost = (prop) => {
           Item Condition
           <div className="itemCondition">
             <label htmlFor="item_condition"></label>
-            <select aria-label="item_condition" id="item_condition"  value={post?.condition} onChange={(e)=>setPost({...post, condition: e.target.value})}>
+            <select
+              aria-label="item_condition"
+              id="item_condition"
+              value={post?.condition}
+              onChange={(e) => setPost({ ...post, condition: e.target.value })}
+            >
               <option>A</option>
               <option>B</option>
               <option>C</option>
@@ -149,10 +142,22 @@ const UpdatePost = (prop) => {
         </div>
         <div className="input-container">
           Item Price
-          <input type="text" name="item_price" id="item_price" placeholder="Price" value={post?.price}  onChange={(e)=>setPost({...post, price: e.target.value})} />
+          <input
+            type="text"
+            name="item_price"
+            id="item_price"
+            placeholder="Price"
+            value={post?.price}
+            onChange={(e) => setPost({ ...post, price: e.target.value })}
+          />
           Item Location
           <label htmlFor="location"></label>
-          <select aria-label="pick_location" id="location" value={post?.post_location}  onChange={(e)=>setPost({...post, post_location: e.target.value})}>
+          <select
+            aria-label="pick_location"
+            id="location"
+            value={post?.post_location}
+            onChange={(e) => setPost({ ...post, post_location: e.target.value })}
+          >
             <option>Toronto</option>
             <option>Niagara</option>
             <option>Kingston</option>
@@ -162,7 +167,12 @@ const UpdatePost = (prop) => {
         </div>
         <div className="input-container">
           Category
-          <select aria-label="pick_category" id="category" value={post?.post_category}  onChange={(e)=>setPost({...post, post_category: e.target.value})}>
+          <select
+            aria-label="pick_category"
+            id="category"
+            value={post?.post_category}
+            onChange={(e) => setPost({ ...post, post_category: e.target.value })}
+          >
             <option>Computer Accessories</option>
             <option>Textbook</option>
             <option>Lab Materials</option>
@@ -183,8 +193,8 @@ const UpdatePost = (prop) => {
         </div>
 
         <textarea
-        value={post?.description}
-        onChange={(e)=>setPost({...post, description: e.target.value})}
+          value={post?.description}
+          onChange={(e) => setPost({ ...post, description: e.target.value })}
           className="report-text-area"
           type="text"
           name="itemDetail"

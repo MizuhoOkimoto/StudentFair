@@ -1,46 +1,34 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Button from '../components/Button';
 
-
-
 const clickToCancel = () => {
   window.location = '/myProfile';
 };
 
-
-
 const EditPage = (prop) => {
   let email = prop.userData.email;
-  let fullname = prop.userData.fname + " " + prop.userData.lname;
-  const [file,setFile] =useState(null);
+  let fullname = prop.userData.fname + ' ' + prop.userData.lname;
+  const [file, setFile] = useState(null);
   const onInputChange = (e) => {
-    setFile(e.target.files[0])
-    
-  }
+    setFile(e.target.files[0]);
+  };
   const onSubmitHandler = (e) => {
-    
     e.preventDefault();
 
-    
-    const updatedData = {  
-      email: email,  
+    const updatedData = {
+      email: email,
       newPhone: e.target.newPhone.value,
       newCity: e.target.newCity.value,
-     
-    };    
-    
-   
+    };
 
     axios.post('http://localhost:8080/users/update_info', updatedData).then((res) => {
-            console.log(res.data);
-            prop.updateInfo(updatedData);
-            window.location = '/MyProfile';
-         });
-    
+      console.log(res.data);
+      prop.updateInfo(updatedData);
+      window.location = '/MyProfile';
+    });
   };
 
   return (
@@ -78,7 +66,7 @@ const EditPage = (prop) => {
         <div className="input-container">
           <p id="fullname">{fullname}</p>
         </div>
-        
+
         <div className="input-container">
           <input type="text" name="newPhone" id="newPhone" placeholder="Phone Number" />
           <i className="fas fa-lock"></i>

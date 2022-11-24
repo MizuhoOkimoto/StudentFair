@@ -128,10 +128,12 @@ function App() {
           path="/lists"
           element={<AllList flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />}
         />
-         <Route
+        <Route
           exact
           path="/lists/:category"
-          element={<ListByCategory flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />}
+          element={
+            <ListByCategory flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />
+          }
         />
         <Route
           exact

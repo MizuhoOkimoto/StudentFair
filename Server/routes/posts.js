@@ -11,7 +11,6 @@ const transporter = NodeEmailer.createTransport({
   auth: { user: 'demian824@gmail.com', pass: process.env.EMAIL_KEY },
 });
 
-
 const deliveryMessage = async (from, name, result, desc) => {
   const mailOptions = {
     to: result[0].user_id,
@@ -114,12 +113,12 @@ router.post('/create_post', (req, res) => {
   let lastPost;
   Post.find()
     .then((data) => {
-      console.log(data)
-      if(!data.length){
+      console.log(data);
+      if (!data.length) {
         curPostNumber = 1;
-      }else{
-      lastPost = data[data.length - 1];
-      curPostNumber = Number(lastPost.post_number) + 1;
+      } else {
+        lastPost = data[data.length - 1];
+        curPostNumber = Number(lastPost.post_number) + 1;
       }
       const newPost = new Post({
         post_number: curPostNumber,
@@ -144,32 +143,31 @@ router.post('/create_post', (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-
-  // Mizuho is using this for post edit
-  router.put('/:postNumber', (req, res) => {
-    const postNum = req.params.postNumber;
-    const { email, field, title, category, desc, con, price } = req.body;
-    curEmail = email;
-    console.log(req.body, "BODY");
-    Post.updateOne({post_number: postNum},  {post_field: field,
-      post_title : title,
-      post_category:category,
+// Mizuho is using this for post edit
+router.put('/:postNumber', (req, res) => {
+  const postNum = req.params.postNumber;
+  const { email, field, title, category, desc, con, price } = req.body;
+  curEmail = email;
+  console.log(req.body, 'BODY');
+  Post.updateOne(
+    { post_number: postNum },
+    {
+      post_field: field,
+      post_title: title,
+      post_category: category,
       description: desc,
       condition: con,
       price: price,
-      })
+    }
+  )
 
-          .then(() => {
-           res.status(201).json({"message": "Post Updated!"});
-          })
-          .catch((err) => {
-            res.status(400).json('Error: ' + err);
-          });
-      })
-     
-
-
-
+    .then(() => {
+      res.status(201).json({ message: 'Post Updated!' });
+    })
+    .catch((err) => {
+      res.status(400).json('Error: ' + err);
+    });
+});
 
 // detail page
 router.get('/detail/:post_number', (req, res) => {
@@ -186,18 +184,17 @@ router.post('/detail/contact/:post_number', (req, res) => {
   console.log(to);
   User.findOne({
     email: to,
-  }).then((user) => {
-    console.log(user)
+  })
+    .then((user) => {
+      console.log(user);
       const username = user.fname + ' ' + user.lname;
-      console.log(user)
-      console.log(username)
+      console.log(user);
+      console.log(username);
       Post.find({
         post_number: post_number,
       })
         .then((result) => {
-
           deliveryMessage(from, username, result, desc);
-
         })
         .catch((err) => console.log(err));
     })
@@ -205,7 +202,7 @@ router.post('/detail/contact/:post_number', (req, res) => {
 });
 
 router.post('/delete/:postid', (req, res) => {
-  const post_id  = req.params.postid;
+  const post_id = req.params.postid;
   console.log(post_id);
   Post.deleteOne({ post_number: post_id })
     .then(() => {
@@ -229,9 +226,7 @@ router.get('/getUserPosts/:email', (req, res) => {
     user_id: email,
   })
     .then((data) => {
-   
       res.send(data);
-
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 });
@@ -241,17 +236,17 @@ router.get('/getRecent/:email', (req, res) => {
 
   Post.find({
     user_id: email,
-  }).then((result) => {
-      let lastIndex =  result.length;
-      if(lastIndex > 0){
-        res.send(result[lastIndex - 1])
-      }
-      else if (lastIndex == 0){
-        res.send(result[0])
+  })
+    .then((result) => {
+      let lastIndex = result.length;
+      if (lastIndex > 0) {
+        res.send(result[lastIndex - 1]);
+      } else if (lastIndex == 0) {
+        res.send(result[0]);
       }
     })
     .catch((err) => res.status(400).json('Error: ' + err));
-} );
+});
 
 router.get('/getSellPost', (req, res) => {
   Post.find({ post_field: 'Sell' })
@@ -260,8 +255,6 @@ router.get('/getSellPost', (req, res) => {
     })
     .catch((err) => res.status(400).json('Error: ' + err));
 });
-
-
 
 router.get('/', (req, res) => {
   Post.find()
@@ -276,14 +269,14 @@ router.get('/', (req, res) => {
 
 router.get('/:category', (req, res) => {
   const category = req.params.category;
-  
+
   Post.find({
     post_category: category,
-  }).then((result) => {
-      
-    res.send(result)
-
-  }).catch((err) => res.status(400).json('Error: ' + err));
+  })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => res.status(400).json('Error: ' + err));
 });
 
 router.route('/sample_data').get((req, res) => {
@@ -302,7 +295,6 @@ router.route('/sample_data').get((req, res) => {
       console.log('Data is already loaded');
     }
   });
-
 });
 
 module.exports = router;

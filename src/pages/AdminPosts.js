@@ -11,7 +11,7 @@ function AdminPosts(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!props.isAdmin){
+    if (!props.isAdmin) {
       navigate('/login');
       return;
     }

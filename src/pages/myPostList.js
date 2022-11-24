@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import List from '../components/ItemList';
@@ -10,22 +10,26 @@ import mainImg from '../img/post_pic/mac-book.avif';
 const MyPostlistPage = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [userPost, setUserPost] = useState();
 
   console.log('prop : ' + prop.post_list);
   let temp = [];
 
+  // This is for edit post function
+  const navigate = useNavigate();
+
   const email = prop.userData.email;
   useEffect(() => {
     console.log('Component mounts');
-      // Get post data
-      const getData = async () => { 
-        const res = await axios
-        .get(`http://localhost:8080/posts/getUserPosts/${email}`)
-          let { data } = res;
-          console.log(res, "RESPONSE FROM SERVER SIDE");
-          setList(data.reverse());
-      }
-      getData();
+    // Get post data
+    const getData = async () => {
+      const res = await axios.get(`http://localhost:8080/posts/getUserPosts/${email}`);
+      let { data } = res;
+      console.log(res, 'RESPONSE FROM SERVER SIDE');
+      setList(data.reverse());
+      setUserPost(res.data);
+    };
+    getData();
   }, []);
 
   const renderPageButton = (e) => {
@@ -43,6 +47,24 @@ const MyPostlistPage = (prop) => {
   const createBtnPressed = () => {
     window.location = '/createPost';
   };
+
+  // Edit post
+  // const editPostHandler = () => {
+  //   navigate("/updatePost",  {state:{postNum:userPost.post_number}})
+  // };
+
+  // Delete post
+  // const deletePostHandler = () => {
+  //   console.log(userPost);
+  //   const url = 'http://localhost:8080/posts/delete/' + userPost.post_number;
+  //   axios.post(url).then((res) => {
+  //     console.log(res.data);
+  //   });
+  //   axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
+  //     console.log(res.data)
+  //     setUserPost(res.data);
+  //   });
+  // };
 
   return (
     <div>
@@ -75,6 +97,15 @@ const MyPostlistPage = (prop) => {
                   <div className="list-desc price">Price: ${e.price}</div>
                   <div className="list-desc seller-name">Seller: {e.user_id.split('@')[0]}</div>
                   <div className="list-desc location">Location: {e.location}</div>
+
+                  <div className="btns">
+                    <Button className="button" color="gray">
+                      Edit Post
+                    </Button>
+                    <Button className="button" color="#c94c4c">
+                      Delete Post
+                    </Button>
+                  </div>
                 </div>
               </List>
             ))}

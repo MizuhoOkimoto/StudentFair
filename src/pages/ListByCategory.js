@@ -19,14 +19,12 @@ const ListByCategory = (prop) => {
 
   let temp = [];
   //setList(prop.post_list);
-  const url = 'http://localhost:8080/posts/' + category
+  const url = 'http://localhost:8080/posts/' + category;
   useEffect(() => {
     window.setTimeout(() => {
       setLoading(false);
     }, 1700);
   }, []);
-
-
 
   useEffect(() => {
     console.log('Component mounts');
@@ -39,7 +37,6 @@ const ListByCategory = (prop) => {
           let { data } = res;
 
           setList(data.reverse());
-
         })
         .catch((err) => {
           console.log(err);
@@ -62,7 +59,6 @@ const ListByCategory = (prop) => {
   const createBtnPressed = () => {
     window.location = '/createPost';
   };
-
 
   return (
     <div>
@@ -87,7 +83,7 @@ const ListByCategory = (prop) => {
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
                   <div className="list-desc postTitle">
-                    <Link className="nav-link" to={"/list/post/detail/" + e.post_number}>
+                    <Link className="nav-link" to={'/list/post/detail/' + e.post_number}>
                       {e.post_title}
                     </Link>
                   </div>

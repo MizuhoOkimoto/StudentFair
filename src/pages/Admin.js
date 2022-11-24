@@ -5,18 +5,18 @@ import '../components/css/Admin.css';
 import axios from 'axios';
 
 function Admin(props) {
-console.log(props, "props")
+  console.log(props, 'props');
 
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Check session
-  console.log(localStorage.getItem("session"), "THIS IS SESSION")
+  console.log(localStorage.getItem('session'), 'THIS IS SESSION');
 
   useEffect(() => {
     // console.log(isAdmin, 'ISADMIN');
-  
+
     if (!props.isAdmin) {
       // console.log(isAdmin, 'This user is not admin');
       navigate('/login');

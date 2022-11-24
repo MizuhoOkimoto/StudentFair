@@ -23,7 +23,7 @@ const CreatePost = (prop) => {
     e.preventDefault();
     console.log(file);
 
-const posts = await axios.get(`http://localhost:8080/posts/`);
+    const posts = await axios.get(`http://localhost:8080/posts/`);
 
     const newpost = {
       email: userInfo.email,

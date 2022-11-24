@@ -24,7 +24,6 @@ const AllList = (prop) => {
     }, 1700);
   }, []);
 
-
   useEffect(() => {
     console.log('Component mounts');
 
@@ -36,7 +35,6 @@ const AllList = (prop) => {
           let { data } = res;
 
           setList(data.reverse());
-
         })
         .catch((err) => {
           console.log(err);
@@ -59,7 +57,6 @@ const AllList = (prop) => {
   const createBtnPressed = () => {
     window.location = '/createPost';
   };
-
 
   return (
     <div>
@@ -84,7 +81,7 @@ const AllList = (prop) => {
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
                   <div className="list-desc postTitle">
-                    <Link className="nav-link" to={"/list/post/detail/" + e.post_number}>
+                    <Link className="nav-link" to={'/list/post/detail/' + e.post_number}>
                       {e.post_title}
                     </Link>
                   </div>
