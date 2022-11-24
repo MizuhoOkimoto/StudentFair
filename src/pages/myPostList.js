@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
-
-// import Button from "../components/Button";
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import List from '../components/ItemList';
@@ -12,35 +8,22 @@ import '../components/css/Item-List.css';
 import mainImg from '../img/post_pic/mac-book.avif';
 
 const MyPostlistPage = (prop) => {
-  console.log(prop, "PROOOOOOOOOP");
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [listNum, setListNum] = useState(1);
+
   console.log('prop : ' + prop.post_list);
   let temp = [];
-  //setList(prop.post_list);
-  // useEffect(() => {
-  //   window.setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1700);
-  // }, []);
 
   const email = prop.userData.email;
-  //const url = 'http://localhost:8080/posts/getUserPosts/' + prop.userData.email;
   useEffect(() => {
     console.log('Component mounts');
-
-    
+      // Get post data
       const getData = async () => { 
         const res = await axios
         .get(`http://localhost:8080/posts/getUserPosts/${email}`)
-        
           let { data } = res;
-
-          console.log(res, "RESPONSE");
+          console.log(res, "RESPONSE FROM SERVER SIDE");
           setList(data.reverse());
-    
-
       }
       getData();
   }, []);

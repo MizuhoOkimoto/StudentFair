@@ -16,9 +16,9 @@ const onClickEvent = () => {
 const onClickChangePasswordEvent = () => {
   window.location = '/update_password';
 };
-const clickedSeeMoreBtn = () => {
-  window.location = '/myProfile/post/history';
-};
+// const clickedSeeMoreBtn = () => {
+//   window.location = '/myProfile/post/history';
+// };
 
 const clickToDelete = () => {
   if (window.confirm('Are you sure to delete your account?') === true) {
@@ -48,6 +48,14 @@ function MyProfile(prop) {
 
   console.log(prop.userData);
   console.log(userPost);
+
+  // Mizuho modified this clickedSeeMoreBtn clickhandler
+  // 1. Moved to inside the MyProfile function
+  // 2. Used navigate instead of window.location to prevent refreshing page
+  // because if the page refresh, it loses props
+  const clickedSeeMoreBtn = () => {
+    navigate('/myProfile/post/history');
+  };
 
   const deletePostHandler = () => {
     console.log(userPost);
