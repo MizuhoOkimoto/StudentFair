@@ -44,6 +44,7 @@ const postSchema = new Schema({
     require: true,
   },
   img: {
+    type: Array,
     require: false,
   },
 });

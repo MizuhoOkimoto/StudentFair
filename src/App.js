@@ -61,7 +61,7 @@ function App() {
         isAdmin: session.getItem('isAdmin'),
       });
     }
-  }, []);
+  }, [session]);
 
   useEffect(() => {
     setPost_list(tempData);
@@ -77,18 +77,35 @@ function App() {
   }
 
   function setUser(data) {
-    session.setItem('email', data.email);
-    session.setItem('fname', data.fname);
-    session.setItem('lname', data.lname);
-    session.setItem('password', data.password);
-    session.setItem('phone', data.phone);
-    session.setItem('city', data.city);
-    session.setItem('img_url', data.img_url);
-    session.setItem('isLogin', true);
-    session.setItem('isAdmin', data.admin);
+
+    
+    if(data !== undefined){
+      console.log(data);
+      session.setItem('email', data.email);
+      session.setItem('fname', data.fname);
+      session.setItem('lname', data.lname);
+      session.setItem('password', data.password);
+      session.setItem('phone', data.phone);
+      session.setItem('city', data.city);
+      session.setItem('img_url', data.img_url);
+      session.setItem('isLogin', true);
+      session.setItem('isAdmin', data.admin);
+    }
   }
-  function updateProfilePic(data) {
-    session.setItem('img_url', data);
+  function updateProfilePic(url) {
+    session.setItem('img_url', url);
+
+    setLoginUser({
+      email: session.getItem('email'),
+      fname: session.getItem('fname'),
+      lname: session.getItem('lname'),
+      password: session.getItem('password'),
+      phone: session.getItem('phone'),
+      city: session.getItem('city'),
+      imgURL: session.getItem('img_url'),
+      isLogin: session.getItem('isLogin'),
+      isAdmin: session.getItem('isAdmin'),
+    });
   }
   function updatePassword(data) {
     session.setItem('password', data.newPassword);
@@ -161,10 +178,10 @@ function App() {
         <Route exact path="/findId" element={<FindId />} />
         <Route exact path="/findPw" element={<FindPw />} />
 
-        <Route path="/myProfile/" element={<MyProfile userData={loginUser} />} />
+        <Route path="/myProfile/" element={<MyProfile userData={loginUser} setUser={setUser} />} />
         <Route
           path="/myProfile/upload_picture"
-          element={<UploadProfilePic userData={loginUser} updateProfilePic={updateProfilePic} />}
+          element={<UploadProfilePic userData={loginUser} setUser={updateProfilePic} />}
         />
         <Route
           exact

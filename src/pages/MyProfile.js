@@ -34,20 +34,33 @@ function MyProfile(prop) {
   console.log(temp, ' TEMP');
   const [userPost, setUserPost] = useState();
   const [user, setUser] = useState();
-
   const navigate = useNavigate();
+
+  
   useEffect(() => {
+
+      
     if (userPost === undefined || userPost.length === 0) {
+      axios.get(`http://localhost:8080/users/${temp.email}`)
+      .then((res) =>{
+        if(res !== undefined){
+          prop.setUser(res.data[0]);
+          
+        }
+        
+      });
       console.log(prop.userData.email);
       axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
+        console.log(res);
         console.log(res.data);
         setUserPost(res.data);
       });
-    }
-  }, [userPost]);
 
-  console.log(prop.userData);
-  console.log(userPost);
+      
+    }
+  }, [userPost, user]);
+
+  
 
   // Mizuho modified this clickedSeeMoreBtn clickhandler
   // 1. Moved to inside the MyProfile function
@@ -77,6 +90,7 @@ function MyProfile(prop) {
     navigate('/admin');
   };
 
+  
   return (
     <div className="myProfile-container">
       <div className="myProfile-card">

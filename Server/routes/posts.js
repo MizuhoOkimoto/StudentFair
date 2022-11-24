@@ -48,7 +48,7 @@ const deliveryMessage = async (from, name, result, desc) => {
 const multer = require('multer');
 const multerConfig = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, 'uploads/post_pic');
+    callback(null, '../public/postImg');
   },
   filename: (req, file, callback) => {
     //const ext = file.minetype.split('/')[1];
@@ -83,32 +83,37 @@ router.post('/search', (req, res) => {
 router.post('/upload_post_pic/:postid/:email', upload.array('photo'), (req, res) => {
   let params = req.params;
   const file = req.files;
-
+  console.log(params);
+  console.log(file);
   let imgArray = [];
-  for (let i = 0; i < file.length; i++) {
-    imgArray.push(`uploads/post_pic/${params.postid}_${params.email}_${file[i].originalname}`);
-  }
+  if(file.length > 0){  
+    for (let i = 0; i < file.length; i++) {
+      imgArray.push(`/postImg/Post_${params.postid}_${params.email}_${file[i].originalname}`);
+    }
 
-  Post.findOne({ post_number: params.postid }).then(() => {
-    Post.updateOne(
-      { post_number: params.postid },
-      {
-        $set: {
-          img: imgArray,
-        },
-      }
-    )
-      .then((data) => {
-        res.send(data);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.send(err);
-      });
-  });
+    Post.find({ post_number: params.postid }).then(() => {
+      Post.updateOne(
+        { post_number: params.postid },
+        {
+          $set: {
+            img: imgArray,
+          },
+        }
+      )
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.send(err);
+        });
+    });
+  }
+  
+  
 });
 router.post('/create_post', (req, res) => {
-  const { email, field, title, category, desc, con, price, location = '' } = req.body;
+  const { email, field, title, category, desc, con, price, location, img = '' } = req.body;
   curEmail = email;
   let lastPost;
   Post.find()
@@ -130,6 +135,7 @@ router.post('/create_post', (req, res) => {
         condition: con,
         price: price,
         location: location,
+        img: img
       });
 
       newPost

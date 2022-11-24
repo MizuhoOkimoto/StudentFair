@@ -117,9 +117,18 @@ router.post('/upload_userPic/:email', upload.single('photo'), (req, res) => {
         img_url: '/profileImg/' + email + '_profile_' + req.file.originalname,
       },
     }
-  )
-    .then(() => {
-      res.send('/profileImg/' + email + '_profile_' + req.file.originalname);
+  ).then(() => {
+      //res.send('/profileImg/' + email + '_profile_' + req.file.originalname);
+      // User.find(
+      //   {
+      //     email: email
+      //   }
+      // ).then((user) =>{
+      //   console.log("new user data: ");
+      //   console.log(user);
+      //   res.json(user);
+      // });
+      res.send(true);
     })
     .catch((err) => {
       console.log(err);
@@ -398,7 +407,7 @@ router.post('/delete', (req, res) => {
   curUser = null;
 });
 router.post('/delete/:email', (req, res) => {
-  const { email } = req.params.email;
+  const email = req.params.email;
   User.deleteOne({ email: email })
     .then(() => {
       res.send(true);
@@ -407,11 +416,11 @@ router.post('/delete/:email', (req, res) => {
   curUser = null;
 });
 router.get('/:email', (req, res) => {
-  const { email } = req.params.email;
+  const email = req.params.email;
   console.log(email);
   User.find({ email: email })
     .then((data) => {
-      res.send(data);
+      res.json(data);
     })
     .catch((err) => console.log(`Error : ${err}`));
 });

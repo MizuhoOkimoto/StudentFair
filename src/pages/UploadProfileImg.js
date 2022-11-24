@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 import Button from '../components/Button';
@@ -9,6 +9,7 @@ const clickToCancel = () => {
 };
 
 const UploadProfilePic = (prop) => {
+  const navigate = useNavigate();
   let email = prop.userData.email;
   let fullname = prop.userData.fname + ' ' + prop.userData.lname;
   let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + email;
@@ -18,6 +19,7 @@ const UploadProfilePic = (prop) => {
   const onInputChange = (e) => {
     setFile(e.target.files[0]);
   };
+  
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -28,16 +30,12 @@ const UploadProfilePic = (prop) => {
         'content-type': 'multipart/form-data',
       },
     };
-
-    axios.post(uploadAddress, formData, config).then((res) => {
-      console.log('line 42');
-      console.log(res.data);
-      console.log(res);
-      prop.updateProfilePic(res.data);
-      window.location = '/myProfile';
-      
-    });
     
+    axios.post(uploadAddress, formData, config).then((res) => {
+      
+      navigate('/myProfile');
+     
+    });
   };
 
   return (

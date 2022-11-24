@@ -33,6 +33,7 @@ const CreatePost = (prop) => {
       desc: e.target.itemDetail.value,
       con: e.target.item_condition.value,
       price: e.target.item_price.value,
+      img: ['/postImg/No_img.png',]
     };
 
     console.log(newpost);
