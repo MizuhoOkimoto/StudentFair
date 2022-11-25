@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Button from '../components/Button';
@@ -9,11 +9,11 @@ const clickToCancel = () => {
 };
 
 const UploadProfilePic = (prop) => {
-  const navigate = useNavigate();
+ 
   let email = prop.userData.email;
-  let fullname = prop.userData.fname + ' ' + prop.userData.lname;
+
   let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + email;
-  console.log(prop.userData);
+
   const [file, setFile] = useState(null);
 
   const onInputChange = (e) => {
@@ -32,15 +32,17 @@ const UploadProfilePic = (prop) => {
     };
     
     axios.post(uploadAddress, formData, config).then((res) => {
+      prop.updateProfilePic(res.data);
+      console.log(res.data);
+      alert("Success To Upload");
       
-      navigate('/myProfile');
-     
+      window.location = '/myProfile';
     });
   };
 
   return (
     <div className="signUp-container">
-      <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
+      <form className="user-form sign-up" action="/myProfile" method="POST" onSubmit={onSubmitHandler}>
         <div className="title">
           <div className="form-title">
             <p>Update Profile Picture</p>

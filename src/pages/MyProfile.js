@@ -61,6 +61,8 @@ function MyProfile(prop) {
   }, [userPost, user]);
 
   
+  
+  
 
   // Mizuho modified this clickedSeeMoreBtn clickhandler
   // 1. Moved to inside the MyProfile function
@@ -89,8 +91,28 @@ function MyProfile(prop) {
   const clickToAdmin = () => {
     navigate('/admin');
   };
+  let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + prop.userData.email;
+  const [file, setFile] = useState(null);
+  const onInputChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
 
-  
+    const formData = new FormData();
+    formData.append('photo', file);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    
+    axios.post(uploadAddress, formData, config).then((res) => {
+      console.log(res.data);
+      alert("Success To Upload");
+      window.location = '/myProfile';
+    });
+  };
   return (
     <div className="myProfile-container">
       <div className="myProfile-card">
@@ -105,9 +127,8 @@ function MyProfile(prop) {
               />
             </div>
             <Link className="nav-link profile-pic-upload-btn" to="/myProfile/upload_picture">
-              move
+              Update Picture 
             </Link>
-
             <div className="my-profile-container">
               <div className="my-profile">{prop.userData.fname}'s Profile</div>
               <div className="my-profile-upload"></div>
@@ -167,7 +188,7 @@ function MyProfile(prop) {
               <div className="post-item-card">
                 <img
                   className="item-image"
-                  src="https://images.unsplash.com/photo-1660833638050-41f95d8b94e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                  src={userPost.img[0]}
                   alt="product"
                 />
                 <div className="item-desc-container">
