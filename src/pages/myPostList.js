@@ -97,7 +97,6 @@ const MyPostlistPage = (prop) => {
                   <div className="list-desc price">Price: ${e.price}</div>
                   <div className="list-desc seller-name">Seller: {e.user_id.split('@')[0]}</div>
                   <div className="list-desc location">Location: {e.location}</div>
-
                   <div className="btns">
                     <Button
                       className="button"

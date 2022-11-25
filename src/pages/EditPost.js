@@ -41,6 +41,7 @@ const UpdatePost = (prop) => {
       desc: e.target.itemDetail.value,
       con: e.target.item_condition.value,
       price: e.target.item_price.value,
+      location: e.target.location.value,
     };
 
     console.log(newpost);
@@ -86,8 +87,8 @@ const UpdatePost = (prop) => {
     <div className="signUp-container">
       <form className="user-form sign-up" action="/" method="POST" onSubmit={onSubmitHandler}>
         <div className="title">
-          <div className="form-title">
-            <p>Update Your Post</p>
+          <div className="form-title" style={{ marginTop: '25px', marginBottom: '10px' }}>
+            <p>Edit Your Post</p>
           </div>
           <i className="fas fa-times"></i>
         </div>
@@ -156,6 +157,7 @@ const UpdatePost = (prop) => {
           <label htmlFor="location"></label>
           <select
             aria-label="pick_location"
+            name="location"
             id="location"
             value={post?.post_location}
             onChange={(e) => setPost({ ...post, post_location: e.target.value })}
@@ -215,6 +217,18 @@ const UpdatePost = (prop) => {
             // navigate(-1) is for going back to the previous page
             onClick={() => navigate(-1)}
           />
+        </div>
+        <div style={{ marginBottom: '50px' }}>
+          <Link
+            style={{ color: 'blue' }}
+            // use the navigation and also preventDefault for it
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(-1);
+            }}
+          >
+            Go back to the previous page
+          </Link>
         </div>
       </form>
     </div>
