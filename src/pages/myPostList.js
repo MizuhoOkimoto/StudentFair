@@ -6,22 +6,22 @@ import Loading from '../components/Loading';
 import List from '../components/ItemList';
 import '../components/css/Item-List.css';
 import mainImg from '../img/post_pic/mac-book.avif';
+import { faEbay } from '@fortawesome/free-brands-svg-icons';
 
 const MyPostlistPage = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [userPost, setUserPost] = useState();
 
-  console.log('prop : ' + prop.post_list);
-  let temp = [];
-
   // This is for edit post function
   const navigate = useNavigate();
 
+  console.log('prop : ' + prop.post_list);
+  let temp = [];
+
   const email = prop.userData.email;
   useEffect(() => {
-    console.log('Component mounts');
-    // Get post data
+    // Mizuho modify: Get post data
     const getData = async () => {
       const res = await axios.get(`http://localhost:8080/posts/getUserPosts/${email}`);
       let { data } = res;
@@ -30,7 +30,7 @@ const MyPostlistPage = (prop) => {
       setUserPost(res.data);
     };
     getData();
-  }, []);
+  }, [setUserPost]);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);
@@ -49,9 +49,10 @@ const MyPostlistPage = (prop) => {
   };
 
   // Edit post
-  // const editPostHandler = () => {
-  //   navigate("/updatePost",  {state:{postNum:userPost.post_number}})
-  // };
+  const editPostHandler = (e) => {
+    console.log(e.post_number, 'THIS IS POST NUMBER IN THE HANDLER');
+    navigate('/updatePost', { state: { postNum: e.post_number } });
+  };
 
   // Delete post
   // const deletePostHandler = () => {
@@ -88,6 +89,7 @@ const MyPostlistPage = (prop) => {
                 <img className="list-image" src={mainImg} alt="list-img" />
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
+                  {console.log(e.post_number, 'THIS IS POST NUM IN THE RETURN')}
                   <div className="list-desc postTitle">
                     <Link className="nav-link" to={'/list/post/detail/' + e.post_number}>
                       {e.post_title}
@@ -99,7 +101,9 @@ const MyPostlistPage = (prop) => {
                   <div className="list-desc location">Location: {e.location}</div>
 
                   <div className="btns">
-                    <Button className="button" color="gray">
+                    {console.log(e.post_number, 'THIS IS POST NUM IN THE RETURN - BUTTON')}
+                    {console.log(e, 'THIS IS EVENT')}
+                    <Button className="button" color="gray" onClick={(e) => editPostHandler(e)}>
                       Edit Post
                     </Button>
                     <Button className="button" color="#c94c4c">
