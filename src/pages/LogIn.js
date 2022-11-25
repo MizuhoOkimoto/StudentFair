@@ -28,8 +28,8 @@ function LogIn(prop) {
         prop.setUser(data);
         console.log(data, 'HI');
         console.log('this is admin');
-        // window.location = '/admin';
-        navigate('/admin');
+        window.location = '/admin';
+        //navigate('/admin'); -> require to refresh the page, so reverted back to window.location above
         console.log('does not call admin page');
         return;
       } else if (typeof data !== 'string') {

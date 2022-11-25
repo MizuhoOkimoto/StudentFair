@@ -15,8 +15,6 @@ function Admin(props) {
   console.log(localStorage.getItem('session'), 'THIS IS SESSION');
 
   useEffect(() => {
-    // console.log(isAdmin, 'ISADMIN');
-
     if (!props.isAdmin) {
       // console.log(isAdmin, 'This user is not admin');
       navigate('/login');
