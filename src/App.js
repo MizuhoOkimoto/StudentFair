@@ -77,10 +77,8 @@ function App() {
   }
 
   function setUser(data) {
-
     
     if(data !== undefined){
-      console.log(data);
       session.setItem('email', data.email);
       session.setItem('fname', data.fname);
       session.setItem('lname', data.lname);
@@ -93,19 +91,23 @@ function App() {
     }
   }
   function updateProfilePic(url) {
-    session.setItem('img_url', url);
 
+    if(url !== undefined){
+      session.setItem('img_url', url);
+      console.log(url);
     setLoginUser({
-      email: session.getItem('email'),
-      fname: session.getItem('fname'),
-      lname: session.getItem('lname'),
-      password: session.getItem('password'),
-      phone: session.getItem('phone'),
-      city: session.getItem('city'),
+      email: loginUser.email,
+      fname: loginUser.fname,
+      lname: loginUser.lname,
+      password: loginUser.password,
+      phone: loginUser.phone,
+      city: loginUser.city,
       imgURL: session.getItem('img_url'),
-      isLogin: session.getItem('isLogin'),
-      isAdmin: session.getItem('isAdmin'),
+      isLogin: loginUser.isLogin,
+      isAdmin: loginUser.isAdmin,
     });
+    }
+    
   }
   function updatePassword(data) {
     session.setItem('password', data.newPassword);
@@ -181,7 +183,7 @@ function App() {
         <Route path="/myProfile/" element={<MyProfile userData={loginUser} setUser={setUser} />} />
         <Route
           path="/myProfile/upload_picture"
-          element={<UploadProfilePic userData={loginUser} setUser={updateProfilePic} />}
+          element={<UploadProfilePic userData={loginUser} updateProfilePic={updateProfilePic} />}
         />
         <Route
           exact

@@ -108,7 +108,7 @@ router.get('/getSellInfo/:email', (req, res) => {
 // POST Upload profile Pic
 router.post('/upload_userPic/:email', upload.single('photo'), (req, res) => {
   const email = req.params.email;
-  const profileImgUrl = 'profileImg/' + email + '_profile_' + req.file.originalname;
+  const profileImgUrl = '/profileImg/' + email + '_profile_' + req.file.originalname;
   console.log(profileImgUrl);
   User.updateOne(
     { email: email },
@@ -118,7 +118,7 @@ router.post('/upload_userPic/:email', upload.single('photo'), (req, res) => {
       },
     }
   ).then(() => {
-      //res.send('/profileImg/' + email + '_profile_' + req.file.originalname);
+      res.send(profileImgUrl);
       // User.find(
       //   {
       //     email: email
@@ -128,7 +128,7 @@ router.post('/upload_userPic/:email', upload.single('photo'), (req, res) => {
       //   console.log(user);
       //   res.json(user);
       // });
-      res.send(true);
+      //res.send(true);
     })
     .catch((err) => {
       console.log(err);
