@@ -16,7 +16,6 @@ const MyPostlistPage = (prop) => {
   // This is for edit post function
   const navigate = useNavigate();
 
-  console.log('prop : ' + prop.post_list);
   let temp = [];
 
   const email = prop.userData.email;
@@ -30,7 +29,7 @@ const MyPostlistPage = (prop) => {
       setUserPost(res.data);
     };
     getData();
-  }, [setUserPost]);
+  }, []);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);
@@ -50,8 +49,8 @@ const MyPostlistPage = (prop) => {
 
   // Edit post
   const editPostHandler = (e) => {
-    console.log(e.post_number, 'THIS IS POST NUMBER IN THE HANDLER');
-    navigate('/updatePost', { state: { postNum: e.post_number } });
+    //console.log(e, 'THIS IS e IN THE HANDLER'); => e is the post_number
+    navigate('/updatePost', { state: { postNum: e } });
   };
 
   // Delete post
@@ -69,7 +68,7 @@ const MyPostlistPage = (prop) => {
 
   return (
     <div>
-      {console.log(list)}
+      {console.log(list, 'THIS IS LIST OF THE ALL POST DATA')}
       {loading && <Loading />}
       {!loading && (
         <div>
@@ -89,7 +88,6 @@ const MyPostlistPage = (prop) => {
                 <img className="list-image" src={e.img[0]} alt="list-img" />
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
-                  {console.log(e.post_number, 'THIS IS POST NUM IN THE RETURN')}
                   <div className="list-desc postTitle">
                     <Link className="nav-link" to={'/list/post/detail/' + e.post_number}>
                       {e.post_title}
@@ -101,9 +99,11 @@ const MyPostlistPage = (prop) => {
                   <div className="list-desc location">Location: {e.location}</div>
 
                   <div className="btns">
-                    {console.log(e.post_number, 'THIS IS POST NUM IN THE RETURN - BUTTON')}
-                    {console.log(e, 'THIS IS EVENT')}
-                    <Button className="button" color="gray" onClick={(e) => editPostHandler(e)}>
+                    <Button
+                      className="button"
+                      color="gray"
+                      onClick={() => editPostHandler(e.post_number)}
+                    >
                       Edit Post
                     </Button>
                     <Button className="button" color="#c94c4c">

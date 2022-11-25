@@ -8,7 +8,7 @@ const UpdatePost = (prop) => {
   const location = useLocation();
   const number = location.state.postNum;
 
-  console.log(location.state.postNum, 'POST NUMBER');
+  console.log(location.state.postNum, 'POST NUMBER IN THE EditPost.js');
 
   const Update_date = new Date();
   const userInfo = prop.userData;
@@ -16,6 +16,7 @@ const UpdatePost = (prop) => {
   const [file, setFile] = useState(null);
   const [postNum, setPostNum] = useState(null);
   const [post, setPost] = useState();
+
   const onInputChange = (e) => {
     setFile(e.target.files);
   };

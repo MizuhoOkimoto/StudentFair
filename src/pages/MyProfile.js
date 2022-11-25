@@ -36,18 +36,12 @@ function MyProfile(prop) {
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
-  
   useEffect(() => {
-
-      
     if (userPost === undefined || userPost.length === 0) {
-      axios.get(`http://localhost:8080/users/${temp.email}`)
-      .then((res) =>{
-        if(res !== undefined){
+      axios.get(`http://localhost:8080/users/${temp.email}`).then((res) => {
+        if (res !== undefined) {
           prop.setUser(res.data[0]);
-          
         }
-        
       });
       console.log(prop.userData.email);
       axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
@@ -55,14 +49,8 @@ function MyProfile(prop) {
         console.log(res.data);
         setUserPost(res.data);
       });
-
-      
     }
   }, [userPost, user]);
-
-  
-  
-  
 
   // Mizuho modified this clickedSeeMoreBtn clickhandler
   // 1. Moved to inside the MyProfile function
@@ -91,6 +79,7 @@ function MyProfile(prop) {
   const clickToAdmin = () => {
     navigate('/admin');
   };
+
   let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + prop.userData.email;
   const [file, setFile] = useState(null);
   const onInputChange = (e) => {
@@ -106,10 +95,10 @@ function MyProfile(prop) {
         'content-type': 'multipart/form-data',
       },
     };
-    
+
     axios.post(uploadAddress, formData, config).then((res) => {
       console.log(res.data);
-      alert("Success To Upload");
+      alert('Success To Upload');
       window.location = '/myProfile';
     });
   };
@@ -127,7 +116,7 @@ function MyProfile(prop) {
               />
             </div>
             <Link className="nav-link profile-pic-upload-btn" to="/myProfile/upload_picture">
-              Update Picture 
+              Update Picture
             </Link>
             <div className="my-profile-container">
               <div className="my-profile">{prop.userData.fname}'s Profile</div>
@@ -186,11 +175,7 @@ function MyProfile(prop) {
             <div className="profile-history-container">
               <p>Your Latest Post</p>
               <div className="post-item-card">
-                <img
-                  className="item-image"
-                  src={userPost.img[0]}
-                  alt="product"
-                />
+                <img className="item-image" src={userPost.img[0]} alt="product" />
                 <div className="item-desc-container">
                   <div className="item-title">{userPost.post_title}</div>
                   <div className="item-price">$ {userPost.price}</div>
