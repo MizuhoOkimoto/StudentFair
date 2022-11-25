@@ -226,6 +226,16 @@ router.route('/getBuyPost').get((req, res) => {
 });
 
 // Please do not remove/modify: Using it in the AdminPosts Page
+router.route('/deletePost/:id').delete(async (req, res) => {
+  const id = req.params.id;
+  const deletePost = await Post.deleteOne({ post_number: id });
+  if (deletePost.acknowledged) {
+    return res.status(200).json({ message: 'Post Deleted!' });
+  }
+  return res.status(400).json({ message: 'Could not delete post!' });
+});
+
+// Please do not remove/modify: Using it in the AdminPosts Page
 router.get('/getUserPosts/:email', (req, res) => {
   const email = req.params.email;
   Post.find({
