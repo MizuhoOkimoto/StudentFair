@@ -50,7 +50,7 @@ const UpdatePost = (prop) => {
     axios.put(`http://localhost:8080/posts/${number}`, newpost).then((res) => {
       console.log(res.data);
       setPostNum(res.data.post_number);
-      console.log(file);
+      console.log(file, 'THIS IS FILE');
       if (file) {
         uploadPhoto(number);
       }

@@ -27,9 +27,10 @@ const MyPostlistPage = (prop) => {
       console.log(res, 'RESPONSE FROM SERVER SIDE');
       setList(data.reverse());
       setUserPost(res.data);
+      setLoading(false);
     };
     getData();
-  }, []);
+  }, [loading]);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);
@@ -54,85 +55,86 @@ const MyPostlistPage = (prop) => {
   };
 
   // Delete post
-  // const deletePostHandler = () => {
-  //   console.log(userPost);
-  //   const url = 'http://localhost:8080/posts/delete/' + userPost.post_number;
-  //   axios.post(url).then((res) => {
-  //     console.log(res.data);
-  //   });
-  //   axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
-  //     console.log(res.data)
-  //     setUserPost(res.data);
-  //   });
-  // };
+  const deletePostHandler = async (e) => {
+    console.log(e, 'THIS IS e IN THE DELETE HANDLER');
+    await axios.delete(`http://localhost:8080/posts/delete/${e}`);
+    setLoading(true);
+    // const url = 'http://localhost:8080/posts/delete/' + e;
+    // axios.post(url).then((res) => {
+    //   console.log(res.data, 'THIS IS res.data');
+  };
 
   return (
     <div>
       {console.log(list, 'THIS IS LIST OF THE ALL POST DATA')}
-      {loading && <Loading />}
-      {!loading && (
-        <div>
-          <div className="item-list-container">
-            {prop.flag === 'true' ? (
-              <div className="item-list-create-post-button">
-                <Button onClick={createBtnPressed} className="create-button" color="tomato">
-                  Create Post
-                </Button>
-              </div>
-            ) : (
-              ''
-            )}
-
-            {list.map((e) => (
-              <List key={e._id}>
-                <img className="list-image" src={e.img[0]} alt="list-img" />
-                <div className="list-desces">
-                  <div className="list-desc post-num">No. {e.post_number}</div>
-                  <div className="list-desc postTitle">
-                    <Link className="nav-link" to={'/list/post/detail/' + e.post_number}>
-                      {e.post_title}
-                    </Link>
-                  </div>
-                  <div className="list-desc state">Condition: {e.condition}</div>
-                  <div className="list-desc price">Price: ${e.price}</div>
-                  <div className="list-desc seller-name">Seller: {e.user_id.split('@')[0]}</div>
-                  <div className="list-desc location">Location: {e.location}</div>
-                  <div className="btns">
-                    <Button
-                      className="button"
-                      color="gray"
-                      onClick={() => editPostHandler(e.post_number)}
-                    >
-                      Edit Post
-                    </Button>
-                    <Button className="button" color="#c94c4c">
-                      Delete Post
-                    </Button>
-                  </div>
-                </div>
-              </List>
-            ))}
-          </div>
-          <div className="item-list-page-btn-container">
-            <div className="item-list-page-btn">
-              <div className="page-btn">{'<'}</div>
-              {renderPageButton(Math.ceil(list.length / 5))}
-              {temp.map((e) => (
-                <div
-                  key={e}
-                  onClick={() => {
-                    pageBtnClicked(e);
-                  }}
-                  className="page-btn"
-                >
-                  {e}
-                </div>
-              ))}
-              <div className="page-btn">{'>'}</div>
+      {/* {loading && <Loading />} */}
+      {/* {!loading && ( */}
+      <div>
+        <div className="item-list-container">
+          {prop.flag === 'true' ? (
+            <div className="item-list-create-post-button">
+              <Button onClick={createBtnPressed} className="create-button" color="tomato">
+                Create Post
+              </Button>
             </div>
+          ) : (
+            'No Post Found'
+          )}
+
+          {list.map((e) => (
+            <List key={e._id}>
+              <img className="list-image" src={e.img[0]} alt="list-img" />
+              <div className="list-desces">
+                <div className="list-desc post-num">No. {e.post_number}</div>
+                <div className="list-desc postTitle">
+                  <Link className="nav-link" to={'/list/post/detail/' + e.post_number}>
+                    {e.post_title}
+                  </Link>
+                </div>
+                <div className="list-desc state">Condition: {e.condition}</div>
+                <div className="list-desc price">Price: ${e.price}</div>
+                <div className="list-desc seller-name">Seller: {e.user_id.split('@')[0]}</div>
+                <div className="list-desc location">Location: {e.location}</div>
+                <div className="btns">
+                  <Button
+                    className="button"
+                    color="gray"
+                    onClick={() => editPostHandler(e.post_number)}
+                  >
+                    Edit Post
+                  </Button>
+                  <Button
+                    className="button"
+                    color="#c94c4c"
+                    onClick={() => deletePostHandler(e.post_number)}
+                  >
+                    Delete Post
+                  </Button>
+                </div>
+              </div>
+            </List>
+          ))}
+        </div>
+        <div className="item-list-page-btn-container">
+          <div className="item-list-page-btn">
+            <div className="page-btn">{'<'}</div>
+            {renderPageButton(Math.ceil(list.length / 5))}
+            {temp.map((e) => (
+              <div
+                key={e}
+                onClick={() => {
+                  pageBtnClicked(e);
+                }}
+                className="page-btn"
+              >
+                {e}
+              </div>
+            ))}
+            <div className="page-btn">{'>'}</div>
           </div>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </div>
   );
 };

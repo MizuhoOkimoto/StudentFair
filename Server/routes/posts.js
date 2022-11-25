@@ -86,7 +86,7 @@ router.post('/upload_post_pic/:postid/:email', upload.array('photo'), (req, res)
   console.log(params);
   console.log(file);
   let imgArray = [];
-  if(file.length > 0){  
+  if (file.length > 0) {
     for (let i = 0; i < file.length; i++) {
       imgArray.push(`/postImg/Post_${params.postid}_${params.email}_${file[i].originalname}`);
     }
@@ -109,8 +109,6 @@ router.post('/upload_post_pic/:postid/:email', upload.array('photo'), (req, res)
         });
     });
   }
-  
-  
 });
 router.post('/create_post', (req, res) => {
   const { email, field, title, category, desc, con, price, loc, img = '' } = req.body;
@@ -135,7 +133,7 @@ router.post('/create_post', (req, res) => {
         condition: con,
         price: price,
         location: loc,
-        img: img
+        img: img,
       });
 
       newPost
@@ -208,7 +206,8 @@ router.post('/detail/contact/:post_number', (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.post('/delete/:postid', (req, res) => {
+// Mizuho changed it from router.post to router.delete for the delete post function
+router.delete('/delete/:postid', (req, res) => {
   const post_id = req.params.postid;
   console.log(post_id);
   Post.deleteOne({ post_number: post_id })
