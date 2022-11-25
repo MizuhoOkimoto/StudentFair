@@ -60,12 +60,8 @@ function MyProfile(prop) {
     navigate('/myProfile/post/history');
   };
 
-  const deletePostHandler = () => {
-    console.log(userPost);
-    const url = 'http://localhost:8080/posts/delete/' + userPost.post_number;
-    axios.post(url).then((res) => {
-      console.log(res.data);
-    });
+  const deletePostHandler = async () => {
+    await axios.delete(`http://localhost:8080/posts/delete/${userPost.post_number}`);
     axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
       console.log(res.data);
       setUserPost(res.data);

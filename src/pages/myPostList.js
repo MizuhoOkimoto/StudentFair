@@ -78,7 +78,7 @@ const MyPostlistPage = (prop) => {
               </Button>
             </div>
           ) : (
-            'No Post Found'
+            ''
           )}
 
           {list.map((e) => (
