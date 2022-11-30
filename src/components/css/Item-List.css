@@ -94,3 +94,9 @@
   border-radius: 5px;
   line-height: 19px;
 }
+
+@media only screen and (max-width: 768px) {
+  div.item-list-container > div {
+    width: 80%;
+  }
+}

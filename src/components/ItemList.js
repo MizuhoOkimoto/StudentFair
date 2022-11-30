@@ -16,6 +16,11 @@ const ItemList = styled.div`
   box-shadow: 0px 0px 10px gray;
   border-radius: 15px;
   margin: 5px 0 5px 0;
+  @media only screen and (max-width: 768px) {
+    .item-list-post {
+      width: 80%;
+    }
+  }
 `;
 
 export default ItemList;

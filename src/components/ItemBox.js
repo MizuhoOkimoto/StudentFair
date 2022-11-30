@@ -17,7 +17,14 @@ const ItemBox = styled.div`
 
   @media only screen and (max-width: 938px) {
     max-width: 200px;
-    min-height: 300px;
+    //min-height: 300px;
+    min-height: ${(props) => {
+      if (props.minHeight === 0) {
+        return props.minHeight;
+      } else {
+        return '300px';
+      }
+    }};
   }
 `;
 

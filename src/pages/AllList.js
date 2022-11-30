@@ -76,8 +76,12 @@ const AllList = (prop) => {
             )}
 
             {list.map((e) => (
-              <List key={e._id}>
-                <img className="list-image" src={e.img[0] === undefined ? '/postImg/No_img.png' : e.img[0]} alt="list-img" />
+              <List className="item-list-post" key={e._id}>
+                <img
+                  className="list-image"
+                  src={e.img[0] === undefined ? '/postImg/No_img.png' : e.img[0]}
+                  alt="list-img"
+                />
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
                   <div className="list-desc postTitle">

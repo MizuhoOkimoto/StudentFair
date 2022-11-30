@@ -34,10 +34,6 @@ function Header(prop) {
             <img className="navbar-logo" src={logo} alt="Logo Img" />
           </Link>
           <div className="navbar-sub">
-            <label htmlFor="drop" className="toggle">
-              Menu +
-            </label>
-            <input type="checkbox" id="drop" />
             <ul className="menu">
               <li>
                 <a href="/">Home</a>
@@ -143,10 +139,11 @@ function Header(prop) {
               </select>
             </div>
           </div>
-
-          <button type="submit" className="submit-button">
-            Search
-          </button>
+          <div className="input-container">
+            <button type="submit" className="submit-button">
+              Search
+            </button>
+          </div>
         </form>
       </div>
     </header>

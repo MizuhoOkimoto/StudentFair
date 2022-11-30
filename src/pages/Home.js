@@ -38,6 +38,9 @@ const Items = styled.div`
   background-position: center;
   background-image: url('${(props) => props.url}');
   display: inline-block;
+  @media only screen and (max-width: 1000px) {
+    width: 20vw;
+  }
 `; // Added line 24 to aligned images to the center
 
 const MainImgContainer = styled.div`
@@ -99,14 +102,14 @@ function Home(prop) {
     <div>
       <MainImgContainer />
       <MainParagraph>
-        <Link className="nav-link" to="/">
-          <Card className="category-card">
+        <Link className="nav-link" to="/lists/buy">
+          <Card minHeight={0} className="category-card">
             <h3>Buy</h3>
             <Items url={buyCategoryImg}></Items>
           </Card>
         </Link>
-        <Link className="nav-link" to="/">
-          <Card className="category-card">
+        <Link className="nav-link" to="/lists/sell">
+          <Card minHeight={0} className="category-card">
             <h3>Sell</h3>
             <Items url={sellCategoryImg}></Items>
           </Card>
@@ -167,7 +170,6 @@ function Home(prop) {
               <Items width="20vw" url={categoryImg1}></Items>
               {/* <p className="lead">Open Box</p> */}
               <br />
-              
             </Card>
           </Link>
           <Link className="nav-link" to={'/lists/TextBook'}>
@@ -176,7 +178,6 @@ function Home(prop) {
               <Items width="20vw" url={categoryImg2}></Items>
               {/* <p className="lead">Only 25cad A+ quality</p> */}
               <br />
-           
             </Card>
           </Link>
           <Link className="nav-link" to={'/lists/Lab'}>
@@ -185,7 +186,6 @@ function Home(prop) {
               <Items width="20vw" url={categoryImg3}></Items>
               {/* <p className="lead">No mining used for gaming</p> */}
               <br />
-            
             </Card>
           </Link>
           <Link className="nav-link" to={'/lists/Electronics'}>
@@ -194,7 +194,6 @@ function Home(prop) {
               <Items width="20vw" url={categoryImg4}></Items>
               {/* <p className="lead">AAA state no crack damage</p> */}
               <br />
-           
             </Card>
           </Link>
         </SubItemBoxes>
