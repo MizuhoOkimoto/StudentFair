@@ -51,9 +51,10 @@ const UpdatePost = (prop) => {
       console.log(res.data);
       setPostNum(res.data.post_number);
       console.log(file, 'THIS IS FILE');
-      if (file) {
-        uploadPhoto(number);
-      }
+      uploadPhoto(res.data.post_number);
+      // if (file) {
+      //   uploadPhoto(number);
+      // }
     });
 
     const formData = new FormData();
@@ -73,11 +74,14 @@ const UpdatePost = (prop) => {
     const uploadPhoto = (postNum) => {
       let address =
         'http://localhost:8080/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
+      console.log('This is address: ', address);
       axios.post(address, formData, config).then((res) => {
         console.log(res.data);
         if (res.data != false) {
           alert('Your post is successfully Updated!');
-          window.location = '/lists';
+          //window.location = '/lists';
+        } else {
+          console.error('Unable to upload the picture!!!!');
         }
       });
     };
