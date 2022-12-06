@@ -83,11 +83,12 @@ router.post('/search', (req, res) => {
 router.post('/upload_post_pic/:postid/:email', upload.array('photo'), (req, res) => {
   let params = req.params;
   const file = req.files;
-  console.log(params);
-  console.log(file);
+  console.log('THIS IS PARAMS IN THE SERVER SIDE: ', params);
+  console.log('THIS IS FILE IN THE SERVER SIDE: ', file);
   let imgArray = [];
   if (file.length > 0) {
     for (let i = 0; i < file.length; i++) {
+      console.log('THIS IS FILE', file);
       imgArray.push(`/postImg/Post_${params.postid}_${params.email}_${file[i].originalname}`);
     }
 
