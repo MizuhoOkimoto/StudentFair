@@ -1,5 +1,6 @@
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
+import { Link } from 'react-router-dom';
 
 const onSubmitHandler = (e) => {
   // This will prevent the default html form submit behavior from taking place.
@@ -22,7 +23,7 @@ const onSubmitHandler = (e) => {
 
   axios.post('http://localhost:8080/users/register', user).then((res) => {
     console.log(res);
-    if (res.data != false) {
+    if (res.data !== false) {
       alert('Welcome to Student Fair!');
       window.location = '/LogIn';
     }
@@ -62,9 +63,9 @@ const SignUp = () => {
         </div>
         <p className="agreement">
           By selecting Agree and continue below, I agree to StudentFair’s
-          <a href="">Terms of Service</a>,<a href="">Payments Terms of Service</a>,
-          <a href="">Privacy Policy</a>, and
-          <a href="">Nondiscrimination Policy</a>.
+          <Link href="">Terms of Service</Link>,<Link href="">Payments Terms of Service</Link>,
+          <Link href="">Privacy Policy</Link>, and
+          <Link href="">Nondiscrimination Policy</Link>.
         </p>
         <div className="input-container sign-up">
           <input type="submit" name="submit" id="submitSignUp" value="Agree and continue" />

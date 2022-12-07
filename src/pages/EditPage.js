@@ -9,9 +9,9 @@ const EditPage = (prop) => {
   let email = prop.userData.email;
   let fullname = prop.userData.fname + ' ' + prop.userData.lname;
   const [file, setFile] = useState(null);
-  const onInputChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  // const onInputChange = (e) => {
+  //   setFile(e.target.files[0]);
+  // };
   const onSubmitHandler = (e) => {
     e.preventDefault();
 

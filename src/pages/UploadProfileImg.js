@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const clickToCancel = () => {
-  window.location = '/myProfile';
-};
+// const clickToCancel = () => {
+//   window.location = '/myProfile';
+// };
 
 const UploadProfilePic = (prop) => {
  

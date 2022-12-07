@@ -3,10 +3,6 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 
-const clickedReport = () => {
-  window.location = '/report';
-};
-
 const ItemDetail = (prop) => {
   const { post } = useParams();
 

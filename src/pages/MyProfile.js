@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import '../components/css/My-Profile.css';
@@ -69,26 +69,28 @@ function MyProfile(prop) {
 
   let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + prop.userData.email;
   const [file, setFile] = useState(null);
-  const onInputChange = (e) => {
-    setFile(e.target.files[0]);
-  };
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  // const onInputChange = (e) => {
+  //   setFile(e.target.files[0]);
+  // };
 
-    const formData = new FormData();
-    formData.append('photo', file);
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    };
+  // const onSubmitHandler = (e) => {
+  //   e.preventDefault();
 
-    axios.post(uploadAddress, formData, config).then((res) => {
-      console.log(res.data);
-      alert('Success To Upload');
-      window.location = '/myProfile';
-    });
-  };
+  //   const formData = new FormData();
+  //   formData.append('photo', file);
+  //   const config = {
+  //     headers: {
+  //       'content-type': 'multipart/form-data',
+  //     },
+  //   };
+
+  //   axios.post(uploadAddress, formData, config).then((res) => {
+  //     console.log(res.data);
+  //     alert('Success To Upload');
+  //     window.location = '/myProfile';
+  //   });
+  // };
+  
   return (
     <div className="myProfile-container">
       <div className="myProfile-card">
