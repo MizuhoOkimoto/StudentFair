@@ -1,12 +1,5 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-
-import { Link } from 'react-router-dom';
-
-// import Button from "../components/Button";
-import Button from '../components/Button';
 
 const onSubmitHandler = (e) => {
   // This will prevent the default html form submit behavior from taking place.
@@ -27,9 +20,6 @@ const onSubmitHandler = (e) => {
 
   console.log(user);
 
-  // Send the user data to the backend
-
-  //let
   axios.post('http://localhost:8080/users/register', user).then((res) => {
     console.log(res);
     if (res.data != false) {
@@ -37,9 +27,6 @@ const onSubmitHandler = (e) => {
       window.location = '/LogIn';
     }
   });
-
-  // Render to the log in page
-  //window.location = '/LogIn';
 };
 
 const SignUp = () => {

@@ -1,14 +1,6 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import App from '../App.js';
-
-import { Link, redirect, useNavigate } from 'react-router-dom';
-
-// import Button from "../components/Button";
-import Button from '../components/Button';
-import { render } from '@testing-library/react';
+import { useNavigate } from 'react-router-dom';
 
 function FindId() {
   const navi = useNavigate();

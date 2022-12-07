@@ -1,16 +1,7 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
-
 import { Link, useParams } from 'react-router-dom';
-
-// import Button from "../components/Button";
 import Button from '../components/Button';
-import Loading from '../components/Loading';
-import '../components/css/Item-Detail.css';
-import mainImg1 from '../img/post_pic/mac-book.avif';
-import subImg1 from '../img/post_pic/mac-book2.webp';
-import subImg2 from '../img/post_pic/mac-book3.webp';
 
 const clickedReport = () => {
   window.location = '/report';

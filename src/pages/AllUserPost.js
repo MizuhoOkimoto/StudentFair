@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
-
-// import Button from "../components/Button";
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import List from '../components/ItemList';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Report(prop) {
   const create_date = new Date();
@@ -19,8 +19,6 @@ function Report(prop) {
 
     axios.post('http://localhost:8080/reports/create_report', newReport).then((res) => {
       console.log(res);
-
-      // if(res.)
 
       if (res.data === true) {
         alert('Your report successfully reported');

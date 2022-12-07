@@ -1,12 +1,6 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { useState } from 'react';
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-
-import { Link } from 'react-router-dom';
-
-// import Button from "../components/Button";
-import Button from '../components/Button';
 
 const CreatePost = (prop) => {
   const create_date = new Date();

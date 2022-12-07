@@ -1,4 +1,3 @@
-import { Button, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 
@@ -19,7 +18,6 @@ function ReportNonLogin() {
           className="mb-0"
           style={{
             display: 'flex',
-            color: 'black',
             textDecoration: 'underline',
             justifyContent: 'center',
             color: 'blue',

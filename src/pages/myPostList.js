@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
-import Loading from '../components/Loading';
 import List from '../components/ItemList';
 import '../components/css/Item-List.css';
-import mainImg from '../img/post_pic/mac-book.avif';
-import { faEbay } from '@fortawesome/free-brands-svg-icons';
+
 
 const MyPostlistPage = (prop) => {
   const [list, setList] = useState([]);

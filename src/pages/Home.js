@@ -1,22 +1,13 @@
 import styled from 'styled-components';
-
 import Card from '../components/ItemBox';
-
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-
-// import Button from "../components/Button";
 import Button from '../components/Button';
 
 import buyCategoryImg from '../img/home_pic/buy_category_img.avif';
 import sellCategoryImg from '../img/home_pic/sell_category_img.avif';
 import mainBannerImg from '../img/home_pic/main_banner_img.avif';
-
-import latestPostImg1 from '../img/post_pic/mac-book.avif';
-import latestPostImg2 from '../img/post_pic/note-nook.avif';
-import latestPostImg3 from '../img/post_pic/graphic-card.avif';
-import latestPostImg4 from '../img/post_pic/iphone-phone.avif';
 
 import categoryImg1 from '../img/home_pic/category-computer.avif';
 import categoryImg2 from '../img/home_pic/category-textbook.avif';

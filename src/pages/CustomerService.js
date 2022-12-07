@@ -1,8 +1,4 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
 import customer_service from '../img/contactus_pic/customer_service.png';
 import sales_service from '../img/contactus_pic/sales.png';

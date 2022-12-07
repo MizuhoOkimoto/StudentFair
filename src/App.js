@@ -39,9 +39,7 @@ function App() {
   let tempData;
   const [loginUser, setLoginUser] = useState([]);
   const [post_list, setPost_list] = useState([]);
-  const [isPostEmpty, seIsPostEmpty] = useState(true);
   const session = window.sessionStorage;
-  const post_session = window.sessionStorage;
 
   // Don't remove: Mizuho is using this console to find an issue
   //console.log(loginUser.isAdmin);
@@ -68,9 +66,7 @@ function App() {
   }, tempData);
 
   function setPostList(data) {
-    // post_session.setItem('post_list', data);
-    // console.log(post_session.getItem('post_list'));
-    if (post_list != data) {
+    if (post_list !== data) {
       tempData = data;
     }
     console.log(tempData);

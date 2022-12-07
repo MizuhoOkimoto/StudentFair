@@ -1,12 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components';
-
-//import path from '../img/uploads/profile_pic/'
-import { Link, useHistory, useParams, useNavigate } from 'react-router-dom';
-
-// import Button from "../components/Button";
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
-import Loading from '../components/Loading';
 import '../components/css/My-Profile.css';
 import axios from 'axios';
 
@@ -16,9 +10,6 @@ const onClickEvent = () => {
 const onClickChangePasswordEvent = () => {
   window.location = '/update_password';
 };
-// const clickedSeeMoreBtn = () => {
-//   window.location = '/myProfile/post/history';
-// };
 
 const clickToDelete = () => {
   if (window.confirm('Are you sure to delete your account?') === true) {

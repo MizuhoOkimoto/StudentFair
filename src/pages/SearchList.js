@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
-
-// import Button from "../components/Button";
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import List from '../components/ItemList';
 import '../components/css/Item-List.css';
-import mainImg from '../img/post_pic/mac-book.avif';
 
 const SearchList = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [listNum, setListNum] = useState(1);
+
   console.log('prop : ' + prop.post_list);
   let temp = [];
   //setList(prop.post_list);

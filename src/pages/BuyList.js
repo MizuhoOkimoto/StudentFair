@@ -14,7 +14,6 @@ import mainImg from '../img/post_pic/mac-book.avif';
 const BuyList = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [listNum, setListNum] = useState(1);
   console.log('prop : ' + prop.post_list);
   let temp = [];
   //setList(prop.post_list);
