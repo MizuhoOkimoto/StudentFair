@@ -102,12 +102,12 @@
 
 .profile-pic-upload-btn {
   position: absolute;
-  right: 170px;
-  top: 110px;
+  right: 130px;
+  top: 105px;
   background-color: ivory;
-  padding: 5px;
   border-radius: 10px;
   box-shadow: 5px 5px 10px grey;
+  font-size: 10px;
 }
 
 .post-item-card {

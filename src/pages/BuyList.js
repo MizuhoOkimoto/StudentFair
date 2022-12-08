@@ -9,6 +9,7 @@ import mainImg from '../img/post_pic/mac-book.avif';
 
 const BuyList = (prop) => {
   const [list, setList] = useState([]);
+  const [totalList, setTotoalList] = useState([]);
   const [loading, setLoading] = useState(true);
   console.log('prop : ' + prop.post_list);
   let temp = [];
@@ -26,10 +27,17 @@ const BuyList = (prop) => {
       axios
         .get('http://localhost:8080/posts/getBuyPost')
         .then((res) => {
+          let tempData = [];
           console.log(res);
           let { data } = res;
-
-          setList(data.reverse());
+          for (let i = data.length - 1; i > data.length - 6; i--) {
+            if (data[i] != null) {
+              temp.push(data[i]);
+            }
+          }
+          console.log(tempData);
+          setTotoalList(data);
+          setList(temp);
         })
         .catch((err) => {
           console.log(err);
@@ -38,8 +46,8 @@ const BuyList = (prop) => {
   }, []);
 
   const renderPageButton = (e) => {
-    Math.ceil(list.length / 5);
-    for (let i = 0; i < Math.ceil(list.length / 5); i++) {
+    Math.ceil(totalList.length / 5);
+    for (let i = 0; i < Math.ceil(totalList.length / 5); i++) {
       temp.push(i + 1);
     }
     console.log(temp);
@@ -47,6 +55,35 @@ const BuyList = (prop) => {
 
   const pageBtnClicked = (e) => {
     console.log(e);
+    window.setTimeout(() => {
+      axios
+        .get('http://localhost:8080/posts/getBuyPost')
+        .then((res) => {
+          console.log(res);
+          let { data } = res;
+          let tempData = [];
+
+          if (e !== 1) {
+            for (let i = data.length - (e - 1) * 5 - 1; i > data.length - (e - 1) * 5 - 6; i--) {
+              if (data[i] != null) {
+                tempData.push(data[i]);
+              }
+            }
+            console.log(temp);
+            setList(tempData);
+          } else {
+            for (let i = data.length - 1; i > data.length - 6; i--) {
+              tempData.push(data[i]);
+            }
+            console.log(tempData);
+            setTotoalList(data);
+            setList(tempData);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 0);
   };
 
   const createBtnPressed = () => {
