@@ -8,7 +8,7 @@ import '../components/css/Item-List.css';
 
 const MyPostlistPage = (prop) => {
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
 
 
   // This is for edit post function
@@ -27,10 +27,10 @@ const MyPostlistPage = (prop) => {
       console.log(res, 'RESPONSE FROM SERVER SIDE');
       setList(data.reverse());
 
-      setLoading(false);
+      //setLoading(false);
     };
     getData();
-  }, [loading]);
+  }, [email]);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);
@@ -58,7 +58,7 @@ const MyPostlistPage = (prop) => {
   const deletePostHandler = async (e) => {
     console.log(e, 'THIS IS e IN THE DELETE HANDLER');
     await axios.delete(`http://localhost:8080/posts/delete/${e}`);
-    setLoading(true);
+    //setLoading(true);
     // const url = 'http://localhost:8080/posts/delete/' + e;
     // axios.post(url).then((res) => {
     //   console.log(res.data, 'THIS IS res.data');

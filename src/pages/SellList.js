@@ -27,7 +27,7 @@ const SellList = (prop) => {
       axios
         .get('http://localhost:8080/posts/getSellPost')
         .then((res) => {
-          let tempData = [];
+          //let tempData = [];
           console.log(res);
           let { data } = res;
           for (let i = data.length - 1; i > data.length - 6; i--) {
@@ -35,7 +35,7 @@ const SellList = (prop) => {
               temp.push(data[i]);
             }
           }
-          console.log(tempData);
+          //console.log(tempData);
           setTotoalList(data);
           setList(temp);
         })
