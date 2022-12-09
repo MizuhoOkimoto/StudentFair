@@ -1,10 +1,10 @@
 import axios from 'axios';
 import '../components/css/LogIn-Register.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../components/css/Footer.css';
 
 function LogIn(prop) {
-  const navigate = useNavigate();
+ 
 
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.

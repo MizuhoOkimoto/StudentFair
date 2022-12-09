@@ -14,7 +14,7 @@ const UpdatePost = (prop) => {
   const userInfo = prop.userData;
 
   const [file, setFile] = useState(null);
-  const [postNum, setPostNum] = useState(null);
+  //const [postNum, setPostNum] = useState(null);
   const [post, setPost] = useState();
 
   const onInputChange = (e) => {
@@ -49,7 +49,7 @@ const UpdatePost = (prop) => {
     // Send the user data to the backend
     axios.put(`http://localhost:8080/posts/${number}`, newpost).then((res) => {
       console.log(res.data);
-      setPostNum(res.data.post_number);
+      //setPostNum(res.data.post_number);
       console.log(file, 'THIS IS FILE');
       uploadPhoto(res.data.post_number);
       // if (file) {

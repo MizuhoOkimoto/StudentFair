@@ -24,7 +24,7 @@ function MyProfile(prop) {
   const temp = prop.userData;
   console.log(temp, ' TEMP');
   const [userPost, setUserPost] = useState();
-  const [user, setUser] = useState();
+  //const [user, setUser] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function MyProfile(prop) {
         setUserPost(res.data);
       });
     }
-  }, [userPost, user]);
+  }, [userPost]);
 
   // Mizuho modified this clickedSeeMoreBtn clickhandler
   // 1. Moved to inside the MyProfile function
@@ -67,8 +67,8 @@ function MyProfile(prop) {
     navigate('/admin');
   };
 
-  let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + prop.userData.email;
-  const [file, setFile] = useState(null);
+  //let uploadAddress = 'http://localhost:8080/users/upload_userPic/' + prop.userData.email;
+  //const [file, setFile] = useState(null);
   // const onInputChange = (e) => {
   //   setFile(e.target.files[0]);
   // };

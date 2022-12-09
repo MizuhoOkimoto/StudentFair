@@ -1,14 +1,8 @@
 import { Link } from 'react-router-dom';
-import { App } from '../App';
-
 //import { AiOutlineLogin } from "react-icons/ai";
-
 import logo from '../img/studentFair_Logo.png';
-
-import styled from 'styled-components';
-
 import './css/Header.css';
-import axios from 'axios';
+
 
 function Header(prop) {
   // const onClickHandler = (e) => {

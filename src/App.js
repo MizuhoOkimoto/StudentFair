@@ -36,7 +36,7 @@ import SearchList from './pages/SearchList';
 import { useEffect, useState } from 'react';
 
 function App() {
-  let tempData;
+  
   const [loginUser, setLoginUser] = useState([]);
   //const [post_list, setPost_list] = useState([]);
   const session = window.sessionStorage;

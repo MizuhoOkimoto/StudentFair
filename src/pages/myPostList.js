@@ -9,7 +9,7 @@ import '../components/css/Item-List.css';
 const MyPostlistPage = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [userPost, setUserPost] = useState();
+
 
   // This is for edit post function
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const MyPostlistPage = (prop) => {
       let { data } = res;
       console.log(res, 'RESPONSE FROM SERVER SIDE');
       setList(data.reverse());
-      setUserPost(res.data);
+
       setLoading(false);
     };
     getData();
