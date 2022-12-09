@@ -132,7 +132,7 @@ function App() {
       <Header flag={loginUser.isLogin} />
 
       <Routes>
-        <Route exact path="/" element={<Home setPostList={setPostList} />} />
+        <Route exact path="/" element={<Home  />} />
         <Route path="*" element={<NotFound />} />
         <Route exact path="/admin" element={<Admin isAdmin={loginUser} />} />
         <Route exact path="/adminPosts" element={<AdminPosts isAdmin={loginUser} />} />

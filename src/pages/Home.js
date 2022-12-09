@@ -68,7 +68,7 @@ const SubItemBoxes = styled.div`
   flex-wrap: wrap;
 `;
 
-function Home(prop) {
+function Home() {
   const [recent, setRecent] = useState();
   const [last, setLast] = useState(0);
   useEffect(() => {
