@@ -84,8 +84,8 @@ function Home(prop) {
     }
   }, [recent]);
 
-  console.log(recent);
-  console.log(last);
+  //console.log(recent);
+  //console.log(last);
   return (
     <div>
       <MainImgContainer />

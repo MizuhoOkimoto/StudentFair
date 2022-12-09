@@ -10,9 +10,10 @@ const SearchList = (prop) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  console.log('THIS IS PROP: ', prop);
   console.log('prop : ' + prop.post_list);
   let temp = [];
-  //setList(prop.post_list);
+  setList(prop.post_list);
   useEffect(() => {
     window.setTimeout(() => {
       setLoading(false);

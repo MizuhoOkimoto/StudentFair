@@ -34,7 +34,7 @@ function MyProfile(prop) {
           prop.setUser(res.data[0]);
         }
       });
-      console.log(prop.userData.email);
+      //console.log(prop.userData.email);
       axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
         console.log(res);
         console.log(res.data);
