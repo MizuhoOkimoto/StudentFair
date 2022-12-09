@@ -38,7 +38,7 @@ import { useEffect, useState } from 'react';
 function App() {
   let tempData;
   const [loginUser, setLoginUser] = useState([]);
-  const [post_list, setPost_list] = useState([]);
+  //const [post_list, setPost_list] = useState([]);
   const session = window.sessionStorage;
 
   // Don't remove: Mizuho is using this console to find an issue
@@ -61,9 +61,9 @@ function App() {
     }
   }, [session]);
 
-  useEffect(() => {
-    setPost_list(tempData);
-  }, tempData);
+  // useEffect(() => {
+  //   setPost_list(tempData);
+  // }, tempData);
 
   // function setPostList(data) {
   //   if (post_list !== data) {
