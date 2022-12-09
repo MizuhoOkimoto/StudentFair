@@ -160,20 +160,7 @@ router.route('/login').post((req, res) => {
 
   if (isValid) {
     let error = [];
-    //Check Admin ID
-    // if(req.body.email === Admin.email){
-    //   // if(req.body.password === Admin.pwd){
-    //   //   //TODO: Check the redirect
-    //   //   console.log("admin");
-    //   //   return res.redirect('/admin');
-    //   // }
-    //   else{
-    //     error.push('Password does not match!');
-    //     res.send('Password does not match! here');
-    //   }
-    // }
-    // else{
-
+   
     User.findOne({
       email: req.body.email,
     })
@@ -182,7 +169,7 @@ router.route('/login').post((req, res) => {
           bcrypt.compare(req.body.password, user.password).then((match) => {
             if (match) {
               req.session.user = user;
-              console.log(req.session.user);
+              
               curUser = user;
               return res.json(user);
             } else {
@@ -200,7 +187,7 @@ router.route('/login').post((req, res) => {
         error.push('Error=Not found on Data');
         res.send('There is No Validated E-mail.');
       });
-    // }
+   
   }
 });
 
@@ -280,7 +267,7 @@ router.route('/register').post((req, res) => {
 router.route('/update_info').post((req, res) => {
   const { email, newPhone, newCity } = req.body;
 
-  User.findOne({ email: email }).then((user) => {
+  User.findOne({ email: email }).then(() => {
     User.updateOne(
       { email: email },
       {
@@ -303,7 +290,7 @@ router.route('/update_info').post((req, res) => {
 
 // POST -forgot account
 router.route('/forgot-account').post((req, res) => {
-  const { email, isFound } = req.body;
+  const { email } = req.body;
   console.log(req.body);
   User.findOne({ email: email })
     .then((user) => {
@@ -417,7 +404,7 @@ router.post('/delete/:email', (req, res) => {
 });
 router.get('/:email', (req, res) => {
   const email = req.params.email;
-  console.log(email);
+  //console.log(email);
   User.find({ email: email })
     .then((data) => {
       res.json(data);

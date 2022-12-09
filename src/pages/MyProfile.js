@@ -22,7 +22,7 @@ const clickToDelete = () => {
 
 function MyProfile(prop) {
   const temp = prop.userData;
-  console.log(temp, ' TEMP');
+  //console.log(temp, ' TEMP');
   const [userPost, setUserPost] = useState();
   //const [user, setUser] = useState();
   const navigate = useNavigate();
@@ -35,9 +35,9 @@ function MyProfile(prop) {
         }
       });
       //console.log(prop.userData.email);
-      axios.get(`http://localhost:8080/posts/getRecent/${prop.userData.email}`).then((res) => {
-        console.log(res);
-        console.log(res.data);
+      axios.get(`http://localhost:8080/posts/getRecent/${temp.email}`).then((res) => {
+        //console.log(res);
+        //console.log(res.data);
         setUserPost(res.data);
       });
     }
