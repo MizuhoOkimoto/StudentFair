@@ -65,25 +65,25 @@ function App() {
     setPost_list(tempData);
   }, tempData);
 
-  function setPostList(data) {
-    if (post_list !== data) {
-      tempData = data;
-    }
-    console.log(tempData);
-  }
+  // function setPostList(data) {
+  //   if (post_list !== data) {
+  //     tempData = data;
+  //   }
+  //   console.log(tempData);
+  // }
 
-  function setUser(data) {
+  function setUser(inputData) {
     
-    if(data !== undefined){
-      session.setItem('email', data.email);
-      session.setItem('fname', data.fname);
-      session.setItem('lname', data.lname);
-      session.setItem('password', data.password);
-      session.setItem('phone', data.phone);
-      session.setItem('city', data.city);
-      session.setItem('img_url', data.img_url);
+    if(inputData !== undefined){
+      session.setItem('email', inputData.email);
+      session.setItem('fname', inputData.fname);
+      session.setItem('lname', inputData.lname);
+      session.setItem('password', inputData.password);
+      session.setItem('phone', inputData.phone);
+      session.setItem('city', inputData.city);
+      session.setItem('img_url', inputData.img_url);
       session.setItem('isLogin', true);
-      session.setItem('isAdmin', data.admin);
+      session.setItem('isAdmin', inputData.admin);
     }
   }
   function updateProfilePic(url) {
@@ -142,20 +142,20 @@ function App() {
         <Route
           exact
           path="/lists"
-          element={<AllList flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />}
+          element={<AllList flag={loginUser.isLogin} userData={loginUser}  />}
         />
         <Route
           exact
           path="/searchResult"
           element={
-            <SearchList flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />
+            <SearchList flag={loginUser.isLogin} userData={loginUser} />
           }
         />
         <Route
           exact
           path="/lists/:category"
           element={
-            <ListByCategory flag={loginUser.isLogin} userData={loginUser} post_list={post_list} />
+            <ListByCategory flag={loginUser.isLogin} userData={loginUser}  />
           }
         />
         <Route

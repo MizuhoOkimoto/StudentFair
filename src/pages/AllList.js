@@ -10,7 +10,7 @@ const AllList = (prop) => {
   const [list, setList] = useState([]);
   const [totalList, setTotoalList] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log('prop : ' + prop.post_list);
+  
   let temp = [];
   useEffect(() => {
     window.setTimeout(() => {
