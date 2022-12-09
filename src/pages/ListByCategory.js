@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import List from '../components/ItemList';
 import '../components/css/Item-List.css';
-import mainImg from '../img/post_pic/mac-book.avif';
+
 
 const ListByCategory = (prop) => {
   const [list, setList] = useState([]);
@@ -37,7 +37,7 @@ const ListByCategory = (prop) => {
           console.log(err);
         });
     }, 0);
-  }, []);
+  }, [url]);
 
   const renderPageButton = (e) => {
     Math.ceil(list.length / 5);
@@ -74,7 +74,7 @@ const ListByCategory = (prop) => {
 
             {list.map((e) => (
               <List key={e._id}>
-                <img className="list-image" src={mainImg} alt="list-img" />
+                <img className="list-image" src={e.img[0]} alt="list-img" />
                 <div className="list-desces">
                   <div className="list-desc post-num">No. {e.post_number}</div>
                   <div className="list-desc postTitle">

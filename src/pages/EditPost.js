@@ -28,7 +28,7 @@ const UpdatePost = (prop) => {
       setPost(res.data);
     };
     getPost();
-  }, []);
+  }, [number]);
 
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.
@@ -77,7 +77,7 @@ const UpdatePost = (prop) => {
       console.log('This is address: ', address);
       axios.post(address, formData, config).then((res) => {
         console.log(res.data);
-        if (res.data != false) {
+        if (res.data !== false) {
           alert('Your post is successfully Updated!');
           //window.location = '/lists';
         } else {

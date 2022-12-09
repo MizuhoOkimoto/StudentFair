@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import List from '../components/ItemList';
 import '../components/css/Item-List.css';
-import mainImg from '../img/post_pic/mac-book.avif';
+
 
 const BuyList = (prop) => {
   const [list, setList] = useState([]);

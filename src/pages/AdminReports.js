@@ -7,7 +7,7 @@ import axios from 'axios';
 function AdminReports(props) {
   const [reports, setReports] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [review, setReviewed] = useState(false);
+  //const [review, setReviewed] = useState(false);
 
   // State variable to keep track of all the expanded rows
   // By default, nothing expanded. Hence initialized with empty array.
@@ -68,9 +68,9 @@ function AdminReports(props) {
     setExpandedRows(newExpandedRows);
   };
 
-  const clickReviewed = async () => {
-    review(true);
-  };
+  // const clickReviewed = async () => {
+  //   review(true);
+  // };
 
   if (reports) {
     return (

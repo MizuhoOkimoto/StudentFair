@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../components/Button';
-import Loading from '../components/Loading';
 import '../components/css/Item-Detail.css';
-import mainImg1 from '../img/post_pic/mac-book.avif';
-import subImg1 from '../img/post_pic/mac-book2.webp';
-import subImg2 from '../img/post_pic/mac-book3.webp';
+
 
 const ItemDetail = (prop) => {
   const { post } = useParams();
@@ -18,28 +14,28 @@ const ItemDetail = (prop) => {
   console.log(post);
 
   useEffect(() => {
-    if (curPost === undefined || curPost.length == 0)
+    if (curPost === undefined || curPost.length === 0)
       axios.get(url).then((res) => {
         console.log(res.data);
         setCurPost(res.data);
       });
-  }, [curPost]);
+  }, [curPost, url]);
   //console.log(curPost);
   useEffect(() => {
-    if (curPost != undefined) {
+    if (curPost !== undefined) {
       const sellUrl = 'http://localhost:8080/users/getSellInfo/' + curPost.user_id;
 
-      if (sell === undefined || sell.length == 0)
+      if (sell === undefined || sell.length === 0)
         axios.get(sellUrl).then((res) => {
           console.log(res.data);
           setSell(res.data);
         });
     }
-  }, [sell]);
-  if (curPost != undefined) {
+  }, [sell, curPost]);
+  if (curPost !== undefined) {
     const sellUrl = 'http://localhost:8080/users/getSellInfo/' + curPost.user_id;
 
-    if (sell === undefined || sell.length == 0)
+    if (sell === undefined || sell.length === 0)
       axios.get(sellUrl).then((res) => {
         console.log(res.data);
         setSell(res.data);

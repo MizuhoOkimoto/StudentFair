@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function DeleteUser(prop) {
-  const [result, setResult] = useState('');
+  //const [result, setResult] = useState('');
 
   const inputData = {
     email: prop.usermail(),
@@ -21,7 +19,7 @@ function DeleteUser(prop) {
 
   return (
     <div>
-      <p>{result}</p>
+      <p></p>
     </div>
   );
 }

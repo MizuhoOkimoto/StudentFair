@@ -19,7 +19,9 @@ const MyPostlistPage = (prop) => {
   const email = prop.userData.email;
   useEffect(() => {
     // Mizuho modify: Get post data
+    
     const getData = async () => {
+      
       const res = await axios.get(`http://localhost:8080/posts/getUserPosts/${email}`);
       let { data } = res;
       console.log(res, 'RESPONSE FROM SERVER SIDE');

@@ -7,7 +7,7 @@ const CreatePost = (prop) => {
   const userInfo = prop.userData;
 
   const [file, setFile] = useState(null);
-  const [postNum, setPostNum] = useState(null);
+  //const [postNum, setPostNum] = useState(null);
   const onInputChange = (e) => {
     setFile(e.target.files);
   };
@@ -17,7 +17,7 @@ const CreatePost = (prop) => {
     e.preventDefault();
     console.log(file);
 
-    const posts = await axios.get(`http://localhost:8080/posts/`);
+    //const posts = await axios.get(`http://localhost:8080/posts/`);
 
     const newpost = {
       email: userInfo.email,
@@ -37,7 +37,7 @@ const CreatePost = (prop) => {
 
     axios.post('http://localhost:8080/posts/create_post', newpost).then((res) => {
       console.log(res.data);
-      setPostNum(res.data.post_number);
+      //setPostNum(res.data.post_number);
       uploadPhoto(res.data.post_number);
     });
 
@@ -62,7 +62,7 @@ const CreatePost = (prop) => {
         'http://localhost:8080/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
       axios.post(address, formData, config).then((res) => {
         console.log(res.data);
-        if (res.data != false) {
+        if (res.data !== false) {
           alert('Your post is successfully created!');
           window.location = '/lists';
         }

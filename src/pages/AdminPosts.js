@@ -59,7 +59,7 @@ function AdminPosts(props) {
     console.log(response);
     navigate(`/list/post/detail/${postNum}`);
   };
-  const dateToFormat = '1976-04-19';
+  //const dateToFormat = '1976-04-19';
   if (posts) {
     return (
       <div className="admin-container">

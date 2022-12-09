@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+//import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // import Button from "../components/Button";
-import Button from '../components/Button';
-import Loading from '../components/Loading';
+// import Button from '../components/Button';
+// import Loading from '../components/Loading';
 
 const ItemList = styled.div`
   display: flex;
