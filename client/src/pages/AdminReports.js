@@ -23,7 +23,7 @@ function AdminReports(props) {
       return;
     }
     axios
-      .get('https://student-fair-prj66.herokuapp.com/reports')
+      .get('https://student-fair-prj666.herokuapp.com/reports')
       .then((res) => {
         let data = res.data;
         setReports(data);
@@ -38,13 +38,13 @@ function AdminReports(props) {
   const clickToFilter = async (userData) => {
     console.log(userData);
     // Response the data(object) and see the 'data' attribute
-    const response = await axios.get(`https://student-fair-prj66.herokuapp.com/reports/getUserReports/${userData}`);
+    const response = await axios.get(`https://student-fair-prj666.herokuapp.com/reports/getUserReports/${userData}`);
     console.log(response.data);
     setReports(response.data);
   };
 
   const clickToUnfilter = async () => {
-    const response = await axios.get(`https://student-fair-prj66.herokuapp.com/reports`);
+    const response = await axios.get(`https://student-fair-prj666.herokuapp.com/reports`);
     console.log(response.data);
     setReports(response.data);
   };

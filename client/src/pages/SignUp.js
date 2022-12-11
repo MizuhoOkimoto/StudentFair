@@ -21,7 +21,7 @@ const onSubmitHandler = (e) => {
 
   console.log(user);
 
-  axios.post('https://student-fair-prj66.herokuapp.com/users/register', user).then((res) => {
+  axios.post('https://student-fair-prj666.herokuapp.com/users/register', user).then((res) => {
     console.log(res);
     if (res.data !== false) {
       alert('Welcome to Student Fair!');

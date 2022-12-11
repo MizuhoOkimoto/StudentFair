@@ -14,7 +14,7 @@ const ListByCategory = (prop) => {
 
   let temp = [];
   //setList(prop.post_list);
-  const url = 'https://student-fair-prj66.herokuapp.com/posts/' + category;
+  const url = 'https://student-fair-prj666.herokuapp.com/posts/' + category;
   useEffect(() => {
     window.setTimeout(() => {
       setLoading(false);

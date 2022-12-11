@@ -23,7 +23,7 @@ const UpdatePost = (prop) => {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get(`https://student-fair-prj66.herokuapp.com/posts/detail/${number}`);
+      const res = await axios.get(`https://student-fair-prj666.herokuapp.com/posts/detail/${number}`);
       console.log(res);
       setPost(res.data);
     };
@@ -47,7 +47,7 @@ const UpdatePost = (prop) => {
     console.log(newpost);
 
     // Send the user data to the backend
-    axios.put(`https://student-fair-prj66.herokuapp.com/posts/${number}`, newpost).then((res) => {
+    axios.put(`https://student-fair-prj666.herokuapp.com/posts/${number}`, newpost).then((res) => {
       console.log(res.data);
       //setPostNum(res.data.post_number);
       console.log(file, 'THIS IS FILE');
@@ -73,7 +73,7 @@ const UpdatePost = (prop) => {
     };
     const uploadPhoto = (postNum) => {
       let address =
-        'https://student-fair-prj66.herokuapp.com/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
+        'https://student-fair-prj666.herokuapp.com/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
       console.log('This is address: ', address);
       axios.post(address, formData, config).then((res) => {
         console.log(res.data);

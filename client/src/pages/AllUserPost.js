@@ -28,7 +28,7 @@ const AllUserPost = (prop) => {
       const userId = prop.userData.email;
       console.log(userId);
       axios
-        .get('https://student-fair-prj66.herokuapp.com/posts')
+        .get('https://student-fair-prj666.herokuapp.com/posts')
         .then((res) => {
           console.log(res);
           let { data } = res;

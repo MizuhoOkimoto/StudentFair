@@ -73,7 +73,7 @@ function Home() {
   const [last, setLast] = useState(0);
   useEffect(() => {
     if (recent === undefined || recent.length === 0) {
-      axios.get('https://student-fair-prj66.herokuapp.com/posts').then((res) => {
+      axios.get('https://student-fair-prj666.herokuapp.com/posts').then((res) => {
         //prop.setPostList(res);
         console.log(res.data);
         setRecent(res.data);

@@ -9,7 +9,7 @@ const UploadProfilePic = (prop) => {
  
   let email = prop.userData.email;
 
-  let uploadAddress = 'https://student-fair-prj66.herokuapp.com/users/upload_userPic/' + email;
+  let uploadAddress = 'https://student-fair-prj666.herokuapp.com/users/upload_userPic/' + email;
 
   const [file, setFile] = useState(null);
 

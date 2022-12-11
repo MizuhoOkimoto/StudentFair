@@ -16,7 +16,7 @@ function FindPw(prop) {
       dummy: false,
     };
 
-    axios.post('https://student-fair-prj66.herokuapp.com/users/forgot-password', inputData).then((res) => {
+    axios.post('https://student-fair-prj666.herokuapp.com/users/forgot-password', inputData).then((res) => {
       let data = res.data;
       console.log(data);
       // setMessage('Your temporary password : ' + res.data);

@@ -17,7 +17,7 @@ function Report(prop) {
       date: create_date,
     };
 
-    axios.post('https://student-fair-prj66.herokuapp.com/reports/create_report', newReport).then((res) => {
+    axios.post('https://student-fair-prj666.herokuapp.com/reports/create_report', newReport).then((res) => {
       console.log(res);
 
       if (res.data === true) {

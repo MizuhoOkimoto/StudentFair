@@ -21,7 +21,7 @@ const EditPage = (prop) => {
       newCity: e.target.newCity.value,
     };
 
-    axios.post('https://student-fair-prj66.herokuapp.com/users/update_info', updatedData).then((res) => {
+    axios.post('https://student-fair-prj666.herokuapp.com/users/update_info', updatedData).then((res) => {
       console.log(res.data);
       prop.updateInfo(updatedData);
       window.location = '/MyProfile';

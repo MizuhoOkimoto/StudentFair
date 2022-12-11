@@ -22,7 +22,7 @@ const MyPostlistPage = (prop) => {
     
     const getData = async () => {
       
-      const res = await axios.get(`https://student-fair-prj66.herokuapp.com/posts/getUserPosts/${email}`);
+      const res = await axios.get(`https://student-fair-prj666.herokuapp.com/posts/getUserPosts/${email}`);
       let { data } = res;
       console.log(res, 'RESPONSE FROM SERVER SIDE');
       setList(data.reverse());
@@ -57,7 +57,7 @@ const MyPostlistPage = (prop) => {
   // Delete post
   const deletePostHandler = async (e) => {
     console.log(e, 'THIS IS e IN THE DELETE HANDLER');
-    await axios.delete(`https://student-fair-prj66.herokuapp.com/posts/delete/${e}`);
+    await axios.delete(`https://student-fair-prj666.herokuapp.com/posts/delete/${e}`);
     //setLoading(true);
     // const url = 'http://localhost:8080/posts/delete/' + e;
     // axios.post(url).then((res) => {

@@ -35,7 +35,7 @@ const CreatePost = (prop) => {
 
     // Send the user data to the backend
 
-    axios.post('https://student-fair-prj66.herokuapp.com/posts/create_post', newpost).then((res) => {
+    axios.post('https://student-fair-prj666.herokuapp.com/posts/create_post', newpost).then((res) => {
       console.log(res.data);
       //setPostNum(res.data.post_number);
       uploadPhoto(res.data.post_number);
@@ -59,7 +59,7 @@ const CreatePost = (prop) => {
     };
     const uploadPhoto = (postNum) => {
       let address =
-        'http://https://student-fair-prj66.herokuapp.com/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
+        'http://https://student-fair-prj666.herokuapp.com/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
       axios.post(address, formData, config).then((res) => {
         console.log(res.data);
         if (res.data !== false) {

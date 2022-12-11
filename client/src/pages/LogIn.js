@@ -15,7 +15,7 @@ function LogIn(prop) {
       password: e.target.password.value,
     };
 
-    axios.post('https://student-fair-prj66.herokuapp.com/users/login', inputData).then((res) => {
+    axios.post('https://student-fair-prj666.herokuapp.com/users/login', inputData).then((res) => {
       let data = res.data;
       console.log(
         process.env.REACT_APP_ADMIN_EMAIL,

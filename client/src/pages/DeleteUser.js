@@ -7,7 +7,7 @@ function DeleteUser(prop) {
     email: prop.usermail(),
   };
   console.log(inputData.email);
-  axios.post('https://student-fair-prj66.herokuapp.com/users/delete', inputData).then((res) => {
+  axios.post('https://student-fair-prj666.herokuapp.com/users/delete', inputData).then((res) => {
     console.log(res.data);
     if (res.data === true) {
       window.location = '/';

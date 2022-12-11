@@ -29,13 +29,13 @@ function MyProfile(prop) {
 
   useEffect(() => {
     if (userPost === undefined || userPost.length === 0) {
-      axios.get(`https://student-fair-prj66.herokuapp.com/users/${temp.email}`).then((res) => {
+      axios.get(`https://student-fair-prj666.herokuapp.com/users/${temp.email}`).then((res) => {
         if (res !== undefined) {
           prop.setUser(res.data[0]);
         }
       });
       //console.log(prop.userData.email);
-      axios.get(`https://student-fair-prj66.herokuapp.com/posts/getRecent/${temp.email}`).then((res) => {
+      axios.get(`https://student-fair-prj666.herokuapp.com/posts/getRecent/${temp.email}`).then((res) => {
         //console.log(res);
         //console.log(res.data);
         setUserPost(res.data);
@@ -52,8 +52,8 @@ function MyProfile(prop) {
   };
 
   const deletePostHandler = async () => {
-    await axios.delete(`https://student-fair-prj66.herokuapp.com/posts/delete/${userPost.post_number}`);
-    axios.get(`https://student-fair-prj66.herokuapp.com/posts/getRecent/${prop.userData.email}`).then((res) => {
+    await axios.delete(`https://student-fair-prj666.herokuapp.com/posts/delete/${userPost.post_number}`);
+    axios.get(`https://student-fair-prj666.herokuapp.com/posts/getRecent/${prop.userData.email}`).then((res) => {
       console.log(res.data);
       setUserPost(res.data);
     });

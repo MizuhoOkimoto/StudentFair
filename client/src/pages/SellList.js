@@ -25,7 +25,7 @@ const SellList = (prop) => {
 
     window.setTimeout(() => {
       axios
-        .get('https://student-fair-prj66.herokuapp.com/posts/getSellPost')
+        .get('https://student-fair-prj666.herokuapp.com/posts/getSellPost')
         .then((res) => {
           //let tempData = [];
           console.log(res);
@@ -57,7 +57,7 @@ const SellList = (prop) => {
     console.log(e);
     window.setTimeout(() => {
       axios
-        .get('https://student-fair-prj66.herokuapp.com/posts/getSellPost')
+        .get('https://student-fair-prj666.herokuapp.com/posts/getSellPost')
         .then((res) => {
           console.log(res);
           let { data } = res;

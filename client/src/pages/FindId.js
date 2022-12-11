@@ -15,7 +15,7 @@ function FindId() {
       dummy: false,
     };
 
-    axios.post('https://student-fair-prj66.herokuapp.com/users/forgot-account', inputData).then((res) => {
+    axios.post('https://student-fair-prj666.herokuapp.com/users/forgot-account', inputData).then((res) => {
       let data = res.data;
 
       if (data) {

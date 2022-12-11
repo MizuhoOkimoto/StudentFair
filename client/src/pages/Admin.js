@@ -21,7 +21,7 @@ function Admin(props) {
       return;
     }
     axios
-      .get('https://student-fair-prj66.herokuapp.com/users')
+      .get('https://student-fair-prj666.herokuapp.com/users')
       .then((res) => {
         let data = res.data;
         setUsers(data);
@@ -39,7 +39,7 @@ function Admin(props) {
         email: email,
       };
       console.log(inputData);
-      axios.post('https://student-fair-prj66.herokuapp.com/users/delete', inputData).then((res) => {
+      axios.post('https://student-fair-prj666.herokuapp.com/users/delete', inputData).then((res) => {
         console.log(res.data);
         alert('Your account is safely deleted.');
         setLoading(true);

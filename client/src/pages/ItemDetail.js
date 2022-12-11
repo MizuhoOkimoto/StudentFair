@@ -10,7 +10,7 @@ const ItemDetail = (prop) => {
 
   const [curPost, setCurPost] = useState();
   const [sell, setSell] = useState();
-  const url = 'https://student-fair-prj66.herokuapp.com/posts/detail/' + post;
+  const url = 'https://student-fair-prj666.herokuapp.com/posts/detail/' + post;
   console.log(post);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const ItemDetail = (prop) => {
   //console.log(curPost);
   useEffect(() => {
     if (curPost !== undefined) {
-      const sellUrl = 'https://student-fair-prj66.herokuapp.com/users/getSellInfo/' + curPost.user_id;
+      const sellUrl = 'https://student-fair-prj666.herokuapp.com/users/getSellInfo/' + curPost.user_id;
 
       if (sell === undefined || sell.length === 0)
         axios.get(sellUrl).then((res) => {
@@ -33,7 +33,7 @@ const ItemDetail = (prop) => {
     }
   }, [sell, curPost]);
   if (curPost !== undefined) {
-    const sellUrl = 'https://student-fair-prj66.herokuapp.com/users/getSellInfo/' + curPost.user_id;
+    const sellUrl = 'https://student-fair-prj666.herokuapp.com/users/getSellInfo/' + curPost.user_id;
 
     if (sell === undefined || sell.length === 0)
       axios.get(sellUrl).then((res) => {
@@ -50,7 +50,7 @@ const ItemDetail = (prop) => {
       from: prop.userData.email,
       desc: e.target.contactSeller.value,
     };
-    const url = 'https://student-fair-prj66.herokuapp.com/posts/detail/contact/' + post;
+    const url = 'https://student-fair-prj666.herokuapp.com/posts/detail/contact/' + post;
 
     axios.post(url, inputData).then((result) => {
       console.log(result);

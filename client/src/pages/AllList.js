@@ -23,7 +23,7 @@ const AllList = (prop) => {
 
     window.setTimeout(() => {
       axios
-        .get('https://student-fair-prj66.herokuapp.com/posts')
+        .get('https://student-fair-prj666.herokuapp.com/posts')
         .then((res) => {
           let tempData = [];
           console.log(res);
@@ -56,7 +56,7 @@ const AllList = (prop) => {
     console.log(e);
     window.setTimeout(() => {
       axios
-        .get('https://student-fair-prj66.herokuapp.com/posts')
+        .get('https://student-fair-prj666.herokuapp.com/posts')
         //.get('/api/posts')
         .then((res) => {
           console.log(res);

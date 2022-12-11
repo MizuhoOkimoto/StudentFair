@@ -16,7 +16,7 @@ function AdminPosts(props) {
       return;
     }
     axios
-      .get('https://student-fair-prj66.herokuapp.com/posts')
+      .get('https://student-fair-prj666.herokuapp.com/posts')
       .then((res) => {
         let data = res.data;
         setPosts(data);
@@ -30,7 +30,7 @@ function AdminPosts(props) {
 
   const clickToDelete = async (postNum) => {
     if (window.confirm('Are you sure to delete the post?') === true) {
-      const res = await axios.delete(`https://student-fair-prj66.herokuapp.com/posts/deletePost/${postNum}`);
+      const res = await axios.delete(`https://student-fair-prj666.herokuapp.com/posts/deletePost/${postNum}`);
       console.log(res);
       alert('The post is deleted');
       setLoading(true);
@@ -42,20 +42,20 @@ function AdminPosts(props) {
   const clickToFilter = async (userData) => {
     console.log(userData);
     // Response the data(object) and see the 'data' attribute
-    const response = await axios.get(`https://student-fair-prj66.herokuapp.com/posts/getUserPosts/${userData}`);
+    const response = await axios.get(`https://student-fair-prj666.herokuapp.com/posts/getUserPosts/${userData}`);
     console.log(response.data);
     setPosts(response.data);
   };
 
   const clickToUnfilter = async () => {
-    const response = await axios.get(`https://student-fair-prj66.herokuapp.com/posts`);
+    const response = await axios.get(`https://student-fair-prj666.herokuapp.com/posts`);
     console.log(response.data);
     setPosts(response.data);
   };
 
   const clickToViewDetails = async (postNum) => {
     console.log(postNum);
-    const response = await axios.get(`https://student-fair-prj66.herokuapp.com/posts/detail/${postNum}`);
+    const response = await axios.get(`https://student-fair-prj666.herokuapp.com/posts/detail/${postNum}`);
     console.log(response);
     navigate(`/list/post/detail/${postNum}`);
   };
