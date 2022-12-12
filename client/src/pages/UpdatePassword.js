@@ -20,11 +20,12 @@ function ChangePasswordPage(prop) {
         newPassword: e.target.newPassword.value,
       };
       console.log(updatedData);
-      axios.post('https://student-fair-prj666.herokuapp.com/users//rest-password', updatedData).then((res) => {
+      axios.post('https://student-fair-prj666.herokuapp.com/users/rest-password', updatedData).then((res) => {
         console.log(res.data);
         prop.updatePassword(res.data);
+        window.location = '/myProfile';
       });
-      window.location = '/myProfile';
+      
     } else {
       setMessage('Please Match the Password');
     }

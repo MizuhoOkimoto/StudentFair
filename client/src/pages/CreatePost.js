@@ -59,7 +59,7 @@ const CreatePost = (prop) => {
     };
     const uploadPhoto = (postNum) => {
       let address =
-        'http://https://student-fair-prj666.herokuapp.com/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
+        'https://student-fair-prj666.herokuapp.com/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
       axios.post(address, formData, config).then((res) => {
         console.log(res.data);
         if (res.data !== false) {
