@@ -28,7 +28,7 @@ const UpdatePost = (prop) => {
       setPost(res.data);
     };
     getPost();
-  }, [number]);
+  }, []);
 
   const onSubmitHandler = (e) => {
     // This will prevent the default html form submit behavior from taking place.

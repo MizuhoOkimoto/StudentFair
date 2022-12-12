@@ -17,7 +17,7 @@ const NodeEmailer = require('nodemailer');
 const multer = require('multer');
 const multerConfig = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, '../client/public/profileImg');
+    callback(null, './client/public/profileImg');
   },
   filename: (req, file, callback) => {
     //const ext = file.minetype.split('/')[1];

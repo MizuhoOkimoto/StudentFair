@@ -36,9 +36,10 @@ const CreatePost = (prop) => {
     // Send the user data to the backend
 
     axios.post('https://student-fair-prj666.herokuapp.com/posts/create_post', newpost).then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       //setPostNum(res.data.post_number);
       uploadPhoto(res.data.post_number);
+      window.location = '/lists';
     });
 
     // Render to the log in page
@@ -48,7 +49,7 @@ const CreatePost = (prop) => {
     if (file !== null) {
       for (var i = 0; i < file.length; i++) {
         formData.append('photo', file[i]);
-        console.log(i);
+        //console.log(i);
       }
     }
 
@@ -61,11 +62,11 @@ const CreatePost = (prop) => {
       let address =
         'https://student-fair-prj666.herokuapp.com/posts/upload_post_pic/' + postNum + '/' + prop.userData.email;
       axios.post(address, formData, config).then((res) => {
-        console.log(res.data);
-        if (res.data !== false) {
+        //console.log(res.data);
+        //if (res.data !== false) {
           alert('Your post is successfully created!');
           window.location = '/lists';
-        }
+        //}
       });
     };
   };

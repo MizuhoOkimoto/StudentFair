@@ -48,7 +48,7 @@ const deliveryMessage = async (from, name, result, desc) => {
 const multer = require('multer');
 const multerConfig = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, '../client/public/postImg');
+    callback(null, './client/public/postImg');
   },
   filename: (req, file, callback) => {
     //const ext = file.minetype.split('/')[1];

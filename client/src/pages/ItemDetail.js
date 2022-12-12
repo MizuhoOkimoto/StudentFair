@@ -31,7 +31,7 @@ const ItemDetail = (prop) => {
           setSell(res.data);
         });
     }
-  }, [sell, curPost]);
+  }, []);
   if (curPost !== undefined) {
     const sellUrl = 'https://student-fair-prj666.herokuapp.com/users/getSellInfo/' + curPost.user_id;
 
@@ -53,8 +53,11 @@ const ItemDetail = (prop) => {
     const url = 'https://student-fair-prj666.herokuapp.com/posts/detail/contact/' + post;
 
     axios.post(url, inputData).then((result) => {
+      
       console.log(result);
+      
     });
+    alert('Success to send e-mail');
   };
 
   const clickedSeeMoreBtn = () => {
